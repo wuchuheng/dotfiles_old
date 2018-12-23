@@ -78,6 +78,11 @@ function install()
     recieveTrash ".viminfo"
     #回收.ssh
     recieveTrash ".ssh"
+    #安装词典工具
+    if [ ! -d tool/dic ]
+    then 
+        git clone  https://github.com/wuchuheng/dic.git tool/dic;
+    fi
     #载入.bashrc
     bashFile=`pwd`"/.bashrc";
     isloadBashrc=`cat ~/.bashrc | grep "$bashFile"`;
