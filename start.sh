@@ -76,6 +76,8 @@ function install()
     recieveTrash ".vim"
     #回收.viminfo
     recieveTrash ".viminfo"
+    #回收.ssh
+    recieveTrash ".ssh"
     #载入.bashrc
     bashFile=`pwd`"/.bashrc";
     isloadBashrc=`cat ~/.bashrc | grep "$bashFile"`;
@@ -91,6 +93,9 @@ function install()
     ln -s `pwd`/.vim ~/.vim;
     #安装dotfiles/.viminfo
     ln -s `pwd`/.viminfo ~/.viminfo;
+    #安装.ssh
+    ln -s `pwd`/.ssh ~/.ssh;
+    #安装vim 配置
     if [ ! -e  ./.vim/authord/plug.vim ]
     then 
         curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
