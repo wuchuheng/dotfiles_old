@@ -150,6 +150,9 @@ endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 
+"ctrlp 配置
+    let g:ctrlp_map = '<c-p>'
+    let g:ctrlp_cmd = 'CtrlP'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -247,8 +250,8 @@ inoremap <C-e> <C-c>ea
 inoremap <C-b> <C-c>ba                          
 "插入模式向后移动一个长词
 inoremap <C-B> <C-c>Ba                          
-
-
+"单词转大写
+inoremap <C-u> <C-c>vawgUi
 
 
 
