@@ -56,7 +56,9 @@ call plug#end()
     nmap ga <Plug>(EasyAlign) " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 
 "airline 主题配置
+if isdirectory(expand("~/.vim/plugged/vim-airline-themes"))
     colorscheme  molokai                             "代码配色方案
+endif
 
 "状态栏配色
     let g:airline_theme='simple'                     "状态栏主题

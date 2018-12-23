@@ -76,6 +76,15 @@ function install()
     recieveTrash ".vim"
     #回收.viminfo
     recieveTrash ".viminfo"
+    #载入.bashrc
+    bashFile=`pwd`"/.bashrc";
+    isloadBashrc=`cat ~/.bashrc | grep "$bashFile"`;
+    echo $isloadBashrc;
+    if [ ! -n  "$isloadBashrc" ]
+    then
+        echo "source $bashFile;" >> ~/.bashrc ;
+        source ~/.bashrc;
+    fi
     #安装dotfiles/.vimrc
     ln -s `pwd`/.vimrc ~/.vimrc;
     #安装dotfiles/.vim
@@ -87,7 +96,7 @@ function install()
         curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
-    vim +PlugInstall
+    vim +PlugInstall!
 }
 
 
