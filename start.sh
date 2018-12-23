@@ -1,4 +1,4 @@
-#!/bin/bash;
+#!/bin/bash
 
 # @ author      wuchuheng
 # @ email       root@wuchuheng
@@ -82,9 +82,12 @@ function install()
     ln -s `pwd`/.vim ~/.vim;
     #安装dotfiles/.viminfo
     ln -s `pwd`/.viminfo ~/.viminfo;
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    vim +PlugInstall
+    if [ ! -e  ./.vim/authord/plug.vim ]
+    then 
+        curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    fi
+    vim +PlugInstall! +q
 }
 
 
