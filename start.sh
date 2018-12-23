@@ -79,11 +79,12 @@ function install()
     #回收.ssh
     recieveTrash ".ssh"
     #安装词典工具
-    if [ ! -d tool/dic ]
-    then 
-        git clone  https://github.com/wuchuheng/dic.git tool/dic;
-    fi
+    git clone  https://github.com/wuchuheng/dic.git tool/dic;
     #载入.bashrc
+    if [ ! -e ~/.bashrc ]
+    then
+        touch ~/.bashrc;
+    fi
     bashFile=`pwd`"/.bashrc";
     isloadBashrc=`cat ~/.bashrc | grep "$bashFile"`;
     echo $isloadBashrc;
