@@ -1,5 +1,6 @@
 trash/*
 .viminfo
 .ssh
+.vim
 
 !.ssh/config
