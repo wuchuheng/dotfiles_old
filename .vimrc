@@ -15,6 +15,7 @@ Plug 'majutsushi/tagbar'
 Plug 'spf13/PIV'
 Plug 'tpope/vim-surround'
 Plug 'Shougo/neocomplete.vim'
+Plug 'tpope/vim-commentary'
 
 " Initialize plugin system
 call plug#end()
@@ -162,7 +163,7 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ','                             "指定leader键位
 let maplocalleader = ','                        "指定local leader键位
-set t_Co=256                                    "颜色
+set t_Co=256                                    "终端显示的颜色数量
 set ignorecase                                  "查找忽略大小写
 set smartcase                                   "查找大小写自动识别
 set autoindent                                  "自动缩进
@@ -279,9 +280,10 @@ onoremap ah :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rg_vk0"<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "autocmd FileType sh : iabbrev <buffer>if if [  ]<left><left> "sh脚本if判断自动补全中括号 
 "autocmd FileType php : call MakeConfPHP()<CR>                "php编译
-
-
-
+"记住上次打开的位置
+if has("autocmd")                                                          
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

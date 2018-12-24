@@ -87,8 +87,7 @@ function install()
     fi
     bashFile=`pwd`"/.bashrc";
     isloadBashrc=`cat ~/.bashrc | grep "$bashFile"`;
-    echo $isloadBashrc;
-    if [ ! -n  "$isloadBashrc" ]
+    if [ "$isloadBashrc" = '' ]
     then
         echo "source $bashFile;" >> ~/.bashrc ;
         source ~/.bashrc;
@@ -102,12 +101,12 @@ function install()
     #安装.ssh
     ln -s `pwd`/.ssh ~/.ssh;
     #安装vim 配置
-    if [ ! -e  ./.vim/authord/plug.vim ]
+    if [ ! -e  ./.vim/authload/plug.vim ]
     then 
         curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
-    vim +PlugInstall!
+    vim +PlugInstall! +q "+source ~/.vimrc"
 }
 
 
