@@ -56,7 +56,7 @@ call plug#end()
     nmap ga <Plug>(EasyAlign) " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 
 "airline 主题配置
-if isdirectory(expand("~/.vim/plugged/vim-airline-themes"))
+if isdirectory(expand("~/.vim/plugged/vim-colorschemes"))
     colorscheme  molokai                             "代码配色方案
 endif
 
@@ -162,6 +162,7 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ','                             "指定leader键位
 let maplocalleader = ','                        "指定local leader键位
+set t_Co=256                                    "颜色
 set ignorecase                                  "查找忽略大小写
 set smartcase                                   "查找大小写自动识别
 set autoindent                                  "自动缩进
