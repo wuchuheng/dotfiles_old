@@ -16,6 +16,8 @@ Plug 'spf13/PIV'
 Plug 'tpope/vim-surround'
 Plug 'Shougo/neocomplete.vim'
 Plug 'tpope/vim-commentary'
+Plug 'scrooloose/syntastic'
+Plug 'spf13/vim-autoclose'
 
 " Initialize plugin system
 call plug#end()
@@ -162,7 +164,8 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "                           参数 配置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ','                             "指定leader键位
-let maplocalleader = ','                        "指定local leader键位
+let maplocalleader = '-'                        "指定local leader键位
+set foldlevelstart=99                           " 打开文件是默认不折叠代码
 set t_Co=256                                    "终端显示的颜色数量
 set ignorecase                                  "查找忽略大小写
 set smartcase                                   "查找大小写自动识别
@@ -224,13 +227,20 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-w>a <C-c>:tab split<CR>
 nnoremap <Leader>m :make<cr>
-
-
-
+"跳转到第n个标签页面
+nnoremap <leader>1 :1tabnext<cr>
+nnoremap <leader>2 :2tabnext<CR>
+nnoremap <leader>3 :3tabnext<CR>
+nnoremap <leader>4 :4tabnext<CR>
+nnoremap <leader>5 :5tabnext<CR>
+nnoremap <leader>6 :6tabnext<CR>
+nnoremap <leader>7 :7tabnext<CR>
+nnoremap <leader>8 :8tabnext<CR>
+nnoremap <leader>9 :9tabnext<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                           xnoremap 配置
+"            sldf njjsadk;lfj                xnoremap 配置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "&命令修正
 xnoremap & :&&<CR> 
