@@ -199,6 +199,7 @@ nmap <Up> <C-w>+
 nmap <Down> <C-w>-
 nmap <Left> :winc <<CR>
 nmap <right> :winc ><CR>
+nmap <space>b :ls<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
