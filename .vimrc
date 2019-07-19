@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
@@ -27,6 +28,7 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Nerdtree 配置
     let NERDTreeShowLineNumbers=1                   "Nerdtree插件 使用行号
+    let NERDTreeWinPos="right"
     let NERDTreeChDirMode=1                         "Nerdtree插件 不改变根目录
     let NERDTreeShowHidden=1
     let NERDTreeShowBookmarks=1
@@ -38,10 +40,8 @@ call plug#end()
     let NERDTreeKeepTreeInNewTab=1
     let g:nerdtree_tabs_open_on_gui_startup=0
     "跳到NERDTree栏
-    nnoremap <leader>e :NERDTreeFind<CR>
-    "非NERDTree栏
-    map <leader>nt :NERDTreeToggle<CR>
-    map <C-n> :NERDTreeToggle<CR>
+    nnoremap <space>f :NERDTreeFind<CR>
+    nnoremap <leader>e :NERDTreeToggle<CR>
     
 "airline 配置
     let g:airline_powerline_fonts=1
@@ -53,6 +53,8 @@ call plug#end()
     let g:airline_symbols_branch = ''
     let g:airline_symbols_readonly = ''
     let g:airline#extensions#tabline#enabled = 1    "airline插件 启用顶部标签栏
+    let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+
 
 "EasyAlign 配置 
     xmap ga <Plug>(EasyAlign) " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -64,7 +66,7 @@ if isdirectory(expand("~/.vim/plugged/vim-colorschemes"))
 endif
 
 "状态栏配色
-    let g:airline_theme='simple'                     "状态栏主题
+    let g:airline_theme='light'                     "状态栏主题
 
 "easymoution 映射
     " <Leader>f{char} to move to {char}
@@ -158,6 +160,7 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "ctrlp 配置
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlP'
+    let g:ctrlp_show_hidden = 1 
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -189,8 +192,13 @@ set spelllang=en_us                             "默认英文字典
 set backupcopy=yes                              "docker挂载文件保存生效
 hi clear SpellBad                               "关闭错误标示
 hi clear MatchParen                             "关闭闭合括号标示
-
-
+set cc=80                                       "80列宽度标尺
+nmap <space>' :term<CR>                         " 
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+nmap <Up> <C-w>+
+nmap <Down> <C-w>-
+nmap <Left> :winc <<CR>
+nmap <right> :winc ><CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -219,7 +227,7 @@ map <silent><space>l :<C-u>nohlsearch<CR>
 "&命令修正
 nnoremap & :&&<CR>                              
 "ctags F5刷新
-nnoremap <f5>:!ctags -R<CR>                     
+nnoremap <f5> :! ctags -R ./<CR>                     
 "选择窗口
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j

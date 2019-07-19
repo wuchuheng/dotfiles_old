@@ -77,20 +77,26 @@ function install()
     #回收.viminfo
     recieveTrash ".viminfo"
     #回收.ssh
-    recieveTrash ".ssh"
+    #recieveTrash ".ssh"
     #安装词典工具
-    git clone  https://github.com/wuchuheng/dic.git tool/dic;
+    #git clone  https://github.com/wuchuheng/dic.git tool/dic;
     #载入.bashrc
-    if [ ! -e ~/.bashrc ]
-    then
-        touch ~/.bashrc;
-    fi
-    bashFile=`pwd`"/.bashrc";
-    isloadBashrc=`cat ~/.bashrc | grep "$bashFile"`;
-    if [ "$isloadBashrc" = '' ]
-    then
-        echo "source $bashFile;" >> ~/.bashrc ;
-        source ~/.bashrc;
+    #if [ ! -e ~/.bashrc ]
+    #then
+    #    touch ~/.bashrc;
+    #fi
+    #bashFile=`pwd`"/.bashrc";
+    #isloadBashrc=`cat ~/.bashrc | grep "$bashFile"`;
+    #if [ "$isloadBashrc" = '' ]
+    #then
+    #    echo "source $bashFile;" >> ~/.bashrc ;
+    #    source ~/.bashrc;
+    #fi
+    #安装vim 配置
+    if [ ! -e  ./.vim/authload/plug.vim ]
+    then 
+        curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
     #安装dotfiles/.vimrc
     ln -s `pwd`/.vimrc ~/.vimrc;
@@ -99,13 +105,7 @@ function install()
     #安装dotfiles/.viminfo
     ln -s `pwd`/.viminfo ~/.viminfo;
     #安装.ssh
-    ln -s `pwd`/.ssh ~/.ssh;
-    #安装vim 配置
-    if [ ! -e  ./.vim/authload/plug.vim ]
-    then 
-        curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    fi
+    #ln -s `pwd`/.ssh ~/.ssh;
     vim +PlugInstall! +q "+source ~/.vimrc"
 }
 
