@@ -5,6 +5,8 @@ call plug#begin('~/.vim/plugged')
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'scrooloose/nerdtree'
+Plug 'matze/vim-move'
+Plug 't9md/vim-choosewin'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'Yggdroot/indentLine'
@@ -62,7 +64,9 @@ call plug#end()
 
 "airline 主题配置
 if isdirectory(expand("~/.vim/plugged/vim-colorschemes"))
-    colorscheme  molokai                             "代码配色方案
+    "colorscheme  molokai                             "代码配色方案
+    colorscheme wombat
+
 endif
 
 "状态栏配色
@@ -158,10 +162,15 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 
 "ctrlp 配置
-    let g:ctrlp_map = '<c-p>'
+    let g:ctrlp_map = '<c-p>'            "当前目录查找
     let g:ctrlp_cmd = 'CtrlP'
-    let g:ctrlp_show_hidden = 1 
+    let g:ctrlp_show_hidden = 1
+    nmap <space>b :CtrlPBuffer<CR>
+"matze/vim-move 配置
+let g:move_key_modifier = 'C'
 
+"choosewin 配置 
+nmap  -  <Plug>(choosewin)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           参数 配置
@@ -183,7 +192,7 @@ set nobomb                                      "无bom格式
 set wrap                                        "自动换行显示 
 set history=200                                 "历史记录量
 syntax on                                       "启用语法高亮
-set norelativenumber                            "相对行号
+set relativenumber                            "相对行号
 set mouse=a                                     "支持鼠标
 set foldlevelstart=99                           "历史上限
 set hidden                                      "隐藏当前缓冲区禁用提示
@@ -199,7 +208,6 @@ nmap <Up> <C-w>+
 nmap <Down> <C-w>-
 nmap <Left> :winc <<CR>
 nmap <right> :winc ><CR>
-nmap <space>b :ls<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
