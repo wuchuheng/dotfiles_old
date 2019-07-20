@@ -13,14 +13,14 @@ Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
-Plug 'flazz/vim-colorschemes'
 Plug 'majutsushi/tagbar'
 Plug 'spf13/PIV'
 Plug 'tpope/vim-surround'
 Plug 'Shougo/neocomplete.vim'
 Plug 'tpope/vim-commentary'
 Plug 'scrooloose/syntastic'
-Plug 'spf13/vim-autoclose'
+"Plug 'spf13/vim-autoclose'
+Plug 'morhetz/gruvbox'
 
 " Initialize plugin system
 call plug#end()
@@ -63,11 +63,6 @@ call plug#end()
     nmap ga <Plug>(EasyAlign) " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 
 "airline 主题配置
-if isdirectory(expand("~/.vim/plugged/vim-colorschemes"))
-    "colorscheme  molokai                             "代码配色方案
-    colorscheme wombat
-
-endif
 
 "状态栏配色
     let g:airline_theme='light'                     "状态栏主题
@@ -199,8 +194,10 @@ set hidden                                      "隐藏当前缓冲区禁用提�
 set spell                                       "启用字典
 set spelllang=en_us                             "默认英文字典
 set backupcopy=yes                              "docker挂载文件保存生效
-hi clear SpellBad                               "关闭错误标示
-hi clear MatchParen                             "关闭闭合括号标示
+set nowrap                                      "不折行
+set foldmethod=indent
+"hi clear SpellBad                               "关闭错误标示
+"hi clear MatchParen                             "关闭闭合括号标示
 set cc=80                                       "80列宽度标尺
 nmap <space>' :term<CR>                         " 
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -208,7 +205,6 @@ nmap <Up> <C-w>+
 nmap <Down> <C-w>-
 nmap <Left> :winc <<CR>
 nmap <right> :winc ><CR>
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           nnoremap 配置
@@ -341,4 +337,8 @@ endfunction
 "    "php 声明
 "    "inoremap  ~php <CR>/**<CR>*<CR>* @author    root<CR>* @email     root@163.com<CR>*<CR>**/<CR>     "php程序头部声明
 "endfunction
+colorscheme gruvbox
+"let g:airline_theme='gruvbox'
+let colorscheme_bg = "dark"
+set bg=dark
 
