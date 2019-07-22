@@ -203,7 +203,7 @@ set foldmethod=indent
 "hi clear SpellBad                               "关闭错误标示
 "hi clear MatchParen                             "关闭闭合括号标示
 set cc=80                                       "80列宽度标尺
-nmap <space>' :term<CR>                         " 
+nmap <space>' :term<CR>
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 nmap <Up> <C-w>+
 nmap <Down> <C-w>-
