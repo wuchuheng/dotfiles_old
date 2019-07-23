@@ -82,6 +82,7 @@ call plug#end()
     nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 "tagbar 配置
+let g:tagbar_left = 1       "右侧开启
 nmap <leader>tt :TagbarToggle<CR>
 
 "neocomplet 自动补全配置
