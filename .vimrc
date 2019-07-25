@@ -5,6 +5,9 @@ call plug#begin('~/.vim/plugged')
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'scrooloose/nerdtree'
+Plug 'arnaud-lb/vim-php-namespace'
+Plug 'shawncplus/phpcomplete.vim'
+Plug 'vim-scripts/AuthorInfo'
 Plug 'matze/vim-move'
 Plug 't9md/vim-choosewin'
 Plug 'kien/ctrlp.vim'
@@ -172,10 +175,23 @@ nmap  -  <Plug>(choosewin)
 "grepper 配置
 nmap <space>s :Grepper<CR>
 
+"AuthorInfo 配置
+let g:vimrc_author='wuchuheng'
+let g:vimrc_email='wuchuheng@163.com'
+let g:vimrc_homepage='http://www.wuchuheng.com'
+nmap <F4> :AuthorInfoDetect<cr>
+
+"gruvbox 配置  
+colorscheme gruvbox
+"let g:airline_theme='gruvbox'
+let colorscheme_bg = "dark"
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           参数 配置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ','                             "指定leader键位
+set bg=dark                                     "背景
 let maplocalleader = '-'                        "指定local leader键位
 set foldlevelstart=99                           " 打开文件是默认不折叠代码
 set t_Co=256                                    "终端显示的颜色数量
@@ -201,8 +217,6 @@ set spelllang=en_us                             "默认英文字典
 set backupcopy=yes                              "docker挂载文件保存生效
 set nowrap                                      "不折行
 set foldmethod=indent
-"hi clear SpellBad                               "关闭错误标示
-"hi clear MatchParen                             "关闭闭合括号标示
 set cc=80                                       "80列宽度标尺
 nmap <space>' :term<CR>
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -210,6 +224,12 @@ nmap <Up> <C-w>+
 nmap <Down> <C-w>-
 nmap <Left> :winc <<CR>
 nmap <right> :winc ><CR>
+nmap tc :pclose<CR>
+nmap ts <c-w>}
+nmap <c-t>s <c-w>]
+nmap tn :tnext<CR>
+nmap tp :tprev<CR>
+nmap tl :tlast<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           nnoremap 配置
@@ -342,8 +362,10 @@ endfunction
 "    "php 声明
 "    "inoremap  ~php <CR>/**<CR>*<CR>* @author    root<CR>* @email     root@163.com<CR>*<CR>**/<CR>     "php程序头部声明
 "endfunction
-colorscheme gruvbox
-"let g:airline_theme='gruvbox'
-let colorscheme_bg = "dark"
-set bg=dark
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           autocmd
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set tags+=tags.vendor
+autocmd BufWritePost *.php silent execute "!ctags -R --languages=php --fields=+lS ./"
