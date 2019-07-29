@@ -170,7 +170,7 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 let g:move_key_modifier = 'C'
 
 "choosewin 配置 
-nmap  -  <Plug>(choosewin)
+nmap  <space><space>  <Plug>(choosewin)
 
 "grepper 配置
 nmap <space>s :Grepper<CR>
