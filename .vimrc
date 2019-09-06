@@ -368,4 +368,4 @@ endfunction
 "                           autocmd
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set tags+=tags.vendor
-autocmd BufWritePost *.php silent execute "!ctags -R --languages=php --fields=+lS ./"
+"autocmd BufWritePost *.php silent execute \"!ctags -R --languages=php --fields=+lS ./"
