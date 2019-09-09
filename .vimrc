@@ -79,6 +79,17 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+function! s:config_easyfuzzymotion(...) abort
+    return extend(copy({
+                \   'converters': [incsearch#config#fuzzyword#converter()],
+                \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+                \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+                \   'is_expr': 0,
+                \   'is_stay': 1
+                \ }), get(a:, 1, {}))
+endfunction
+noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+    
 "airline 主题配置
 
 "状态栏配色
@@ -243,7 +254,11 @@ nmap <c-t>s <c-w>]
 nmap tn :tnext<CR>
 nmap tp :tprev<CR>
 nmap tl :tlast<CR>
-
+set undodir=~/dotfiles/.undo//
+set backupdir=~/dotfiles/.backup//
+set directory=~/dotfiles/.swp//
+"set nobackup
+"set noswapfile
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           nnoremap 配置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -270,7 +285,7 @@ map <silent><space>l :<C-u>nohlsearch<CR>
 "&命令修正
 nnoremap & :&&<CR>                              
 "ctags F5刷新
-nnoremap <f5> :! ctags -R ./<CR>                     
+nnoremap <f5> :! ctags -R --languages=php ./<CR>                     
 "选择窗口
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
