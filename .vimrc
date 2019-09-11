@@ -63,7 +63,11 @@ call plug#end()
 
 
 "EasyAlign 配置 
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
+" let g:EasyMotion_do_mapping = 0 " Disable default mappings
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
@@ -254,9 +258,9 @@ nmap <c-t>s <c-w>]
 nmap tn :tnext<CR>
 nmap tp :tprev<CR>
 nmap tl :tlast<CR>
-set undodir=~/dotfiles/.undo//
-set backupdir=~/dotfiles/.backup//
-set directory=~/dotfiles/.swp//
+set undodir=~/.vim/.undo//
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//
 "set nobackup
 "set noswapfile
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
