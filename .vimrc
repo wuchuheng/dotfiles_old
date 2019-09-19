@@ -263,6 +263,10 @@ set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 "set nobackup
 "set noswapfile
+set cin                                           "C语言缩进
+set autoindent                                    "自动缩进
+set foldmethod=manual                             "手动折叠
+set helplang=cn
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           nnoremap 配置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -336,6 +340,9 @@ inoremap <C-b> <C-c>ba
 inoremap <C-B> <C-c>Ba                          
 "单词转大写
 inoremap <C-u> <C-c>vawgUi
+"行尾加分号; 
+inoremap <C-;> <C-c>A;<C-c>g;i
+
 
 
 
