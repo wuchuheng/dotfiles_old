@@ -258,15 +258,16 @@ nmap <c-t>s <c-w>]
 nmap tn :tnext<CR>
 nmap tp :tprev<CR>
 nmap tl :tlast<CR>
+"g<c-]> 说明 https://xu3352.github.io/linux/2018/12/16/practical-vim-skills-chapter-16
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 "set nobackup
 "set noswapfile
 set cin                                           "C语言缩进
-set autoindent                                    "自动缩进
 set foldmethod=manual                             "手动折叠
 set helplang=cn
+set autoindent                                    "自动缩进
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           nnoremap 配置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -408,3 +409,4 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set tags+=tags.vendor
 "autocmd BufWritePost *.php silent execute \"!ctags -R --languages=php --fields=+lS ./"
+set autoindent                                    "自动缩进
