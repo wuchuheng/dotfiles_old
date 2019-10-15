@@ -258,9 +258,9 @@ nmap tn :tnext<CR>
 nmap tp :tprev<CR>
 nmap tl :tlast<CR>
 "g<c-]> 说明 https://xu3352.github.io/linux/2018/12/16/practical-vim-skills-chapter-16
-set undodir=~/.vim/.undo//
-set backupdir=~/.vim/.backup//
-set directory=~/.vim/.swp//
+set undodir=~/.dotfile/.undo//
+set backupdir=~/.dotfile/.backup//
+set directory=~/.dotfile/.swp//
 "set nobackup
 "set noswapfile
 set cin                                           "C语言缩进
