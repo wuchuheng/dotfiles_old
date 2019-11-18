@@ -236,14 +236,13 @@ set nobomb                                      "无bom格式
 set wrap                                        "自动换行显示 
 set history=200                                 "历史记录量
 syntax on                                       "启用语法高亮
-set relativenumber                            "相对行号
+set norelativenumber                            "相对行号
 set mouse=a                                     "支持鼠标
 set hidden                                      "隐藏当前缓冲区禁用提示
 set spell                                       "启用字典
 set spelllang=en_us                             "默认英文字典
 set backupcopy=yes                              "docker挂载文件保存生效
 set nowrap                                      "不折行
-set foldmethod=indent
 set cc=80                                       "80列宽度标尺
 nmap <space>' :term<CR>
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -264,7 +263,6 @@ set directory=~/.vim/.swp//
 "set nobackup
 "set noswapfile
 set cin                                           "C语言缩进
-set foldmethod=manual                             "手动折叠
 set helplang=cn
 set autoindent                                    "自动缩进
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -311,7 +309,16 @@ nnoremap <leader>6 :6tabnext<CR>
 nnoremap <leader>7 :7tabnext<CR>
 nnoremap <leader>8 :8tabnext<CR>
 nnoremap <leader>9 :9tabnext<CR>
-
+"tab窗口号移动
+nnoremap t1 :tabmove 0<CR>
+nnoremap t2 :tabmove 1<CR>
+nnoremap t3 :tabmove 2<CR>
+nnoremap t4 :tabmove 3<CR>
+nnoremap t5 :tabmove 4<CR>
+nnoremap t6 :tabmove 5<CR>
+nnoremap t7 :tabmove 6<CR>
+nnoremap t8 :tabmove 7<CR>
+nnoremap t9 :tabmove 8<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "            sldf njjsadk;lfj                xnoremap 配置
@@ -342,6 +349,7 @@ inoremap <C-B> <C-c>Ba
 inoremap <C-u> <C-c>vawgUi
 "行尾加分号; 
 inoremap <C-;> <C-c>A;<C-c>g;i
+
 
 
 
