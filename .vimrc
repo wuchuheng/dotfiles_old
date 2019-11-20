@@ -25,6 +25,8 @@ Plug 'scrooloose/syntastic'
 Plug 'spf13/vim-autoclose'
 Plug 'morhetz/gruvbox'
 Plug 'mhinz/vim-grepper'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Initialize plugin system
 call plug#end()
@@ -214,6 +216,15 @@ colorscheme gruvbox
 "let g:airline_theme='gruvbox'
 let colorscheme_bg = "dark"
 
+"""
+""" ultisnips
+"""
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           参数 配置
