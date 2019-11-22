@@ -4,4 +4,6 @@ trash/*
 .vim
 .*.sw*
 !.ssh/config
+/.swp/%*
+/.undo/%*
 

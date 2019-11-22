@@ -219,7 +219,7 @@ let colorscheme_bg = "dark"
 """
 """ ultisnips
 """
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<tab-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
@@ -268,9 +268,10 @@ nmap tn :tnext<CR>
 nmap tp :tprev<CR>
 nmap tl :tlast<CR>
 "g<c-]> 说明 https://xu3352.github.io/linux/2018/12/16/practical-vim-skills-chapter-16
-set undodir=~/dotfiles/.undo//
-set backupdir=~/dotfiles/.backup//
-set directory=~/dotfiles/.swp//
+set undodir=~/dotfiles/.undo/
+set backupdir=~/dotfiles/.backup/
+set directory=~/dotfiles/.swp/
+set undofile
 "set nobackup
 "set noswapfile
 set cin                                           "C语言缩进
