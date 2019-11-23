@@ -27,6 +27,7 @@ Plug 'morhetz/gruvbox'
 Plug 'mhinz/vim-grepper'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'stephpy/vim-php-cs-fixer'
 
 " Initialize plugin system
 call plug#end()
@@ -41,7 +42,7 @@ call plug#end()
     let NERDTreeShowHidden=1
     let NERDTreeShowBookmarks=1
     let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-    let NERDTreeChDirMode=0
+    let NERDTreeChDirMode=1
     let NERDTreeQuitOnOpen=1
     let NERDTreeMouseMode=2
     let NERDTreeShowHidden=1
@@ -226,6 +227,22 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+""
+"" stephpy/vim-php-cs-fixer
+""
+let g:php_cs_fixer_path = "~/dotfiles/php-cs-fixer" 
+let g:php_cs_fixer_level = "laravel"
+let g:php_cs_fixer_config = "default"
+let g:php_cs_fixer_rules = "@PSR2"
+let g:php_cs_fixer_php_path = "php" 
+let g:php_cs_fixer_enable_default_mapping = 1
+let g:php_cs_fixer_dry_run = 0    
+let g:php_cs_fixer_verbose = 0     
+nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
+nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           参数 配置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -247,7 +264,7 @@ set nobomb                                      "无bom格式
 set wrap                                        "自动换行显示 
 set history=200                                 "历史记录量
 syntax on                                       "启用语法高亮
-set norelativenumber                            "相对行号
+set relativenumber                            "相对行号
 set mouse=a                                     "支持鼠标
 set hidden                                      "隐藏当前缓冲区禁用提示
 set spell                                       "启用字典
