@@ -27,7 +27,9 @@ Plug 'morhetz/gruvbox'
 Plug 'mhinz/vim-grepper'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'stephpy/vim-php-cs-fixer'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'gregsexton/gitv'
+Plug 'tpope/vim-fugitive'
 
 " Initialize plugin system
 call plug#end()
@@ -241,7 +243,21 @@ let g:php_cs_fixer_verbose = 0
 nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
 nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
 
-
+""" 
+"""  scrooloose/nerdtree
+""" 
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           参数 配置
@@ -272,6 +288,8 @@ set spelllang=en_us                             "默认英文字典
 set backupcopy=yes                              "docker挂载文件保存生效
 set nowrap                                      "不折行
 set cc=80                                       "80列宽度标尺
+cnoremap <c-n> <down>                           
+cnoremap <c-p> <up>
 nmap <space>' :term<CR>
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 nmap <Up> <C-w>+
@@ -287,8 +305,10 @@ nmap tl :tlast<CR>
 "g<c-]> 说明 https://xu3352.github.io/linux/2018/12/16/practical-vim-skills-chapter-16
 set undodir=~/dotfiles/.undo/
 set backupdir=~/dotfiles/.backup/
-set directory=~/dotfiles/.swp/
 set undofile
+set directory=~/dotfiles/.swp/
+"set viminfo
+"syntime on
 "set nobackup
 "set noswapfile
 set cin                                           "C语言缩进
