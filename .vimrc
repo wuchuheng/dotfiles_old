@@ -28,7 +28,7 @@ Plug 'mhinz/vim-grepper'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'gregsexton/gitv'
+Plug 'gregsexton/gitv'
 Plug 'tpope/vim-fugitive'
 
 " Initialize plugin system
@@ -222,7 +222,7 @@ let colorscheme_bg = "dark"
 """
 """ ultisnips
 """
-let g:UltiSnipsExpandTrigger="<tab-e>"
+let g:UltiSnipsExpandTrigger="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
@@ -288,6 +288,7 @@ set spelllang=en_us                             "默认英文字典
 set backupcopy=yes                              "docker挂载文件保存生效
 set nowrap                                      "不折行
 set cc=80                                       "80列宽度标尺
+set paste                                       "粘贴不排版不乱
 cnoremap <c-n> <down>                           
 cnoremap <c-p> <up>
 nmap <space>' :term<CR>
@@ -1280,5 +1281,6 @@ fun! s:ParseSkip(str)
 endfun
 
 let &cpo = s:save_cpo
+autocmd BufEnter * :syntax sync fromstart
 
 " vim:sts=2:sw=2:
