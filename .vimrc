@@ -27,9 +27,11 @@ Plug 'morhetz/gruvbox'
 Plug 'mhinz/vim-grepper'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'gregsexton/gitv'
-Plug 'tpope/vim-fugitive'
+Plug 'vim-scripts/YankRing.vim'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'gregsexton/gitv'
+" Plug 'tpope/vim-fugitive'
+" Plug 'airblade/vim-gitgutter'
 
 " Initialize plugin system
 call plug#end()
@@ -288,10 +290,11 @@ set spelllang=en_us                             "默认英文字典
 set backupcopy=yes                              "docker挂载文件保存生效
 set nowrap                                      "不折行
 set cc=80                                       "80列宽度标尺
-set paste                                       "粘贴不排版不乱
+"et paste                                       "粘贴不排版不乱
 cnoremap <c-n> <down>                           
 cnoremap <c-p> <up>
 nmap <space>' :term<CR>
+nmap <C-y> :YRShow<CR>
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 nmap <Up> <C-w>+
 nmap <Down> <C-w>-
