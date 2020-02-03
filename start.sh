@@ -85,7 +85,11 @@ function install()
 
     if [ "$isloadBashrc" = '' ]
     then
-        echo "source $bashFile;" >> ~/.bashrc ;
+        
+        echo "if [  -e "`pwd`"/.bashrc ]" >> ~/.bashrc 
+        echo "then" >> ~/.bashrc;
+        echo "    source $bashFile;" >> ~/.bashrc ;
+        echo "fi" >> ~/.bashrc
         source ~/.bashrc;
     fi
     # 载入到 ~/.zshrc
@@ -95,7 +99,10 @@ function install()
         isloadZshrc=`cat ~/.zshrc | grep "$zshFile"`;
         if [ "$isloadzshrc" = '' ]
         then
-            echo "source $zshFile;" >> ~/.zshrc ;
+        echo "if [  -e "`pwd`"/.bashrc ]" >> ~/.zshrc 
+        echo "then" >> ~/.bashrc;
+        echo "    source $zshFile;" >> ~/.zshrc ;
+        echo "fi" >> ~/.zshrc
             source ~/.zshrc;
         fi
     fi
