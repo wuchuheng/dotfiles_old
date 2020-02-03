@@ -80,18 +80,25 @@ function install()
     #recieveTrash ".ssh"
     #安装词典工具
     #git clone  https://github.com/wuchuheng/dic.git tool/dic;
-    #载入.bashrc
-    #if [ ! -e ~/.bashrc ]
-    #then
-    #    touch ~/.bashrc;
-    #fi
-    #bashFile=`pwd`"/.bashrc";
-    #isloadBashrc=`cat ~/.bashrc | grep "$bashFile"`;
-    #if [ "$isloadBashrc" = '' ]
-    #then
-    #    echo "source $bashFile;" >> ~/.bashrc ;
-    #    source ~/.bashrc;
-    #fi
+    bashFile=`pwd`"/.bashrc";
+    isloadBashrc=`cat ~/.bashrc | grep "$bashFile"`;
+
+    if [ "$isloadBashrc" = '' ]
+    then
+        echo "source $bashFile;" >> ~/.bashrc ;
+        source ~/.bashrc;
+    fi
+    # 载入到 ~/.zshrc
+    zshFile=`pwd`"/.bashrc";
+    if [  -e ~/.zshrc ]
+    then
+        isloadZshrc=`cat ~/.zshrc | grep "$zshFile"`;
+        if [ "$isloadzshrc" = '' ]
+        then
+            echo "source $zshFile;" >> ~/.zshrc ;
+            source ~/.zshrc;
+        fi
+    fi
     #安装vim 配置
     if [ ! -e  ./.vim/authload/plug.vim ]
     then 

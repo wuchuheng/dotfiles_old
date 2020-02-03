@@ -27,7 +27,6 @@ Plug 'morhetz/gruvbox'
 Plug 'mhinz/vim-grepper'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'vim-scripts/YankRing.vim'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'gregsexton/gitv'
 " Plug 'tpope/vim-fugitive'
@@ -294,7 +293,6 @@ set cc=80                                       "80列宽度标尺
 cnoremap <c-n> <down>                           
 cnoremap <c-p> <up>
 nmap <space>' :term<CR>
-nmap <C-y> :YRShow<CR>
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 nmap <Up> <C-w>+
 nmap <Down> <C-w>-

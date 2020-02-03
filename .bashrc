@@ -7,10 +7,6 @@ alias ll='ls -hl'
 alias c='clear'
 alias vi=' vim -u NONE -N'
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
 export LANG=en_US.UTF-8
 export EDITOR=/usr/bin/vim
 # 配色方案
@@ -26,3 +22,9 @@ alias gitlogdetail='git log --graph --pretty=oneline --abbrev-commit';
 
 #网络工具
 alias myip='curl cip.cc'
+
+#
+#docker   镜像工具 
+#
+
+alias ab='docker run  --rm httpd:2.4.41-alpine  ab'
