@@ -117,7 +117,7 @@ function install()
     #安装dotfiles/.vim
     ln -s `pwd`/.vim ~/.vim;
     #安装dotfiles/.viminfo
-    ln -s `pwd`/.viminfo ~/.viminfo;
+    ln -s `pwd`/.viminfo ~/.viminfo
     #安装.ssh
     #ln -s `pwd`/.ssh ~/.ssh;
     vim +PlugInstall! +q "+source ~/.vimrc"

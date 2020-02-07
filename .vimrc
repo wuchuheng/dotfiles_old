@@ -298,8 +298,8 @@ nmap <Up> <C-w>+
 nmap <Down> <C-w>-
 nmap <Left> :winc <<CR>
 nmap <right> :winc ><CR>
-nmap tc :pclose<CR>
-nmap ts <c-w>}
+nmap tc <c-w>j:pclose<CR>
+nmap ts <c-w>}<c-w>k
 nmap <c-t>s <c-w>]
 nmap tn :tnext<CR>
 nmap tp :tprev<CR>

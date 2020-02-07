@@ -28,3 +28,4 @@ alias myip='curl cip.cc'
 #
 
 alias ab='docker run  --rm httpd:2.4.41-alpine  ab'
+alias nvim='docker run -it --rm -v $(pwd):/home/spacevim/src spacevim/spacevim'
