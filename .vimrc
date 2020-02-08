@@ -304,6 +304,8 @@ nmap <c-t>s <c-w>]
 nmap tn :tnext<CR>
 nmap tp :tprev<CR>
 nmap tl :tlast<CR>
+"词典 
+nmap <Leader>d vaw"ty:!docker run -it --rm wuchuheng/dic:0.0.1 php ./test.php <C-r>t<CR>
 "g<c-]> 说明 https://xu3352.github.io/linux/2018/12/16/practical-vim-skills-chapter-16
 set undodir=~/dotfiles/.undo/
 set backupdir=~/dotfiles/.backup/

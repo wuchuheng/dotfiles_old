@@ -13,8 +13,6 @@ export EDITOR=/usr/bin/vim
 #PS1=' ${debian_chroot:+($debian_chroot)}\[\033[01;33;1m\]\u\[\033[00;32;1m\]@\[\033[01;36;1m\]\h\[\033[00;32;1m\]:\[\033[00;34;1m\]\w \[\033[01;32;1m\]\$ \[\033[01;37;1m\]'
 #PATH=/www/wdlinux/phps/71/bin/:$PATH
 
-#字典工具 DIC <keyowd>
-alias d='php ~/dotfiles/tool/dic/test.php'
 
 #git配置
 git config --global color.ui true
@@ -29,3 +27,5 @@ alias myip='curl cip.cc'
 
 alias ab='docker run  --rm httpd:2.4.41-alpine  ab'
 alias nvim='docker run -it --rm -v $(pwd):/home/spacevim/src spacevim/spacevim'
+#字典工具 DIC <keyowd>
+alias dic='docker run -it --rm wuchuheng/dic:0.0.1 php ./test.php '
