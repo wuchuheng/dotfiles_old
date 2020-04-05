@@ -27,6 +27,7 @@ Plug 'morhetz/gruvbox'
 Plug 'mhinz/vim-grepper'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'gregsexton/gitv'
 " Plug 'tpope/vim-fugitive'
@@ -318,6 +319,8 @@ set directory=~/dotfiles/.swp/
 set cin                                           "C语言缩进
 set helplang=cn
 set autoindent                                    "自动缩进
+"字典
+set dictionary+=~/dotfiles/php_keywords.txt
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           nnoremap 配置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

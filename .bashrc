@@ -29,3 +29,5 @@ alias ab='docker run  --rm httpd:2.4.41-alpine  ab'
 alias nvim='docker run -it --rm -v $(pwd):/home/spacevim/src spacevim/spacevim'
 #字典工具 DIC <keyowd>
 alias dic='docker run -it --rm wuchuheng/dic:0.0.1 php ./test.php '
+export LESSCHARSET=utf-8
+export LC_ALL=zh_CN.UTF-8
