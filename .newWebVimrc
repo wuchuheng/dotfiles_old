@@ -1,0 +1,16 @@
+call plug#begin('~/.vim/plugged')
+		" 代码高亮
+		Plug 'sheerun/vim-polyglot'
+		" 代码高配置
+		Plug 'sheerun/vimrc'
+		" 代码主题
+		Plug 'morhetz/gruvbox'
+call plug#end()
+
+
+"
+" 代码主题配置
+"
+colorscheme gruvbox
+set background=dark
+
