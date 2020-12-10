@@ -17,12 +17,11 @@ Plug 'easymotion/vim-easymotion'
 Plug 'majutsushi/tagbar'
 Plug 'spf13/PIV'
 Plug 'tpope/vim-surround'
-Plug 'Shougo/neocomplete.vim'
+"Plug 'Shougo/neocomplete.vim'
 Plug 'tpope/vim-commentary'
 Plug 'scrooloose/syntastic'
 Plug 'spf13/vim-autoclose'
 Plug 'morhetz/gruvbox'
-Plug 'mhinz/vim-grepper'
 " Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -33,6 +32,15 @@ Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Or build from source code by using yarn: https://yarnpkg.com
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'ianva/vim-youdao-translater'
+Plug 'eugen0329/vim-esearch'
+Plug 'rstacruz/sparkup'
+Plug 'mhinz/vim-grepper'
+Plug 'mrdotb/vim-tailwindcss'
+" go 主要插件
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" go 中的代码追踪，输入 gd 就可以自动跳转
+Plug 'dgryski/vim-godef'
 
 
 " Initialize plugin system
@@ -110,99 +118,33 @@ noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 "easymoution 映射
     " <Leader>f{char} to move to {char}
-    map  <Leader>f <Plug>(easymotion-bd-f)
-    nmap <Leader>f <Plug>(easymotion-overwin-f)
+    map <leader>jj <Plug>(easymotion-bd-f)
     " s{char}{char} to move to {char}{char}
     "nmap s <Plug>(easymotion-overwin-f3)
     " Move to line
-    map <Leader>L <Plug>(easymotion-bd-jk)
-    nmap <Leader>L <Plug>(easymotion-overwin-line)
+    map <leader>jL <Plug>(easymotion-bd-jk)
+    nmap <leader>jL <Plug>(easymotion-overwin-line)
     " Move to word
-    map  <Leader>w <Plug>(easymotion-bd-w)
-    nmap <Leader>w <Plug>(easymotion-overwin-w)
+    map  <leader>jw <Plug>(easymotion-bd-w)
+    nmap <leader>jw <Plug>(easymotion-overwin-w)
 
 "tagbar 配置
 let g:tagbar_left = 1       "右侧开启
 nmap <leader>tt :TagbarToggle<CR>
-
-"neocomplet 自动补全配置
-"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
 
 "ctrlp 配置
     let g:ctrlp_map = '<c-p>'            "当前目录查找
     let g:ctrlp_cmd = 'CtrlP'
     let g:ctrlp_show_hidden = 1
     nmap <space>b :CtrlPBuffer<CR>
+    let g:ctrlp_custom_ignore = {
+                \ 'dir':  '\.git$|vendor\|\.hg$\|\.svn$\|\.yardoc\|node_modules\|public\/images\|public\/system\|data\|log\|tmp$',
+                \ 'file': '\.exe$\|\.so$\|\.dat$'
+                \ } 
+
+    nmap <leader>fb :CtrlPBuffer<CR>
+
+
 "matze/vim-move 配置
 let g:move_key_modifier = 'C'
 
@@ -292,10 +234,16 @@ set spelllang=en_us                             "默认英文字典
 set backupcopy=yes                              "docker挂载文件保存生效
 set nowrap                                      "不折行
 set cc=80                                       "80列宽度标尺
+noremap <leader>cfh :set filetype=html 
+
+
 "et paste                                       "粘贴不排版不乱
 cnoremap <c-n> <down>                           
 cnoremap <c-p> <up>
-nmap <space>' :term<CR>
+" terminal configure
+nmap <space>' :new term://zsh<CR><C-w>H<C-w>J:+resize10<CR>i
+tnoremap <Esc> <C-\><C-n>
+
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 nmap <Up> <C-w>+
 nmap <Down> <C-w>-
@@ -407,9 +355,6 @@ inoremap <C-B> <C-c>Ba
 inoremap <C-u> <C-c>vawgUi
 "行尾加分号; 
 inoremap <C-;> <C-c>A;<C-c>g;i
-
-
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1458,4 +1403,33 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+"
+" you dao
+"
+""
+vnoremap <silent> <C-T> :<C-u>Ydv<CR>
+nnoremap <silent> <C-T> :<C-u>Ydc<CR>
+noremap <leader>yd :<C-u>Yde<CR>
+
+
+
+"
+" tailwindcss 
+"
+""
+" Set the completefunc you can do this per file basis or with a mapping
+set completefunc=tailwind#complete
+" The mapping I use
+nnoremap <leader>tf :set completefunc=tailwind#complete<cr>
+" Add this autocmd to your vimrc to close the preview window after the completion is done
+autocmd CompleteDone * pclose
+ 
+"
+" golang 配置
+"
+"
+map <leader>lr :GoRun %<CR>
+map <leader>ld vawy:GoDoc <c-r>0p<cr>
+
 
