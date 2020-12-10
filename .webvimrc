@@ -63,7 +63,7 @@ call plug#end()
     let NERDTreeKeepTreeInNewTab=1
     let g:nerdtree_tabs_open_on_gui_startup=0
     "跳到NERDTree栏
-    nnoremap <space>f :NERDTreeFind<CR>
+    nnoremap <space>fo :NERDTreeFind<CR>
     nnoremap <leader>e :NERDTreeToggle<CR>
     
 "airline 配置
@@ -79,21 +79,6 @@ call plug#end()
     let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 
 
-
-" Turn on case-insensitive feature
-let g:EasyMotion_smartcase = 1
-
-" JK motions: Line motions
-function! s:config_easyfuzzymotion(...) abort
-    return extend(copy({
-                \   'converters': [incsearch#config#fuzzyword#converter()],
-                \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-                \   'keymap': {"\<CR>": '<Over>(easymotion)'},
-                \   'is_expr': 0,
-                \   'is_stay': 1
-                \ }), get(a:, 1, {}))
-endfunction
-noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
     
 "airline 主题配置
 
@@ -120,13 +105,12 @@ nmap <space>tt :TagbarToggle<CR>
     let g:ctrlp_map = '<c-p>'            "当前目录查找
     let g:ctrlp_cmd = 'CtrlP'
     let g:ctrlp_show_hidden = 1
-    nmap <space>b :CtrlPBuffer<CR>
     let g:ctrlp_custom_ignore = {
                 \ 'dir':  '\.git$|vendor\|\.hg$\|\.svn$\|\.yardoc\|node_modules\|public\/images\|public\/system\|data\|log\|tmp$',
                 \ 'file': '\.exe$\|\.so$\|\.dat$'
                 \ } 
 
-    nmap <leader>fb :CtrlPBuffer<CR>
+    nmap <space>fb :CtrlPBuffer<CR>
 
 
 "matze/vim-move 配置
@@ -1372,21 +1356,21 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+""nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+""" Manage extensions.
+""nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+""" Show commands.
+""nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+""" Find symbol of current document.
+""nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+""" Search workspace symbols.
+""nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+""" Do default action for next item.
+""nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+""" Do default action for previous item.
+""nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+""" Resume latest coc list.
+""nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 "
 " you dao
@@ -1415,5 +1399,4 @@ autocmd CompleteDone * pclose
 "
 map <leader>lr :GoRun %<Cr>
 map <leader>ld vawy:GoDoc <c-r>0p<cr>
-
 

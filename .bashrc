@@ -31,3 +31,6 @@ alias ab='docker run  --rm httpd:2.4.41-alpine  ab'
 alias dic='docker run -it --rm wuchuheng/dic:0.0.1 php ./test.php '
 #export LESSCHARSET=utf-8
 #export LC_ALL=zh_CN.UTF-8
+
+alias webvim="nvim -u ~/dotfiles/.webvimrc"
+
