@@ -107,7 +107,7 @@ noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
     "nmap s <Plug>(easymotion-overwin-f3)
     " Move to line
     map <space>jL <Plug>(easymotion-bd-jk)
-    nmap <leader>jL <Plug>(easymotion-overwin-line)
+nmap <leader>jL <Plug>(easymotion-overwin-line)
     " Move to word
     map  <space>jw <Plug>(easymotion-bd-w)
     nmap <space>jw <Plug>(easymotion-overwin-w)
@@ -221,7 +221,7 @@ set cc=80                                       "80列宽度标尺
 noremap <leader>cfh :set filetype=html 
 
 
-"et paste                                       "粘贴不排版不乱
+"set paste                                       "粘贴不排版不乱
 cnoremap <c-n> <down>                           
 cnoremap <c-p> <up>
 " terminal configure

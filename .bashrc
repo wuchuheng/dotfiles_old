@@ -34,5 +34,5 @@ alias dic='docker run -it --rm wuchuheng/dic:0.0.1 php ./test.php '
 export LC_ALL=en_US.UTF-8
 
 alias webvim="nvim -u ~/dotfiles/.webvimrc"
-alias newvim="nvim -u ~/dotfiles/.newWebVimrc"
+alias newvim="nvim -u ~/dotfiles/newWebVimrc.vim"
 
