@@ -1,32 +1,36 @@
 call plug#begin('~/.vim/plugged')
-		" #1 代码高亮
-		Plug 'sheerun/vim-polyglot'
-		" #2 代码高配置
-		" Plug 'sheerun/vimrc'
-    " #4 文件管理器
-    Plug 'scrooloose/nerdtree'
-    " #5 字符定位
-    Plug 'easymotion/vim-easymotion'
-    " #6 文件搜索
-    Plug 'kien/ctrlp.vim'
-    " #7 语法补全
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " #8 文本搜索
-    Plug 'eugen0329/vim-esearch'
-    " #9 窗口选择
-    Plug 't9md/vim-choosewin'
-    " #10 tailwindc
-    Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
-    " #11 emmet
-    Plug 'mattn/emmet-vim'
-    " #12  翻译
-    Plug 'voldikss/vim-translator'
-    " #13 缩进线
-    Plug 'Yggdroot/indentLine'
-    " #14 注释
-    Plug 'tpope/vim-commentary'
+     " #1 代码高亮
+     Plug 'sheerun/vim-polyglot'
+     " #2 代码高配置
+     Plug 'sheerun/vimrc'
+     " #4 文件管理器
+     Plug 'scrooloose/nerdtree'
+     " #5 字符定位
+     Plug 'easymotion/vim-easymotion'
+     " #6 文件搜索
+     Plug 'kien/ctrlp.vim'
+     " #7 语法补全
+     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+     " #8 文本搜索
+     Plug 'eugen0329/vim-esearch'
+     " #9 窗口选择
+     Plug 't9md/vim-choosewin'
+     " #11 emmet
+     Plug 'mattn/emmet-vim'
+     " #12  翻译
+     Plug 'voldikss/vim-translator'
+     " #13 缩进线
+     Plug 'Yggdroot/indentLine'
+     " #14 注释
+     Plug 'tpope/vim-commentary'
+     " #15 状态栏
+     Plug 'vim-airline/vim-airline'
+     Plug 'vim-airline/vim-airline-themes'
 
-    Plug 'ghifarit53/tokyonight-vim'
+     " #16 文件搜索
+     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+     Plug 'junegunn/fzf.vim'
+     Plug 'preservim/tagbar'
 
     
 call plug#end()
@@ -70,6 +74,7 @@ set undofile                                    " :xxx 什么东西
 set directory=~/dotfiles/.swp/                  " 缓存目录
 set t_Co=256
 set keywordprg=:Man                             "使用:Man打开man文档
+set emoji
 
 "
 " 通用映射键配置
@@ -88,6 +93,7 @@ nmap <Down> 3<C-w>-
 nmap <Left> :3winc <<CR>
 " 窗口右缩
 nmap <right> :3winc ><CR>
+
 
 "
 " #4 NerderTree 配置文件管理
@@ -131,6 +137,23 @@ let g:ctrlp_custom_ignore = {
 nmap <space>fb :CtrlPBuffer<CR>
 
 "
+" #7 语法补全
+"
+let g:coc_global_extensions = [ 
+            \'coc-json',
+            \'coc-git',
+            \'coc-tsserver',
+            \'coc-html',
+            \'coc-css',
+            \'coc-cssmodules',
+            \'coc-tailwindcss',
+            \'coc-vetur',
+            \'coc-marketplace',
+            \'coc-eslint',
+            \'coc-pairs'
+            \]
+
+"
 " #8 文本搜索
 " 
 
@@ -164,9 +187,35 @@ vmap <silent> <space>tc <Plug>TranslateV
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 
+"
+" #15 状态栏
+" 
+"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
+let g:airline_left_sep=''                      "airline插件  S›lightly fancier than '>'
+let g:airline_right_sep=''                     "airline插件  Sl‹ightly fancier than '<'
+let g:airline_letf_alt_sep = ''
+let g:airline_right_alt_sep = ''
+let g:aireline_symbols = {}
+let g:airline_symbols_branch = ''
+let g:airline_symbols_readonly = ''
+let g:airline#extensions#tabline#enabled = 1    "airline插件 启用顶部标签栏
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline_theme='dark'
+let g:airline_powerline_fonts = 1
 
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1
+nnoremap <space>tv :! generateTagsForVue
 
-colorscheme tokyonight
-let g:tokyonight_transparent_background=1
+set tags+=./tags
+
+set autochdir
+
+"
+" #16 文件搜索
+"
+nnoremap <space>p/ :Files<CR>
+nnoremap <space>pb :Buffers<CR>
+
+
+nnoremap <space>tt :TagbarToggle<CR>
