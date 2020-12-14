@@ -37,8 +37,6 @@ alias webvim="nvim -u ~/dotfiles/.webvimrc"
 alias newvim="nvim -u ~/dotfiles/newWebVimrc.vim"
 alias nv="nvim -u ~/dotfiles/newWebVimrc.vim"
 
- # 生成vue的标签
-function generateTagsForVue()
-{   
-}
+
+export BAT_THEME="Dracula"
 

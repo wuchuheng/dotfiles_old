@@ -215,6 +215,7 @@ nnoremap <space>pb :Buffers<CR>
 
 
 nnoremap <space>tt :TagbarToggle<CR>
+<<<<<<< Updated upstream
 colorscheme tokyonight
 let g:tokyonight_transparent_background=1
 
@@ -409,3 +410,7 @@ nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4"
