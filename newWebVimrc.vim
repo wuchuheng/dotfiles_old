@@ -147,7 +147,8 @@ let g:coc_global_extensions = [
             \'coc-marketplace',
             \'coc-eslint',
             \'coc-pairs',
-            \'coc-snippets'
+            \'coc-snippets',
+            \ 'coc-tslint'
             \]
 
 "
