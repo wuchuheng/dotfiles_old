@@ -27,6 +27,7 @@ call plug#begin('~/.vim/plugged')
     " #15 文件搜索
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+    Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -116,21 +117,6 @@ nnoremap <space>ft :NERDTreeToggle<CR>
 map  <space>j <Plug>(easymotion-bd-f)
 nmap <space>J <Plug>(easymotion-overwin-f)
 
-"
-" #6 文件搜索
-"
-" 搜索启动
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_show_hidden = 1
-" file find
-nmap <space>ff <C-p>
-let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\.git$|vendor\|\.hg$\|\.svn$\|\.yardoc\|node_modules\|public\/images\|public\/system\|data\|log\|tmp$',
-            \ 'file': '\.exe$\|\.so$\|\.dat$'
-            \ } 
-"file buffer search
-nmap <space>fb :CtrlPBuffer<CR>
 
 "
 " #7 语法补全
@@ -226,7 +212,14 @@ set tags+=./tags
 "
 " #15 文件搜索
 " 
-noremap <C-p> :Files<CR>
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4"
+
+function! s:find_git_root()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
+command! ProjectFiles execute 'Files' s:find_git_root()
+noremap <C-p> :ProjectFiles<CR>
 noremap <space>fb :Buffers<CR>
 
 " Use <C-l> for trigger snippet expand.
@@ -408,5 +401,5 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
-let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4"
+
+
