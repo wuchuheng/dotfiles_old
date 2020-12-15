@@ -35,7 +35,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/tagbar'
     " #18
     Plug 'tpope/vim-surround'
-    
+
+    " #javascript tagbar
+    Plug 'hushicai/tagbar-javascript.vim'
 
 call plug#end()
 
