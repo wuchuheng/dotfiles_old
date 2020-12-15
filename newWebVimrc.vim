@@ -27,7 +27,15 @@ call plug#begin('~/.vim/plugged')
     " #15 文件搜索
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+    " #16 multiple cursors
+    Plug 'terryma/vim-multiple-cursors'
+    " #17 git 
     Plug 'tpope/vim-fugitive'
+    " #18
+    Plug 'preservim/tagbar'
+    " #18
+    Plug 'tpope/vim-surround'
+    
 
 call plug#end()
 
@@ -72,6 +80,7 @@ set t_Co=256
 set keywordprg=:Man                             "使用:Man打开man文档
 set emoji
 let g:neoterm_autoscroll = 1
+set virtualedit=all
 
 "
 " 通用映射键配置
@@ -90,6 +99,10 @@ nmap <Down> 3<C-w>-
 nmap <Left> :3winc <<CR>
 " 窗口右缩
 nmap <right> :3winc ><CR>
+" move the line up
+nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
+" move the line down
+nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
 
 
 "
@@ -402,4 +415,29 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 
+let g:multi_cursor_use_default_mapping=0
+
+" 
+" #16 multiple cursors
+" 
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+"
+" #17 git 
+" 
+nnoremap <space>gs :Git status<CR>
+nnoremap <space>gd :Git diff<CR>
+nnoremap <space>gl :Glog<CR>
+
+set foldmethod=syntax "syntax highlighting items specify folds
+set foldcolumn=1 "defines 1 col at window left, to indicate folding
+let javaScript_fold=1 "activate folding by JS syntax
+set foldlevelstart=99 "start file with all folds opened
 
