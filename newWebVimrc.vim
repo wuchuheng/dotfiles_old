@@ -1,8 +1,8 @@
 call plug#begin('~/.vim/plugged')
-		" #1 代码高亮
-		Plug 'sheerun/vim-polyglot'
-		" #2 代码高配置
-		" Plug 'sheerun/vimrc'
+    " #1 代码高亮
+    Plug 'sheerun/vim-polyglot'
+    " #2 代码高配置
+    " Plug 'sheerun/vimrc'
     " #4 文件管理器
     Plug 'scrooloose/nerdtree'
     " #5 字符定位
@@ -13,8 +13,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'eugen0329/vim-esearch'
     " #9 窗口选择
     Plug 't9md/vim-choosewin'
-    " #10 tailwindc
-    Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
     " #11 emmet
     Plug 'mattn/emmet-vim'
     " #12  翻译
@@ -23,6 +21,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'Yggdroot/indentLine'
     " #14 注释
     Plug 'tpope/vim-commentary'
+
     Plug 'ghifarit53/tokyonight-vim'
     " #15 文件搜索
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -105,6 +104,16 @@ nmap <right> :3winc ><CR>
 nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
 " move the line down
 nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
+" tag preview
+nnoremap <space>tp <C-w>}
+" jump to the tag definition
+noremap <space>td <C-w><C-]>
+" edit register
+nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
+" 
+xnoremap <  <gv
+xnoremap >  >gv
+
 
 
 "
@@ -170,8 +179,8 @@ let g:user_emmet_mode='a'    "enable all function in all mode.
 " #12  翻译
 "
 " Display translation in a window
-nmap <silent> <space>tt <Plug>TranslateW
-vmap <silent> <space>tt <Plug>TranslateWV
+nmap <silent> <space>ts <Plug>TranslateW
+vmap <silent> <space>ts <Plug>TranslateWV
 nmap <silent> <space>tr <Plug>TranslateR
 vmap <silent> <space>tr <Plug>TranslateRV
 " Translate the text in clipboard
@@ -417,7 +426,6 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 
-let g:multi_cursor_use_default_mapping=0
 
 " 
 " #16 multiple cursors
@@ -441,5 +449,8 @@ nnoremap <space>gl :Glog<CR>
 set foldmethod=syntax "syntax highlighting items specify folds
 set foldcolumn=1 "defines 1 col at window left, to indicate folding
 let javaScript_fold=1 "activate folding by JS syntax
+let typeScript_fold=1 "activate folding by JS syntax
 set foldlevelstart=99 "start file with all folds opened
+
+let g:multi_cursor_use_default_mapping=0
 
