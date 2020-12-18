@@ -31,16 +31,12 @@ call plug#begin('~/.vim/plugged')
     " #17 git 
     Plug 'tpope/vim-fugitive'
     " #18
-    Plug 'preservim/tagbar'
+    " Plug 'preservim/tagbar'
     " #18
     Plug 'tpope/vim-surround'
+    " #18 go
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-    " #javascript tagbar
-    Plug 'hushicai/tagbar-javascript.vim'
-
-
-    " Plug 'SirVer/ultisnips'
-    " Plug 'mlaursen/vim-react-snippets'
 
 call plug#end()
 
@@ -152,17 +148,11 @@ nmap <space>J <Plug>(easymotion-overwin-f)
 let g:coc_global_extensions = [ 
             \'coc-json',
             \'coc-git',
-            \'coc-tsserver',
-            \'coc-html',
-            \'coc-css',
-            \'coc-cssmodules',
-            \'coc-tailwindcss',
-            \'coc-vetur',
             \'coc-marketplace',
-            \'coc-eslint',
             \'coc-pairs',
-            \'coc-snippets',
-            \ 'coc-tslint'
+            \'coc-go',
+            \'coc-godot',
+            \'coc-gocode',
             \]
 
 "
@@ -457,4 +447,10 @@ let typeScript_fold=1 "activate folding by JS syntax
 set foldlevelstart=99 "start file with all folds opened
 
 let g:multi_cursor_use_default_mapping=0
+
+"
+" #18 go
+"
+
+
 

@@ -36,7 +36,9 @@ export LC_ALL=en_US.UTF-8
 alias webvim="nvim -u ~/dotfiles/.webvimrc"
 alias newvim="nvim -u ~/dotfiles/newWebVimrc.vim"
 alias nv="nvim -u ~/dotfiles/newWebVimrc.vim"
+alias gv="nvim -u ~/dotfiles/golangVimrc.vim"
 
 
 export BAT_THEME="Dracula"
+
 
