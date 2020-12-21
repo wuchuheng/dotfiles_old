@@ -117,7 +117,8 @@ nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v
 " 
 xnoremap <  <gv
 xnoremap >  >gv
-
+" to create new window in buttom 
+nmap <space>bs :sp<CR><C-w>J:100winc-<CR>:14winc+<CR>:Buffers<CR>zsh
 
 
 "
@@ -162,7 +163,8 @@ let g:coc_global_extensions = [
             \'coc-eslint',
             \'coc-pairs',
             \'coc-snippets',
-            \ 'coc-tslint'
+            \'coc-tslint',
+            \'coc-cssmodules'
             \]
 
 "

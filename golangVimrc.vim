@@ -31,7 +31,7 @@ call plug#begin('~/.vim/plugged')
     " #17 git 
     Plug 'tpope/vim-fugitive'
     " #18
-    " Plug 'preservim/tagbar'
+    Plug 'preservim/tagbar'
     " #18
     Plug 'tpope/vim-surround'
     " #18 go
@@ -237,8 +237,11 @@ function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 command! ProjectFiles execute 'Files' s:find_git_root()
+command! BuildGo execute 'go run' s:find_git_root()'/main.go'
+
 noremap <C-p> :ProjectFiles<CR>
 noremap <space>fb :Buffers<CR>
+noremap <space>lr :BuildGo<CR>
 
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
