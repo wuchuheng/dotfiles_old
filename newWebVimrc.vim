@@ -118,13 +118,17 @@ nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v
 xnoremap <  <gv
 xnoremap >  >gv
 " to create new window in buttom 
-nmap <space>bs :sp<CR><C-w>J:100winc-<CR>:14winc+<CR>:Buffers<CR>zsh
+nmap <space>wtb :sp<CR><C-w>J:100winc-<CR>:14winc+<CR>:Buffers<CR>zsh
 " close windows binding
-nmap <space>cl <C-w>l:q<CR>
-nmap <space>cr <C-w>h:q<CR>
-nmap <space>cb <C-w>j:q<CR>
-nmap <space>ct <C-w>k:q<CR>
-
+nmap <space>wcl <C-w>l:q<CR>
+nmap <space>wcr <C-w>h:q<CR>
+nmap <space>wcb <C-w>j:q<CR>
+nmap <space>wct <C-w>k:q<CR>
+nmap <space>wct <C-w>k:q<CR>
+"create new window in buttom
+nmap <space>wnb :sp<CR><C-w>J:100winc-<CR>:14winc+<CR>
+"refresh the current file 
+nmap <space>fr :e!<CR>
 
 "
 " #4 NerderTree 配置文件管理
@@ -199,6 +203,8 @@ nmap <silent> <space>tx <Plug>TranslateX
 " Echo translation in the cmdline
 nmap <silent> <space>tc <Plug>Translate
 vmap <silent> <space>tc <Plug>TranslateV
+nmap <silent> <space>te :Translate --target_lang=en <C-r>0<CR>
+
 
 "
 " #13 缩进线
