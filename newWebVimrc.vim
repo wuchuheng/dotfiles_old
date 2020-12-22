@@ -1,4 +1,5 @@
 call plug#begin('~/.vim/plugged')
+let typeScript_fold=1 "activate folding by JS syntax
     " #1 代码高亮
     Plug 'sheerun/vim-polyglot'
     " #2 代码高配置
@@ -54,7 +55,6 @@ call plug#end()
 " 通用基础参数设置
 "
 let mapleader = ','                             "指定leader键位
-set foldlevelstart=99                           " 打开文件是默认不折叠代码
 set foldlevelstart=99                           " 打开文件是默认不折叠代码
 set ignorecase                                  "查找忽略大小写
 set smartcase                                   "查找大小写自动识别
@@ -129,6 +129,12 @@ nmap <space>wct <C-w>k:q<CR>
 nmap <space>wnb :sp<CR><C-w>J:100winc-<CR>:14winc+<CR>
 "refresh the current file 
 nmap <space>fr :e!<CR>
+" create react Component
+noremap <space>src :source ~/dotfiles/snippet/createReactComponent.vim<CR>
+" create function in js
+noremap <space>sjf :source ~/dotfiles/snippet/createJsFunc.vim<CR>
+" command! ProjectFiles execute 'Files' s:find_git_root()
+
 
 "
 " #4 NerderTree 配置文件管理
@@ -428,9 +434,9 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <space>ce  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <space>cc  :<C-u>CocList commands<cr>
 " Find symbol of current document.
 nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
@@ -466,8 +472,7 @@ nnoremap <space>gl :Glog<CR>
 set foldmethod=syntax "syntax highlighting items specify folds
 set foldcolumn=1 "defines 1 col at window left, to indicate folding
 let javaScript_fold=1 "activate folding by JS syntax
-let typeScript_fold=1 "activate folding by JS syntax
 set foldlevelstart=99 "start file with all folds opened
 
-let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_use_default_mapping=0 
 
