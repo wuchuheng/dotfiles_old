@@ -1,0 +1,13 @@
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
+let g:airline_left_sep=''                      "airline插件  S›lightly fancier than '>'
+let g:airline_right_sep=''                     "airline插件  Sl‹ightly fancier than '<'
+let g:airline_letf_alt_sep = ''
+let g:airline_right_alt_sep = ''
+let g:aireline_symbols = {}
+let g:airline_symbols_branch = ''
+let g:airline_symbols_readonly = ''
+let g:airline#extensions#tabline#enabled = 1    "airline插件 启用顶部标签栏
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline_theme='dark'
+let g:airline_powerline_fonts = 1

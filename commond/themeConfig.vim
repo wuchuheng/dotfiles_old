@@ -1,0 +1,2 @@
+colorscheme tokyonight
+let g:tokyonight_transparent_background=1
