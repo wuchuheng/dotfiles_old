@@ -4,7 +4,7 @@
 "临时关闭高亮快捷键映射
 map <silent><space>l :<C-u>nohlsearch<CR>
 "打开terminal :xxx 遇到不能打开原来的窗口 
-nmap <space>' :new term://zsh<CR><C-w>H<C-w>J:+resize10<CR>i 
+nmap <space>' :new term://zsh<CR><C-w>J:resize10<CR>i
 " 退出terminal
 tnoremap <Esc> <C-\><C-n>
 " 窗口加大
@@ -45,4 +45,4 @@ noremap <space>src :source ~/dotfiles/snippet/createReactComponent.vim<CR>
 " create function in js
 noremap <space>sjf :source ~/dotfiles/snippet/createJsFunc.vim<CR>
 noremap <silent>[b :bp<CR>
-noremap <silent>]b :bp<CR>
+noremap <silent>]b :bn<CR>
