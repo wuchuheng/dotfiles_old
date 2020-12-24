@@ -44,4 +44,5 @@ nmap <space>fr :e!<CR>
 noremap <space>src :source ~/dotfiles/snippet/createReactComponent.vim<CR>
 " create function in js
 noremap <space>sjf :source ~/dotfiles/snippet/createJsFunc.vim<CR>
-" command! ProjectFiles execute 'Files' s:find_git_root()
+noremap <silent>[b :bp<CR>
+noremap <silent>]b :bp<CR>
