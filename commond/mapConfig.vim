@@ -46,3 +46,12 @@ noremap <space>src :source ~/dotfiles/snippet/createReactComponent.vim<CR>
 noremap <space>sjf :source ~/dotfiles/snippet/createJsFunc.vim<CR>
 noremap <silent>[b :bp<CR>
 noremap <silent>]b :bn<CR>
+"tab1
+noremap <space>1 1gt
+"tab2
+map <space>2 2gt
+"tab3
+map <space>3 3gt
+"tab4 
+map <space>4 4gt
+
