@@ -124,3 +124,5 @@ execute 'source '.root_dir.'/commond/tagbarConfig.vim'
 " # 21 theme config
 "
 execute 'source '.root_dir.'/commond/themeConfig.vim'
+
+execute 'source '.root_dir.'/commond/snippetForWebConfig.vim'
