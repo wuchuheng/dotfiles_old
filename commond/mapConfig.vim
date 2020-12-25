@@ -49,9 +49,21 @@ noremap <silent>]b :bn<CR>
 "tab1
 noremap <space>1 1gt
 "tab2
-map <space>2 2gt
+noremap <space>2 2gt
 "tab3
-map <space>3 3gt
+noremap <space>3 3gt
 "tab4 
-map <space>4 4gt
-
+noremap <space>4 4gt
+"tab5 
+noremap <space>5 5gt
+"move tab to 1
+noremap <space>tm1 :tabmove 0<CR>
+"move tab to 2
+noremap <space>tm2 :tabmove 2<CR>
+"move tab to 3
+noremap <space>tm3 :tabmove 3<CR>
+"move tab to 4
+noremap <space>tm4 :tabmove 4<CR>
+"move tab to 5
+noremap <space>tm5 :tabmove 5<CR>
+noremap \ ,
