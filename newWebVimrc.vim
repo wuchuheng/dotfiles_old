@@ -40,6 +40,9 @@ let typeScript_fold=1 "activate folding by JS syntax
     " #21 theme
     Plug 'ghifarit53/tokyonight-vim'
 
+    " 23 [] 映射
+    Plug 'tpope/vim-unimpaired'
+
 call plug#end()
 
 let g:root_dir="~/dotfiles"

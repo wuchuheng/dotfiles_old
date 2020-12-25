@@ -31,8 +31,8 @@ xnoremap >  >gv
 " to create new window in buttom 
 nmap <space>wtb :sp<CR><C-w>J:100winc-<CR>:14winc+<CR>:Buffers<CR>zsh
 " close windows binding
-nmap <space>wcl <C-w>l:q<CR>
-nmap <space>wcr <C-w>h:q<CR>
+nmap <space>wcl <C-w>h:q<CR>
+nmap <space>wcr <C-w>l:q<CR>
 nmap <space>wcb <C-w>j:q<CR>
 nmap <space>wct <C-w>k:q<CR>
 nmap <space>wct <C-w>k:q<CR>
