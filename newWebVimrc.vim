@@ -45,9 +45,9 @@ let typeScript_fold=1 "activate folding by JS syntax
 
 call plug#end()
 
+let g:root_dir='~/dotfiles'
 
 function! s:get_full_path(rpath)
-    let g:root_dir="~/dotfiles"
     return  g:root_dir.a:rpath[1:]
 endfunction
 

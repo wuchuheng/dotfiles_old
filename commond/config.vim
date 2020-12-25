@@ -25,10 +25,14 @@ set spelllang=en_us                             "默认英文字典
 set backupcopy=yes                              "docker挂载文件保存生效
 set nowrap                                      "不折行
 "set cc=80                                       "80列宽度标尺
-set undodir=~/dotfiles/.undo/                   " undo 保存目录
-set backupdir=~/dotfiles/.backup/               " 备份文件保存目录 
-set undofile                                    " :xxx 什么东西
-set directory=~/dotfiles/.swp/                  " 缓存目录
+" undo 保存目录
+"
+execute 'set undodir='.g:root_dir.'/.undo/'                   
+" 备份文件保存目录 
+execute 'set backupdir='.g:root_dir.'/.backup/'
+set undofile                         " :xxx 什么东西
+" 缓存目录
+execute 'set directory='.g:root_dir.'/.swp/'                  
 set t_Co=256
 set keywordprg=:Man                             "使用:Man打开man文档
 set emoji

@@ -41,9 +41,9 @@ nmap <space>wnb :sp<CR><C-w>J:100winc-<CR>:14winc+<CR>
 "refresh the current file 
 nmap <space>fr :e!<CR>
 " create react Component
-noremap <space>src :source ~/dotfiles/snippet/createReactComponent.vim<CR>
+execute 'noremap <space>src :source ' . g:root_dir . '/snippet/createReactComponent.vim<CR>'
 " create function in js
-noremap <space>sjf :source ~/dotfiles/snippet/createJsFunc.vim<CR>
+execute 'noremap <space>sjf :source ' . g:root_dir . '/snippet/createJsFunc.vim<CR>'
 noremap <silent>[b :bp<CR>
 noremap <silent>]b :bn<CR>
 "tab1
