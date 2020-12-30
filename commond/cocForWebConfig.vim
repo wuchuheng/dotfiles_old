@@ -8,12 +8,12 @@ let g:coc_global_extensions = [
             \'coc-tailwindcss',
             \'coc-vetur',
             \'coc-marketplace',
-            \'coc-eslint',
             \'coc-pairs',
             \'coc-snippets',
             \'coc-tslint',
             \'coc-cssmodules'
             \]
+            " \'coc-eslint',
 
 
 " Use <C-l> for trigger snippet expand.
@@ -93,7 +93,7 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> <c-g>i <Plug>(coc-implementation)
+nmap <silent> <c-gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
@@ -182,6 +182,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
 nnoremap <silent><nowait> <space>ce  :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <space>cs  :<C-u>CocList services<cr>
 " Show commands.
 nnoremap <silent><nowait> <space>cc  :<C-u>CocList commands<cr>
 " Find symbol of current document.
@@ -194,3 +195,9 @@ nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" Note coc#float#scroll works on neovim >= 0.4.3 or vim >= 8.2.0750
+nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"

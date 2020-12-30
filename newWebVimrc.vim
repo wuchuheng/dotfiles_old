@@ -43,6 +43,9 @@ let typeScript_fold=1 "activate folding by JS syntax
     " 23 [] 映射
     Plug 'tpope/vim-unimpaired'
 
+    " toggle bool
+    " Plug 'https://github.com/sagarrakshe/toggle-bool'
+
 call plug#end()
 
 let g:root_dir='~/dotfiles'
