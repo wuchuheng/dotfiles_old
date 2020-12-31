@@ -24,6 +24,7 @@ set spell                                       "启用字典
 set spelllang=en_us                             "默认英文字典
 set backupcopy=yes                              "docker挂载文件保存生效
 set nowrap                                      "不折行
+set autowrite
 "set cc=80                                       "80列宽度标尺
 " undo 保存目录
 "
