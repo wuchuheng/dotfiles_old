@@ -38,7 +38,25 @@ alias newvim="nvim -u ~/dotfiles/newWebVimrc.vim"
 alias nv="nvim -u ~/dotfiles/newWebVimrc.vim"
 alias gv="nvim -u ~/dotfiles/golangVimrc.vim"
 
+alias ipcn="curl myip.ipip.net"
+alias ip="curl ip.sb"
 
+# 设置http https代理
+proxyIp="127.0.0.1:1087"
+function setProxy()
+{
+        export http_proxy=http://${proxyIp} && export https_proxy=http://${proxyIp}
+        git config --global https.proxy http://${proxyIp} && git config --global https.proxy https://${proxyIp}
+        echo "set proxy successfully"
+}
+
+# 解除http https代理
+function unSetProxy()
+{
+        git config --global --unset http.proxy && git config --global --unset https.proxy;
+        unset http_proxy;unset https_proxy;unset all_proxy;
+        echo "Unset proxy successfully";
+}
+
+alias vim="nvim"
 export BAT_THEME="Dracula"
-
-
