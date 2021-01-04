@@ -1,7 +1,7 @@
-function s:get_full_path(rpath)
-    return  g:root_dir.'/configForGolang'.a:rpath[1:]
+function s:source(rpath)
+    execute 'source ' . g:root_dir.'/configForGolang'.a:rpath[1:]
 endfunction
 
-execute 'source ' . s:get_full_path('./golang.vim')
+call s:source('./golang.vim')
 
-execute 'source ' . s:get_full_path('./coc.vim')
+call s:source('./coc.vim')

@@ -1,5 +1,5 @@
-function s:get_full_path(rpath)
-    return  g:root_dir.a:rpath[2:]
+function s:source(rpath)
+    execute 'source  ' . g:root_dir.a:rpath[2:]
 endfunction
 
 let g:coc_global_extensions = [ 
@@ -10,4 +10,4 @@ let g:coc_global_extensions = [
             \'coc-snippets',
             \]
 
-execute 'source '.s:get_full_path('../commond/cocConfig.vim')
+call s:source('../commond/cocConfig.vim')
