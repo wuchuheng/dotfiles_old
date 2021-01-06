@@ -60,3 +60,5 @@ function unSetProxy()
 
 alias vim="nvim"
 export BAT_THEME="Dracula"
+
+alias flushMacDns='sudo killall -HUP mDNSResponder'
