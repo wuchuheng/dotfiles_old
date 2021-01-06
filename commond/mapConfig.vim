@@ -86,3 +86,5 @@ endif
 if maparg('<leader>*', 'v') == ''
     vmap <leader>* :<C-u>call <SID>VSetSearch()<CR>:execute 'noautocmd vimgrep /' . @/ . '/ **'<CR>
 endif
+" open the file on the  splite windows
+nnoremap <C-W><C-F> <C-W>vgf
