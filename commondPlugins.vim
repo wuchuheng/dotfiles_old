@@ -46,5 +46,6 @@
     Plug 'ryanoasis/vim-devicons'
     " 26 startify
     Plug 'mhinz/vim-startify'
-
+    " 27 syntastic
+    Plug 'vim-syntastic/syntastic'
 
