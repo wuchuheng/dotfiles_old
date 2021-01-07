@@ -39,3 +39,6 @@
     Plug 'ghifarit53/tokyonight-vim'
     " 23 [] 映射
     Plug 'tpope/vim-unimpaired'
+    " 24 aireline
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
