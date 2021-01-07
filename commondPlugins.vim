@@ -20,7 +20,7 @@
     Plug 'Yggdroot/indentLine'
     " #14 注释
     Plug 'tpope/vim-commentary'
-
+    " 透明背景
     Plug 'ghifarit53/tokyonight-vim'
     " #15 文件搜索
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -42,5 +42,9 @@
     " 24 aireline
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-
+    " 25 icons 要配合 terminal 字体使用  https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip
     Plug 'ryanoasis/vim-devicons'
+    " 26 startify
+    Plug 'mhinz/vim-startify'
+
+
