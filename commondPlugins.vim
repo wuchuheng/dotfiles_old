@@ -1,7 +1,3 @@
-    " #1 代码高亮
-    Plug 'sheerun/vim-polyglot'
-    " #2 代码高配置
-    " Plug 'sheerun/vimrc'
     " #4 文件管理器
     Plug 'scrooloose/nerdtree'
     " #5 字符定位
@@ -20,8 +16,6 @@
     Plug 'Yggdroot/indentLine'
     " #14 注释
     Plug 'tpope/vim-commentary'
-    " 透明背景
-    Plug 'ghifarit53/tokyonight-vim'
     " #15 文件搜索
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
@@ -35,8 +29,6 @@
     Plug 'tpope/vim-surround'
     " #19 srround
     Plug 'tpope/vim-surround'
-    " #21 theme
-    Plug 'ghifarit53/tokyonight-vim'
     " 23 [] 映射
     Plug 'tpope/vim-unimpaired'
     " 24 aireline
@@ -48,4 +40,15 @@
     Plug 'mhinz/vim-startify'
     " 27 syntastic
     Plug 'vim-syntastic/syntastic'
+
+    " #21 theme
+    " Plug 'ghifarit53/tokyonight-vim'
+    " theme透明背景
+    "Plug 'ghifarit53/tokyonight-vim'
+    " #1 代码高亮
+    " Plug 'sheerun/vim-polyglot'
+    " #2 代码高配置
+    " Plug 'sheerun/vimrc'
+    " #28 theme
+    Plug 'dracula/vim', { 'as': 'dracula' }
 

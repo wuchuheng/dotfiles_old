@@ -11,7 +11,7 @@ set softtabstop=4 shiftwidth=4 sw=4 et          "tab 4空格
 set incsearch                                   "查找高亮
 set hlsearch                                    "查找结果高亮
 set number                                      "行号
-set fileformat=unix                             "文件格式
+" set fileformat=unix                             "文件格式
 set encoding=utf-8                              "编码格式
 set nobomb                                      "无bom格式
 set wrap                                        "自动换行显示 
