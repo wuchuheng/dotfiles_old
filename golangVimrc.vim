@@ -6,7 +6,6 @@ endfunction
 
 call plug#begin('~/.vim/plugged')
     call s:source('./commondPlugins.vim')
-
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 

@@ -8,6 +8,10 @@ let g:coc_global_extensions = [
             \'coc-marketplace',
             \'coc-pairs',
             \'coc-snippets',
+            \'coc-go',
             \]
 
 call s:source('../commond/cocConfig.vim')
+
+
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
