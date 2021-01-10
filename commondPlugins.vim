@@ -52,3 +52,6 @@
     " #28 theme
     Plug 'dracula/vim', { 'as': 'dracula' }
 
+    " #29 排版
+    Plug 'junegunn/vim-easy-align'
+

@@ -78,3 +78,8 @@ call s:source('./commond/tagbarConfig.vim')
 "
 "
 call s:source('./commond/themeConfig.vim')
+
+"
+" #29 排版
+"
+call s:source('./commond/vim-easy-align.vim')
