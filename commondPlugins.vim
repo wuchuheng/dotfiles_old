@@ -42,13 +42,12 @@
     Plug 'vim-syntastic/syntastic'
 
     " #21 theme
-    " Plug 'ghifarit53/tokyonight-vim'
     " theme透明背景
-    "Plug 'ghifarit53/tokyonight-vim'
+    Plug 'ghifarit53/tokyonight-vim'
     " #1 代码高亮
-    " Plug 'sheerun/vim-polyglot'
+    Plug 'sheerun/vim-polyglot'
     " #2 代码高配置
-    " Plug 'sheerun/vimrc'
+    Plug 'sheerun/vimrc'
     " #28 theme
     Plug 'dracula/vim', { 'as': 'dracula' }
 
