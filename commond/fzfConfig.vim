@@ -6,3 +6,6 @@ endfunction
 command! ProjectFiles execute 'Files' s:find_git_root()
 noremap <C-p> :ProjectFiles<CR>
 noremap <space>fb :Buffers<CR>
+
+let $FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
