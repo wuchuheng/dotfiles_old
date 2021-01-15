@@ -1,6 +1,5 @@
 {
     "languageserver": {
-        "tailwindCSS.headwind.sortTailwindClasses": "off",
         "golang": {
 
             "command": "gopls",
