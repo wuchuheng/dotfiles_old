@@ -43,19 +43,35 @@ alias ip="curl ip.sb"
 
 # 设置http https代理
 proxyIp="127.0.0.1:1087"
+proxyStatus=0
 function setProxy()
 {
-        export http_proxy=http://${proxyIp} && export https_proxy=http://${proxyIp}
-        git config --global https.proxy http://${proxyIp} && git config --global https.proxy https://${proxyIp}
-        echo "set proxy successfully"
+    proxyStatus=1
+    export http_proxy=http://${proxyIp} && export https_proxy=http://${proxyIp}
+    git config --global https.proxy http://${proxyIp} && git config --global https.proxy https://${proxyIp}
+    echo "set proxy successfully"
 }
 
 # 解除http https代理
 function unSetProxy()
 {
-        git config --global --unset http.proxy && git config --global --unset https.proxy;
-        unset http_proxy;unset https_proxy;unset all_proxy;
-        echo "Unset proxy successfully";
+    proxyStatus=0
+    git config --global --unset http.proxy && git config --global --unset https.proxy;
+    unset http_proxy;unset https_proxy;unset all_proxy;
+    echo "Unset proxy successfully";
+}
+
+#check internet spped
+function speed() 
+{
+    if [[ $proxyStatus == 0 ]];
+    then
+        setProxy
+        curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3
+        unSetProxy
+    else
+        curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3
+    fi
 }
 
 alias vim="nvim"
@@ -63,5 +79,3 @@ export BAT_THEME="Dracula"
 
 alias flushMacDns='sudo killall -HUP mDNSResponder'
 
-export GOPATH=/Users/$USER/go
-export PATH=$GOPATH/bin:$PATH

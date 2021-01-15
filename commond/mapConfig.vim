@@ -88,3 +88,5 @@ if maparg('<leader>*', 'v') == ''
 endif
 " open the file on the  splite windows
 nnoremap <C-W><C-F> <C-W>vgf
+
+" noremap <space>s1 

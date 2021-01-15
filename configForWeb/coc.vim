@@ -16,6 +16,7 @@ let g:coc_global_extensions = [
             \'coc-snippets',
             \'coc-tslint',
             \'coc-cssmodules'
+            \'coc-vue'
             \]
             " \'coc-eslint',
 " Use <C-l> for trigger snippet expand.

@@ -54,3 +54,4 @@
     " #29 排版
     Plug 'junegunn/vim-easy-align'
 
+    Plug 'liuchengxu/vista.vim'
