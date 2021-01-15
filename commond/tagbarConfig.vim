@@ -16,4 +16,3 @@ let g:tagbar_type_typescript = {
   \ ],                                                                            
   \ 'sort' : 0                                                                    
 \ }
-nnoremap <space>tt :TagbarToggle<CR>

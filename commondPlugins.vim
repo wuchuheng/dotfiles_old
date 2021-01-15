@@ -24,7 +24,7 @@
     " #17 git 
     Plug 'tpope/vim-fugitive'
     " #18
-    Plug 'preservim/tagbar'
+    " Plug 'preservim/tagbar'
     " #18
     Plug 'tpope/vim-surround'
     " #19 srround

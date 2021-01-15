@@ -62,3 +62,17 @@ let g:vista#renderer#icons = {
 \   "function": "\uf794",
 \   "variable": "\uf71b",
 \  }
+
+let g:vista_finder_alternative_executives = ['coc']
+let g:vista#executives = ['coc', 'ctags', 'lcn', 'vim_lsp']
+
+if executable('ocaml-language-server')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'ocaml-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'opam config exec -- ocaml-language-server --stdio']},
+        \ 'whitelist': ['reason', 'ocaml'],
+        \ })
+endif
+let g:vista_sidebar_position='vertical topleft'
+nnoremap <space>tt :Vista coc<CR>
+nnoremap <space>TT :Vista!<CR>

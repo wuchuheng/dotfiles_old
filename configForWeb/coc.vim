@@ -14,11 +14,11 @@ let g:coc_global_extensions = [
             \'coc-marketplace',
             \'coc-pairs',
             \'coc-snippets',
-            \'coc-tslint',
             \'coc-cssmodules',
             \'coc-vue'
             \]
             " \'coc-eslint',
+            " \'coc-tslint',
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
 " Use <C-j> for select text for visual placeholder of snippet.

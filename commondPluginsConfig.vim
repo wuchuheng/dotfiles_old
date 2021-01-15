@@ -71,7 +71,7 @@ call s:source('./commond/gitConfig.vim')
 "
 " #18 tagbar
 "
-call s:source('./commond/tagbarConfig.vim')
+" call s:source('./commond/tagbarConfig.vim')
 
 "
 " # 21 theme config
@@ -83,3 +83,10 @@ call s:source('./commond/themeConfig.vim')
 " #29 排版
 "
 call s:source('./commond/vim-easy-align.vim')
+
+
+
+call s:source('./commond/vista.vim')
+
+
+
