@@ -15,7 +15,7 @@ let g:coc_global_extensions = [
             \'coc-pairs',
             \'coc-snippets',
             \'coc-tslint',
-            \'coc-cssmodules'
+            \'coc-cssmodules',
             \'coc-vue'
             \]
             " \'coc-eslint',

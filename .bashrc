@@ -61,8 +61,22 @@ function unSetProxy()
     echo "Unset proxy successfully";
 }
 
-#check internet spped
+#check internet speed
 function speed() 
+{
+    if [[ $proxyStatus == 0 ]];
+    then
+        setProxy
+        curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py > tmp
+        unSetProxy
+    else
+        curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py > tmp
+    fi
+    cat tmp | python3
+    rm -f tmp
+}
+#eheck the internet speed for proxy
+function speedP() 
 {
     if [[ $proxyStatus == 0 ]];
     then
@@ -73,6 +87,7 @@ function speed()
         curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3
     fi
 }
+
 
 alias vim="nvim"
 export BAT_THEME="Dracula"
