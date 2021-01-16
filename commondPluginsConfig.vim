@@ -88,5 +88,7 @@ call s:source('./commond/vim-easy-align.vim')
 
 call s:source('./commond/vista.vim')
 
-
-
+"
+" # 8 search
+"
+call s:source('./commond/easySearch.vim')
