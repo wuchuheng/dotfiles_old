@@ -92,3 +92,6 @@ call s:source('./commond/vista.vim')
 " # 8 search
 "
 call s:source('./commond/easySearch.vim')
+
+command! LC execute 'call s:source("./commond/easySearch.vim")'
+
