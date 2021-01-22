@@ -9,8 +9,6 @@ call plug#begin('~/.vim/plugged')
     call s:source('./commondPlugins.vim')
     " css color 
     Plug 'ap/vim-css-color'
-    " graphql 
-    Plug 'jparise/vim-graphql'
 call plug#end()
 
 call s:source('./commondPluginsConfig.vim')

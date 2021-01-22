@@ -9,5 +9,3 @@ call s:source('./snippetForWebConfig.vim')
 " init default register
 call s:source('./reactRegister.vim')
 
-
-call s:source('./graphQL.vim')
