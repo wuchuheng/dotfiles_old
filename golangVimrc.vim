@@ -15,5 +15,6 @@ call s:source('./commondPluginsConfig.vim')
 "
 " 22 go config 
 "
-call s:source('./commond/golangConfig.vim')
+call s:source('./golangConfig/index.vim')
+" call s:source('./commond/golangConfig.vim')
 

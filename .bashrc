@@ -35,6 +35,7 @@ export LC_ALL=en_US.UTF-8
 
 alias webvim="nvim -u ~/dotfiles/.webvimrc"
 alias newvim="nvim -u ~/dotfiles/newWebVimrc.vim"
+alias govim="nvim -u ~/dotfiles/golangVimrc.vim"
 alias nv="nvim -u ~/dotfiles/newWebVimrc.vim"
 alias gv="nvim -u ~/dotfiles/golangVimrc.vim"
 
@@ -42,7 +43,7 @@ alias ipcn="curl myip.ipip.net"
 alias ip="curl ip.sb"
 
 # 设置http https代理
-proxyIp="127.0.0.1:1087"
+proxyIp=127.0.0.1:7890
 proxyStatus=0
 function setProxy()
 {
