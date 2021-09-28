@@ -5,7 +5,7 @@ alias mv='mv -i'
 alias l='ls -ahl'
 alias ll='ls -hl'
 alias c='clear'
-alias vi=' vim -u NONE -N'
+alias vi='vim -u NONE -N'
 
 export LANG=en_US.UTF-8
 export EDITOR=/usr/bin/vim
@@ -90,7 +90,6 @@ function speedP()
 }
 
 
-alias vim="nvim"
 export BAT_THEME="Dracula"
 
 alias flushMacDns='sudo killall -HUP mDNSResponder'
