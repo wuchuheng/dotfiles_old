@@ -31,6 +31,30 @@ function  version()
     echo -e "1.0 ";
 }
 
+
+function hasNvim()
+{
+    if ! command -v nvim &> /dev/null
+
+    then
+	    return false
+    else
+	    return true
+    fi
+	
+}
+function hasvim()
+{
+    if ! command -v vim &> /dev/null
+
+    then
+	    return false
+    else
+	    return true
+    fi
+	
+}
+
 #####################################################
 #	               安装 
 #####################################################
@@ -82,7 +106,6 @@ function install()
     #git clone  https://github.com/wuchuheng/dic.git tool/dic;
     bashFile=`pwd`"/.bashrc";
     isloadBashrc=`cat ~/.bashrc | grep "$bashFile"`;
-
     if [ "$isloadBashrc" == '' ]
     then
         
@@ -106,14 +129,17 @@ function install()
             source ~/.zshrc;
         fi
     fi
-    #安装vim 配置
-    if [ ! -e  ./.vim/authload/plug.vim ]
+    #安装nvim 配置
+    if [[ hasNvim && ! -e ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim ]]
+    then
+	    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	    ln -s `pwd`/.vimrc ~/.config/nvim/init.vim
+    elif [[ hasVim &&  ! -e  ./.vim/authload/plug.vim ]]
     then 
-        curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	ln -s `pwd`/.vimrc ~/.vimrc;
     fi
-    #安装dotfiles/.vimrc
-    ln -s `pwd`/.vimrc ~/.vimrc;
+
     #安装dotfiles/.vim
     ln -s `pwd`/.vim ~/.vim;
     #安装dotfiles/.viminfo
@@ -161,8 +187,11 @@ do
                 install;; 
              d)
                 delete;; 
-             ?)
-                echo -e "argument error; please type of \e[1;32m sh ./start.sh  -h \e[0m to show detail info" ; exit ;;
          esac
 done
+echo $#
 
+if [ $# -eq 0 ]
+then
+        help
+fi
