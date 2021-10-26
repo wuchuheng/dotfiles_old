@@ -52,6 +52,7 @@ function setProxy()
     git config --global https.proxy http://${proxyIp} && git config --global https.proxy https://${proxyIp}
     echo "set proxy successfully"
 }
+setProxy
 
 # 解除http https代理
 function unSetProxy()
@@ -61,6 +62,7 @@ function unSetProxy()
     unset http_proxy;unset https_proxy;unset all_proxy;
     echo "Unset proxy successfully";
 }
+
 
 #check internet speed
 function speed() 

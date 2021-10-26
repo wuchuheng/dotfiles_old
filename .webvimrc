@@ -304,9 +304,6 @@ xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 "查找当前选中快捷键映射
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR> 
 
-
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           inoremap 配置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -337,9 +334,8 @@ onoremap il( :<c-u>normal! F)vi(<cr>
 onoremap ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr> 
 "删除markdown上一个标题和等号
 onoremap ah :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rg_vk0"<cr>
-
-
-
+" 预览图片"
+nnoremap <leader>p :exe ':silent !open -a "Google Chrome" %'<CR> 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           autocmd
