@@ -33,20 +33,43 @@ alias dic='docker run -it --rm wuchuheng/dic:0.0.1 php ./test.php '
 #export LC_ALL=zh_CN.UTF-8
 export LC_ALL=en_US.UTF-8
 
-if ! command -v nvim & > /dev/null 
+function hasNvim()
+{
+    if ! command -v nvim &> /dev/null
+
+    then
+	    return false
+    else
+	    return true
+    fi
+	
+}
+function hasvim()
+{
+    if ! command -v vim &> /dev/null
+
+    then
+	    return false
+    else
+	    return true
+    fi
+	
+}
+vimTooltool=""
+if [[ hasNvim ]] 
 then
-    alias webvim="nvim -u ~/dotfiles/.webvimrc"
-    alias newvim="nvim -u ~/dotfiles/newWebVimrc.vim"
-    alias govim="nvim -u ~/dotfiles/golangVimrc.vim"
-    alias nv="nvim -u ~/dotfiles/newWebVimrc.vim"
-    alias gv="nvim -u ~/dotfiles/golangVimrc.vim"
-else if !command -v nvim & > /dev/null
+    vimTooltool="nvim"
+elif [[ hasvim ]]
 then
-    alias webvim="vim -u ~/dotfiles/.webvimrc"
-    alias newvim="vim -u ~/dotfiles/newWebVimrc.vim"
-    alias govim="vim -u ~/dotfiles/golangVimrc.vim"
-    alias nv="vim -u ~/dotfiles/newWebVimrc.vim"
-    alias gv="vim -u ~/dotfiles/golangVimrc.vim"
+    vimTooltool="vim"
+fi
+if [[  ${#vimTooltool} > 0 ]] 
+then
+    alias webvim="$vimTooltool -u ~/dotfiles/.webvimrc"
+    alias newvim="$vimTooltool -u ~/dotfiles/newWebVimrc.vim"
+    alias govim="$vimTooltool -u ~/dotfiles/golangVimrc.vim"
+    alias nv="$vimTooltool -u ~/dotfiles/newWebVimrc.vim"
+    alias gv="$vimTooltool -u ~/dotfiles/golangVimrc.vim"
 fi
 
 alias ipcn="curl myip.ipip.net"
