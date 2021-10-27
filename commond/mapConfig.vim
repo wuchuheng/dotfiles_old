@@ -8,13 +8,13 @@ nmap <space>' :new term://zsh<CR><C-w>J:resize10<CR>i
 " 退出terminal
 tnoremap <Esc> <C-\><C-n>
 " 窗口加大
-nmap <Up> 3<C-w>+
+nmap <Up> 3<C-w>-
 " 窗口加缩小
-nmap <Down> 3<C-w>-
+nmap <Down> 3<C-w>+
 " 窗口左缩
-nmap <Left> :3winc <<CR>
+nmap <Left> :3winc ><CR>
 " 窗口右缩
-nmap <right> :3winc ><CR>
+nmap <right> :3winc <<CR>
 " move the line up
 nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
 " move the line down
