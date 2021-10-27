@@ -130,3 +130,5 @@ export BAT_THEME="Dracula"
 
 alias flushMacDns='sudo killall -HUP mDNSResponder'
 
+alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+
