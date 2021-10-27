@@ -8,5 +8,6 @@ trash/*
 /.undo
 /.undo
 node_modules
+.idea
 
 
