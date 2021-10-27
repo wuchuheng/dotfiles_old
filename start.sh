@@ -129,6 +129,18 @@ function install()
             source ~/.zshrc;
         fi
     fi
+    # 添加coc配置文件
+    if [ ! -e '~/.config/nvim/coc-settings.json' ]
+    then
+        mkdir -p ~/.config/nvim
+       ln -s `pwd`/coc-settings.json ~/.config/nvim/coc-settings.json 
+    fi
+
+    if [ ! -e '~/.config/coc' ]
+    then
+        mkdir -p ~/.config
+	ln -s `pwd`/coc ~/.config/
+    fi
     #安装nvim 配置
     if [[ hasNvim && ! -e ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim ]]
     then
@@ -147,12 +159,7 @@ function install()
     #安装.ssh
     #ln -s `pwd`/.ssh ~/.ssh;
     vim +PlugInstall! +q "+source ~/.vimrc"
-    # 添加coc配置文件
-    if [ ! -e '~/.config/nvim/coc-settings.json' ]
-    then
-        mkdir -p ~/.config/nvim
-       ln -s ~/.config/nvim/coc-settings.json `pwd`/coc-settings.json
-    fi
+    
 }
 
 

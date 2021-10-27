@@ -7,4 +7,6 @@ trash/*
 /.swp/*
 /.undo
 /.undo
+node_modules
+
 
