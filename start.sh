@@ -31,6 +31,17 @@ function  version()
     echo -e "1.0 ";
 }
 
+function hasNode()
+{
+    if ! command -v node &> /dev/null
+
+    then
+	    return false
+    else
+	    return true
+    fi
+	
+}
 
 function hasNvim()
 {
@@ -84,6 +95,11 @@ function recieveTrash()
 ##
 function install()
 {
+    if [[ ! hasNode ]]
+    then
+        echo "Please install node"
+	exit
+    fi
     #新建垃圾回收桶,回收已经有的文件
     if [ ! -e './trash' ]
     then
@@ -108,7 +124,6 @@ function install()
     isloadBashrc=`cat ~/.bashrc | grep "$bashFile"`;
     if [ "$isloadBashrc" == '' ]
     then
-        
         echo "if [ -e "`pwd`"/.bashrc ]" >> ~/.bashrc 
         echo "then" >> ~/.bashrc;
         echo "    source $bashFile;" >> ~/.bashrc ;
@@ -140,6 +155,8 @@ function install()
     then
         mkdir -p ~/.config
 	ln -s `pwd`/coc ~/.config/
+	cd `pwd`/coc/extensions && npm install
+	cd ../..
     fi
     #安装nvim 配置
     if [[ hasNvim && ! -e ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim ]]
@@ -168,9 +185,16 @@ function install()
 #####################################################
 function delete()
 {
-    unlink ~/.vim;
-    unlink ~/.vimrc;
-    unlink ~/.viminfo;
+    rm -rf ~/.vim;
+    rm -rf ~/.vimrc;
+    rm -rf ~/.viminfo;
+    rm -rf ~/.config/coc
+    rm -rf ~/.config/nvim/coc-settings.json
+    rm -rf ~/.config/nvim/init.vim
+    if [[ -e ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim ]]
+    then
+        rm -f ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim 
+    fi
     for element in `ls -a trash`
     do
         if [[ $element != '.' && $element != '..' ]]
@@ -196,7 +220,6 @@ do
                 delete;; 
          esac
 done
-echo $#
 
 if [ $# -eq 0 ]
 then
