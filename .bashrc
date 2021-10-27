@@ -55,21 +55,22 @@ function hasvim()
     fi
 	
 }
-vimTooltool=""
+vimTool=""
 if [[ hasNvim ]] 
 then
-    vimTooltool="nvim"
+    vimTool="nvim"
 elif [[ hasvim ]]
 then
-    vimTooltool="vim"
+    vimTool="vim"
 fi
-if [[  ${#vimTooltool} > 0 ]] 
+if [[  ${#vimTool} > 0 ]] 
 then
-    alias webvim="$vimTooltool -u ~/dotfiles/.webvimrc"
-    alias newvim="$vimTooltool -u ~/dotfiles/newWebVimrc.vim"
-    alias govim="$vimTooltool -u ~/dotfiles/golangVimrc.vim"
-    alias nv="$vimTooltool -u ~/dotfiles/newWebVimrc.vim"
-    alias gv="$vimTooltool -u ~/dotfiles/golangVimrc.vim"
+    alias webvim="$vimTool -u ~/dotfiles/.webvimrc"
+    alias nn="$vimTool -u ~/dotfiles/.newWebVimrc"
+    alias newvim="$vimTool -u ~/dotfiles/newWebVimrc.vim"
+    alias govim="$vimTool -u ~/dotfiles/golangVimrc.vim"
+    alias nv="$vimTool -u ~/dotfiles/newWebVimrc.vim"
+    alias gv="$vimTool -u ~/dotfiles/golangVimrc.vim"
 fi
 
 alias ipcn="curl myip.ipip.net"
