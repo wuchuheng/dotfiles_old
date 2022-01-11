@@ -1203,9 +1203,6 @@ autocmd BufEnter * :syntax sync fromstart
 " vim:sts=2:sw=2:
 "
 
-
-
-
 " TextEdit might fail if hidden is not set.
 set hidden
 

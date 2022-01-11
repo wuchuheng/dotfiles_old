@@ -7,6 +7,8 @@ alias ll='ls -hl'
 alias c='clear'
 alias vi='vim -u NONE -N'
 
+ROOT_DIR=~/dotfiles
+
 export LANG=en_US.UTF-8
 export EDITOR=/usr/bin/vim
 # 配色方案
@@ -132,3 +134,4 @@ alias flushMacDns='sudo killall -HUP mDNSResponder'
 
 alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 
+export PATH=$PATH:$ROOT_DIR/bin
