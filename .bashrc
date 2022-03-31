@@ -5,7 +5,6 @@ alias mv='mv -i'
 alias l='ls -ahl'
 alias ll='ls -hl'
 alias c='clear'
-alias vi='vim -u NONE -N'
 
 ROOT_DIR=~/dotfiles
 
