@@ -225,3 +225,7 @@ if [ $# -eq 0 ]
 then
         help
 fi
+
+if hash git 2>/dev/null; then
+	git config --global core.quotepath false
+fi
