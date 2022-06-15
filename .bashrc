@@ -56,6 +56,17 @@ function hasvim()
     fi
 	
 }
+function hasNpm()
+{
+    if ! command -v npm &> /dev/null
+
+    then
+	    return false
+    else
+	    return true
+    fi
+	
+}
 vimTool=""
 if [[ hasNvim ]] 
 then
@@ -84,7 +95,13 @@ function setProxy()
 {
     proxyStatus=1
     export http_proxy=http://${proxyIp} && export https_proxy=http://${proxyIp}
-    git config --global https.proxy http://${proxyIp} && git config --global https.proxy https://${proxyIp}
+    # git config --global https.proxy http://${proxyIp} && git config --global https.proxy https://${proxyIp}
+    git config --global http.proxy socks5://${proxyIp}
+    if [[ hasNpm ]] 
+    then
+        npm config set proxy http://${proxyIp}
+        npm config set https-proxy http://${proxyIp}
+    fi
     echo "set proxy successfully"
 }
 setProxy
@@ -96,6 +113,11 @@ function unSetProxy()
     git config --global --unset http.proxy && git config --global --unset https.proxy;
     unset http_proxy;unset https_proxy;unset all_proxy;
     echo "Unset proxy successfully";
+    if [[ hasNpm ]] 
+    then
+        npm config delete proxy
+        npm config delete https-proxy
+    fi
 }
 
 
