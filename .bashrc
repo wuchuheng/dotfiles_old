@@ -75,24 +75,73 @@ elif [[ hasvim ]]
 then
     vimTool="vim"
 fi
+rootPath=~/dotfiles
 if [[  ${#vimTool} > 0 ]] 
 then
-    alias webvim="$vimTool -u ~/dotfiles/.webvimrc"
-    alias nn="$vimTool -u ~/dotfiles/.newWebVimrc"
-    alias newvim="$vimTool -u ~/dotfiles/newWebVimrc.vim"
-    alias govim="$vimTool -u ~/dotfiles/golangVimrc.vim"
-    alias nv="$vimTool -u ~/dotfiles/newWebVimrc.vim"
-    alias gv="$vimTool -u ~/dotfiles/golangVimrc.vim"
+  neovide=/Applications/Neovide.app/Contents/MacOS/neovide
+  alias nn="$vimTool -u ~/dotfiles/.newWebVimrc"
+  alias newvim="$vimTool -u ~/dotfiles/newWebVimrc.vim"
+  alias govim="$vimTool -u ~/dotfiles/golangVimrc.vim"
+  alias nv="$vimTool -u ~/dotfiles/newWebVimrc.vim"
+  alias gv="$vimTool -u ~/dotfiles/golangVimrc.vim"
+  configPath=~/.config/nvim
+  dataPath=~/.local/share/nvim
+  statePath=~/.local/state/nvim
+  # 启动nvim前
+  function beforeLanchNvim()
+  {
+    # 初始化配置目录
+    if [[ ! -e $configPath/.. ]] 
+    then
+      mkdir -p $configPath/..
+    fi
+    if [[ -e $configPath ]] 
+    then
+      rm -rf $configPath
+    fi
+    # 初始化数据目录
+    if [[ ! -e $dataPath/.. ]] 
+    then
+      mkdir -p $dataPath/..
+    fi
+    if [[ -e $dataPath ]] 
+    then
+      rm -rf $dataPath
+    fi
+    # 初始化状态目录
+    if [[ ! -e $statePath/.. ]] 
+    then
+      mkdir -p $statePath/..
+    fi
+    if [[ -e $statePath ]] 
+    then
+      rm -rf $statePath
+    fi
+  }
+
+  # web编辑器
+  function webvim()
+  {
+    export LUA_PATH="$HOME/dotfiles/vim/web/lua/?.lua;;" 
+    beforeLanchNvim
+    ln -s $rootPath/vim/web/data $dataPath # nvim数据目录
+    ln -s $rootPath/vim/web/config $configPath # nvim配置
+    ln -s $rootPath/vim/web/state $statePath # state配置
+    $neovide --frame=buttonless $@
+  }
 fi
 
 alias ipcn="curl myip.ipip.net"
 alias ip="curl ip.sb"
 
 # 设置http https代理
-proxyIp=127.0.0.1:7890
 proxyStatus=0
+
+proxySockIp=127.0.0.1
+proxySockPort=6153
 function setProxy()
 {
+    export all_proxy=socks5://${proxySockIp}:${proxySockPort}
     proxyStatus=1
     export http_proxy=http://${proxyIp} && export https_proxy=http://${proxyIp}
     # git config --global https.proxy http://${proxyIp} && git config --global https.proxy https://${proxyIp}

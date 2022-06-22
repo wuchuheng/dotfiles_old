@@ -95,79 +95,85 @@ function recieveTrash()
 ##
 function install()
 {
-    if [[ ! hasNode ]]
+  git submodule update  #更新git 子模块
+  if [[ $? != 0 ]] 
+  then
+    echo "Install failed.\n"
+    return;
+  fi
+  if [[ ! hasNode ]]
+  then
+    echo "Please install node"
+    exit
+  fi
+  #新建垃圾回收桶,回收已经有的文件
+  if [ ! -e './trash' ]
+  then
+    mkdir ./trash;
+  fi
+  #创建.viminfo
+  if [ ! -e ./.viminfo ]
+  then 
+    touch  .viminfo;	
+  fi
+  #回收.vimrc 
+  recieveTrash ".vimrc"
+  #回收.vim
+  recieveTrash ".vim"
+  #回收.viminfo
+  recieveTrash ".viminfo"
+  #回收.ssh
+  #recieveTrash ".ssh"
+  #安装词典工具
+  #git clone  https://github.com/wuchuheng/dic.git tool/dic;
+  bashFile=`pwd`"/.bashrc";
+  isloadBashrc=`cat ~/.bashrc | grep "$bashFile"`;
+  if [ "$isloadBashrc" == '' ]
+  then
+    echo "if [ -e "`pwd`"/.bashrc ]" >> ~/.bashrc 
+    echo "then" >> ~/.bashrc;
+    echo "    source $bashFile;" >> ~/.bashrc ;
+    echo "fi" >> ~/.bashrc
+    source ~/.bashrc;
+  fi
+  # 载入到 ~/.zshrc
+  zshFile=`pwd`"/.bashrc";
+  if [  -e ~/.zshrc ]
+  then
+    isloadZshrc=`cat ~/.zshrc | grep "$zshFile"`;
+    if [ -z "$isloadZshrc" ]
     then
-        echo "Please install node"
-	exit
+      echo "if [ -e "`pwd`"/.bashrc ]" >> ~/.zshrc 
+      echo "then" >> ~/.zshrc;
+      echo "    source $zshFile;" >> ~/.zshrc ;
+      echo "fi" >> ~/.zshrc
+      source ~/.zshrc;
     fi
-    #新建垃圾回收桶,回收已经有的文件
-    if [ ! -e './trash' ]
-    then
-	mkdir ./trash;
-    fi
-    #创建.viminfo
-    if [ ! -e ./.viminfo ]
-    then 
-       touch  .viminfo;	
-    fi
-    #回收.vimrc 
-    recieveTrash ".vimrc"
-    #回收.vim
-    recieveTrash ".vim"
-    #回收.viminfo
-    recieveTrash ".viminfo"
-    #回收.ssh
-    #recieveTrash ".ssh"
-    #安装词典工具
-    #git clone  https://github.com/wuchuheng/dic.git tool/dic;
-    bashFile=`pwd`"/.bashrc";
-    isloadBashrc=`cat ~/.bashrc | grep "$bashFile"`;
-    if [ "$isloadBashrc" == '' ]
-    then
-        echo "if [ -e "`pwd`"/.bashrc ]" >> ~/.bashrc 
-        echo "then" >> ~/.bashrc;
-        echo "    source $bashFile;" >> ~/.bashrc ;
-        echo "fi" >> ~/.bashrc
-        source ~/.bashrc;
-    fi
-    # 载入到 ~/.zshrc
-    zshFile=`pwd`"/.bashrc";
-    if [  -e ~/.zshrc ]
-    then
-        isloadZshrc=`cat ~/.zshrc | grep "$zshFile"`;
-        if [ -z "$isloadZshrc" ]
-        then
-            echo "if [ -e "`pwd`"/.bashrc ]" >> ~/.zshrc 
-            echo "then" >> ~/.zshrc;
-            echo "    source $zshFile;" >> ~/.zshrc ;
-            echo "fi" >> ~/.zshrc
-            source ~/.zshrc;
-        fi
-    fi
-    # 添加coc配置文件
-    if [ ! -e '~/.config/nvim/coc-settings.json' ]
-    then
-        mkdir -p ~/.config/nvim
-       ln -s `pwd`/coc-settings.json ~/.config/nvim/coc-settings.json 
-    fi
+  fi
+  # 添加coc配置文件
+  if [ ! -e '~/.config/nvim/coc-settings.json' ]
+  then
+    mkdir -p ~/.config/nvim
+    ln -s `pwd`/coc-settings.json ~/.config/nvim/coc-settings.json 
+  fi
 
-    if [ ! -e '~/.config/coc' ]
-    then
-        mkdir -p ~/.config
-	ln -s `pwd`/coc ~/.config/
-	cd `pwd`/coc/extensions && npm install
-	cd ../..
-    fi
-    #安装nvim 配置
-    if [[ hasNvim && ! -e ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim ]]
-    then
-	    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-	    ln -s `pwd`/.vimrc ~/.config/nvim/init.vim
-    elif [[ hasVim &&  ! -e  ./.vim/authload/plug.vim ]]
-    then 
-        curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	ln -s `pwd`/.vimrc ~/.vimrc;
-    fi
+  if [ ! -e '~/.config/coc' ]
+  then
+    mkdir -p ~/.config
+    ln -s `pwd`/coc ~/.config/
+    cd `pwd`/coc/extensions && npm install
+    cd ../..
+  fi
+  #安装nvim 配置
+  if [[ hasNvim && ! -e ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim ]]
+  then
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    ln -s `pwd`/.vimrc ~/.config/nvim/init.vim
+  elif [[ hasVim &&  ! -e  ./.vim/authload/plug.vim ]]
+  then 
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    ln -s `pwd`/.vimrc ~/.vimrc;
+  fi
 
     #安装dotfiles/.vim
     ln -s `pwd`/.vim ~/.vim;
@@ -176,8 +182,8 @@ function install()
     #安装.ssh
     #ln -s `pwd`/.ssh ~/.ssh;
     vim +PlugInstall! +q "+source ~/.vimrc"
-    
-}
+
+  }
 
 
 #####################################################
