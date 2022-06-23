@@ -122,7 +122,7 @@ then
   # web编辑器
   function webvim()
   {
-    export LUA_PATH="$HOME/dotfiles/vim/web/lua/?.lua;;" 
+    export LUA_PATH="$HOME/dotfiles/vim/web/config/lua/?.lua;$HOME/dotfiles/vim/web/config/?.lua;;" 
     beforeLanchNvim
     ln -s $rootPath/vim/web/data $dataPath # nvim数据目录
     ln -s $rootPath/vim/web/config $configPath # nvim配置
@@ -143,6 +143,7 @@ function setProxy()
 {
     export all_proxy=socks5://${proxySockIp}:${proxySockPort}
     proxyStatus=1
+    proxyIp=${proxySockIp}:${proxySockPort}
     export http_proxy=http://${proxyIp} && export https_proxy=http://${proxyIp}
     # git config --global https.proxy http://${proxyIp} && git config --global https.proxy https://${proxyIp}
     git config --global http.proxy socks5://${proxyIp}

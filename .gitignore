@@ -11,5 +11,10 @@ node_modules
 .idea
 
 # webEditor
-vim/web/data
+#vim/web/data
+main.shada
 
+.netrwhist
+neovide-settings.json
+rplugin.vim
+main.shada
