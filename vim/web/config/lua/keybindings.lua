@@ -99,6 +99,5 @@ map("n", "<space>7", ":BufferLineGoToBuffer 7 <CR>", opt)         -- 窗口7
 map("n", "<space>8", ":BufferLineGoToBuffer 8 <CR>", opt)         -- 窗口8
 map("n", "<space>9", ":BufferLineGoToBuffer 9 <CR>", opt)         -- 窗口9
 
-
 return pluginKeys
 

@@ -17,6 +17,12 @@ packer.startup({
       "akinsho/bufferline.nvim",
       requires = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" }
     })
+    -- statueLine 
+    use({ 
+      "nvim-lualine/lualine.nvim",
+      requires = { "kyazdani42/nvim-web-devicons" }
+    })
+    use("arkav/lualine-lsp-progress")
   end,
   config = {
     display = {
@@ -26,7 +32,6 @@ packer.startup({
     },
   }
 })
-
 
 -- 每次保存 plugins.lua 自动安装插件
 pcall(
