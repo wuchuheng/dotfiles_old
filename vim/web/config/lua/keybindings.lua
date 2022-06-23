@@ -99,5 +99,32 @@ map("n", "<space>7", ":BufferLineGoToBuffer 7 <CR>", opt)         -- 窗口7
 map("n", "<space>8", ":BufferLineGoToBuffer 8 <CR>", opt)         -- 窗口8
 map("n", "<space>9", ":BufferLineGoToBuffer 9 <CR>", opt)         -- 窗口9
 
+-------------------------------------------------------------------------------
+--                          Telescope快捷键配置
+-------------------------------------------------------------------------------
+-- 查找文件
+map("n", "<C-p>", ":Telescope find_files<CR>", opt)
+-- 全局搜索
+map("n", "<space>gf", ":Telescope live_grep<CR>", opt)
+map("n", "<space>bl", ":Telescope buffers<CR>", opt)
+pluginKeys.telescopeList = {
+  i = {
+    -- 上下移动
+    ["<C-j>"] = "move_selection_next",
+    ["<C-k>"] = "move_selection_previous",
+    ["<Down>"] = "move_selection_next",
+    ["<Up>"] = "move_selection_previous",
+    -- 历史记录
+    ["<C-n>"] = "cycle_history_next",
+    ["<C-p>"] = "cycle_history_prev",
+    -- 关闭窗口
+    ["<C-c>"] = "close",
+    -- 预览窗口上下滚动
+    ["<C-u>"] = "preview_scrolling_up",
+    ["<C-d>"] = "preview_scrolling_down",
+  },
+}
+
 return pluginKeys
+
 

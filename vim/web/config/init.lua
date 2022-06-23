@@ -5,5 +5,6 @@ require("colorscheme")                                        -- 主题配置
 require("plugin-config.nvim-tree")                            -- nvim-tree配置
 require("plugin-config.bufferline")                           -- bufferline配置
 require("plugin-config.lualine")                              -- lualine配置
-
+require("plugin-config.lualine")                              -- lualine配置
+require("plugin-config.telescope")                              -- lualine配置
 

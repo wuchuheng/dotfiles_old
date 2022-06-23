@@ -1,4 +1,9 @@
-local nvim_tree =require('nvim-tree')
+local status, nvim_tree = pcall(require, 'nvim-tree')
+if not status then
+  vim.notify("没有找到 lualine")
+  return
+end
+
 -- 列表操作快捷键
 local list_keys = require('keybindings').nvimTreeList
 
