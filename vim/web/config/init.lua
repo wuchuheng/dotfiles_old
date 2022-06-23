@@ -8,4 +8,5 @@ require("plugin-config.lualine")                              -- 状态栏配置
 require("plugin-config.telescope")                            -- 搜索配置
 require("plugin-config.dashboard")                            -- 启动页配置
 require("plugin-config.project")                              -- 项目相关配置
+require("plugin-config.nvim-treesitter")                      -- 语法高亮配置
 

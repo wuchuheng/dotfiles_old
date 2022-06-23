@@ -32,6 +32,8 @@ packer.startup({
     use("glepnir/dashboard-nvim")
     -- 用于启动页的项目
     use("ahmedkhalf/project.nvim")
+    -- 语法高亮
+    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
   end,
   config = {
     display = {
