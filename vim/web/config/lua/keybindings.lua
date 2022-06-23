@@ -54,13 +54,6 @@ map("n", "<leader>t", ":sp | terminal<CR>i", opt)
 map("v", "J", ":move '>+1<cr>gv-gv", opt)                             -- 向下移
 map("v", "K", ":move '<-2<cr>gv-gv", opt)                             -- 向上移
 
--------------------------------------------------------------------------------
---                          退出快捷键配置
--------------------------------------------------------------------------------
-map("n", "q", ":q<cr>", opt)                                        -- 退出 
-map("n", "qq", ":q!<cr>", opt)                                      -- 强退
-map("n", "Q", ":qa!<cr>", opt)                                      -- 全部强退
-
 
 -- 插件快捷键
 local pluginKeys = {}
@@ -87,6 +80,24 @@ pluginKeys.nvimTreeList = {
   { key = "p", action = "paste" },
   { key = "s", action = "system_open" },
 }
+-------------------------------------------------------------------------------
+--                          buferLine快捷键配置
+-------------------------------------------------------------------------------
+map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)                -- 上一个窗口
+map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)                -- 下一个窗口
+map("n", "<C-w>c", ":Bdelete!<CR>", opt)                          -- 关闭窗口
+map("n", "<space>bn", ":BufferLineCycleNext<CR>", opt)            -- 下一个窗口
+map("n", "<space>bp", ":BufferLineCloseLeft<CR>", opt)            -- 上一个窗口
+map("n", "<space>bc", ":BufferLinePickClose<CR>", opt)            -- 关闭窗口
+map("n", "<space>1", ":BufferLineGoToBuffer 1 <CR>", opt)         -- 窗口1
+map("n", "<space>2", ":BufferLineGoToBuffer 2 <CR>", opt)         -- 窗口2
+map("n", "<space>3", ":BufferLineGoToBuffer 3 <CR>", opt)         -- 窗口3
+map("n", "<space>4", ":BufferLineGoToBuffer 4 <CR>", opt)         -- 窗口4
+map("n", "<space>5", ":BufferLineGoToBuffer 5 <CR>", opt)         -- 窗口5
+map("n", "<space>6", ":BufferLineGoToBuffer 6 <CR>", opt)         -- 窗口6
+map("n", "<space>7", ":BufferLineGoToBuffer 7 <CR>", opt)         -- 窗口7
+map("n", "<space>8", ":BufferLineGoToBuffer 8 <CR>", opt)         -- 窗口8
+map("n", "<space>9", ":BufferLineGoToBuffer 9 <CR>", opt)         -- 窗口9
 
 
 return pluginKeys

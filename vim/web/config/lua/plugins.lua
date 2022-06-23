@@ -8,10 +8,15 @@ packer.startup({
     use {
       'kyazdani42/nvim-tree.lua',
       requires = {
-        'kyazdani42/nvim-web-devicons', -- optional, for file icons
+        'kyazdani42/nvim-web-devicons'
       },
       tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
+    -- bufferLine
+    use({ 
+      "akinsho/bufferline.nvim",
+      requires = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" }
+    })
   end,
   config = {
     display = {
