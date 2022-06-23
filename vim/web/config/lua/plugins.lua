@@ -28,6 +28,10 @@ packer.startup({
       "nvim-lua/plenary.nvim",
       "LinArcX/telescope-env.nvim" -- env列表功能 
     } }
+    -- 启动页
+    use("glepnir/dashboard-nvim")
+    -- 用于启动页的项目
+    use("ahmedkhalf/project.nvim")
   end,
   config = {
     display = {

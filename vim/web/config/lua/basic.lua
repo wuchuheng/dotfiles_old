@@ -50,7 +50,7 @@ vim.o.autoindent = true
 vim.bo.autoindent = true
 vim.o.smartindent = true
 -- 命令行高为2，提供足够的显示空间
-vim.o.cmdheight = 2
+vim.o.cmdheight = 1
 -- 当文件被外部程序修改时，自动加载
 vim.o.autoread = true
 vim.bo.autoread = true
@@ -89,4 +89,5 @@ vim.o.showtabline = 2
 vim.o.showmode = false
 pcall(vim.cmd, [[ set guifont=SauceCodePro\ Nerd\ Font:h19 ]])
 
-
+vim.g.neovide_remember_window_size = true
+vim.g.neovide_remember_window_position = true

@@ -107,13 +107,14 @@ then
     initPath $statePath   # 初始化状态目录
   }
   # web编辑器
-  function webvim()
+  function wvim()
   {
     export LUA_PATH="$HOME/dotfiles/vim/web/config/lua/?.lua;$HOME/dotfiles/vim/web/config/?.lua;;" 
     beforeLanchNvim
     ln -s $rootPath/vim/web/data $dataPath # nvim数据目录
     ln -s $rootPath/vim/web/config $configPath # nvim配置
     ln -s $rootPath/vim/web/state $statePath # state配置
+    # --maximized 
     $neovide --frame=buttonless $@
   }
 fi
