@@ -24,7 +24,10 @@ packer.startup({
     })
     use("arkav/lualine-lsp-progress")
     -- 搜索插件 需要依赖外部工具,通过:checkhealth telescope 查看相关依赖
-    use { 'nvim-telescope/telescope.nvim', requires = { "nvim-lua/plenary.nvim" } }
+    use { 'nvim-telescope/telescope.nvim', requires = { 
+      "nvim-lua/plenary.nvim",
+      "LinArcX/telescope-env.nvim" -- env列表功能 
+    } }
   end,
   config = {
     display = {

@@ -90,35 +90,22 @@ then
   # 启动nvim前
   function beforeLanchNvim()
   {
-    # 初始化配置目录
-    if [[ ! -e $configPath/.. ]] 
-    then
-      mkdir -p $configPath/..
-    fi
-    if [[ -e $configPath ]] 
-    then
-      rm -rf $configPath
-    fi
-    # 初始化数据目录
-    if [[ ! -e $dataPath/.. ]] 
-    then
-      mkdir -p $dataPath/..
-    fi
-    if [[ -e $dataPath ]] 
-    then
-      rm -rf $dataPath
-    fi
-    # 初始化状态目录
-    if [[ ! -e $statePath/.. ]] 
-    then
-      mkdir -p $statePath/..
-    fi
-    if [[ -e $statePath ]] 
-    then
-      rm -rf $statePath
-    fi
+    # 初始化目录
+    function initPath() 
+    {
+      if [[ ! -e "$1/.." ]] # 创建用于存放配置的目录
+      then
+        mkdir -p "$1/.."
+      fi
+      if [[ -e $1 ]] # 删除已经存在的配置
+      then
+        rm -rf $1
+      fi
+    }
+    initPath $configPath  # 始化配置目录
+    initPath $dataPath    # 初始化数据目录
+    initPath $statePath   # 初始化状态目录
   }
-
   # web编辑器
   function webvim()
   {
