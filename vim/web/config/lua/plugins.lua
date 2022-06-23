@@ -34,6 +34,9 @@ packer.startup({
     use("ahmedkhalf/project.nvim")
     -- 语法高亮
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+    -- lsp
+    use({ "williamboman/nvim-lsp-installer", commit = "36b44679f7cc73968dbb3b09246798a19f7c14e0" })
+    use({ "neovim/nvim-lspconfig" })
   end,
   config = {
     display = {
