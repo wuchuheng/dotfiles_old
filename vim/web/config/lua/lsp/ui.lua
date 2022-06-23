@@ -129,4 +129,8 @@ M.formatting = {
   })
 }
 
+if true then
+  print                           ("hello")
+end
+
 return M
