@@ -14,3 +14,4 @@ require('lsp.cmp') -- 自动补全配置
 require('lsp.ui') -- lspUI配置
 require('plugin-config.indent-blankline') -- 关联线配置
 require('lsp.null-ls') -- 代码格式化配置
+require('plugin-config.autopairs') -- 自动补全双括号之类
