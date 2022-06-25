@@ -41,7 +41,6 @@ map('n', '<space>l', ':<C-u>nohlsearch<CR>', opt) -- 窗口垂直等大
 --                          终端快捷键配置
 -------------------------------------------------------------------------------
 map('t', '<Esc>', '<C-\\><C-n>', opt) -- Esc退出terminal
-map('t', '<C-c>', '<C-\\><C-n>', opt) -- Ctrl+c退出terminal
 map('n', '<leader>vt', ':vsp | terminal<CR>i', opt)
 map('n', '<leader>t', ':sp | terminal<CR>i', opt)
 
