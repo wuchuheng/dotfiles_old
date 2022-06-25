@@ -66,6 +66,8 @@ packer.startup({
         use('b0o/schemastore.nvim')
         --  TS增强插件
         use({ 'jose-elias-alvarez/nvim-lsp-ts-utils', requires = 'nvim-lua/plenary.nvim' })
+        -- 快捷键映射
+        use('folke/which-key.nvim')
     end,
     config = {
         display = {
