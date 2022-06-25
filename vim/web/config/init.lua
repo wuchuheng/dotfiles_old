@@ -16,3 +16,4 @@ require('plugin-config.indent-blankline') -- 关联线配置
 require('lsp.null-ls') -- 代码格式化配置
 require('plugin-config.autopairs') -- 自动补全双括号之类
 require('plugin-config.which-key') -- 快捷键映射配置
+require('plugin-config.terminal') -- terminal配置

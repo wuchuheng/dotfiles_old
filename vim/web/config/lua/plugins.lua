@@ -72,6 +72,11 @@ packer.startup({
         use('easymotion/vim-easymotion')
         -- git difference view
         use('sindrets/diffview.nvim')
+        -- terminal
+        use({
+            'akinsho/toggleterm.nvim',
+            tag = 'v1.*',
+        })
     end,
     config = {
         display = {

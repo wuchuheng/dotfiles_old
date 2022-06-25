@@ -16,6 +16,13 @@ wk.register({
                 'hello world',
             },
         },
+        t = {
+            name = 'Terminal',
+            t = {
+                ':ToggleTerm<cr>',
+                'Toggle terminal',
+            },
+        },
         -- 文件相关操作
         f = {
             name = 'File',
