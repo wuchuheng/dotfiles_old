@@ -62,6 +62,10 @@ packer.startup({
         use({ 'jose-elias-alvarez/null-ls.nvim', requires = 'nvim-lua/plenary.nvim' })
         -- auto opaqirs
         use('windwp/nvim-autopairs')
+        -- json增强
+        use('b0o/schemastore.nvim')
+        --  TS增强插件
+        use({ 'jose-elias-alvarez/nvim-lsp-ts-utils', requires = 'nvim-lua/plenary.nvim' })
     end,
     config = {
         display = {
