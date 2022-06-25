@@ -53,8 +53,6 @@ map('v', 'K', ":move '<-2<cr>gv-gv", opt) -- 向上移
 -- 插件快捷键
 local pluginKeys = {}
 -- nvim-tree
--- space + m 键打开关闭tree
-map('n', '<space>m', ':NvimTreeToggle<CR>', opt)
 -- 列表快捷键
 pluginKeys.nvimTreeList = {
     -- 打开文件或文件夹

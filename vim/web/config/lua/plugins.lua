@@ -68,6 +68,8 @@ packer.startup({
         use({ 'jose-elias-alvarez/nvim-lsp-ts-utils', requires = 'nvim-lua/plenary.nvim' })
         -- 快捷键映射
         use('folke/which-key.nvim')
+        -- 坐标定位
+        use('easymotion/vim-easymotion')
     end,
     config = {
         display = {
