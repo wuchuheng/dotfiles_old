@@ -22,6 +22,18 @@ wk.register({
                 ':ToggleTerm<cr>',
                 'Toggle terminal',
             },
+            a = {
+                ':ToggleTermToggleAll<cr>',
+                'Toggle all terminal',
+            },
+            ['1'] = {
+                ':ToggleTerm 1<cr>',
+                'Toggle terminal 0',
+            },
+            ['2'] = {
+                ':ToggleTerm 2<cr>',
+                'Toggle terminal 2',
+            },
         },
         -- 文件相关操作
         f = {

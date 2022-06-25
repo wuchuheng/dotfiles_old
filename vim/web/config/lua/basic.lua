@@ -15,9 +15,9 @@ vim.o.smartcase = true -- 查找大小写自动识别
 vim.o.autoindent = true -- 自动缩进
 vim.o.softtabstop = 4 -- tab 4空格
 vim.o.shiftwidth = 4
-vim.o.sw = 4
 vim.o.hlsearch = true -- 查找结果高亮
 vim.wo.number = true -- 设置行号
+vim.o.numberwidth = 4
 -- vim.o.fileformat = unix                           -- 文件格式
 -- vim.o.nobomb = true                               -- 无bom格式
 vim.o.wrap = true -- 自动换行显示
@@ -64,7 +64,7 @@ vim.o.swapfile = false
 -- smaller updatetime
 vim.o.updatetime = 300
 -- 设置 timeoutlen 为等待键盘快捷键连击时间500毫秒，可根据需要设置
-vim.o.timeoutlen = 0
+vim.o.timeoutlen = 500
 -- split window 从下边和右边出现
 vim.o.splitbelow = true
 vim.o.splitright = true
