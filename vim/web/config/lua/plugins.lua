@@ -70,6 +70,8 @@ packer.startup({
         use('folke/which-key.nvim')
         -- 坐标定位
         use('easymotion/vim-easymotion')
+        -- git difference view
+        use('sindrets/diffview.nvim')
     end,
     config = {
         display = {

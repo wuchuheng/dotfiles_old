@@ -36,6 +36,24 @@ wk.register({
             name = 'Buffer',
             l = { '<cmd>Telescope buffers<CR>', 'list buffers' },
         },
+        g = {
+            name = 'git',
+            d = {
+                name = 'git diffence view',
+                o = {
+                    ':DiffviewOpen<cr>',
+                    'Open git diffence view',
+                },
+                c = {
+                    ':DiffviewClose<cr>',
+                    'Close git diffence view',
+                },
+                h = {
+                    ':DiffviewFileHistory<cr>',
+                    'Show the view of git history.',
+                },
+            },
+        },
         -- 移动
         m = {
             name = 'Cosors moving',
