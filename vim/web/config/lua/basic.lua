@@ -9,6 +9,7 @@
 vim.o.background = 'dark' -- 背景
 vim.g.encoding = 'UTF-8' -- 默认文件编码utf8
 vim.o.fileencoding = 'utf-8' -- 默认文件编码
+vim.bo.undofile = true
 -- vim.o.t_Co = 256                                 -- 终端显示的颜色数量
 vim.o.ignorecase = true -- 查找忽略大小写
 vim.o.smartcase = true -- 查找大小写自动识别
@@ -27,7 +28,7 @@ vim.o.relativenumber = true -- 相对行号
 vim.o.mouse = 'a' -- 支持鼠标
 vim.o.hidden = true -- 隐藏当前缓冲区禁用提示
 vim.o.spell = true -- 启用字典
-vim.o.spelllang = 'en_us' -- 默认英文字典
+vim.o.spelllang = 'cjk' -- 默认英文字典
 vim.o.backupcopy = 'yes' -- docker挂载文件保存生效
 -- vim.o.nowrap = true                            -- 不折行
 vim.wo.colorcolumn = '80' -- 80列宽度标尺
