@@ -7,6 +7,10 @@ end
 
 wk.register({
     ['<space>'] = {
+        ['<space>'] = {
+            '<Plug>(choosewin)',
+            'choosewin',
+        },
         h = {
             name = 'hello world',
             l = {

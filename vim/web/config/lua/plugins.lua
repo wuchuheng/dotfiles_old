@@ -77,6 +77,8 @@ packer.startup({
             'akinsho/toggleterm.nvim',
             tag = 'v1.*',
         })
+        -- choose  windows
+        use('t9md/vim-choosewin')
     end,
     config = {
         display = {
