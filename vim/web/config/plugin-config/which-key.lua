@@ -11,6 +11,13 @@ wk.register({
             '<Plug>(choosewin)',
             'choosewin',
         },
+        p = {
+            name = 'Projects',
+            o = {
+                ':Telescope projects<CR>',
+                'Open project',
+            },
+        },
         h = {
             name = 'hello world',
             l = {
@@ -43,7 +50,7 @@ wk.register({
         f = {
             name = 'File',
             f = { '<cmd>:Telescope live_grep<CR>', 'Find File' },
-            l = { '<cmd>:Telescope live_grep<CR>', 'live search' },
+            t = { '<cmd>:Telescope live_grep<CR>', 'Find text.' },
             -- toggle目录
             m = {
                 '<cmd>NvimTreeToggle<CR>',
@@ -52,6 +59,13 @@ wk.register({
             q = {
                 '<cmd>Telescope quickfix<CR>',
                 'quickfix',
+            },
+            o = {
+                name = 'Open files',
+                r = {
+                    ':Telescope oldfiles<CR>',
+                    'Open recently files.',
+                },
             },
         },
         -- buffer 相关操作
