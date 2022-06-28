@@ -49,7 +49,7 @@ wk.register({
         -- 文件相关操作
         f = {
             name = 'File',
-            f = { '<cmd>:Telescope live_grep<CR>', 'Find File' },
+            f = { '<cmd>:Telescope find_files<CR>', 'Find File' },
             t = { '<cmd>:Telescope live_grep<CR>', 'Find text.' },
             -- toggle目录
             m = {

@@ -99,6 +99,16 @@ if [[ ${#vimTool} > 0 ]]; then
 		# --maximized
 		$neovide --frame=buttonless $@
 	}
+	# nvim编辑器
+	function tvim() {
+		export LUA_PATH="$HOME/dotfiles/vim/web/config/lua/?.lua;$HOME/dotfiles/vim/web/config/?.lua;;"
+		beforeLanchNvim
+		ln -s $rootPath/vim/web/data $dataPath     # nvim数据目录
+		ln -s $rootPath/vim/web/config $configPath # nvim配置
+		ln -s $rootPath/vim/web/state $statePath   # state配置
+		# --maximized
+		nvim $@
+	}
 fi
 
 alias ipcn="curl myip.ipip.net"
@@ -110,15 +120,17 @@ proxyStatus=0
 proxySockIp=127.0.0.1
 proxySockPort=7890
 function setProxy() {
-	export all_proxy=socks5://${proxySockIp}:${proxySockPort}
+	proxySocket=${proxySockIp}:${proxySockPort}
+	proxyHttp=$proxySocket
+	proxyHttps=$proxySocket
+	export all_proxy=socks5://${proxySocket}
 	proxyStatus=1
-	proxyIp=${proxySockIp}:${proxySockPort}
-	export http_proxy=http://${proxyIp} && export https_proxy=http://${proxyIp}
+	export http_proxy=http://${proxySocket} && export https_proxy=http://${proxySocket}
 	# git config --global https.proxy http://${proxyIp} && git config --global https.proxy https://${proxyIp}
-	git config --global http.proxy socks5://${proxyIp}
+	git config --global http.proxy socks5://${proxySocket}
 	if [[ hasNpm ]]; then
-		npm config set proxy http://${proxyIp}
-		npm config set https-proxy http://${proxyIp}
+		npm config set proxy http://${proxySocket}
+		npm config set https-proxy http://${proxySocket}
 	fi
 	echo "set proxy successfully"
 }
