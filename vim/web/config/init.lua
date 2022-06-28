@@ -6,7 +6,6 @@ require('plugin-config.nvim-tree') -- 目录配置
 require('plugin-config.bufferline') -- tab页配置
 require('plugin-config.lualine') -- 状态栏配置
 require('plugin-config.telescope') -- 搜索配置
-require('plugin-config.dashboard') -- 启动页配置
 require('plugin-config.project') -- 项目相关配置
 require('plugin-config.nvim-treesitter') -- 语法高亮配置
 require('lsp.setup') -- lsp配置
@@ -21,3 +20,4 @@ require('plugin-config.lsp-signature') -- show signature of function
 require('plugin-config.comment') -- comment
 require('plugin-config.gitsigns') -- gitsigns
 require('plugin-config.notiify') -- notify
+require('plugin-config.alpha') -- alpha 启动页

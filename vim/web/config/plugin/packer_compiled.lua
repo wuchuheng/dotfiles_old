@@ -74,6 +74,11 @@ _G.packer_plugins = {
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/DAPInstall.nvim",
     url = "https://github.com/ravenxrz/DAPInstall.nvim"
   },
+  ["alpha-nvim"] = {
+    loaded = true,
+    path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/alpha-nvim",
+    url = "https://github.com/goolord/alpha-nvim"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
@@ -103,11 +108,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
-  },
-  ["dashboard-nvim"] = {
-    loaded = true,
-    path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
-    url = "https://github.com/glepnir/dashboard-nvim"
   },
   ["diffview.nvim"] = {
     loaded = true,

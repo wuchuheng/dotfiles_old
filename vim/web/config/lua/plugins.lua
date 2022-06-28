@@ -33,7 +33,10 @@ packer.startup({
             },
         })
         -- 启动页
-        use('glepnir/dashboard-nvim')
+        use({
+            'goolord/alpha-nvim',
+            requires = { 'kyazdani42/nvim-web-devicons' },
+        })
         -- 用于启动页的项目
         use('ahmedkhalf/project.nvim')
         -- 语法高亮
