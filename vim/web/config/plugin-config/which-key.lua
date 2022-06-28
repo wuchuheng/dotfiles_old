@@ -88,6 +88,13 @@ wk.register({
                 ':Telescope git_commits<CR>',
                 'Git commit',
             },
+            D = {
+                function()
+                    local gs = package.loaded.gitsigns
+                    gs.diffthis('~')
+                end,
+                'Show current diffence view in git.',
+            },
             d = {
                 name = 'git diffence view',
                 o = {
@@ -147,3 +154,5 @@ wk.register({
         },
     },
 })
+
+return wk

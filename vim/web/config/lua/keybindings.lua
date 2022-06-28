@@ -12,6 +12,7 @@ local opt = { noremap = true, silent = true }
 
 vim.g.mapleader = ',' -- 指定leader键位
 vim.g.maplocalleader = '-' -- 指定local leader键位
+local wichKey = require('plugin-config.which-key')
 
 -------------------------------------------------------------------------------
 --                          解决neovide不能使用mac OS系统粘贴的问题
@@ -197,6 +198,58 @@ pluginKeys.mapTsLSP = function(mapbuf)
     mapbuf('n', 'gs', ':TSLspOrganize<CR>', opt)
     mapbuf('n', 'gr', ':TSLspRenameFile<CR>', opt)
     mapbuf('n', 'gi', ':TSLspImportAll<CR>', opt)
+end
+
+-------------------------------------------------------------------------------
+--                          gitsigns快捷键配置
+-------------------------------------------------------------------------------
+pluginKeys.gitsigns = function(bufnr)
+    local gs = package.loaded.gitsigns
+    local function gitMap(mode, l, r, opts)
+        opts = opts or {}
+        opts.buffer = bufnr
+        vim.keymap.set(mode, l, r, opts)
+    end
+    -- Navigation
+    gitMap('n', ']c', function()
+        if vim.wo.diff then
+            return ']c'
+        end
+        vim.schedule(function()
+            gs.next_hunk()
+        end)
+        return '<Ignore>'
+    end, { expr = true })
+
+    gitMap('n', '[c', function()
+        if vim.wo.diff then
+            return '[c'
+        end
+        vim.schedule(function()
+            gs.prev_hunk()
+        end)
+        return '<Ignore>'
+    end, { expr = true })
+
+    -- Actions
+    gitMap({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>')
+    gitMap({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>')
+    gitMap('n', '<leader>hS', gs.stage_buffer)
+    gitMap('n', '<leader>hu', gs.undo_stage_hunk)
+    gitMap('n', '<leader>hR', gs.reset_buffer)
+    gitMap('n', '<leader>hp', gs.preview_hunk)
+    gitMap('n', '<leader>hb', function()
+        gs.blame_line({ full = true })
+    end)
+    gitMap('n', '<leader>tb', gs.toggle_current_line_blame)
+    gitMap('n', '<leader>hd', gs.diffthis)
+    gitMap('n', '<leader>hD', function()
+        gs.diffthis('~')
+    end)
+    gitMap('n', '<leader>td', gs.toggle_deleted)
+
+    -- Text object
+    gitMap({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 end
 
 return pluginKeys

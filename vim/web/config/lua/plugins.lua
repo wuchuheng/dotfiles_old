@@ -74,6 +74,7 @@ packer.startup({
         use('easymotion/vim-easymotion')
         -- git difference view
         use('sindrets/diffview.nvim')
+        use('lewis6991/gitsigns.nvim')
         -- terminal
         use({
             'akinsho/toggleterm.nvim',
@@ -91,6 +92,8 @@ packer.startup({
         use('rcarriga/nvim-dap-ui')
         -- Comment
         use('terrortylor/nvim-comment')
+        -- surrond
+        use('tpope/vim-surround')
     end,
     config = {
         display = {

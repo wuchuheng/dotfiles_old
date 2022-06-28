@@ -18,4 +18,7 @@ require('plugin-config.autopairs') -- 自动补全双括号之类
 require('plugin-config.which-key') -- 快捷键映射配置
 require('plugin-config.terminal') -- terminal配置
 require('plugin-config.lsp-signature') -- show signature of function
+
 require('plugin-config.comment') -- comment
+
+require('plugin-config.gitsigns') -- gitsigns
