@@ -94,6 +94,8 @@ packer.startup({
         use('terrortylor/nvim-comment')
         -- surrond
         use('tpope/vim-surround')
+        -- Notification
+        use('rcarriga/nvim-notify')
     end,
     config = {
         display = {
