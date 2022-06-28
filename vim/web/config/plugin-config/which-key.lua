@@ -11,6 +11,7 @@ wk.register({
             '<Plug>(choosewin)',
             'choosewin',
         },
+        -- git key maping
         p = {
             name = 'Projects',
             o = {
@@ -74,7 +75,19 @@ wk.register({
             l = { '<cmd>Telescope buffers<CR>', 'list buffers' },
         },
         g = {
-            name = 'git',
+            name = 'Git key maping.',
+            s = {
+                ':Telescope git_status<CR>',
+                'Git status',
+            },
+            b = {
+                ':Telescope git_branches<CR>',
+                'Git branches',
+            },
+            c = {
+                ':Telescope git_commits<CR>',
+                'Git commit',
+            },
             d = {
                 name = 'git diffence view',
                 o = {
