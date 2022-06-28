@@ -10,6 +10,7 @@ local servers = {
     jsonls = require('lsp.config.json'),
     tsserver = require('lsp.config.ts'),
     dartls = require('lsp.config.dart'),
+    clangd = require('lsp.config.c'),
 }
 
 -- 自动安装 Language Servers

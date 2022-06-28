@@ -1,4 +1,5 @@
 local packer = require('packer')
+
 packer.startup({
     function(use)
         -- Packer 可以管理自己本身
@@ -40,6 +41,7 @@ packer.startup({
         -- lsp
         use({ 'williamboman/nvim-lsp-installer', commit = '36b44679f7cc73968dbb3b09246798a19f7c14e0' })
         use({ 'neovim/nvim-lspconfig' })
+        use('ray-x/lsp_signature.nvim') -- show function signature when typing.
         -- 补全引擎
         use('hrsh7th/nvim-cmp')
         -- snippet 引擎
@@ -79,6 +81,16 @@ packer.startup({
         })
         -- choose  windows
         use('t9md/vim-choosewin')
+        -- debugger
+        use('ravenxrz/DAPInstall.nvim') -- help us install several debuggers
+        use({
+            'ravenxrz/nvim-dap',
+            -- commit = "f9480362549e2b50a8616fe4530deaabbc4f889b",
+        })
+        use('theHamsta/nvim-dap-virtual-text')
+        use('rcarriga/nvim-dap-ui')
+        -- Comment
+        use('terrortylor/nvim-comment')
     end,
     config = {
         display = {
