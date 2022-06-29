@@ -5,6 +5,7 @@ if not status then
     return
 end
 
+-- space
 wk.register({
     ['<space>'] = {
         ['<space>'] = {
@@ -127,6 +128,12 @@ wk.register({
                 },
             },
         },
+    },
+})
+
+-- prefix m
+wk.register({
+    ['<space>'] = {
         -- 移动
         m = {
             name = 'Cosors moving',
@@ -146,7 +153,7 @@ wk.register({
                 '<Plug>(easymotion-overwin-w)',
                 'Move to over win word',
             },
-            f = {
+            m = {
                 '<Plug>(easymotion-bd-f)',
                 'find {char} to move to {char}',
             },
