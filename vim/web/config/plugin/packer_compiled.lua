@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
   },
+  ["auto-session"] = {
+    loaded = true,
+    path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/auto-session",
+    url = "https://github.com/rmagatti/auto-session"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
@@ -113,6 +118,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
+  },
+  ["coc.nvim"] = {
+    loaded = true,
+    path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/coc.nvim",
+    url = "https://github.com/neoclide/coc.nvim"
   },
   ["diffview.nvim"] = {
     loaded = true,

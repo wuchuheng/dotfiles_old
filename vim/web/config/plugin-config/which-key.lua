@@ -157,7 +157,7 @@ wk.register({
                 '<Plug>(easymotion-bd-f)',
                 'find {char} to move to {char}',
             },
-            F = {
+            M = {
                 '<Plug>(easymotion-overwin-f)',
                 'find {char} to move to over {char}',
             },
