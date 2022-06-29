@@ -21,5 +21,5 @@ require('plugin-config.comment') -- comment
 require('plugin-config.gitsigns') -- gitsigns
 require('plugin-config.notiify') -- notify
 require('plugin-config.alpha') -- alpha 启动页
--- TODO: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 require('plugin-config.todo') -- todo 启动页
+require('plugin-config.aerial') -- outline

@@ -104,6 +104,8 @@ packer.startup({
             'folke/todo-comments.nvim',
             requires = 'nvim-lua/plenary.nvim',
         })
+        -- outline
+        use('stevearc/aerial.nvim')
     end,
     config = {
         display = {

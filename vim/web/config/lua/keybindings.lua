@@ -12,7 +12,7 @@ local opt = { noremap = true, silent = true }
 
 vim.g.mapleader = ',' -- 指定leader键位
 vim.g.maplocalleader = '-' -- 指定local leader键位
-local wichKey = require('plugin-config.which-key')
+local wk = require('which-key')
 
 -------------------------------------------------------------------------------
 --                          解决neovide不能使用mac OS系统粘贴的问题
@@ -251,5 +251,31 @@ pluginKeys.gitsigns = function(bufnr)
     -- Text object
     gitMap({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 end
+
+-------------------------------------------------------------------------------
+--                           aerial 快捷键配置
+-------------------------------------------------------------------------------
+pluginKeys.aerial = function(bufnr)
+    -- Toggle the aerial window with <leader>a
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ol', '<cmd>AerialToggle!<CR>', {})
+    -- Jump forwards/backwards with '{' and '}'
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '{', '<cmd>AerialPrev<CR>', {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '}', '<cmd>AerialNext<CR>', {})
+    -- Jump up the tree with '[[' or ']]'
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '[[', '<cmd>AerialPrevUp<CR>', {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>AerialNextUp<CR>', {})
+end
+
+wk.register({
+    ['<space>'] = {
+        o = {
+            name = 'outline',
+            l = {
+                '<cmd>AerialToggle!<CR>',
+                'outline',
+            },
+        },
+    },
+})
 
 return pluginKeys
