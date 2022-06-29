@@ -99,6 +99,11 @@ packer.startup({
         use('tpope/vim-surround')
         -- Notification
         use('rcarriga/nvim-notify')
+        -- todo
+        use({
+            'folke/todo-comments.nvim',
+            requires = 'nvim-lua/plenary.nvim',
+        })
     end,
     config = {
         display = {

@@ -30,7 +30,23 @@ wk.register({
         },
         t = {
             name = 'Terminal',
+            d = {
+                name = 'Todo',
+                q = {
+                    ':TodoQuickFix<CR>',
+                    'Todo quickfix.',
+                },
+                l = {
+                    ':TodoLocList<CR>',
+                    'Todo local list.',
+                },
+                t = {
+                    ':TodoTelescope<CR>',
+                    'Todo telescope list.',
+                },
+            },
             t = {
+
                 ':ToggleTerm<cr>',
                 'Toggle terminal',
             },
