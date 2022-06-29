@@ -108,6 +108,8 @@ packer.startup({
         use('stevearc/aerial.nvim')
         -- colorizer
         use('norcalli/nvim-colorizer.lua')
+        -- translator
+        use('voldikss/vim-translator')
     end,
     config = {
         display = {
