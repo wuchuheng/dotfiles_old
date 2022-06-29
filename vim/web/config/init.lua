@@ -24,3 +24,4 @@ require('plugin-config.alpha') -- alpha 启动页
 require('plugin-config.todo') -- todo 启动页
 require('plugin-config.aerial') -- outline
 require('plugin-config.colorizer') -- colorizer
+require('plugin-config.local-history') -- local history

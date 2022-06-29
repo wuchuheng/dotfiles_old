@@ -294,6 +294,11 @@ _G.packer_plugins = {
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/vim-easymotion",
     url = "https://github.com/easymotion/vim-easymotion"
   },
+  ["vim-local-history"] = {
+    loaded = true,
+    path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/vim-local-history",
+    url = "https://github.com/ravenxrz/vim-local-history"
+  },
   ["vim-surround"] = {
     loaded = true,
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/vim-surround",

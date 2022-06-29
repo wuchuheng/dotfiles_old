@@ -110,6 +110,8 @@ packer.startup({
         use('norcalli/nvim-colorizer.lua')
         -- translator
         use('voldikss/vim-translator')
+        -- history
+        use('ravenxrz/vim-local-history')
     end,
     config = {
         display = {

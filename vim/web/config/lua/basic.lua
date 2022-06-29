@@ -88,6 +88,6 @@ vim.o.showtabline = 2
 -- 使用增强状态栏插件后不再需要 vim 的模式提示
 vim.o.showmode = false
 pcall(vim.cmd, [[ set guifont=SauceCodePro\ Nerd\ Font:h19 ]])
-
+-- pcall(vim.cmd, [[ set undofir=~/.local/shared/nvim/undo-dir ]]
 vim.g.neovide_remember_window_size = true
 vim.g.neovide_remember_window_position = true
