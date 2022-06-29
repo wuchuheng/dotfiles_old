@@ -106,6 +106,8 @@ packer.startup({
         })
         -- outline
         use('stevearc/aerial.nvim')
+        -- colorizer
+        use('norcalli/nvim-colorizer.lua')
     end,
     config = {
         display = {
