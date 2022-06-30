@@ -163,6 +163,17 @@ pluginKeys.mapLSP = function(mapbuf)
     mapbuf('n', 'gk', '<cmd>Lspsaga diagnostic_jump_prev<cr>', opt)
     mapbuf('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opt)
 end
+wk.register({
+    ['<leader>'] = {
+        c = {
+            name = 'Code action.',
+            a = {
+                '<cmd>Lspsaga code_action<CR>',
+                'Code action.',
+            },
+        },
+    },
+})
 
 -------------------------------------------------------------------------------
 --                          自动补全快捷键配置

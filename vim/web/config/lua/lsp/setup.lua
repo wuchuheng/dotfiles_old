@@ -12,6 +12,7 @@ local servers = {
     dartls = require('lsp.config.dart'),
     clangd = require('lsp.config.c'),
     gopls = require('lsp.config.go'),
+    golangci_lint_ls = require('lsp.config.go'),
 }
 
 -- 自动安装 Language Servers

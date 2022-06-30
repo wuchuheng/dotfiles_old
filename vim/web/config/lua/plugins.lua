@@ -119,6 +119,12 @@ packer.startup({
         })
         -- auto session
         use('rmagatti/auto-session')
+        -- test
+        use({
+            'rcarriga/vim-ultest',
+            requires = { 'vim-test/vim-test' },
+            run = ':UpdateRemotePlugins',
+        })
     end,
     config = {
         display = {
