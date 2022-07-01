@@ -34,81 +34,84 @@ alias dic='docker run -it --rm wuchuheng/dic:0.0.1 php ./test.php '
 export LC_ALL=en_US.UTF-8
 
 function hasNvim() {
-	if ! command -v nvim &>/dev/null; then
-		return false
-	else
-		return true
-	fi
+    if ! command -v nvim &>/dev/null; then
+        return false
+    else
+        return true
+    fi
 
 }
 function hasvim() {
-	if ! command -v vim &>/dev/null; then
-		return false
-	else
-		return true
-	fi
+    if ! command -v vim &>/dev/null; then
+        return false
+    else
+        return true
+    fi
 
 }
 function hasNpm() {
-	if ! command -v npm &>/dev/null; then
-		return false
-	else
-		return true
-	fi
+    if ! command -v npm &>/dev/null; then
+        return false
+    else
+        return true
+    fi
 
 }
 vimTool=""
 if [[ hasNvim ]]; then
-	vimTool="nvim"
+    vimTool="nvim"
 elif [[ hasvim ]]; then
-	vimTool="vim"
+    vimTool="vim"
 fi
 rootPath=~/dotfiles
 if [[ ${#vimTool} > 0 ]]; then
-	neovide=/Applications/Neovide.app/Contents/MacOS/neovide
-	alias nn="$vimTool -u ~/dotfiles/.newWebVimrc"
-	alias newvim="$vimTool -u ~/dotfiles/newWebVimrc.vim"
-	alias govim="$vimTool -u ~/dotfiles/golangVimrc.vim"
-	alias nv="$vimTool -u ~/dotfiles/newWebVimrc.vim"
-	alias gv="$vimTool -u ~/dotfiles/golangVimrc.vim"
-	configPath=~/.config/nvim
-	dataPath=~/.local/share/nvim
-	statePath=~/.local/state/nvim
-	# 启动nvim前
-	function beforeLanchNvim() {
-		# 初始化目录
-		function initPath() {
-			if [[ ! -e "$1/.." ]]; then # 创建用于存放配置的目录
-				mkdir -p "$1/.."
-			fi
-			if [[ -e $1 ]]; then # 删除已经存在的配置
-				rm -rf $1
-			fi
-		}
-		initPath $configPath # 始化配置目录
-		initPath $dataPath   # 初始化数据目录
-		initPath $statePath  # 初始化状态目录
-	}
-	# web编辑器
-	function wvim() {
-		export LUA_PATH="$HOME/dotfiles/vim/web/config/lua/?.lua;$HOME/dotfiles/vim/web/config/?.lua;;"
-		beforeLanchNvim
-		ln -s $rootPath/vim/web/data $dataPath     # nvim数据目录
-		ln -s $rootPath/vim/web/config $configPath # nvim配置
-		ln -s $rootPath/vim/web/state $statePath   # state配置
-		# --maximized
-		$neovide --frame=buttonless $@
-	}
-	# nvim编辑器
-	function tvim() {
-		export LUA_PATH="$HOME/dotfiles/vim/web/config/lua/?.lua;$HOME/dotfiles/vim/web/config/?.lua;;"
-		beforeLanchNvim
-		ln -s $rootPath/vim/web/data $dataPath     # nvim数据目录
-		ln -s $rootPath/vim/web/config $configPath # nvim配置
-		ln -s $rootPath/vim/web/state $statePath   # state配置
-		# --maximized
-		nvim $@
-	}
+    neovide=/Applications/Neovide.app/Contents/MacOS/neovide
+    alias nn="$vimTool -u ~/dotfiles/.newWebVimrc"
+    alias newvim="$vimTool -u ~/dotfiles/newWebVimrc.vim"
+    alias govim="$vimTool -u ~/dotfiles/golangVimrc.vim"
+    alias nv="$vimTool -u ~/dotfiles/newWebVimrc.vim"
+    alias gv="$vimTool -u ~/dotfiles/golangVimrc.vim"
+    configPath=~/.config/nvim
+    dataPath=~/.local/share/nvim
+    statePath=~/.local/state/nvim
+    # 启动nvim前
+    function beforeLanchNvim() {
+        # 初始化目录
+        function initPath() {
+            parentDir="$(dirname "$1")"
+            if [[ ! -e $parentDir ]]; then # 创建用于存放配置的目录
+                mkdir -p $parentDir
+            fi
+            echo $1
+            if [[ -e $1 || -L $1 ]]; then # 删除已经存在的配置
+                rm -rf $1
+            fi
+        }
+        initPath $configPath # 始化配置目录
+        initPath $dataPath   # 初始化数据目录
+        initPath $statePath  # 初始化状态目录
+    }
+    # web编辑器
+    function wvim() {
+        export LUA_PATH="$HOME/dotfiles/vim/web/config/lua/?.lua;$HOME/dotfiles/vim/web/config/?.lua;;"
+        beforeLanchNvim
+        ln -s $rootPath/vim/web/data $dataPath     # nvim数据目录
+        ln -s $rootPath/vim/web/config $configPath # nvim配置
+        ln -s $rootPath/vim/web/state $statePath   # state配置
+        # --maximized
+        $neovide --frame=buttonless $@
+    }
+    # nvim编辑器
+    function cvim() {
+        prefix="$rootPath/vim/cocvim"
+        export LUA_PATH="$prefix/config/lua/?.lua;$prefix/config/?.lua;"
+        beforeLanchNvim
+        ln -s $prefix/data $dataPath     # nvim数据目录
+        ln -s $prefix/config $configPath # nvim配置
+        ln -s $prefix/state $statePath   # state配置
+        # --maximized
+        nvim $@
+    }
 fi
 
 alias ipcn="curl myip.ipip.net"
@@ -120,57 +123,57 @@ proxyStatus=0
 proxySockIp=127.0.0.1
 proxySockPort=7890
 function setProxy() {
-	proxySocket=${proxySockIp}:${proxySockPort}
-	proxyHttp=$proxySocket
-	proxyHttps=$proxySocket
-	export all_proxy=socks5://${proxySocket}
-	proxyStatus=1
-	export http_proxy=http://${proxySocket} && export https_proxy=http://${proxySocket}
-	# git config --global https.proxy http://${proxyIp} && git config --global https.proxy https://${proxyIp}
-	git config --global http.proxy socks5://${proxySocket}
-	if [[ hasNpm ]]; then
-		npm config set proxy http://${proxySocket}
-		npm config set https-proxy http://${proxySocket}
-	fi
-	echo "set proxy successfully"
+    proxySocket=${proxySockIp}:${proxySockPort}
+    proxyHttp=$proxySocket
+    proxyHttps=$proxySocket
+    export all_proxy=socks5://${proxySocket}
+    proxyStatus=1
+    export http_proxy=http://${proxySocket} && export https_proxy=http://${proxySocket}
+    # git config --global https.proxy http://${proxyIp} && git config --global https.proxy https://${proxyIp}
+    git config --global http.proxy socks5://${proxySocket}
+    if [[ hasNpm ]]; then
+        npm config set proxy http://${proxySocket}
+        npm config set https-proxy http://${proxySocket}
+    fi
+    echo "set proxy successfully"
 }
 setProxy
 
 # 解除http https代理
 function unSetProxy() {
-	proxyStatus=0
-	git config --global --unset http.proxy && git config --global --unset https.proxy
-	unset http_proxy
-	unset https_proxy
-	unset all_proxy
-	echo "Unset proxy successfully"
-	if [[ hasNpm ]]; then
-		# npm config delete proxy
-		# npm config delete https-proxy
-	fi
+    proxyStatus=0
+    git config --global --unset http.proxy && git config --global --unset https.proxy
+    unset http_proxy
+    unset https_proxy
+    unset all_proxy
+    echo "Unset proxy successfully"
+    if [[ hasNpm ]]; then
+        # npm config delete proxy
+        # npm config delete https-proxy
+    fi
 }
 
 #check internet speed
 function speed() {
-	if [[ $proxyStatus == 0 ]]; then
-		setProxy
-		curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py >tmp
-		unSetProxy
-	else
-		curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py >tmp
-	fi
-	cat tmp | python3
-	rm -f tmp
+    if [[ $proxyStatus == 0 ]]; then
+        setProxy
+        curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py >tmp
+        unSetProxy
+    else
+        curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py >tmp
+    fi
+    cat tmp | python3
+    rm -f tmp
 }
 #eheck the internet speed for proxy
 function speedP() {
-	if [[ $proxyStatus == 0 ]]; then
-		setProxy
-		curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3
-		unSetProxy
-	else
-		curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3
-	fi
+    if [[ $proxyStatus == 0 ]]; then
+        setProxy
+        curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3
+        unSetProxy
+    else
+        curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3
+    fi
 }
 
 export BAT_THEME="Dracula"

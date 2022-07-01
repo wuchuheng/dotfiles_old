@@ -14,11 +14,8 @@ vim.bo.undofile = true
 vim.o.ignorecase = true -- 查找忽略大小写
 vim.o.smartcase = true -- 查找大小写自动识别
 vim.o.autoindent = true -- 自动缩进
-vim.o.softtabstop = 4 -- tab 4空格
-vim.o.shiftwidth = 4
 vim.o.hlsearch = true -- 查找结果高亮
 vim.wo.number = true -- 设置行号
-vim.o.numberwidth = 4
 -- vim.o.fileformat = unix                           -- 文件格式
 -- vim.o.nobomb = true                               -- 无bom格式
 vim.o.wrap = true -- 自动换行显示
@@ -93,8 +90,12 @@ vim.g.neovide_remember_window_size = true
 vim.g.neovide_remember_window_position = true
 
 pcall(
-vim.cmd,
-[[
+    vim.cmd,
+    [[
+    set tabstop=4 
+    set shiftwidth=4 
+    set expandtab 
+    retab 
     set undodir=/Users/wuchuheng/.local/share/nvim/undo/
     set undofile
     set backupdir=/Users/wuchuheng/.local/share/nvim/backup/
