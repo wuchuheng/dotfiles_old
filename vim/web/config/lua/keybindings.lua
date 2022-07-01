@@ -302,4 +302,55 @@ wk.register({
     },
 })
 
+-------------------------------------------------------------------------------
+--                            debuging 快捷键配置
+-------------------------------------------------------------------------------
+wk.register({
+    ['<leader>'] = {
+        d = {
+            name = 'Debug breaking.',
+            b = {
+                ':lua require"dap".toggle_breakpoint()<cr>',
+                'debug breaking.',
+            },
+            B = {
+                "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>",
+                'debug breaking.',
+            },
+        },
+    },
+    ['<F9>'] = {
+        "<cmd>lua require'dap'.run_last()<cr>",
+        'dap run last',
+    },
+    ['<F10>'] = {
+        '<cmd>lua require"user.dap.dap-util".reload_continue()<CR>',
+        'lua require"user.dap.dap-util".reload_continue()',
+    },
+    ['<F4>'] = {
+        "<cmd>lua require'dap'.terminate()<cr>",
+        "<cmd>lua require'dap'.terminate()<cr>",
+    },
+    ['<F5>'] = {
+        "<cmd>lua require'dap'.continue()<cr>",
+        "<cmd>lua require'dap'.continue()<cr>",
+    },
+    ['<F6>'] = {
+        "<cmd>lua require'dap'.step_over()<cr>",
+        "<cmd>lua require'dap'.step_over()<cr>",
+    },
+    ['<F7>'] = {
+        "<cmd>lua require'dap'.step_into()<cr>",
+        "<cmd>lua require'dap'.step_into()<cr>",
+    },
+    ['<F8>'] = {
+        "<cmd>lua require'dap'.step_out()<cr>",
+        "<cmd>lua require'dap'.step_out()<cr>",
+    },
+    ['K'] = {
+        "<cmd>lua require'dapui'.eval()<cr>",
+        "<cmd>lua require'dapui'.eval()<cr>",
+    },
+})
+
 return pluginKeys

@@ -85,14 +85,6 @@ packer.startup({
         })
         -- choose  windows
         use('t9md/vim-choosewin')
-        -- debugger
-        use('ravenxrz/DAPInstall.nvim') -- help us install several debuggers
-        use({
-            'ravenxrz/nvim-dap',
-            -- commit = "f9480362549e2b50a8616fe4530deaabbc4f889b",
-        })
-        use('theHamsta/nvim-dap-virtual-text')
-        use('rcarriga/nvim-dap-ui')
         -- Comment
         use('terrortylor/nvim-comment')
         -- surrond
@@ -125,6 +117,12 @@ packer.startup({
             requires = { 'vim-test/vim-test' },
             run = ':UpdateRemotePlugins',
         })
+        -- debug
+        use('ravenxrz/DAPInstall.nvim')
+        use('ravenxrz/nvim-dap')
+        use('theHamsta/nvim-dap-virtual-text')
+        use('rcarriga/nvim-dap-ui')
+        use('nvim-telescope/telescope-dap.nvim')
     end,
     config = {
         display = {

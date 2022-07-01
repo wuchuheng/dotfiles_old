@@ -26,3 +26,4 @@ require('plugin-config.aerial') -- outline
 require('plugin-config.colorizer') -- colorizer
 require('plugin-config.local-history') -- local history
 require('plugin-config.autosession') -- auto session
+require('user.dap')
