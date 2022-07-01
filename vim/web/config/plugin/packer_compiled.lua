@@ -84,11 +84,6 @@ _G.packer_plugins = {
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
   },
-  ["auto-session"] = {
-    loaded = true,
-    path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/auto-session",
-    url = "https://github.com/rmagatti/auto-session"
-  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
@@ -118,11 +113,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
-  },
-  ["coc.nvim"] = {
-    loaded = true,
-    path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/coc.nvim",
-    url = "https://github.com/neoclide/coc.nvim"
   },
   ["diffview.nvim"] = {
     loaded = true,
@@ -319,20 +309,10 @@ _G.packer_plugins = {
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
   },
-  ["vim-test"] = {
-    loaded = true,
-    path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/vim-test",
-    url = "https://github.com/vim-test/vim-test"
-  },
   ["vim-translator"] = {
     loaded = true,
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/vim-translator",
     url = "https://github.com/voldikss/vim-translator"
-  },
-  ["vim-ultest"] = {
-    loaded = true,
-    path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/vim-ultest",
-    url = "https://github.com/rcarriga/vim-ultest"
   },
   ["vim-vsnip"] = {
     loaded = true,

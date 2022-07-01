@@ -104,19 +104,6 @@ packer.startup({
         use('voldikss/vim-translator')
         -- history
         use('ravenxrz/vim-local-history')
-        -- coc
-        use({
-            'neoclide/coc.nvim',
-            branch = 'release',
-        })
-        -- auto session
-        use('rmagatti/auto-session')
-        -- test
-        use({
-            'rcarriga/vim-ultest',
-            requires = { 'vim-test/vim-test' },
-            run = ':UpdateRemotePlugins',
-        })
         -- debug
         use('ravenxrz/DAPInstall.nvim')
         use('ravenxrz/nvim-dap')

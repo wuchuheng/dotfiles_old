@@ -26,6 +26,25 @@ local default_header = {
     },
 }
 local config = require('alpha.themes.theta').config
+local dashboard = require('alpha.themes.dashboard')
+local buttons = {
+    type = 'group',
+    val = {
+        { type = 'text', val = 'Quick links', opts = { hl = 'SpecialComment', position = 'center' } },
+        { type = 'padding', val = 1 },
+        dashboard.button('e', '  New file', '<cmd>ene<CR>'),
+        dashboard.button('p', '  Projects', '<cmd>Telescope projects<CR>'),
+        dashboard.button('r', '  Recently files', '<cmd>Telescope oldfiles<CR>'),
+        dashboard.button('SPC f f', '  Find file'),
+        dashboard.button('SPC f g', '  Live grep'),
+        dashboard.button('c', '  Configuration', '<cmd>cd ~/.config/nvim/ <CR>'),
+        dashboard.button('u', '  Update plugins', '<cmd>PackerSync<CR>'),
+        dashboard.button('q', '  Quit', '<cmd>qa<CR>'),
+    },
+    position = 'center',
+}
+
 config.layout[2] = default_header
+config.layout[6] = buttons
 
 alpha.setup(config)
