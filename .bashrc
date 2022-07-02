@@ -147,8 +147,8 @@ function unSetProxy() {
     unset all_proxy
     echo "Unset proxy successfully"
     if [[ hasNpm ]]; then
-        # npm config delete proxy
-        # npm config delete https-proxy
+        npm config delete proxy
+        npm config delete https-proxy
     fi
 }
 
