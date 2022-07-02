@@ -72,6 +72,7 @@ if [[ ${#vimTool} > 0 ]]; then
     alias nv="$vimTool -u ~/dotfiles/newWebVimrc.vim"
     alias gv="$vimTool -u ~/dotfiles/golangVimrc.vim"
     configPath=~/.config/nvim
+    cocPath=~/.config/coc
     dataPath=~/.local/share/nvim
     statePath=~/.local/state/nvim
     # 启动nvim前
@@ -89,14 +90,17 @@ if [[ ${#vimTool} > 0 ]]; then
         initPath $configPath # 始化配置目录
         initPath $dataPath   # 初始化数据目录
         initPath $statePath  # 初始化状态目录
+        initPath $cocPath    # 初始coc插件目录
     }
     # web编辑器
     function wvim() {
-        export LUA_PATH="$HOME/dotfiles/vim/web/config/lua/?.lua;$HOME/dotfiles/vim/web/config/?.lua;;"
+        prefix="$rootPath/vim/web"
+        export LUA_PATH="$prefix/config/lua/?.lua;$prefix/config/?.lua;;"
         beforeLanchNvim
-        ln -s $rootPath/vim/web/data $dataPath     # nvim数据目录
-        ln -s $rootPath/vim/web/config $configPath # nvim配置
-        ln -s $rootPath/vim/web/state $statePath   # state配置
+        ln -s $prefix/data $dataPath     # nvim数据目录
+        ln -s $prefix/config $configPath # nvim配置
+        ln -s $prefix/state $statePath   # state配置
+        ln -s $prefix/coc $cocPath       # coc插件配置
         # --maximized
         $neovide --frame=buttonless $@
     }
@@ -108,6 +112,7 @@ if [[ ${#vimTool} > 0 ]]; then
         ln -s $prefix/data $dataPath     # nvim数据目录
         ln -s $prefix/config $configPath # nvim配置
         ln -s $prefix/state $statePath   # state配置
+        ln -s $prefix/coc $cocPath       # coc插件配置
         # --maximized
         nvim $@
     }
@@ -120,7 +125,7 @@ alias ip="curl ip.sb"
 proxyStatus=0
 
 proxySockIp=127.0.0.1
-proxySockPort=7890
+proxySockPort=6153
 function setProxy() {
     proxySocket=${proxySockIp}:${proxySockPort}
     proxyHttp=$proxySocket
