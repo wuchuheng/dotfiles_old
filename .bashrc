@@ -131,8 +131,8 @@ function setProxy() {
     # git config --global https.proxy http://${proxyIp} && git config --global https.proxy https://${proxyIp}
     git config --global http.proxy socks5://${proxySocket}
     if [[ hasNpm ]]; then
-        npm config set proxy http://${proxySocket}
-        npm config set https-proxy http://${proxySocket}
+        # npm config set proxy http://${proxySocket}
+        # npm config set https-proxy http://${proxySocket}
     fi
     echo "set proxy successfully"
 }
