@@ -92,15 +92,30 @@ if [[ ${#vimTool} > 0 ]]; then
         initPath $statePath  # 初始化状态目录
         initPath $cocPath    # 初始coc插件目录
     }
+    # 初始化Coc
+    function initCoc() {
+        # 加载依赖
+        if [[ ! -e $1 ]]; then
+
+            currentPath=$(pwd)
+            parentDir="$(dirname "$1")"
+            cd $parentDir
+            pnpm install
+            if [[ $currentPath != $(pwd) ]]; then
+                cd -
+            fi
+        fi
+    }
     # web编辑器
     function wvim() {
         prefix="$rootPath/vim/web"
         export LUA_PATH="$prefix/config/lua/?.lua;$prefix/config/?.lua;;"
         beforeLanchNvim
-        ln -s $prefix/data $dataPath     # nvim数据目录
-        ln -s $prefix/config $configPath # nvim配置
-        ln -s $prefix/state $statePath   # state配置
-        ln -s $prefix/coc $cocPath       # coc插件配置
+        ln -s $prefix/data $dataPath                # nvim数据目录
+        ln -s $prefix/config $configPath            # nvim配置
+        ln -s $prefix/state $statePath              # state配置
+        ln -s $prefix/coc $cocPath                  # coc插件配置
+        initCoc $prefix/coc/extensions/node_modules #初始化Coc
         # --maximized
         $neovide --frame=buttonless $@
     }

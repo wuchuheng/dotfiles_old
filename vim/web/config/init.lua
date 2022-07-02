@@ -9,7 +9,6 @@ require('plugin-config.telescope') -- 搜索配置
 require('plugin-config.project') -- 项目相关配置
 require('plugin-config.nvim-treesitter') -- 语法高亮配置
 require('lsp.setup') -- lsp配置
-require('lsp.cmp') -- 自动补全配置
 require('lsp.ui') -- lspUI配置
 require('plugin-config.indent-blankline') -- 关联线配置
 require('lsp.null-ls') -- 代码格式化配置
@@ -25,3 +24,4 @@ require('plugin-config.todo') -- todo 启动页
 require('plugin-config.aerial') -- outline
 require('plugin-config.colorizer') -- colorizer
 require('user.dap')
+require('lsp.cmp') -- 自动补全配置

@@ -45,11 +45,10 @@ packer.startup({
         use({ 'williamboman/nvim-lsp-installer', commit = '36b44679f7cc73968dbb3b09246798a19f7c14e0' })
         use({ 'neovim/nvim-lspconfig' })
         use('ray-x/lsp_signature.nvim') -- show function signature when typing.
-        -- 补全引擎
-        use('hrsh7th/nvim-cmp')
         -- snippet 引擎
         use('hrsh7th/vim-vsnip')
         -- 补全源
+        use('hrsh7th/nvim-cmp')
         use('hrsh7th/cmp-vsnip')
         use('hrsh7th/cmp-nvim-lsp') -- { name = nvim_lsp }
         use('hrsh7th/cmp-buffer') -- { name = 'buffer' },
@@ -108,12 +107,7 @@ packer.startup({
         use('theHamsta/nvim-dap-virtual-text')
         use('rcarriga/nvim-dap-ui')
         use('nvim-telescope/telescope-dap.nvim')
-        -- COC
-        use({
-            'neoclide/coc.nvim',
-            branch = 'master',
-            run = 'yarn install --frozen-lockfile',
-        })
+        use({ 'neoclide/coc.nvim', branch = 'release' })
     end,
     config = {
         display = {

@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
+  ["coc.nvim"] = {
+    loaded = true,
+    path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/coc.nvim",
+    url = "https://github.com/neoclide/coc.nvim"
+  },
   ["diffview.nvim"] = {
     loaded = true,
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/diffview.nvim",
@@ -298,11 +303,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/vim-easymotion",
     url = "https://github.com/easymotion/vim-easymotion"
-  },
-  ["vim-local-history"] = {
-    loaded = true,
-    path = "/Users/wuchuheng/.local/share/nvim/site/pack/packer/start/vim-local-history",
-    url = "https://github.com/ravenxrz/vim-local-history"
   },
   ["vim-surround"] = {
     loaded = true,
