@@ -102,14 +102,18 @@ packer.startup({
         use('norcalli/nvim-colorizer.lua')
         -- translator
         use('voldikss/vim-translator')
-        -- history
-        use('ravenxrz/vim-local-history')
         -- debug
         use('ravenxrz/DAPInstall.nvim')
         use('ravenxrz/nvim-dap')
         use('theHamsta/nvim-dap-virtual-text')
         use('rcarriga/nvim-dap-ui')
         use('nvim-telescope/telescope-dap.nvim')
+        -- COC
+        use({
+            'neoclide/coc.nvim',
+            branch = 'master',
+            run = 'yarn install --frozen-lockfile',
+        })
     end,
     config = {
         display = {
