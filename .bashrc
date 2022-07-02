@@ -82,7 +82,6 @@ if [[ ${#vimTool} > 0 ]]; then
             if [[ ! -e $parentDir ]]; then # 创建用于存放配置的目录
                 mkdir -p $parentDir
             fi
-            echo $1
             if [[ -e $1 || -L $1 ]]; then # 删除已经存在的配置
                 rm -rf $1
             fi
