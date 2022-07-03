@@ -96,7 +96,6 @@ if [[ ${#vimTool} > 0 ]]; then
     function initCoc() {
         # 加载依赖
         if [[ ! -e $1 ]]; then
-
             currentPath=$(pwd)
             parentDir="$(dirname "$1")"
             cd $parentDir
@@ -119,15 +118,16 @@ if [[ ${#vimTool} > 0 ]]; then
         # --maximized
         $neovide --frame=buttonless $@
     }
-    # nvim编辑器
+    # cvim编辑器
     function cvim() {
         prefix="$rootPath/vim/cocvim"
-        export LUA_PATH="$prefix/config/lua/?.lua;$prefix/config/?.lua;"
+        export LUA_PATH="$prefix/config/?.lua;"
         beforeLanchNvim
-        ln -s $prefix/data $dataPath     # nvim数据目录
-        ln -s $prefix/config $configPath # nvim配置
-        ln -s $prefix/state $statePath   # state配置
-        ln -s $prefix/coc $cocPath       # coc插件配置
+        ln -s $prefix/data $dataPath                # cvim数据目录
+        ln -s $prefix/config $configPath            # cvim配置
+        ln -s $prefix/state $statePath              # state配置
+        ln -s $prefix/coc $cocPath                  # coc插件配置
+        initCoc $prefix/coc/extensions/node_modules #初始化Coc
         # --maximized
         nvim $@
     }

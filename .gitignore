@@ -19,6 +19,7 @@ neovide-settings.json
 rplugin.vim
 main.shada
 telescope_history
-vim/web/data
 .local-history
 data/sessions
+vim/web/data
+vim/cocvim/data
