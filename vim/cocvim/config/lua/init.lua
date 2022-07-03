@@ -7,6 +7,7 @@ local helper = require('utils.helper')
 local currentPath = Path:getInstance():getCurrentFilePath():getDirName().path
 local unloadModules = {
   'utils',
-  'init'
+  'init',
 }
 helper.loadModules(currentPath, unloadModules)
+

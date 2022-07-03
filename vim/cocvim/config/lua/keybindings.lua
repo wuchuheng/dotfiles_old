@@ -1,0 +1,243 @@
+local wk = require('which-key')
+local map = vim.api.nvim_set_keymap
+local opt = { noremap = true, silent = true }
+vim.g.mapleader = ',' -- 指定leader键位
+vim.g.maplocalleader = '-' -- 指定local leader键位
+local keybinding = {}
+
+
+-------------------------------------------------------------------------------
+--                          基本快捷键配置
+-------------------------------------------------------------------------------
+wk.register({
+  ['<leader>'] = {
+    s = {
+      name = 'Source',
+      c = {
+        ':so $MYVIMRC<CR>',
+        'Source config'
+      }
+    }
+  }
+})
+
+-------------------------------------------------------------------------------
+--                          解决neovide不能使用mac OS系统粘贴的问题
+-------------------------------------------------------------------------------
+vim.g.neovide_input_use_logo = 1
+map('', '<D-v>', '+p<CR>', opt)
+map('!', '<D-v>', '<C-R>+', opt)
+map('t', '<D-v>', '<C-R>+', opt)
+map('v', '<D-v>', '<C-R>+', opt)
+
+-------------------------------------------------------------------------------
+--                          窗口调整快捷键配置
+-------------------------------------------------------------------------------
+map('n', '<Left>', ':winc <<CR>', opt) -- 窗口向左放大
+map('n', '<Right>', ':winc ><CR>', opt) -- 窗口向右放大
+map('n', '<Down>', '<C-w>+', opt) -- 窗口向上放大
+map('n', '<Up>', '<C-w>-', opt) -- 窗口向下放大
+map('n', '<Right>', ':winc ><CR>', opt) -- 窗口向右放大
+map('n', 's=', '<C-w>=', opt) -- 窗口垂直等大
+
+-------------------------------------------------------------------------------
+--                          搜索快捷键配置
+-------------------------------------------------------------------------------
+-- 关闭搜索高亮
+wk.register({
+  ['<space>'] = {
+    l = {
+     ':<C-u>nohlsearch<CR>',
+     'nohlsearch'
+    }
+  }
+})
+
+-------------------------------------------------------------------------------
+--                          移动文本快捷键配置
+-------------------------------------------------------------------------------
+map('v', 'J', ":move '>+1<cr>gv-gv", opt) -- 向下移
+map('v', 'K', ":move '<-2<cr>gv-gv", opt) -- 向上移
+
+-------------------------------------------------------------------------------
+--                          exporer 快捷键配置
+-------------------------------------------------------------------------------
+wk.register({
+  ['<space>'] = {
+    f = {
+    name = "files",
+      m = {
+        ':CocCommand explorer --toggle --sources=file+<CR>',
+        'Open explorer'
+      }
+    }
+  }
+})
+
+
+-------------------------------------------------------------------------------
+--                          Coc 快捷键配置
+-------------------------------------------------------------------------------
+function keybinding.coc()
+  vim.cmd([[
+    " Tab 补全
+    inoremap <silent><expr> <TAB>
+          \ pumvisible() ? "\<C-n>" :
+          \ CheckBackspace() ? "\<TAB>" :
+          \ coc#refresh()
+    " 刷新补全列表
+    inoremap <silent><expr> <c-space> coc#refresh()
+    " 回车自动补全
+    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                                \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  ]])
+
+  vim.cmd([[
+    " Use `[g` and `]g` to navigate diagnostics
+    " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+    nmap <silent> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]g <Plug>(coc-diagnostic-next)
+  ]])
+  vim.cmd([[
+    " Use `[g` and `]g` to navigate diagnostics
+    " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+    nmap <silent> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]g <Plug>(coc-diagnostic-next)
+  ]])
+  vim.cmd([[
+    " GoTo code navigation.
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
+    " Use K to show documentation in preview window.
+    nnoremap <silent>gh :call ShowDocumentation()<CR>
+  ]])
+  vim.cmd([[
+    " Symbol renaming.
+    nmap <leader>rn <Plug>(coc-rename)
+  ]])
+  vim.cmd([[
+    " Formatting selected code.
+    xmap <leader>f  <Plug>(coc-format-selected)
+    nmap <leader>f  <Plug>(coc-format-selected)
+  ]])
+
+  -- Applying codeAction to the selected region.
+  vim.cmd([[
+  " Example: `<leader>aap` for current paragraph
+    xmap <leader>a  <Plug>(coc-codeaction-selected)
+  ]])
+  wk.register({
+    ['<leader>'] = {
+      a = {
+        name = 'Code action.',
+        a = {
+        '<Plug>(coc-codeaction-selected)',
+        'Applying codeAction to the selected region.'
+        },
+        c = {
+          '<Plug>(coc-codeaction)',
+          'Remap keys for applying codeAction to the current buffer'
+        },
+      },
+      q = {
+        name = 'Quick fix',
+        f = {
+          '<Plug>(coc-fix-current)',
+          'Apply AutoFix to problem on the current line.'
+        }
+      }
+    },
+    c = {
+      name = 'Code lens',
+      l = {
+        '<Plug>(coc-codelens-action)',
+        'Run the Code Lens action on the current line.'
+      }
+    }
+  })
+  vim.cmd([[
+    " Map function and class text objects
+    " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+    xmap if <Plug>(coc-funcobj-i)
+    omap if <Plug>(coc-funcobj-i)
+    xmap af <Plug>(coc-funcobj-a)
+    omap af <Plug>(coc-funcobj-a)
+    xmap ic <Plug>(coc-classobj-i)
+    omap ic <Plug>(coc-classobj-i)
+    xmap ac <Plug>(coc-classobj-a)
+    omap ac <Plug>(coc-classobj-a)
+  ]])
+  vim.cmd([[
+    " Remap <C-f> and <C-b> for scroll float windows/popups.
+    if has('nvim-0.4.0') || has('patch-8.2.0750')
+      nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+      nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+      inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+      inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+      vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+      vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+    endif
+  ]])
+  vim.cmd([[
+    " Use CTRL-S for selections ranges.
+    " Requires 'textDocument/selectionRange' support of language server.
+    nmap <silent> <C-s> <Plug>(coc-range-select)
+    xmap <silent> <C-s> <Plug>(coc-range-select)
+  ]])
+  -- " Mappings for CoCList
+  wk.register({
+    ['<space>'] = {
+      c = {
+        name = 'Mappings for Coclist',
+        a = {
+          ':<C-u>CocList diagnostics<cr>',
+          'Show all diagnostics.'
+        },
+        d = {
+            ':CocDisable<cr>',
+            'disable Coc extensions.'
+        },
+        e = {
+          name = 'Coc extensions',
+          e = {
+            ':<C-u>CocList extensions<cr>',
+            'Manage extensions.'
+          },
+          n = {
+            ':CocEnable<cr>',
+            'Enable Coc extensions.'
+          },
+        },
+        c = {
+          ':<C-u>CocList commands<cr>',
+          'Show commands.'
+        },
+        o = {
+          ':<C-u>CocList outline<cr>',
+          'Find symbol of current document.'
+        },
+        s = {
+          ':<C-u>CocList -I symbols<cr>',
+          'Search workspace symbols.'
+        },
+        j = {
+          ':<C-u>CocNext<CR>',
+          'Do default action for next item.'
+        },
+        k = {
+          ':<C-u>CocPrev<CR>',
+          'Do default action for previous item.'
+        },
+        p = {
+          ':<C-u>CocListResume<CR>',
+          'Resume latest coc list.'
+        },
+      }
+    }
+  })
+end
+
+return keybinding
+
