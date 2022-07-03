@@ -23,3 +23,8 @@ telescope_history
 data/sessions
 vim/web/data
 vim/cocvim/data
+
+vim/**/list-explPresets-history.json
+vim/**/list-explorerActionList-history.json
+vim/**/list-explorerFiles-history.json
+vim/**/explorer-actions

@@ -48,10 +48,10 @@ map('v', 'K', ":move '<-2<cr>gv-gv", opt) -- 向上移
 wk.register({
   ['<space>'] = {
     f = {
-    name = "Files",
+    name = "files",
       m = {
-        ':CocCommand explorer<CR>',
-        'Files menu'
+        ':CocCommand explorer --toggle --sources=file+<CR>',
+        'Open explorer'
       }
     }
   }

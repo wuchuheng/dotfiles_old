@@ -121,7 +121,7 @@ if [[ ${#vimTool} > 0 ]]; then
     # cvim编辑器
     function cvim() {
         prefix="$rootPath/vim/cocvim"
-        export LUA_PATH="$prefix/config/?.lua;"
+        export LUA_PATH="$prefix/config/?.lua;;"
         beforeLanchNvim
         ln -s $prefix/data $dataPath                # cvim数据目录
         ln -s $prefix/config $configPath            # cvim配置

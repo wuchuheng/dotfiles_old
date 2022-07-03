@@ -88,3 +88,5 @@ pcall(vim.cmd, [[ set guifont=SauceCodePro\ Nerd\ Font:h19 ]])
 -- pcall(vim.cmd, [[ set undofir=~/.local/shared/nvim/undo-dir ]]
 vim.g.neovide_remember_window_size = true
 vim.g.neovide_remember_window_position = true
+
+
