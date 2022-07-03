@@ -6,7 +6,7 @@
   "explorer.floating.border.enable": true,
   "explorer.focus": true,
   "explorer.toggle": false,
-  "explorer.file.autoReveal": true,
+  "explorer.file.reveal.auto": true,
   "explorer.keyMappings.global": {
     "i": false, // cancel default mapkey
     "<c-o>": "noop",
@@ -87,5 +87,17 @@
                 "]c": ["wait", "markNext:git"],
                 "<<": "gitStage",
                 ">>": "gitUnstage"
-  }
+  },
+  // pairs
+  "pairs.disableLanguages": [],
+  "pairs.enableCharacters": [
+    "(",
+      "[",
+        "{",
+          "<",
+          "'",
+          "\"",
+          "`"
+      ],
+  "pairs.enableBackspace": true
 }

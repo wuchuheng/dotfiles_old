@@ -10,5 +10,3 @@ local unloadModules = {
   'init'
 }
 helper.loadModules(currentPath, unloadModules)
-
-
