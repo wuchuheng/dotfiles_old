@@ -4,16 +4,31 @@ local api = vim.api
 packer.startup({
     function(use)
         use('wbthomason/packer.nvim') -- Packer自己本身
-        use('folke/which-key.nvim') -- 快捷键插件
-        use {'neoclide/coc.nvim', branch = 'master', run = 'yarn install --frozen-lockfile'} -- coc插件
-        use('folke/tokyonight.nvim') -- 主题插件
-        -- 搜索插件 需要依赖外部工具,通过:checkhealth telescope 查看相关依赖
+        -- 快捷键
+        use{
+          'folke/which-key.nvim',
+          config = function() require('plugin-configs.which-key').loadConfig() end
+        }
+        -- 主题
+        use{
+          'folke/tokyonight.nvim',
+          config = function() require('plugin-configs.colorscheme').loadConfig() end
+        }
+        -- coc
+        use{
+          'neoclide/coc.nvim',
+          branch = 'master',
+          run = 'yarn install --frozen-lockfile',
+          config = function() require('plugin-configs.coc').loadConfig() end
+        }
+        -- telescope
         use({
-            'nvim-telescope/telescope.nvim',
-            requires = {
-                'nvim-lua/plenary.nvim',
-                'LinArcX/telescope-env.nvim', -- env列表功能
-            },
+          'nvim-telescope/telescope.nvim',
+          requires = {
+            'nvim-lua/plenary.nvim',
+            'LinArcX/telescope-env.nvim', -- env列表功能
+          },
+          config = function() require('plugin-configs.telescope').loadConfig() end
         })
     end,
     config = {

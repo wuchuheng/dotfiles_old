@@ -1,4 +1,5 @@
-local wk = require('which-key')
+local keyRegister = require('plugin-configs.which-key').register
+
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 vim.g.mapleader = ',' -- 指定leader键位
@@ -8,7 +9,7 @@ local keybinding = {}
 -------------------------------------------------------------------------------
 --                          基本快捷键配置
 -------------------------------------------------------------------------------
-wk.register({
+keyRegister({
   ['<leader>'] = {
     s = {
       name = 'Source',
@@ -43,7 +44,7 @@ map('n', 's=', '<C-w>=', opt) -- 窗口垂直等大
 --                          搜索快捷键配置
 -------------------------------------------------------------------------------
 -- 关闭搜索高亮
-wk.register({
+keyRegister({
   ['<space>'] = {
     l = {
      ':<C-u>nohlsearch<CR>',
@@ -61,7 +62,7 @@ map('v', 'K', ":move '<-2<cr>gv-gv", opt) -- 向上移
 -------------------------------------------------------------------------------
 --                          exporer 快捷键配置
 -------------------------------------------------------------------------------
-wk.register({
+keyRegister({
   ['<space>'] = {
     f = {
     name = "files",
@@ -127,7 +128,7 @@ function keybinding.coc()
   " Example: `<leader>aap` for current paragraph
     xmap <leader>a  <Plug>(coc-codeaction-selected)
   ]])
-  wk.register({
+  keyRegister({
     ['<leader>'] = {
       a = {
         name = 'Code action.',
@@ -186,7 +187,7 @@ function keybinding.coc()
     xmap <silent> <C-s> <Plug>(coc-range-select)
   ]])
   -- " Mappings for CoCList
-  wk.register({
+  keyRegister({
     ['<space>'] = {
       c = {
         name = 'Mappings for Coclist',
@@ -247,7 +248,7 @@ keybinding.telescope = function ()
   -- 全局搜索
   map('n', '<space>gf', ':Telescope live_grep<CR>', opt)
   map('n', '<space>bl', ':Telescope buffers<CR>', opt)
-  wk.register({
+  keyRegister({
     ['<space>'] = {
       f = {
         name = 'Files',

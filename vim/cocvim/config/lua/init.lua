@@ -3,11 +3,8 @@
     @Github:   https://github.com/wuchuheng
     @License:  MIT License
 --]]
-local helper = require('utils.helper')
-local currentPath = Path:getInstance():getCurrentFilePath():getDirName().path
-local unloadModules = {
-  'utils',
-  'init',
-}
-helper.loadModules(currentPath, unloadModules)
+require('basic') -- 基本配置
+require('keybindings') -- 快捷键配置
+require('plugins') -- 插件
+
 
