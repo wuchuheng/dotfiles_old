@@ -35,4 +35,7 @@ function Module.loadConfig()
   })
 end
 
+
+Module.loadConfig()
+
 return Module

@@ -46,5 +46,5 @@ function Module.encode(data, level)
   end
   return string.format("%s%s%s", leftSymbol, result, rightSymbol)
 end
-
+ 
 return Module
