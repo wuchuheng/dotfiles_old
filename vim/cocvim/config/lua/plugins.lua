@@ -3,11 +3,18 @@ local api = vim.api
 
 packer.startup({
     function(use)
-        -- Packer 可以管理自己本身
-        use('wbthomason/packer.nvim')
-        use('folke/which-key.nvim')
-        use {'neoclide/coc.nvim', branch = 'master', run = 'yarn install --frozen-lockfile'}
+        use('wbthomason/packer.nvim') -- Packer自己本身
+        use('folke/which-key.nvim') -- 快捷键插件
+        use {'neoclide/coc.nvim', branch = 'master', run = 'yarn install --frozen-lockfile'} -- coc插件
         use('folke/tokyonight.nvim') -- 主题插件
+        -- 搜索插件 需要依赖外部工具,通过:checkhealth telescope 查看相关依赖
+        use({
+            'nvim-telescope/telescope.nvim',
+            requires = {
+                'nvim-lua/plenary.nvim',
+                'LinArcX/telescope-env.nvim', -- env列表功能
+            },
+        })
     end,
     config = {
         display = {

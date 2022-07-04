@@ -38,4 +38,3 @@ vim.cmd([[
 autocmd.coc()
 keybindings.coc()
 
-

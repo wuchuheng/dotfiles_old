@@ -48,5 +48,13 @@ function helper.loadModules(modulePath, unloadModules, modulePrefix)
 
 end
 
+function helper.loadModule(moduleName)
+  local status, module = pcall(require, moduleName) 
+  if not status then
+    vim.notify('Not found ' .. moduleName)
+  end
+  return status, module
+end
+
 
 return helper

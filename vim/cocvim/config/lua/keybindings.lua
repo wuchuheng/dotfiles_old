@@ -5,7 +5,6 @@ vim.g.mapleader = ',' -- 指定leader键位
 vim.g.maplocalleader = '-' -- 指定local leader键位
 local keybinding = {}
 
-
 -------------------------------------------------------------------------------
 --                          基本快捷键配置
 -------------------------------------------------------------------------------
@@ -237,6 +236,69 @@ function keybinding.coc()
       }
     }
   })
+end
+
+-------------------------------------------------------------------------------
+--                          Telescope快捷键配置
+-------------------------------------------------------------------------------
+keybinding.telescope = function ()
+  -- 查找文件
+  map('n', '<C-p>', ':Telescope find_files<CR>', opt)
+  -- 全局搜索
+  map('n', '<space>gf', ':Telescope live_grep<CR>', opt)
+  map('n', '<space>bl', ':Telescope buffers<CR>', opt)
+  wk.register({
+    ['<space>'] = {
+      f = {
+        name = 'Files',
+        t = { ':Telescope live_grep<cr>', 'Find text.'},
+        f = { ':Telescope live_files<cr>', 'Find files.'},
+        r = { ':Telescope oldfiles<cr>', 'Recently fiiles'}
+      },
+      q = {
+        name = 'Quickfix',
+        f = {':Telescope quickfix<cr>', 'Quickfix'}
+      },
+      b = {
+        name = 'Buffer',
+        l = { ':Telescope buffers<cr>', 'List buffers' },
+      },
+      g = {
+        name = "Git",
+        s = {':Telescope git_status<cr>', 'Git status'},
+        b = {':Telescope git_branches<cr>', 'Git branches'},
+        c = {':Telescope git_commits<cr>', 'Git commits'}
+      },
+      m = {
+        name = 'Marks',
+        k = {':Telescope marks<cr>', 'Find marks'}
+      },
+      e = {
+        nam= "Env",
+        n = {':Telescope env<cr>', 'Env list'}
+
+      }
+    }
+  })
+  
+  local config = {
+    i = {
+      -- 上下移动
+      ['<C-j>'] = 'move_selection_next',
+      ['<C-k>'] = 'move_selection_previous',
+      ['<Down>'] = 'move_selection_next',
+      ['<Up>'] = 'move_selection_previous',
+      -- 历史记录
+      ['<C-n>'] = 'cycle_history_next',
+      ['<C-p>'] = 'cycle_history_prev',
+      -- 关闭窗口
+      ['<C-c>'] = 'close',
+      -- 预览窗口上下滚动
+      ['<C-u>'] = 'preview_scrolling_up',
+      ['<C-d>'] = 'preview_scrolling_down',
+    },
+  }
+  return config
 end
 
 return keybinding
