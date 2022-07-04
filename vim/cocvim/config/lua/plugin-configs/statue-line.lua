@@ -1,5 +1,4 @@
 local Module = {}
-local Json = require('utils.json')
 local helper = require('utils.helper')
 local colorscheme = require('plugin-configs.colorscheme') 
 local keybinding = require('keybindings')

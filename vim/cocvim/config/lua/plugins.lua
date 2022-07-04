@@ -30,13 +30,19 @@ packer.startup({
           },
           config = function() require('plugin-configs.telescope').loadConfig() end
         }
-        -- statueLine 
+        -- statue-line 
         use{
           'nvim-lualine/lualine.nvim',
           requires = { 
             'kyazdani42/nvim-web-devicons', 'arkav/lualine-lsp-progress'
           },
           config = function() require('plugin-configs.statue-line').loadConfig() end
+        }
+        -- buffer-line
+        use{
+          'akinsho/bufferline.nvim',
+          requires = { 'kyazdani42/nvim-web-devicons', 'moll/vim-bbye' },
+          config = function() require('plugin-configs.buffer-line').loadConfig() end
         }
     end,
     config = {
@@ -58,6 +64,5 @@ api.nvim_create_autocmd(
         group = cmdGroupName,
     }
 )
-
 
 

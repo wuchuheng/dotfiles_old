@@ -309,17 +309,63 @@ function keybinding.statueLine()
   end
   keyRegister({
     ['<space>'] = {
-      ['1'] = { function() gotoWinByWinNumber(1) end, "Go to windows number 1"},
-      ['2'] = { function() gotoWinByWinNumber(2) end, "Go to windows number 2"},
-      ['3'] = { function() gotoWinByWinNumber(3) end, "Go to windows number 3"},
-      ['4'] = { function() gotoWinByWinNumber(4) end, "Go to windows number 4"},
-      ['5'] = { function() gotoWinByWinNumber(5) end, "Go to windows number 5"},
-      ['6'] = { function() gotoWinByWinNumber(6) end, "Go to windows number 6"},
-      ['7'] = { function() gotoWinByWinNumber(7) end, "Go to windows number 7"},
-      ['8'] = { function() gotoWinByWinNumber(8) end, "Go to windows number 8"},
-      ['9'] = { function() gotoWinByWinNumber(9) end, "Go to windows number 9"},
+      ['1'] = { function() gotoWinByWinNumber(1) end, "Windows 1"},
+      ['2'] = { function() gotoWinByWinNumber(2) end, "Windows 2"},
+      ['3'] = { function() gotoWinByWinNumber(3) end, "Windows 3"},
+      ['4'] = { function() gotoWinByWinNumber(4) end, "Windows 4"},
+      ['5'] = { function() gotoWinByWinNumber(5) end, "Windows 5"},
+      ['6'] = { function() gotoWinByWinNumber(6) end, "Windows 6"},
+      ['7'] = { function() gotoWinByWinNumber(7) end, "Windows 7"},
+      ['8'] = { function() gotoWinByWinNumber(8) end, "Windows 8"},
+      ['9'] = { function() gotoWinByWinNumber(9) end, "Windows 9"},
     }
   })
+end
+-------------------------------------------------------------------------------
+--                          buferLine快捷键配置
+-------------------------------------------------------------------------------
+function keybinding.bufferLine()
+  keyRegister({
+    ['<leader>'] = {
+      ['1'] = {
+        ':BufferLineGoToBuffer 1 <CR>',
+        'Tab 1'
+      },
+      ['2'] = {
+        ':BufferLineGoToBuffer 2 <CR>',
+        'Tab 2'
+      },
+      ['3'] = {
+        ':BufferLineGoToBuffer 3 <CR>',
+        'Tab 3'
+      },
+      ['4'] = {
+        ':BufferLineGoToBuffer 4 <CR>',
+        'Tab 4'
+      },
+      ['5'] = {
+        ':BufferLineGoToBuffer 5 <CR>',
+        'Tab 5'
+      },
+      ['6'] = {
+        ':BufferLineGoToBuffer 6 <CR>',
+        'Tab 6'
+      },
+      ['7'] = {
+        ':BufferLineGoToBuffer 7 <CR>',
+        'Tab 7'
+      },
+      ['8'] = {
+        ':BufferLineGoToBuffer 8 <CR>',
+        'Tab 8'
+      },
+      ['9'] = {
+        ':BufferLineGoToBuffer 9 <CR>',
+        'Tab 9'
+      },
+    }
+  })
+  map('n', '<C-w>c', ':Bdelete!<CR>', opt) -- 关闭窗口
 end
 
 return keybinding
