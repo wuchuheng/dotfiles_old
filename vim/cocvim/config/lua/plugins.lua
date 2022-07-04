@@ -22,14 +22,22 @@ packer.startup({
           config = function() require('plugin-configs.coc').loadConfig() end
         }
         -- telescope
-        use({
+        use{
           'nvim-telescope/telescope.nvim',
           requires = {
             'nvim-lua/plenary.nvim',
             'LinArcX/telescope-env.nvim', -- env列表功能
           },
           config = function() require('plugin-configs.telescope').loadConfig() end
-        })
+        }
+        -- statueLine 
+        use{
+          'nvim-lualine/lualine.nvim',
+          requires = { 
+            'kyazdani42/nvim-web-devicons', 'arkav/lualine-lsp-progress'
+          },
+          config = function() require('plugin-configs.statue-line').loadConfig() end
+        }
     end,
     config = {
         display = {

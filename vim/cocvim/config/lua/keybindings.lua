@@ -1,5 +1,4 @@
 local keyRegister = require('plugin-configs.which-key').register
-
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 vim.g.mapleader = ',' -- 指定leader键位
@@ -91,7 +90,6 @@ function keybinding.coc()
     inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                                 \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
   ]])
-
   vim.cmd([[
     " Use `[g` and `]g` to navigate diagnostics
     " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -122,7 +120,6 @@ function keybinding.coc()
     xmap <leader>f  <Plug>(coc-format-selected)
     nmap <leader>f  <Plug>(coc-format-selected)
   ]])
-
   -- Applying codeAction to the selected region.
   vim.cmd([[
   " Example: `<leader>aap` for current paragraph
@@ -300,6 +297,29 @@ keybinding.telescope = function ()
     },
   }
   return config
+end
+
+-------------------------------------------------------------------------------
+--                           Statue line 快捷键配置
+-------------------------------------------------------------------------------
+function keybinding.statueLine()
+  local function gotoWinByWinNumber(winNumber)
+    local winId = vim.fn.win_getid(winNumber)
+    vim.fn.win_gotoid(winId)
+  end
+  keyRegister({
+    ['<space>'] = {
+      ['1'] = { function() gotoWinByWinNumber(1) end, "Go to windows number 1"},
+      ['2'] = { function() gotoWinByWinNumber(2) end, "Go to windows number 2"},
+      ['3'] = { function() gotoWinByWinNumber(3) end, "Go to windows number 3"},
+      ['4'] = { function() gotoWinByWinNumber(4) end, "Go to windows number 4"},
+      ['5'] = { function() gotoWinByWinNumber(5) end, "Go to windows number 5"},
+      ['6'] = { function() gotoWinByWinNumber(6) end, "Go to windows number 6"},
+      ['7'] = { function() gotoWinByWinNumber(7) end, "Go to windows number 7"},
+      ['8'] = { function() gotoWinByWinNumber(8) end, "Go to windows number 8"},
+      ['9'] = { function() gotoWinByWinNumber(9) end, "Go to windows number 9"},
+    }
+  })
 end
 
 return keybinding

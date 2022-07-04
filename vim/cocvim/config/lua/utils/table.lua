@@ -9,6 +9,7 @@ function Table:getInstance(obj)
   return data
 end
 
+-- filter lambda loop function 
 function Table:filter(callback)
   local res = {}
   for k, v in pairs(self) do
@@ -23,6 +24,7 @@ function Table:filter(callback)
   return res
 end
 
+-- Map lambda loop function 
 function Table:map(callback)
   local res = {}
   for k, v in pairs(self) do
@@ -38,6 +40,14 @@ function Table:foreach(callback)
   end
 end
 
+-- Get Table size
+function Table:getLength()
+  local size = 0
+  for _ in pairs(self) do size = size + 1 end
+  return size
+end
+
+-- Check has this value
 function Table:hasValue(v)
   for _, value in ipairs(self) do
     if value == v then
@@ -46,5 +56,16 @@ function Table:hasValue(v)
   end
   return false
 end
+-- Check the Data is Array.
+function Table:isArray()
+ for key, _ in pairs(self) do
+   if (type(key) ~= 'number') then
+     return false
+   end
+ end 
+
+ return true
+end
+
 
 return Table
