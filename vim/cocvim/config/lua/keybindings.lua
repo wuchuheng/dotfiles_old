@@ -367,6 +367,36 @@ function keybinding.bufferLine()
   })
   map('n', '<C-w>c', ':Bdelete!<CR>', opt) -- 关闭窗口
 end
+-------------------------------------------------------------------------------
+--                          toggleterm快捷键配置
+-------------------------------------------------------------------------------
+function keybinding.toggleterm()
+  map('t', '<Esc>', '<C-\\><C-n>', opt) -- Esc退出terminal
+  keyRegister({
+    ['<space>'] = {
+      t = {
+        name = 'Terminal',
+        t = {
+
+          ':ToggleTerm<cr>',
+          'Toggle terminal',
+        },
+        a = {
+          ':ToggleTermToggleAll<cr>',
+          'Toggle all terminal',
+        },
+        ['1'] = {
+          ':ToggleTerm 1<cr>',
+          'Toggle terminal 0',
+        },
+        ['2'] = {
+          ':ToggleTerm 2<cr>',
+          'Toggle terminal 2',
+        },
+      },
+    }
+  })
+end
 
 return keybinding
 

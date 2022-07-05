@@ -29,12 +29,8 @@ function Module.loadConfig()
         'mode'
       }
     },
-    -- TODO: toggleterm 
-    --  extensions = { "toggleterm" },
+    -- extensions = { "toggleterm" },
   })
 end
-
-
-Module.loadConfig()
 
 return Module

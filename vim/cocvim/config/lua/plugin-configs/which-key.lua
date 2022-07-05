@@ -16,5 +16,4 @@ function Module.register(...)
   return whichKey.register(...)
 end
 
-
 return Module

@@ -44,6 +44,12 @@ packer.startup({
           requires = { 'kyazdani42/nvim-web-devicons', 'moll/vim-bbye' },
           config = function() require('plugin-configs.buffer-line').loadConfig() end
         }
+        -- terminal
+        use{
+          'akinsho/toggleterm.nvim',
+          tag = 'v1.*',
+          config = function() require('plugin-configs.toggleterm').loadConfig() end
+        }
     end,
     config = {
         display = {
