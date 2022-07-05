@@ -4,6 +4,7 @@ local opt = { noremap = true, silent = true }
 vim.g.mapleader = ',' -- 指定leader键位
 vim.g.maplocalleader = '-' -- 指定local leader键位
 local keybinding = {}
+local leaderRegister = getRegisterByPrefix({prefix = '<leader>'})
 local leaderSRegister = getRegisterByPrefix({prefix = '<leader>s'})
 local leaderARegister = getRegisterByPrefix({prefix = '<leader>a'})
 local leaderCRegister = getRegisterByPrefix({prefix = '<leader>C'})
@@ -12,6 +13,7 @@ local spaceRegister = getRegisterByPrefix({prefix = '<space>'})
 local spaceDRegister = getRegisterByPrefix({prefix = '<space>d'})
 local spaceFRegister = getRegisterByPrefix({prefix = '<space>f'})
 local spaceBRegister = getRegisterByPrefix({prefix = '<space>b'})
+local spacePRegister = getRegisterByPrefix({prefix = '<space>p'})
 local spaceQRegister = getRegisterByPrefix({prefix = '<space>q'})
 local spaceGRegister = getRegisterByPrefix({prefix = '<space>g'})
 local spaceMRegister = getRegisterByPrefix({prefix = '<space>m'})
@@ -46,6 +48,16 @@ map('n', '<Right>', ':winc ><CR>', opt) -- 窗口向右放大
 map('n', 's=', '<C-w>=', opt) -- 窗口垂直等大
 
 -------------------------------------------------------------------------------
+--                          Tab快捷键配置
+-------------------------------------------------------------------------------
+leaderRegister({
+    ['1'] = {':normal! 1gt<cr>', 'tab 1'},
+    ['2'] = {':normal! 2gt<cr>', 'tab 2'},
+    ['3'] = {':normal! 3gt<cr>', 'tab 3'},
+    ['4'] = {':normal! 4gt<cr>', 'tab 4'}
+})
+
+-------------------------------------------------------------------------------
 --                          搜索快捷键配置
 -------------------------------------------------------------------------------
 -- 关闭搜索高亮
@@ -66,7 +78,7 @@ map('v', 'K', ":move '<-2<cr>gv-gv", opt) -- 向上移
 --                          exporer 快捷键配置
 -------------------------------------------------------------------------------
 spaceFRegister({
-name = "files",
+name = "Files",
 m = { ':CocCommand explorer --toggle --sources=file+<CR>', 'Open explorer' }
 })
 
@@ -245,15 +257,15 @@ function keybinding.statueLine()
     vim.fn.win_gotoid(winId)
   end
   spaceRegister({
-    ['1'] = { function() gotoWinByWinNumber(1) end, "Windows 1"},
-    ['2'] = { function() gotoWinByWinNumber(2) end, "Windows 2"},
-    ['3'] = { function() gotoWinByWinNumber(3) end, "Windows 3"},
-    ['4'] = { function() gotoWinByWinNumber(4) end, "Windows 4"},
-    ['5'] = { function() gotoWinByWinNumber(5) end, "Windows 5"},
-    ['6'] = { function() gotoWinByWinNumber(6) end, "Windows 6"},
-    ['7'] = { function() gotoWinByWinNumber(7) end, "Windows 7"},
-    ['8'] = { function() gotoWinByWinNumber(8) end, "Windows 8"},
-    ['9'] = { function() gotoWinByWinNumber(9) end, "Windows 9"},
+    ['1'] = { function() gotoWinByWinNumber(1) end, "Win 1"},
+    ['2'] = { function() gotoWinByWinNumber(2) end, "Win 2"},
+    ['3'] = { function() gotoWinByWinNumber(3) end, "Win 3"},
+    ['4'] = { function() gotoWinByWinNumber(4) end, "Win 4"},
+    ['5'] = { function() gotoWinByWinNumber(5) end, "Win 5"},
+    ['6'] = { function() gotoWinByWinNumber(6) end, "Win 6"},
+    ['7'] = { function() gotoWinByWinNumber(7) end, "Win 7"},
+    ['8'] = { function() gotoWinByWinNumber(8) end, "Win 8"},
+    ['9'] = { function() gotoWinByWinNumber(9) end, "Win 9"},
   })
 end
 -------------------------------------------------------------------------------
@@ -298,6 +310,17 @@ function keybinding.dashboard()
     a = { ':Alpha<cr>', 'Dashboard' }
   })
 end
+
+-------------------------------------------------------------------------------
+--                          Project 快捷键配置
+-------------------------------------------------------------------------------
+function keybinding.project()
+  spacePRegister({
+    name = 'Projects',
+    p = {':Telescope projects<cr>', 'Open projects' }
+  })
+end
+
 
 return keybinding
 

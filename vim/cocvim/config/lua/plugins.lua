@@ -58,6 +58,11 @@ packer.startup({
               require('plugin-configs.dashboard').loadConfig()
             end
         })
+        -- Projects
+        use({
+          'ahmedkhalf/project.nvim',
+          config = function () require('plugin-configs.project').loadConfig() end
+        })
 
     end,
     config = {
