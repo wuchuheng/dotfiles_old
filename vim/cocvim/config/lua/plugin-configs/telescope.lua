@@ -17,7 +17,7 @@ function Module.loadConfig()
       -- 搜索忽略目录
       file_ignore_patterns = {
         'node_modules',                                   -- 忽略node_modules目录
-        'data/site/pack/packer/start'                     -- 忽略nvim插件目录
+        'data/site/pack/packer/start',                     -- 忽略nvim插件目录
       }
     },
     pickers = {

@@ -3,13 +3,13 @@ local api = vim.api
 
 packer.startup({
     function(use)
-        use('wbthomason/packer.nvim') -- Packer自己本身
-        -- 快捷键
+        use('wbthomason/packer.nvim') -- Packer
+        -- keymapping
         use{
           'folke/which-key.nvim',
           config = function() require('plugin-configs.which-key').loadConfig() end
         }
-        -- 主题
+        --  colorschem
         use{
           'folke/tokyonight.nvim',
           config = function() require('plugin-configs.colorscheme').loadConfig() end
@@ -50,6 +50,15 @@ packer.startup({
           tag = 'v1.*',
           config = function() require('plugin-configs.toggleterm').loadConfig() end
         }
+        -- dashboard
+        use({
+            'goolord/alpha-nvim',
+            requires = { 'kyazdani42/nvim-web-devicons' },
+            config = function ()
+              require('plugin-configs.dashboard').loadConfig()
+            end
+        })
+
     end,
     config = {
         display = {
