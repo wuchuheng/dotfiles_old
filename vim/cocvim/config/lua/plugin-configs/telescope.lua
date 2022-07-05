@@ -1,13 +1,26 @@
 local helper = require('utils.helper')
 local Module = {}
 
+function Module.searchKeyword()
+  vim.cmd([[
+    function! GrepOperator(type)
+    let saved_unnamed_register = @@
+    normal! `<v`>y
+    silent execute "lua require('telescope.builtin').grep_string({search = " . shellescape(@@) . "})"
+
+    let @@ = saved_unnamed_register
+    endfunction
+  ]])
+end
+
+Module.searchKeyword()
 -- Loading the config for this plugin.
 function Module.loadConfig()
   local status, telescope = helper.loadModule('telescope')
   if not status then
     return
   end
-
+  Module.searchKeyword()
   telescope.setup({
     defaults = {
       -- 打开弹窗后进入的初始模式，默认为 insert，也可以是 normal

@@ -1,4 +1,5 @@
 local getRegisterByPrefix = require('plugin-configs.which-key').getRegisterByPrefix
+local register = require('plugin-configs.which-key').register
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 vim.g.mapleader = ',' -- 指定leader键位
@@ -245,6 +246,14 @@ spaceFRegister({
       ['<C-d>'] = 'preview_scrolling_down',
     },
   }
+register({
+  ['<leader>'] = {
+    g = {
+      ':<c-u>call GrepOperator(visualmode())<cr>',
+      'Search keyword'
+    }
+  }
+}, {mode = 'v'})
   return config
 end
 

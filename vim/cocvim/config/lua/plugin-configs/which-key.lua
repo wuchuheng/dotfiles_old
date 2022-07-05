@@ -10,7 +10,7 @@ end
 function Module.register(...)
  local status,  whichKey =  helper.loadModule('which-key')
   if not status then
-    return 
+    return
   end
 
   return whichKey.register(...)
@@ -29,14 +29,14 @@ function Module.getRegisterByPrefix (prefixConfig)
     if (type(config.name) == 'string' and config.name ~= '') then
       nameList[config.name] = true
     end
-    local name = ''
+    local prefixName = ''
     for key, _ in pairs(nameList) do
       local symbol = ''
-      if name ~= '' then symbol = '|' end
-      name = string.format('%s%s%s', name, symbol, key)
+      if prefixName ~= '' then symbol = '|' end
+      prefixName = string.format('%s%s%s', prefixName, symbol, key)
     end
-    if name ~= '' then
-      config.name = name
+    if prefixName ~= '' then
+      config.name = prefixName
     end
 
     return Module.register(config, {prefix = prefix})
