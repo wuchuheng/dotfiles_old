@@ -4,6 +4,13 @@ local api = vim.api
 packer.startup({
     function(use)
         use('wbthomason/packer.nvim') -- Packer
+        -- Notification
+        use({
+          'rcarriga/nvim-notify',
+          config = function ()
+            require('plugin-configs.notify').loadConfig()
+          end
+        })
         -- keymapping
         use{
           'folke/which-key.nvim',
