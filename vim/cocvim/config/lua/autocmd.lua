@@ -12,6 +12,16 @@ function autoCmd.coc()
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   augroup end
   ]])
+
+  -- Elimiinate the effects of expansion when recording macros
+  vim.api.nvim_create_autocmd({"RecordingEnter"}, {
+    pattern = {"*"},
+    command = "CocAction('deactivateExtension', 'coc-pairs')",
+  })
+ vim.api.nvim_create_autocmd({"RecordingLeave"}, {
+   pattern = { "*"},
+   command = "CocAction('activeExtension', 'coc-pairs')",
+ })
 end
 
 return autoCmd
