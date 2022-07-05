@@ -78,6 +78,10 @@ packer.startup({
           'easymotion/vim-easymotion',
           config = function () require('plugin-configs.easymotion').loadConfig() end
         })
+        use({
+          'yggdroot/indentline',
+          config = function () require('plugin-configs.indentline').loadConfig() end
+        })
     end,
     config = {
         display = {

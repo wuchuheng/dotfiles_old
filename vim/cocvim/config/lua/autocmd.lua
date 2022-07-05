@@ -1,7 +1,7 @@
 local autoCmd = {}
 
 function autoCmd.coc()
-  vim.cmd([[
+ vim.cmd([[
     " Highlight the symbol and its references when holding the cursor.
     autocmd CursorHold * silent call CocActionAsync('highlight')
     augroup mygroup
@@ -13,17 +13,31 @@ function autoCmd.coc()
   augroup end
   ]])
 
-  -- Elimiinate the effects of expansion when recording macros
-  vim.api.nvim_create_autocmd({"RecordingEnter"}, {
-    pattern = {"*"},
-    command = "CocAction('deactivateExtension', 'coc-pairs')",
-  })
- vim.api.nvim_create_autocmd({"RecordingLeave"}, {
-   pattern = { "*"},
-   command = "CocAction('activeExtension', 'coc-pairs')",
+ -- Elimiinate the effects of expansion when recording macros
+ vim.api.nvim_create_autocmd({ "RecordingEnter" }, {
+  pattern = { "*" },
+  command = "CocAction('deactivateExtension', 'coc-pairs')",
+ })
+ vim.api.nvim_create_autocmd({ "RecordingLeave" }, {
+  pattern = { "*" },
+  command = "CocAction('activeExtension', 'coc-pairs')",
  })
 end
 
+function autoCmd.dashboard()
+    -- enterd dashboard event
+    vim.api.nvim_create_autocmd({ "BufModifiedSet" }, {
+        pattern = { "*" },
+        callback = function()
+            if vim.bo.filetype == "alpha" then
+                vim.cmd([[ 
+                    if exists(":IndentLinesDisable") 
+                        IndentLinesDisable 
+                    endif
+                ]])
+            end
+        end,
+    })
+end
+
 return autoCmd
-
-

@@ -1,6 +1,7 @@
 local status, alpha = require('utils.helper').loadModule('alpha')
 local keybindings = require('keybindings')
 local Module = {}
+local autocmd = require('autocmd')
 
 local function loadConfig()
   local default_header = {
@@ -50,8 +51,10 @@ end
 
 -- Load config for dashboard.
 function Module.loadConfig()
-  loadConfig()
-  keybindings.dashboard()
+    if not status then return end
+    loadConfig()
+    keybindings.dashboard()
+    autocmd.dashboard()
 end
 
 return Module
