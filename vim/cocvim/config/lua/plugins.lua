@@ -26,14 +26,14 @@ packer.startup({
           'nvim-telescope/telescope.nvim',
           requires = {
             'nvim-lua/plenary.nvim',
-            'LinArcX/telescope-env.nvim', -- env列表功能
+            'LinArcX/telescope-env.nvim', -- env list
           },
           config = function() require('plugin-configs.telescope').loadConfig() end
         }
-        -- statue-line 
+        -- statue-line
         use{
           'nvim-lualine/lualine.nvim',
-          requires = { 
+          requires = {
             'kyazdani42/nvim-web-devicons', 'arkav/lualine-lsp-progress'
           },
           config = function() require('plugin-configs.statue-line').loadConfig() end
@@ -63,7 +63,8 @@ packer.startup({
           'ahmedkhalf/project.nvim',
           config = function () require('plugin-configs.project').loadConfig() end
         })
-
+        -- surrond
+        use('tpope/vim-surround')
     end,
     config = {
         display = {
@@ -77,7 +78,7 @@ packer.startup({
 -- 每次保存 plugins.lua 自动安装插件
 local cmdGroupName = api.nvim_create_augroup("cmdGroupForPacker", { clear = true })
 api.nvim_create_autocmd(
-    "BufWritePost", 
+    "BufWritePost",
     {
         pattern = "plugins.lua",
         command = "source <afile> | PackerSync",
