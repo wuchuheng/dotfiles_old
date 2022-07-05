@@ -1,6 +1,7 @@
 local packer = require('packer')
 local api = vim.api
 
+
 packer.startup({
     function(use)
         use('wbthomason/packer.nvim') -- Packer
@@ -72,6 +73,11 @@ packer.startup({
         })
         -- surrond
         use('tpope/vim-surround')
+        -- easymotion
+        use({
+          'easymotion/vim-easymotion',
+          config = function () require('plugin-configs.easymotion').loadConfig() end
+        })
     end,
     config = {
         display = {

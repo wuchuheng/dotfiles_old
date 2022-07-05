@@ -331,5 +331,51 @@ function keybinding.project()
 end
 
 
+-------------------------------------------------------------------------------
+--                          Easymotion 快捷键配置
+-------------------------------------------------------------------------------
+function keybinding.easymotion()
+  spaceMRegister({
+    name = 'Motion',
+    l = {
+      '<Plug>(easymotion-bd-jk)',
+      'Move to line',
+    },
+    L = {
+      '<Plug>(easymotion-overwin-line)',
+      'Move to over win line',
+    },
+    w = {
+      '<Plug>(easymotion-bd-w)',
+      'Move to word',
+    },
+    W = {
+      '<Plug>(easymotion-overwin-w)',
+      'Move to over win word',
+    },
+    m = {
+      '<Plug>(easymotion-bd-f)',
+      'find {char} to move to {char}',
+    },
+    M = {
+      '<Plug>(easymotion-overwin-f)',
+      'find {char} to move to over {char}',
+    },
+    j = {
+      '<Plug>(easymotion-j)',
+      'j motions: line motions',
+    },
+    K = {
+      '<Plug>(easymotion-k)',
+      'K motions: line motions',
+    },
+    -- 搜索标记
+    k = {
+      '<cmd>Telescope marks<cr>',
+      'find marks',
+    },
+  })
+end
+
 return keybinding
 

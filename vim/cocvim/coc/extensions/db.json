@@ -1,1 +1,7 @@
-{}
+{
+  "extension": {
+    "coc-pairs": {
+      "disabled": false
+    }
+  }
+}
