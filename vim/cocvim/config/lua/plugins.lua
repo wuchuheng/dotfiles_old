@@ -111,6 +111,13 @@ packer.startup({
                 require('plugin-configs.highlight').loadConfig()
             end
         })
+        use({
+            'tami5/lspsaga.nvim',
+            config = function ()
+                require('plugin-configs.lsplaga').loadConfig()
+            end
+        })
+        
     end,
     config = {
         display = {

@@ -2,11 +2,6 @@ local Module = {}
 local helper = require('utils.helper')
 
 local function loadBlanklineConfig()
-    local status, ident_blankline = pcall(require, 'indent_blankline')
-    if not status then
-        vim.notify('没有找到 ident_blankline')
-        return 
-    end
     local statue, blankline = helper.loadModule('indent_blankline')
     if not statue then return end
     blankline.setup({
