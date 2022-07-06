@@ -29,15 +29,22 @@ function autoCmd.dashboard()
     vim.api.nvim_create_autocmd({ "BufModifiedSet" }, {
         pattern = { "*" },
         callback = function()
-            if vim.bo.filetype == "alpha" then
+            local ignoredFiles = {
+                'alpha',
+                'coc-explorer'
+            }
+            for key, _ in pairs(ignoredFiles) do ignoredFiles[key] = true end
+            if not  ignoredFiles[vim.bo.filetype] then
                 vim.cmd([[ 
-                    if exists(":IndentLinesDisable") 
-                        IndentLinesDisable 
+                if exists(":IndentLinesDisable") 
+                    IndentLinesDisable 
                     endif
-                ]])
-            end
+                    ]])
+                end
         end,
     })
 end
 
 return autoCmd
+
+
