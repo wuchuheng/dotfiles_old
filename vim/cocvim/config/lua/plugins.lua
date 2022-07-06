@@ -132,6 +132,8 @@ packer.startup({
                 require('plugin-configs.uexpand-region').loadConfig()
             end
         })
+        -- nvim lua guid
+        use({ 'nanotee/nvim-lua-guide' })
     end,
     config = {
         display = {

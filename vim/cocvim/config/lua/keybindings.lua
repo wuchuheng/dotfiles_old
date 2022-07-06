@@ -509,9 +509,9 @@ end
 -------------------------------------------------------------------------------
 function keybinding.expandRegion()
     vim.cmd([[
-        map K <Plug>(expand_region_expand)
-        map J <Plug>(expand_region_shrink)
+        map <c-j> <Plug>(expand_region_shrink)
+        map <c-k> <Plug>(expand_region_expand)
     ]])
 end
-
+keybinding.expandRegion()
 return keybinding
