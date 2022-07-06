@@ -28,6 +28,12 @@ local spaceCRegister = getRegisterByPrefix({prefix = '<space>c'})
 leaderSRegister({
   name = 'Source', c = { ':so $MYVIMRC<CR>', 'Source config' }
 })
+spaceQRegister({
+    c = {
+        ':cclose<cr>',
+        'Close Quickfix'
+    }
+})
 
 -------------------------------------------------------------------------------
 --                          解决neovide不能使用mac OS系统粘贴的问题
@@ -377,6 +383,18 @@ function keybinding.easymotion()
   })
 end
 
+-------------------------------------------------------------------------------
+--                           Todo 快捷键配置
+-------------------------------------------------------------------------------
+function keybinding.todo()
+    spaceTRegister({
+        name = "Todo",
+        d = {
+            ':TodoTelescope<CR>',
+            'Todo telescope list.',
+        },
+    })
+end
 
 return keybinding
 

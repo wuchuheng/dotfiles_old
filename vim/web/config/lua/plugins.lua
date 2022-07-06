@@ -1,5 +1,4 @@
 local packer = require('packer')
-
 packer.startup({
     function(use)
         -- Packer 可以管理自己本身
@@ -128,3 +127,4 @@ autocmd BufWritePost plugins.lua source <afile> | PackerSync
 augroup end
 ]]
 )
+

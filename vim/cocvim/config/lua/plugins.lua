@@ -1,7 +1,6 @@
 local packer = require('packer')
 local api = vim.api
 
-
 packer.startup({
     function(use)
         use('wbthomason/packer.nvim') -- Packer
@@ -87,6 +86,14 @@ packer.startup({
         use({
             'terrortylor/nvim-comment',
             config = function () require('plugin-configs.nvim-comment').loadConfig() end
+        })
+        -- todo
+        use({
+            'folke/todo-comments.nvim',
+            requires = 'nvim-lua/plenary.nvim',
+            config = function()
+                require('plugin-configs.todo-comments').loadConfig()
+            end
         })
     end,
     config = {
