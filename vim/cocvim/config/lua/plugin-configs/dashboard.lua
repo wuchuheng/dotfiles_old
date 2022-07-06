@@ -54,7 +54,6 @@ function Module.loadConfig()
     if not status then return end
     loadConfig()
     keybindings.dashboard()
-    autocmd.dashboard()
 end
 
 return Module

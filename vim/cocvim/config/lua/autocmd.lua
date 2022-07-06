@@ -1,4 +1,6 @@
 local autoCmd = {}
+local Debug =  require('utils.debug')
+
 
 function autoCmd.coc()
  vim.cmd([[
@@ -24,8 +26,7 @@ function autoCmd.coc()
  })
 end
 
-function autoCmd.dashboard()
-    -- enterd dashboard event
+function autoCmd.identLine()
     vim.api.nvim_create_autocmd({ "BufModifiedSet" }, {
         pattern = { "*" },
         callback = function()
@@ -33,16 +34,16 @@ function autoCmd.dashboard()
                 'alpha',
                 'coc-explorer'
             }
-            for key, _ in pairs(ignoredFiles) do ignoredFiles[key] = true end
-            if not  ignoredFiles[vim.bo.filetype] then
+            for _, value in pairs(ignoredFiles) do ignoredFiles[value] = true end
+            if ignoredFiles[vim.bo.filetype] then
                 vim.cmd([[ 
                 if exists(":IndentLinesDisable") 
                     IndentLinesDisable 
                     endif
                     ]])
                 end
-        end,
-    })
+            end,
+        })
 end
 
 return autoCmd
