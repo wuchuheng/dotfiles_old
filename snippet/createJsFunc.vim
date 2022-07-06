@@ -1,1 +1,0 @@
-.put='const foo = () => {}'

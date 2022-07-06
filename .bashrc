@@ -129,7 +129,8 @@ if [[ ${#vimTool} > 0 ]]; then
         ln -s $prefix/coc $cocPath                  # coc插件配置
         initCoc $prefix/coc/extensions/node_modules #初始化Coc
         # --maximized
-        nvim $@
+        # nvim $@
+        $neovide --frame=buttonless $@
     }
 fi
 
