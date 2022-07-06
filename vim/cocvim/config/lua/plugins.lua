@@ -125,7 +125,14 @@ packer.startup({
             end
         })
         -- enhance
-        use({'AndrewRadev/splitjoin.vim'}) end,
+        use({'AndrewRadev/splitjoin.vim'})
+        use({
+            'terryma/vim-expand-region',
+            config = function ()
+                require('plugin-configs.uexpand-region').loadConfig()
+            end
+        })
+    end,
     config = {
         display = {
             open_fn = function()

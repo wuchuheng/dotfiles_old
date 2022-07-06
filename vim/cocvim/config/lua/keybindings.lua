@@ -504,5 +504,14 @@ function keybinding.translator()
  }, { mode = "v" })
 end
 
-keybinding.translator()
+-------------------------------------------------------------------------------
+--                          transition配置
+-------------------------------------------------------------------------------
+function keybinding.expandRegion()
+    vim.cmd([[
+        map K <Plug>(expand_region_expand)
+        map J <Plug>(expand_region_shrink)
+    ]])
+end
+
 return keybinding
