@@ -102,11 +102,7 @@ packer.startup({
         })
         -- syntax highlight
         use({
-            'nvim-treesitter/nvim-treesitter',
-            run = ':TSUpdate',
-            requires = {
-                'lukas-reineke/indent-blankline.nvim',
-            },
+            'lukas-reineke/indent-blankline.nvim',
             config = function ()
                 require('plugin-configs.highlight').loadConfig()
             end
@@ -116,7 +112,11 @@ packer.startup({
             'stevearc/aerial.nvim',
             config = function() require('plugin-configs.outline').loadConfig() end
         }
-        
+        -- CSS
+        use({
+            'norcalli/nvim-colorizer.lua',
+            config = function () require('plugin-configs.css').loadConfig() end
+        })
     end,
     config = {
         display = {

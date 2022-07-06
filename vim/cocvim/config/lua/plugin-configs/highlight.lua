@@ -7,9 +7,9 @@ local function loadBlanklineConfig()
     blankline.setup({
         -- 空行占位
         space_char_blankline = " ",
-        -- 用 treesitter 判断上下文
-        show_current_context = true,
-        show_current_context_start = true,
+        -- -- 用 treesitter 判断上下文
+        -- show_current_context = true,
+        -- show_current_context_start = true,
         context_patterns = {
             "class",
             "function",
@@ -79,7 +79,7 @@ end
 
 -- load the config for highlight
 function Module.loadConfig()
-    loadTreesitterConfig()
+    -- loadTreesitterConfig()
     loadBlanklineConfig()
 end
 loadBlanklineConfig()
