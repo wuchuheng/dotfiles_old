@@ -95,6 +95,16 @@ packer.startup({
                 require('plugin-configs.todo-comments').loadConfig()
             end
         })
+        -- Git
+        use({
+            'sindrets/diffview.nvim',
+            requires = {
+                'lewis6991/gitsigns.nvim'
+            },
+            config = function ()
+                require('plugin-configs.git').loadConfig()
+            end
+        })
     end,
     config = {
         display = {

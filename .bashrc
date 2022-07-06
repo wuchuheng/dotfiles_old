@@ -200,5 +200,6 @@ export BAT_THEME="Dracula"
 alias flushMacDns='sudo killall -HUP mDNSResponder'
 
 alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+alias cc='open -a "Google Chrome"'
 
 export PATH=$PATH:$ROOT_DIR/bin

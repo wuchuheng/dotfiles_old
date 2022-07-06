@@ -1,9 +1,10 @@
 {
     "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+    "Lua.diagnostics.disable": [
+        "undefined-field"
+    ],
     "Lua.diagnostics.globals": [
-        "vim",
-        "keybindings",
-        "keybinding"
+        "vim"
     ],
     "Lua.runtime.version": "LuaJIT",
     "Lua.workspace.checkThirdParty": false,

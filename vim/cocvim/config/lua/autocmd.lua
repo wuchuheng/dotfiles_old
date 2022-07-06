@@ -1,7 +1,6 @@
 local autoCmd = {}
 local Debug =  require('utils.debug')
 
-
 function autoCmd.coc()
  vim.cmd([[
     " Highlight the symbol and its references when holding the cursor.
