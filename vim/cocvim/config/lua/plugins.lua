@@ -111,12 +111,11 @@ packer.startup({
                 require('plugin-configs.highlight').loadConfig()
             end
         })
-        use({
-            'tami5/lspsaga.nvim',
-            config = function ()
-                require('plugin-configs.lsplaga').loadConfig()
-            end
-        })
+        -- outline
+        use {
+            'stevearc/aerial.nvim',
+            config = function() require('plugin-configs.outline').loadConfig() end
+        }
         
     end,
     config = {

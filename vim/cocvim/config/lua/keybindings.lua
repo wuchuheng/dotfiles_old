@@ -21,9 +21,10 @@ local spaceMRegister = getRegisterByPrefix({ prefix = "<space>m" })
 local spaceERegister = getRegisterByPrefix({ prefix = "<space>e" })
 local spaceTRegister = getRegisterByPrefix({ prefix = "<space>t" })
 local spaceCRegister = getRegisterByPrefix({ prefix = "<space>c" })
+local spaceORegister = getRegisterByPrefix({ prefix = "<space>o" })
 
 -------------------------------------------------------------------------------
---                          基本快捷键配置c
+--                          基本快捷键配置
 -------------------------------------------------------------------------------
 leaderSRegister({
  name = "Source",
@@ -503,6 +504,22 @@ function keybinding.git(gitMap, gs, togglePreview)
    },
   },
  })
+end
+
+-------------------------------------------------------------------------------
+--                          Outline配置
+-------------------------------------------------------------------------------
+function keybinding.outline(bufnr)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '{', '<cmd>AerialPrev<CR>', {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '}', '<cmd>AerialNext<CR>', {})
+    -- Jump up the tree with '[[' or ']]'
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '[[', '<cmd>AerialPrevUp<CR>', {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>AerialNextUp<CR>', {})
+    spaceORegister({
+        name = 'Outline',
+        l = { ':AerialToggle!<cr>', 'Outline' }
+    })
+    
 end
 
 return keybinding
