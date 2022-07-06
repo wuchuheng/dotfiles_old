@@ -517,9 +517,21 @@ function keybinding.outline(bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>AerialNextUp<CR>', {})
     spaceORegister({
         name = 'Outline',
-        l = { ':AerialToggle!<cr>', 'Outline' }
+        l = { ':AerialToggle!<cr>', 'Outline' },
     })
     
 end
+-------------------------------------------------------------------------------
+--                          transition配置
+-------------------------------------------------------------------------------
+function keybinding.translator()
+ register({
+  ["<leader>"] = {
+      name = 'Dict',
+      d = { ':<c-u>call TranslateSelectText(visualmode())<cr>', 'Translate' }
+  },
+ }, { mode = "v" })
+end
 
+keybinding.translator()
 return keybinding

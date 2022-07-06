@@ -117,6 +117,13 @@ packer.startup({
             'norcalli/nvim-colorizer.lua',
             config = function () require('plugin-configs.css').loadConfig() end
         })
+        -- translator
+        use({
+            'voldikss/vim-translator',
+            config = function ()
+                require('plugin-configs.translator').loadConfig()
+            end
+        })
     end,
     config = {
         display = {
