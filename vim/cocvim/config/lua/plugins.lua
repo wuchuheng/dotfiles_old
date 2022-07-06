@@ -77,11 +77,6 @@ packer.startup({
           'easymotion/vim-easymotion',
           config = function () require('plugin-configs.easymotion').loadConfig() end
         })
-        -- indentline
-        use({
-          'yggdroot/indentline',
-          config = function () require('plugin-configs.indentline').loadConfig() end
-        })
         -- Comment
         use({
             'terrortylor/nvim-comment',
@@ -103,6 +98,17 @@ packer.startup({
             },
             config = function ()
                 require('plugin-configs.git').loadConfig()
+            end
+        })
+        -- syntax highlight
+        use({
+            'nvim-treesitter/nvim-treesitter',
+            run = ':TSUpdate',
+            requires = {
+                'lukas-reineke/indent-blankline.nvim',
+            },
+            config = function ()
+                require('plugin-configs.highlight').loadConfig()
             end
         })
     end,

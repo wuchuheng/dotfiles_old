@@ -1,6 +1,4 @@
 local getRegisterByPrefix = require("plugin-configs.which-key").getRegisterByPrefix
-local package = require("package")
-local Debug = require("utils.debug")
 local register = require("plugin-configs.which-key").register
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
@@ -196,7 +194,7 @@ function keybinding.coc()
    n = { ":CocEnable<cr>", "Enable Coc extensions." },
   },
   l = { ":<C-u>CocList commands<cr>", "Show commands." },
-  c = { [[silent exec "!open -a 'Google Chrome'"<cr>]], "Open chrome" },
+  c = { [[:silent exec "!open -a 'Google Chrome'"<cr>]], "Open chrome" },
   o = { ":<C-u>CocList outline<cr>", "Find symbol of current document." },
   s = { ":<C-u>CocList -I symbols<cr>", "Search workspace symbols." },
   j = { ":<C-u>CocNext<CR>", "Do default action for next item." },
