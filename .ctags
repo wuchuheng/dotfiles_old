@@ -1,5 +1,0 @@
--R
---languages=php
---php-kinds=ctif
---exclude=*test*
---fields=+aimS
