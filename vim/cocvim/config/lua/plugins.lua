@@ -124,7 +124,8 @@ packer.startup({
                 require('plugin-configs.translator').loadConfig()
             end
         })
-    end,
+        -- enhance
+        use({'AndrewRadev/splitjoin.vim'}) end,
     config = {
         display = {
             open_fn = function()
