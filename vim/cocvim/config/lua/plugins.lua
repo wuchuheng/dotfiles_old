@@ -83,6 +83,11 @@ packer.startup({
           'yggdroot/indentline',
           config = function () require('plugin-configs.indentline').loadConfig() end
         })
+        -- Comment
+        use({
+            'terrortylor/nvim-comment',
+            config = function () require('plugin-configs.nvim-comment').loadConfig() end
+        })
     end,
     config = {
         display = {
