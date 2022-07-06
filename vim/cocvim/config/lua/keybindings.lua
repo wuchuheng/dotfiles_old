@@ -274,61 +274,32 @@ function keybinding.statueLine()
   local winId = vim.fn.win_getid(winNumber)
   vim.fn.win_gotoid(winId)
  end
- spaceRegister({
-  ["1"] = {
-   function()
-    gotoWinByWinNumber(1)
-   end,
-   "Win 1",
-  },
-  ["2"] = {
-   function()
-    gotoWinByWinNumber(2)
-   end,
-   "Win 2",
-  },
-  ["3"] = {
-   function()
-    gotoWinByWinNumber(3)
-   end,
-   "Win 3",
-  },
-  ["4"] = {
-   function()
-    gotoWinByWinNumber(4)
-   end,
-   "Win 4",
-  },
-  ["5"] = {
-   function()
-    gotoWinByWinNumber(5)
-   end,
-   "Win 5",
-  },
-  ["6"] = {
-   function()
-    gotoWinByWinNumber(6)
-   end,
-   "Win 6",
-  },
-  ["7"] = {
-   function()
-    gotoWinByWinNumber(7)
-   end,
-   "Win 7",
-  },
-  ["8"] = {
-   function()
-    gotoWinByWinNumber(8)
-   end,
-   "Win 8",
-  },
-  ["9"] = {
-   function()
-    gotoWinByWinNumber(9)
-   end,
-   "Win 9",
-  },
+ local function closeWinByid(id)
+     local winId = vim.fn.win_getid(id)
+     vim.fn.win_execute(winId, 'close')
+ end
+ spaceCRegister({
+     name = 'Close wind',
+     ["1"] = { function() closeWinByid(1) end, "Close win 1" },
+     ["2"] = { function() closeWinByid(2) end, "Close win 2" },
+     ["3"] = { function() closeWinByid(3) end, "Close win 3" },
+     ["4"] = { function() closeWinByid(4) end, "Close win 4" },
+     ["5"] = { function() closeWinByid(5) end, "Close win 5" },
+     ["6"] = { function() closeWinByid(6) end, "Close win 6" },
+     ["7"] = { function() closeWinByid(7) end, "Close win 7" },
+     ["8"] = { function() closeWinByid(8) end, "Close win 8" },
+     ["9"] = { function() closeWinByid(9) end, "Close win 9" },
+ })
+ 
+ spaceRegister({ ["1"] = { function() gotoWinByWinNumber(1) end, "Win 1", },
+  ["2"] = { function() gotoWinByWinNumber(2) end, "Win 2" },
+  ["3"] = { function() gotoWinByWinNumber(3) end, "Win 3" },
+  ["4"] = { function() gotoWinByWinNumber(4) end, "Win 4" },
+  ["5"] = { function() gotoWinByWinNumber(5) end, "Win 5" },
+  ["6"] = { function() gotoWinByWinNumber(6) end, "Win 6" },
+  ["7"] = { function() gotoWinByWinNumber(7) end, "Win 7" },
+  ["8"] = { function() gotoWinByWinNumber(8) end, "Win 8" },
+  ["9"] = { function() gotoWinByWinNumber(9) end, "Win 9" },
  })
 end
 -------------------------------------------------------------------------------
@@ -528,7 +499,7 @@ function keybinding.translator()
  register({
   ["<leader>"] = {
       name = 'Dict',
-      d = { ':<c-u>call TranslateSelectText(visualmode())<cr>', 'Translate' }
+      d = { ':<c-u>call TranslateSelectText(visualmode())<cr>', 'Translate' },
   },
  }, { mode = "v" })
 end
