@@ -1,7 +1,5 @@
-local Debug = require('utils.debug')
 local Table = require('utils.table')
 local String = require('utils.string')
-local Path = require('utils.path')
 
 local helper = {}
 
@@ -19,15 +17,14 @@ function helper.loadModules(modulePath, unloadModules, modulePrefix)
   end
   Table:getInstance(files)
   -- 格式化模块名
-  :map(function(_, v) 
-    local res = String:getInstance(v):split('.')
-    if (#res > 1 and res[#res] == 'lua') then 
+  :map(function(_, v) local res = String:getInstance(v):split('.')
+    if (#res > 1 and res[#res] == 'lua') then
       table.remove(res)
     end
-    return table.concat(res, '.') 
+    return table.concat(res, '.')
   end)
   -- 过虑掉不指定加载的模块
-  :filter(function(_, v) 
+  :filter(function(_, v)
     if Table:getInstance(unloadModules):hasValue(v) then
       return false
     else
@@ -49,7 +46,7 @@ function helper.loadModules(modulePath, unloadModules, modulePrefix)
 end
 
 function helper.loadModule(moduleName)
-  local status, module = pcall(require, moduleName) 
+  local status, module = pcall(require, moduleName)
   if not status then
     vim.notify('Not found ' .. moduleName)
   end

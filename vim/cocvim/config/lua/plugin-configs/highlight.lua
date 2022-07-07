@@ -8,8 +8,8 @@ local function loadBlanklineConfig()
         -- 空行占位
         space_char_blankline = " ",
         -- -- 用 treesitter 判断上下文
-        -- show_current_context = true,
-        -- show_current_context_start = true,
+        show_current_context = true,
+        show_current_context_start = true,
         context_patterns = {
             "class",
             "function",
@@ -49,6 +49,9 @@ local function loadTreesitterConfig()
     local status, treesitter = helper.loadModule('nvim-treesitter.configs')
     if not status then return end
     treesitter.setup({
+        indent = {
+            enable = true
+        },
         -- A list of parser names, or "all"
         ensure_installed = { "c", "lua", "rust" },
 
@@ -75,11 +78,17 @@ local function loadTreesitterConfig()
             additional_vim_regex_highlighting = false,
         },
     })
+    -- 开启 Folding 模块
+    vim.opt.foldmethod = "expr"
+    vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+    -- 默认不要折叠
+    -- https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
+    vim.opt.foldlevel = 99
 end
 
 -- load the config for highlight
 function Module.loadConfig()
-    -- loadTreesitterConfig()
+    loadTreesitterConfig()
     loadBlanklineConfig()
 end
 loadBlanklineConfig()

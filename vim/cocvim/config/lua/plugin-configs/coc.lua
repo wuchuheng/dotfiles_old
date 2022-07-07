@@ -10,7 +10,6 @@ function Module.loadConfig()
       'coc-pairs', -- 成对符号
       'coc-flutter', -- flutter
     }
-  
     vim.cmd([[
         function! ShowDocumentation()
           if CocAction('hasProvider', 'hover')

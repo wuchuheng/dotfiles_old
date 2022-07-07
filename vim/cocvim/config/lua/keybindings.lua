@@ -1,6 +1,7 @@
 local getRegisterByPrefix = require("plugin-configs.which-key").getRegisterByPrefix
 local register = require("plugin-configs.which-key").register
 local map = vim.api.nvim_set_keymap
+local helper = require('utils.helper')
 local opt = { noremap = true, silent = true }
 vim.g.mapleader = "," -- 指定leader键位
 vim.g.maplocalleader = "-" -- 指定local leader键位
@@ -27,14 +28,11 @@ local spaceORegister = getRegisterByPrefix({ prefix = "<space>o" })
 --                          基本快捷键配置
 -------------------------------------------------------------------------------
 leaderSRegister({
- name = "Source",
- c = { ":so $MYVIMRC<CR>", "Source config" },
+    name = "Source",
+    c = { ":so $MYVIMRC<CR>", "Source config" },
 })
 spaceQRegister({
- c = {
-  ":cclose<cr>",
-  "Close Quickfix",
- },
+    c = { ":cclose<cr>", "Close Quickfix" },
 })
 
 -------------------------------------------------------------------------------
@@ -60,10 +58,10 @@ map("n", "s=", "<C-w>=", opt) -- 窗口垂直等大
 --                          Tab快捷键配置
 -------------------------------------------------------------------------------
 leaderRegister({
- ["1"] = { ":normal! 1gt<cr>", "tab 1" },
- ["2"] = { ":normal! 2gt<cr>", "tab 2" },
- ["3"] = { ":normal! 3gt<cr>", "tab 3" },
- ["4"] = { ":normal! 4gt<cr>", "tab 4" },
+    ["1"] = { ":normal! 1gt<cr>", "tab 1" },
+    ["2"] = { ":normal! 2gt<cr>", "tab 2" },
+    ["3"] = { ":normal! 3gt<cr>", "tab 3" },
+    ["4"] = { ":normal! 4gt<cr>", "tab 4" },
 })
 
 -------------------------------------------------------------------------------
@@ -71,10 +69,10 @@ leaderRegister({
 -------------------------------------------------------------------------------
 -- 关闭搜索高亮
 spaceRegister({
- l = {
-  ":<C-u>nohlsearch<CR>",
-  "nohlsearch",
- },
+    l = {
+        ":<C-u>nohlsearch<CR>",
+        "nohlsearch",
+    },
 })
 
 -------------------------------------------------------------------------------
@@ -87,7 +85,7 @@ map("v", "K", ":move '<-2<cr>gv-gv", opt) -- 向上移
 --                          Coc 快捷键配置
 -------------------------------------------------------------------------------
 function keybinding.coc()
- vim.cmd([[
+    vim.cmd([[
   " Tab 补全
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
@@ -99,19 +97,19 @@ function keybinding.coc()
   inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 ]])
- vim.cmd([[
+    vim.cmd([[
   " Use `[g` and `]g` to navigate diagnostics
   " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
   nmap <silent> [g <Plug>(coc-diagnostic-prev)
   nmap <silent> ]g <Plug>(coc-diagnostic-next)
 ]])
- vim.cmd([[
+    vim.cmd([[
   " Use `[g` and `]g` to navigate diagnostics
   " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
   nmap <silent> [g <Plug>(coc-diagnostic-prev)
   nmap <silent> ]g <Plug>(coc-diagnostic-next)
 ]])
- vim.cmd([[
+    vim.cmd([[
   " GoTo code navigation.
   nmap <silent> gd <Plug>(coc-definition)
   nmap <silent> gy <Plug>(coc-type-definition)
@@ -120,34 +118,34 @@ function keybinding.coc()
   " Use K to show documentation in preview window.
   nnoremap <silent>gh :call ShowDocumentation()<CR>
 ]])
- vim.cmd([[
+    vim.cmd([[
   " Symbol renaming.
   nmap <leader>rn <Plug>(coc-rename)
 ]])
- vim.cmd([[
+    vim.cmd([[
   " Formatting selected code.
   xmap <leader>f  <Plug>(coc-format-selected)
   nmap <leader>f  <Plug>(coc-format-selected)
 ]])
- -- Applying codeAction to the selected region.
- vim.cmd([[
+    -- Applying codeAction to the selected region.
+    vim.cmd([[
 " Example: `<leader>aap` for current paragraph
   xmap <leader>a  <Plug>(coc-codeaction-selected)
 ]])
- leaderARegister({
-  name = "CodeAction",
-  a = { "<Plug>(coc-codeaction-selected)", "Applying codeAction to the selected region." },
-  c = { "<Plug>(coc-codeaction)", "Remap keys for applying codeAction to the current buffer" },
- })
- leaderQRegister({
-  name = "QuickFix",
-  f = { "<Plug>(coc-fix-current)", "Apply AutoFix to problem on the current line." },
- })
- leaderCRegister({
-  name = "Code lens",
-  l = { "<Plug>(coc-codelens-action)", "Run the Code Lens action on the current line." },
- })
- vim.cmd([[
+    leaderARegister({
+        name = "CodeAction",
+        a = { "<Plug>(coc-codeaction-selected)", "Applying codeAction to the selected region." },
+        c = { "<Plug>(coc-codeaction)", "Remap keys for applying codeAction to the current buffer" },
+    })
+    leaderQRegister({
+        name = "QuickFix",
+        f = { "<Plug>(coc-fix-current)", "Apply AutoFix to problem on the current line." },
+    })
+    leaderCRegister({
+        name = "Code lens",
+        l = { "<Plug>(coc-codelens-action)", "Run the Code Lens action on the current line." },
+    })
+    vim.cmd([[
   " Map function and class text objects
   " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
   xmap if <Plug>(coc-funcobj-i)
@@ -159,7 +157,7 @@ function keybinding.coc()
   xmap ac <Plug>(coc-classobj-a)
   omap ac <Plug>(coc-classobj-a)
 ]])
- vim.cmd([[
+    vim.cmd([[
   " Remap <C-f> and <C-b> for scroll float windows/popups.
   if has('nvim-0.4.0') || has('patch-8.2.0750')
     nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
@@ -170,303 +168,303 @@ function keybinding.coc()
     vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
   endif
 ]])
- vim.cmd([[
+    vim.cmd([[
   " Use CTRL-S for selections ranges.
   " Requires 'textDocument/selectionRange' support of language server.
   nmap <silent> <C-s> <Plug>(coc-range-select)
   xmap <silent> <C-s> <Plug>(coc-range-select)
 ]])
- -- " Mappings for CoCList
- spaceCRegister({
-  name = "Coclist",
-  a = { ":<C-u>CocList diagnostics<cr>", "Show all diagnostics." },
-  d = { ":CocDisable<cr>", "disable Coc extensions." },
-  e = {
-   name = "Coc extensions",
-   e = { ":<C-u>CocList extensions<cr>", "Manage extensions." },
-   n = { ":CocEnable<cr>", "Enable Coc extensions." },
-  },
-  l = { ":<C-u>CocList commands<cr>", "Show commands." },
-  c = { [[:silent exec "!open -a 'Google Chrome'"<cr>]], "Open chrome" },
-  o = { ":<C-u>CocList outline<cr>", "Find symbol of current document." },
-  s = { ":<C-u>CocList -I symbols<cr>", "Search workspace symbols." },
-  j = { ":<C-u>CocNext<CR>", "Do default action for next item." },
-  k = { ":<C-u>CocPrev<CR>", "Do default action for previous item." },
-  p = { ":<C-u>CocListResume<CR>", "Resume latest coc list." },
- })
+    -- " Mappings for CoCList
+    spaceCRegister({
+        name = "Coclist",
+        a = { ":<C-u>CocList diagnostics<cr>", "Show all diagnostics." },
+        d = { ":CocDisable<cr>", "disable Coc extensions." },
+        e = {
+            name = "Coc extensions",
+            e = { ":<C-u>CocList extensions<cr>", "Manage extensions." },
+            n = { ":CocEnable<cr>", "Enable Coc extensions." },
+        },
+        l = { ":<C-u>CocList commands<cr>", "Show commands." },
+        c = { [[:silent exec "!open -a 'Google Chrome'"<cr>]], "Open chrome" },
+        o = { ":<C-u>CocList outline<cr>", "Find symbol of current document." },
+        s = { ":<C-u>CocList -I symbols<cr>", "Search workspace symbols." },
+        j = { ":<C-u>CocNext<CR>", "Do default action for next item." },
+        k = { ":<C-u>CocPrev<CR>", "Do default action for previous item." },
+        p = { ":<C-u>CocListResume<CR>", "Resume latest coc list." },
+    })
 end
 
 -------------------------------------------------------------------------------
 --                          Telescope快捷键配置
 -------------------------------------------------------------------------------
 keybinding.telescope = function()
- -- 查找文件
- map("n", "<C-p>", ":Telescope find_files<CR>", opt)
- spaceFRegister({
-  name = "Files",
-  t = { ":Telescope live_grep<cr>", "Find text." },
-  f = { ":Telescope live_files<cr>", "Find files." },
-  r = { ":Telescope oldfiles<cr>", "Recently fiiles" },
- })
- spaceBRegister({
-  name = "Buffers",
-  l = { ":Telescope buffers<cr>", "List buffers" },
- })
- spaceQRegister({
-  name = "Quickfix",
-  f = { ":Telescope quickfix<cr>", "Quickfix" },
- })
- spaceGRegister({
-  s = { ":Telescope git_status<cr>", "Git status" },
-  b = { ":Telescope git_branches<cr>", "Git branches" },
-  c = { ":Telescope git_commits<cr>", "Git commits" },
- })
- spaceMRegister({
-  name = "Marks",
-  k = { ":Telescope marks<cr>", "Find marks" },
- })
- spaceERegister({
-  nam = "Env",
-  n = { ":Telescope env<cr>", "Env list" },
- })
+    -- 查找文件
+    map("n", "<C-p>", ":Telescope find_files<CR>", opt)
+    spaceFRegister({
+        name = "Files",
+        t = { ":Telescope live_grep<cr>", "Find text." },
+        f = { ":Telescope live_files<cr>", "Find files." },
+        r = { ":Telescope oldfiles<cr>", "Recently fiiles" },
+    })
+    spaceBRegister({
+        name = "Buffers",
+        l = { ":Telescope buffers<cr>", "List buffers" },
+    })
+    spaceQRegister({
+        name = "Quickfix",
+        f = { ":Telescope quickfix<cr>", "Quickfix" },
+    })
+    spaceGRegister({
+        s = { ":Telescope git_status<cr>", "Git status" },
+        b = { ":Telescope git_branches<cr>", "Git branches" },
+        c = { ":Telescope git_commits<cr>", "Git commits" },
+    })
+    spaceMRegister({
+        name = "Marks",
+        k = { ":Telescope marks<cr>", "Find marks" },
+    })
+    spaceERegister({
+        nam = "Env",
+        n = { ":Telescope env<cr>", "Env list" },
+    })
 
- local config = {
-  i = {
-   -- 上下移动
-   ["<C-j>"] = "move_selection_next",
-   ["<C-k>"] = "move_selection_previous",
-   ["<Down>"] = "move_selection_next",
-   ["<Up>"] = "move_selection_previous",
-   -- 历史记录
-   ["<C-n>"] = "cycle_history_next",
-   ["<C-p>"] = "cycle_history_prev",
-   -- 关闭窗口
-   ["<C-c>"] = "close",
-   -- 预览窗口上下滚动
-   ["<C-u>"] = "preview_scrolling_up",
-   ["<C-d>"] = "preview_scrolling_down",
-  },
- }
- register({
-  ["<leader>"] = {
-   g = {
-    ":<c-u>call GrepOperator(visualmode())<cr>",
-    "Search keyword",
-   },
-  },
- }, { mode = "v" })
- return config
+    local config = {
+        i = {
+            -- 上下移动
+            ["<C-j>"] = "move_selection_next",
+            ["<C-k>"] = "move_selection_previous",
+            ["<Down>"] = "move_selection_next",
+            ["<Up>"] = "move_selection_previous",
+            -- 历史记录
+            ["<C-n>"] = "cycle_history_next",
+            ["<C-p>"] = "cycle_history_prev",
+            -- 关闭窗口
+            ["<C-c>"] = "close",
+            -- 预览窗口上下滚动
+            ["<C-u>"] = "preview_scrolling_up",
+            ["<C-d>"] = "preview_scrolling_down",
+        },
+    }
+    register({
+        ["<leader>"] = {
+            g = {
+                ":<c-u>call GrepOperator(visualmode())<cr>",
+                "Search keyword",
+            },
+        },
+    }, { mode = "v" })
+    return config
 end
 
 -------------------------------------------------------------------------------
 --                           Statue line 快捷键配置
 -------------------------------------------------------------------------------
 function keybinding.statueLine()
- local function gotoWinByWinNumber(winNumber)
-  local winId = vim.fn.win_getid(winNumber)
-  vim.fn.win_gotoid(winId)
- end
- local function closeWinByid(id)
-     local winId = vim.fn.win_getid(id)
-     vim.fn.win_execute(winId, 'close')
- end
- spaceCRegister({
-     name = 'Close wind',
-     ["1"] = { function() closeWinByid(1) end, "Close win 1" },
-     ["2"] = { function() closeWinByid(2) end, "Close win 2" },
-     ["3"] = { function() closeWinByid(3) end, "Close win 3" },
-     ["4"] = { function() closeWinByid(4) end, "Close win 4" },
-     ["5"] = { function() closeWinByid(5) end, "Close win 5" },
-     ["6"] = { function() closeWinByid(6) end, "Close win 6" },
-     ["7"] = { function() closeWinByid(7) end, "Close win 7" },
-     ["8"] = { function() closeWinByid(8) end, "Close win 8" },
-     ["9"] = { function() closeWinByid(9) end, "Close win 9" },
- })
- 
- spaceRegister({ ["1"] = { function() gotoWinByWinNumber(1) end, "Win 1", },
-  ["2"] = { function() gotoWinByWinNumber(2) end, "Win 2" },
-  ["3"] = { function() gotoWinByWinNumber(3) end, "Win 3" },
-  ["4"] = { function() gotoWinByWinNumber(4) end, "Win 4" },
-  ["5"] = { function() gotoWinByWinNumber(5) end, "Win 5" },
-  ["6"] = { function() gotoWinByWinNumber(6) end, "Win 6" },
-  ["7"] = { function() gotoWinByWinNumber(7) end, "Win 7" },
-  ["8"] = { function() gotoWinByWinNumber(8) end, "Win 8" },
-  ["9"] = { function() gotoWinByWinNumber(9) end, "Win 9" },
- })
+    local function gotoWinByWinNumber(winNumber)
+        local winId = vim.fn.win_getid(winNumber)
+        vim.fn.win_gotoid(winId)
+    end
+    local function closeWinByid(id)
+        local winId = vim.fn.win_getid(id)
+        vim.fn.win_execute(winId, 'close')
+    end
+    spaceCRegister({
+        name = 'Close wind',
+        ["1"] = { function() closeWinByid(1) end, "Close win 1" },
+        ["2"] = { function() closeWinByid(2) end, "Close win 2" },
+        ["3"] = { function() closeWinByid(3) end, "Close win 3" },
+        ["4"] = { function() closeWinByid(4) end, "Close win 4" },
+        ["5"] = { function() closeWinByid(5) end, "Close win 5" },
+        ["6"] = { function() closeWinByid(6) end, "Close win 6" },
+        ["7"] = { function() closeWinByid(7) end, "Close win 7" },
+        ["8"] = { function() closeWinByid(8) end, "Close win 8" },
+        ["9"] = { function() closeWinByid(9) end, "Close win 9" },
+    })
+
+    spaceRegister({ ["1"] = { function() gotoWinByWinNumber(1) end, "Win 1", },
+        ["2"] = { function() gotoWinByWinNumber(2) end, "Win 2" },
+        ["3"] = { function() gotoWinByWinNumber(3) end, "Win 3" },
+        ["4"] = { function() gotoWinByWinNumber(4) end, "Win 4" },
+        ["5"] = { function() gotoWinByWinNumber(5) end, "Win 5" },
+        ["6"] = { function() gotoWinByWinNumber(6) end, "Win 6" },
+        ["7"] = { function() gotoWinByWinNumber(7) end, "Win 7" },
+        ["8"] = { function() gotoWinByWinNumber(8) end, "Win 8" },
+        ["9"] = { function() gotoWinByWinNumber(9) end, "Win 9" },
+    })
 end
 -------------------------------------------------------------------------------
 --                          buferLine快捷键配置
 -------------------------------------------------------------------------------
 function keybinding.bufferLine()
- spaceRegister({
-  name = "Tabs",
-  ["<space>"] = {
-   name = "Tabs",
-   ["1"] = { ":BufferLineGoToBuffer 1 <CR>", "Tab 1" },
-   ["2"] = { ":BufferLineGoToBuffer 2 <CR>", "Tab 2" },
-   ["3"] = { ":BufferLineGoToBuffer 3 <CR>", "Tab 3" },
-   ["4"] = { ":BufferLineGoToBuffer 4 <CR>", "Tab 4" },
-   ["5"] = { ":BufferLineGoToBuffer 5 <CR>", "Tab 5" },
-   ["6"] = { ":BufferLineGoToBuffer 6 <CR>", "Tab 6" },
-   ["7"] = { ":BufferLineGoToBuffer 7 <CR>", "Tab 7" },
-   ["8"] = { ":BufferLineGoToBuffer 8 <CR>", "Tab 8" },
-   ["9"] = { ":BufferLineGoToBuffer 9 <CR>", "Tab 9" },
-  },
- })
- map("n", "<C-w>c", ":Bdelete!<CR>", opt) -- 关闭窗口
+    spaceRegister({
+        name = "Tabs",
+        ["<space>"] = {
+            name = "Tabs",
+            ["1"] = { ":BufferLineGoToBuffer 1 <CR>", "Tab 1" },
+            ["2"] = { ":BufferLineGoToBuffer 2 <CR>", "Tab 2" },
+            ["3"] = { ":BufferLineGoToBuffer 3 <CR>", "Tab 3" },
+            ["4"] = { ":BufferLineGoToBuffer 4 <CR>", "Tab 4" },
+            ["5"] = { ":BufferLineGoToBuffer 5 <CR>", "Tab 5" },
+            ["6"] = { ":BufferLineGoToBuffer 6 <CR>", "Tab 6" },
+            ["7"] = { ":BufferLineGoToBuffer 7 <CR>", "Tab 7" },
+            ["8"] = { ":BufferLineGoToBuffer 8 <CR>", "Tab 8" },
+            ["9"] = { ":BufferLineGoToBuffer 9 <CR>", "Tab 9" },
+        },
+    })
+    map("n", "<C-w>c", ":Bdelete!<CR>", opt) -- 关闭窗口
 end
 -------------------------------------------------------------------------------
 --                          toggleterm快捷键配置
 -------------------------------------------------------------------------------
 function keybinding.toggleterm()
- map("t", "<Esc>", "<C-\\><C-n>", opt) -- Esc退出terminal
- spaceTRegister({
-  name = "Terminal",
-  t = { ":ToggleTerm<cr>", "Toggle terminal" },
-  a = { ":ToggleTermToggleAll<cr>", "Toggle all terminal" },
-  ["1"] = { ":ToggleTerm 1<cr>", "Toggle terminal 0" },
-  ["2"] = { ":ToggleTerm 2<cr>", "Toggle terminal 2" },
- })
+    map("t", "<Esc>", "<C-\\><C-n>", opt) -- Esc退出terminal
+    spaceTRegister({
+        name = "Terminal",
+        t = { ":ToggleTerm<cr>", "Toggle terminal" },
+a = { ":ToggleTermToggleAll<cr>", "Toggle all terminal" },
+        ["1"] = { ":ToggleTerm 1<cr>", "Toggle terminal 0" },
+        ["2"] = { ":ToggleTerm 2<cr>", "Toggle terminal 2" },
+    })
 end
 -------------------------------------------------------------------------------
 --                          Dashboard 快捷键配置
 -------------------------------------------------------------------------------
 function keybinding.dashboard()
- spaceDRegister({
-  a = { ":Alpha<cr>", "Dashboard" },
- })
+    spaceDRegister({
+    a = { ":Alpha<cr>", "Dashboard" },
+    })
 end
 
 -------------------------------------------------------------------------------
 --                          Project 快捷键配置
 -------------------------------------------------------------------------------
 function keybinding.project()
- spacePRegister({
-  name = "Projects",
-  p = { ":Telescope projects<cr>", "Open projects" },
- })
+spacePRegister({
+        name = "Projects",
+        p = { ":Telescope projects<cr>", "Open projects" },
+    })
 end
 
 -------------------------------------------------------------------------------
 --                          Easymotion 快捷键配置
 -------------------------------------------------------------------------------
 function keybinding.easymotion()
- spaceMRegister({
-  name = "Motion",
-  l = {
-   "<Plug>(easymotion-bd-jk)",
-   "Move to line",
-  },
-  L = {
-   "<Plug>(easymotion-overwin-line)",
-   "Move to over win line",
-  },
-  w = {
-   "<Plug>(easymotion-bd-w)",
-   "Move to word",
-  },
-  W = {
-   "<Plug>(easymotion-overwin-w)",
-   "Move to over win word",
-  },
-  m = {
-   "<Plug>(easymotion-bd-f)",
-   "find {char} to move to {char}",
-  },
-  M = {
-   "<Plug>(easymotion-overwin-f)",
-   "find {char} to move to over {char}",
-  },
-  j = {
-   "<Plug>(easymotion-j)",
-   "j motions: line motions",
-  },
-  K = {
-   "<Plug>(easymotion-k)",
-   "K motions: line motions",
-  },
-  -- 搜索标记
-  k = {
-   "<cmd>Telescope marks<cr>",
-   "find marks",
-  },
- })
+    spaceMRegister({
+        name = "Motion",
+        l = {
+            "<Plug>(easymotion-bd-jk)",
+            "Move to line",
+        },
+        L = {
+            "<Plug>(easymotion-overwin-line)",
+            "Move to over win line",
+        },
+        w = {
+            "<Plug>(easymotion-bd-w)",
+            "Move to word",
+        },
+        W = {
+            "<Plug>(easymotion-overwin-w)",
+            "Move to over win word",
+        },
+        m = {
+            "<Plug>(easymotion-bd-f)",
+            "find {char} to move to {char}",
+        },
+        M = {
+            "<Plug>(easymotion-overwin-f)",
+            "find {char} to move to over {char}",
+        },
+        j = {
+            "<Plug>(easymotion-j)",
+            "j motions: line motions",
+        },
+        K = {
+            "<Plug>(easymotion-k)",
+            "K motions: line motions",
+        },
+        -- 搜索标记
+        k = {
+            "<cmd>Telescope marks<cr>",
+            "find marks",
+        },
+})
 end
 
 -------------------------------------------------------------------------------
 --                           Todo 快捷键配置
 -------------------------------------------------------------------------------
 function keybinding.todo()
- spaceTRegister({
-  name = "Todo",
-  d = {
-   ":TodoTelescope<CR>",
-   "Todo telescope list.",
-  },
- })
+    spaceTRegister({
+        name = "Todo",
+        d = {
+            ":TodoTelescope<CR>",
+            "Todo telescope list.",
+        },
+    })
 end
 
 -------------------------------------------------------------------------------
 --                           Git 快捷键配置
 -------------------------------------------------------------------------------
 function keybinding.git(gitMap, gs, togglePreview)
- gitMap("n", "]c", function()
-  if vim.wo.diff then
-   return "]c"
-  end
-  vim.schedule(function()
-   gs.next_hunk()
-  end)
-  return "<Ignore>"
- end, { expr = true })
+    gitMap("n", "]c", function()
+        if vim.wo.diff then
+            return "]c"
+        end
+        vim.schedule(function()
+            gs.next_hunk()
+        end)
+        return "<Ignore>"
+    end, { expr = true })
 
- gitMap("n", "[c", function()
-  if vim.wo.diff then
-   return "[c"
-  end
-  vim.schedule(function()
-   gs.prev_hunk()
-  end)
-  return "<Ignore>"
- end, { expr = true })
- -- Actions
- gitMap({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>")
- gitMap({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>")
- gitMap("n", "<leader>hS", gs.stage_buffer)
- gitMap("n", "<leader>hu", gs.undo_stage_hunk)
- gitMap("n", "<leader>hR", gs.reset_buffer)
- gitMap("n", "<leader>hp", gs.preview_hunk)
- gitMap("n", "<leader>hb", function()
-  gs.blame_line({ full = true })
- end)
- gitMap("n", "<leader>tb", gs.toggle_current_line_blame)
- gitMap("n", "<leader>hd", gs.diffthis)
- gitMap("n", "<leader>hD", function()
-  gs.diffthis("~")
- end)
- gitMap("n", "<leader>td", gs.toggle_deleted)
- -- Text object
- gitMap({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
- spaceGRegister({
-  name = "Git",
-  D = {
-   function()
-    gs.diffthis("~")
-   end,
-   "Show current diffence view in git.",
-  },
-  d = {
-   name = "git diffence view",
-   d = {
-    function() togglePreview() end,
-    "Toggle git diffence view",
-   },
-   h = {
-    ":DiffviewFileHistory<cr>",
-    "Show the view of git history.",
-   },
-  },
- })
+gitMap("n", "[c", function()
+        if vim.wo.diff then
+            return "[c"
+        end
+        vim.schedule(function()
+            gs.prev_hunk()
+        end)
+        return "<Ignore>"
+    end, { expr = true })
+    -- Actions
+    gitMap({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>")
+    gitMap({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>")
+    gitMap("n", "<leader>hS", gs.stage_buffer)
+    gitMap("n", "<leader>hu", gs.undo_stage_hunk)
+    gitMap("n", "<leader>hR", gs.reset_buffer)
+    gitMap("n", "<leader>hp", gs.preview_hunk)
+    gitMap("n", "<leader>hb", function()
+        gs.blame_line({ full = true })
+    end)
+    gitMap("n", "<leader>tb", gs.toggle_current_line_blame)
+    gitMap("n", "<leader>hd", gs.diffthis)
+    gitMap("n", "<leader>hD", function()
+        gs.diffthis("~")
+    end)
+    gitMap("n", "<leader>td", gs.toggle_deleted)
+    -- Text object
+    gitMap({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+    spaceGRegister({
+        name = "Git",
+        D = {
+            function()
+                gs.diffthis("~")
+            end,
+            "Show current diffence view in git.",
+        },
+        d = {
+            name = "git diffence view",
+d = {
+                function() togglePreview() end,
+"Toggle git diffence view",
+            },
+h = {
+                ":DiffviewFileHistory<cr>",
+"Show the view of git history.",
+            },
+        },
+    })
 end
 
 -------------------------------------------------------------------------------
@@ -482,18 +480,18 @@ function keybinding.outline(bufnr)
         name = 'Outline',
         l = { ':AerialToggle!<cr>', 'Outline' },
     })
-    
+
 end
 -------------------------------------------------------------------------------
 --                          transition配置
 -------------------------------------------------------------------------------
 function keybinding.translator()
- register({
-  ["<leader>"] = {
-      name = 'Dict',
-      d = { ':<c-u>call TranslateSelectText(visualmode())<cr>', 'Translate' },
-  },
- }, { mode = "v" })
+    register({
+    ["<leader>"] = {
+    name = 'Dict',
+            d = { ':<c-u>call TranslateSelectText(visualmode())<cr>', 'Translate' },
+        },
+}, { mode = "v" })
 end
 
 -------------------------------------------------------------------------------
@@ -534,4 +532,64 @@ function keybinding.nvimTree()
         { key = 's', action = 'system_open' },
     }
 end
+-------------------------------------------------------------------------------
+--                          LSP配置
+-------------------------------------------------------------------------------
+function keybinding.LSP(mapbuf)
+    local status, _ = helper.loadModule('Lspsaga')
+    -- rename
+    mapbuf("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
+    if status then
+        mapbuf("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
+        mapbuf('n', 'gd', '<cmd>Lspsaga preview_definition<CR>', opt)
+        mapbuf("n", "gh", "<cmd>Lspsaga hover_doc<cr>", opt)
+        mapbuf("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opt)
+        mapbuf("n", "gp", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
+        mapbuf("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opt)
+        mapbuf("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opt)
+        mapbuf("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
+    else
+        -- code action
+        mapbuf("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
+        -- go xx
+        mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
+        mapbuf("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
+        mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
+        mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
+        mapbuf("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
+        -- diagnostic
+        mapbuf("n", "gp", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)
+        mapbuf("n", "gk", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opt)
+        mapbuf("n", "gj", "<cmd>lua vim.diagnostic.goto_next()<CR>", opt)
+        mapbuf("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
+    end
+end
+
+-------------------------------------------------------------------------------
+--                          CMP配置
+-------------------------------------------------------------------------------
+function keybinding.cmp(cmp)
+    return {
+        -- 出现补全
+        ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
+        -- 取消
+        ["<A-,>"] = cmp.mapping({
+            i = cmp.mapping.abort(),
+            c = cmp.mapping.close()
+        }),
+        -- 上一个
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
+        -- 下一个
+        ["<C-n>"] = cmp.mapping.select_next_item(),
+        -- 确认
+        ["<CR>"] = cmp.mapping.confirm({
+            select = true,
+            behavior = cmp.ConfirmBehavior.Replace
+        }),
+        -- 如果窗口内容太多，可以滚动
+        ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), {"i", "c"}),
+        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), {"i", "c"}),
+    }
+end
+
 return keybinding
