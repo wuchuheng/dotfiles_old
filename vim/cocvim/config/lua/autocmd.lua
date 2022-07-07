@@ -24,6 +24,13 @@ function autoCmd.coc()
  })
 end
 
+function autoCmd.nvimTree()
+    -- 自动关闭
+    vim.cmd([[
+        autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+    ]])
+end
+
 return autoCmd
 
 

@@ -22,12 +22,12 @@ packer.startup({
           config = function() require('plugin-configs.colorscheme').loadConfig() end
         }
         -- coc
-        use{
-          'neoclide/coc.nvim',
-          branch = 'master',
-          run = 'yarn install --frozen-lockfile',
-          config = function() require('plugin-configs.coc').loadConfig() end
-        }
+        -- use{
+        --   'neoclide/coc.nvim',
+        --   branch = 'master',
+        --   run = 'yarn install --frozen-lockfile',
+        --   config = function() require('plugin-configs.coc').loadConfig() end
+        -- }
         -- telescope
         use{
           'nvim-telescope/telescope.nvim',
@@ -134,6 +134,19 @@ packer.startup({
         })
         -- nvim lua guid
         use({ 'nanotee/nvim-lua-guide' })
+        -- nvim-tree
+        use({
+            "kyazdani42/nvim-tree.lua",
+            requires = "kyazdani42/nvim-web-devicons",
+            config = function() require('plugin-configs.nvim-tree').loadConfig() end
+        })
+        -- Dubuger
+        use({
+            'puremourning/vimspector',
+            config = function()
+                -- require('plugin-configs.debugger.init')
+            end
+        })
     end,
     config = {
         display = {

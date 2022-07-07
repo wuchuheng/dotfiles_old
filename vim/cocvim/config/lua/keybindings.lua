@@ -84,14 +84,6 @@ map("v", "J", ":move '>+1<cr>gv-gv", opt) -- 向下移
 map("v", "K", ":move '<-2<cr>gv-gv", opt) -- 向上移
 
 -------------------------------------------------------------------------------
---                          exporer 快捷键配置
--------------------------------------------------------------------------------
-spaceFRegister({
- name = "Files",
- m = { ":CocCommand explorer --toggle --sources=file+<CR>", "Open explorer" },
-})
-
--------------------------------------------------------------------------------
 --                          Coc 快捷键配置
 -------------------------------------------------------------------------------
 function keybinding.coc()
@@ -513,5 +505,33 @@ function keybinding.expandRegion()
         map <c-k> <Plug>(expand_region_expand)
     ]])
 end
-keybinding.expandRegion()
+
+-------------------------------------------------------------------------------
+--                          nvim-tree配置
+-------------------------------------------------------------------------------
+function keybinding.nvimTree()
+    spaceFRegister({
+        name = 'Explorer',
+        e = { ':NvimTreeToggle<cr>', 'Toggle Explorer' }
+    })
+    return {
+        -- 打开文件或文件夹
+        { key = { '<CR>', 'o', '<2-LeftMouse>' }, action = 'edit' },
+        -- 分屏打开文件
+        { key = 'vv', action = 'vsplit' },
+        { key = 'h', action = 'split' },
+        -- 显示隐藏文件
+        { key = 'i', action = 'toggle_custom' }, -- 对应 filters 中的 custom (node_modules)
+        { key = '.', action = 'toggle_dotfiles' }, -- Hide (dotfiles)
+        -- 文件操作
+        { key = '<F5>', action = 'refresh' },
+        { key = 'cr', action = 'create' },
+        { key = 'df', action = 'remove' },
+        { key = 'r', action = 'rename' },
+        { key = 'x', action = 'cut' },
+        { key = 'y', action = 'copy' },
+        { key = 'p', action = 'paste' },
+        { key = 's', action = 'system_open' },
+    }
+end
 return keybinding
