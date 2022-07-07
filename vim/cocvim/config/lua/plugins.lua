@@ -140,6 +140,13 @@ packer.startup({
             requires = "kyazdani42/nvim-web-devicons",
             config = function() require('plugin-configs.nvim-tree').loadConfig() end
         })
+        use({
+            'windwp/nvim-autopairs',
+            config = function () 
+                require('plugin-configs.nvim-autopairs').loadConfig()
+            end
+        })
+        
         -- Dubuger
         use({
             'puremourning/vimspector',
