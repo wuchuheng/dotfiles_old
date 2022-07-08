@@ -539,9 +539,9 @@ function keybinding.LSP(mapbuf)
     local status, _ = helper.loadModule('Lspsaga')
     -- rename
     mapbuf("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
+        mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
     if status then
         mapbuf("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
-        mapbuf('n', 'gd', '<cmd>Lspsaga preview_definition<CR>', opt)
         mapbuf("n", "gh", "<cmd>Lspsaga hover_doc<cr>", opt)
         mapbuf("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opt)
         mapbuf("n", "gp", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
@@ -552,7 +552,6 @@ function keybinding.LSP(mapbuf)
         -- code action
         mapbuf("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
         -- go xx
-        mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
         mapbuf("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
         mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
         mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
