@@ -22,12 +22,12 @@ packer.startup({
           config = function() require('plugin-configs.colorscheme').loadConfig() end
         }
         -- coc
-        -- use{
-        --   'neoclide/coc.nvim',
-        --   branch = 'master',
-        --   run = 'yarn install --frozen-lockfile',
-        --   config = function() require('plugin-configs.coc').loadConfig() end
-        -- }
+        use{
+          'neoclide/coc.nvim',
+          branch = 'master',
+          run = 'yarn install --frozen-lockfile',
+          config = function() require('plugin-configs.coc').loadConfig() end
+        }
         -- telescope
         use{
           'nvim-telescope/telescope.nvim',
@@ -137,48 +137,6 @@ packer.startup({
         })
         -- nvim lua guid
         use({ 'nanotee/nvim-lua-guide' })
-        -- nvim-tree
-        use({
-            "kyazdani42/nvim-tree.lua",
-            requires = "kyazdani42/nvim-web-devicons",
-            config = function() require('plugin-configs.nvim-tree').loadConfig() end
-        })
-        -- Autopairs
-        use({
-            'windwp/nvim-autopairs',
-            config = function () require('plugin-configs.nvim-autopairs').loadConfig() end
-        })
-        -- LSP
-        use({
-            "williamboman/nvim-lsp-installer",
-            commit = "36b44679f7cc73968dbb3b09246798a19f7c14e0",
-            requires= {
-                'neovim/nvim-lspconfig',
-            },
-            config = function() require('plugin-configs.lsp.init').loadConfig() end
-        })
-        -- CMP
-        use({
-                'hrsh7th/nvim-cmp',
-            requires = {
-                -- snippet 引擎
-                'hrsh7th/vim-vsnip',
-                -- 补全源
-                'hrsh7th/cmp-vsnip',
-                'hrsh7th/cmp-nvim-lsp', -- { name = nvim_lsp },
-                'hrsh7th/cmp-buffer', -- { name = 'buffer' },
-                'hrsh7th/cmp-path', -- { name = 'path' } ,
-                'hrsh7th/cmp-cmdline', -- { name = 'cmdline' },
-                'rafamadriz/friendly-snippets', -- 常见编程语言代码段,
-                'onsails/lspkind-nvim', -- the symbol icon in CMP list
-                'tami5/lspsaga.nvim', -- enhance CMP list
-                'simrat39/rust-tools.nvim'
-            },
-            config = function()
-                require('plugin-configs.cmp').loadConfig()
-            end
-        })
-
         -- Dap
         use({
             'puremourning/vimspector',

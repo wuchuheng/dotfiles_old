@@ -90,14 +90,8 @@
   },
   // pairs
   "pairs.disableLanguages": [],
-  "pairs.enableCharacters": [
-    "(",
-      "[",
-        "{",
-          "<",
-          "'",
-          "\"",
-          "`"
-      ],
-  "pairs.enableBackspace": true
+  "pairs.enableCharacters": [ "(", "[", "{", "<", "'", "\"", "`" ],
+  "pairs.enableBackspace": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.checkCurrentLine": true
 }

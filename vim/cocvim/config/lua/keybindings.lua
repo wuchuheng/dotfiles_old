@@ -495,7 +495,7 @@ function keybinding.translator()
 end
 
 -------------------------------------------------------------------------------
---                          transition配置
+--                          expandRegion配置
 -------------------------------------------------------------------------------
 function keybinding.expandRegion()
     vim.cmd([[
@@ -505,94 +505,7 @@ function keybinding.expandRegion()
 end
 
 -------------------------------------------------------------------------------
---                          nvim-tree配置
--------------------------------------------------------------------------------
-function keybinding.nvimTree()
-    spaceFRegister({
-        name = 'Explorer',
-        e = { ':NvimTreeToggle<cr>', 'Toggle Explorer' }
-    })
-    return {
-        -- 打开文件或文件夹
-        { key = { '<CR>', 'o', '<2-LeftMouse>' }, action = 'edit' },
-        -- 分屏打开文件
-        { key = 'vv', action = 'vsplit' },
-        { key = 'h', action = 'split' },
-        -- 显示隐藏文件
-        { key = 'i', action = 'toggle_custom' }, -- 对应 filters 中的 custom (node_modules)
-        { key = '.', action = 'toggle_dotfiles' }, -- Hide (dotfiles)
-        -- 文件操作
-        { key = '<F5>', action = 'refresh' },
-        { key = 'cr', action = 'create' },
-        { key = 'df', action = 'remove' },
-        { key = 'r', action = 'rename' },
-        { key = 'x', action = 'cut' },
-        { key = 'y', action = 'copy' },
-        { key = 'p', action = 'paste' },
-        { key = 's', action = 'system_open' },
-    }
-end
--------------------------------------------------------------------------------
---                          LSP配置
--------------------------------------------------------------------------------
-function keybinding.LSP(mapbuf)
-    local status, _ = helper.loadModule('Lspsaga')
-    -- rename
-    mapbuf("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
-        mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
-    if status then
-        mapbuf("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
-        mapbuf("n", "gh", "<cmd>Lspsaga hover_doc<cr>", opt)
-        mapbuf("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opt)
-        mapbuf("n", "gp", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
-        mapbuf("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opt)
-        mapbuf("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opt)
-        mapbuf("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
-    else
-        -- code action
-        mapbuf("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
-        -- go xx
-        mapbuf("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
-        mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
-        mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
-        mapbuf("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
-        -- diagnostic
-        mapbuf("n", "gp", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)
-        mapbuf("n", "gk", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opt)
-        mapbuf("n", "gj", "<cmd>lua vim.diagnostic.goto_next()<CR>", opt)
-        mapbuf("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
-    end
-end
-
--------------------------------------------------------------------------------
---                          CMP配置
--------------------------------------------------------------------------------
-function keybinding.cmp(cmp)
-    return {
-        -- 出现补全
-        ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
-        -- 取消
-        ["<A-,>"] = cmp.mapping({
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close()
-        }),
-        -- 上一个
-        ["<C-p>"] = cmp.mapping.select_prev_item(),
-        -- 下一个
-        ["<C-n>"] = cmp.mapping.select_next_item(),
-        -- 确认
-        ["<CR>"] = cmp.mapping.confirm({
-            select = true,
-            behavior = cmp.ConfirmBehavior.Replace
-        }),
-        -- 如果窗口内容太多，可以滚动
-        ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), {"i", "c"}),
-        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), {"i", "c"}),
-    }
-end
-
--------------------------------------------------------------------------------
---                          CMP配置
+--                          Dap配置
 -------------------------------------------------------------------------------
 function keybinding.dap()
     -- 开始
@@ -608,6 +521,16 @@ function keybinding.dap()
     map("n", "<leader>dj", "<Plug>VimspectorStepOver", opt)
     map("n", "<leader>dk", "<Plug>VimspectorStepOut", opt)
     map("n", "<leader>dl", "<Plug>VimspectorStepInto", opt)
+end
+
+-------------------------------------------------------------------------------
+--                          Coc-explorer配置
+-------------------------------------------------------------------------------
+function keybinding.cocExplorer()
+    spaceFRegister({
+        name = "Explorer",
+        e = {':CocCommand explorer<cr>', 'Toggle CocExplorer' }
+    })
 end
 
 return keybinding
