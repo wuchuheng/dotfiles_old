@@ -179,11 +179,11 @@ packer.startup({
             end
         })
 
-        -- Dubuger
+        -- Dap
         use({
             'puremourning/vimspector',
             config = function()
-                -- require('plugin-configs.debugger.init')
+                require('plugin-configs.dap.init').loadConfig()
             end
         })
     end
