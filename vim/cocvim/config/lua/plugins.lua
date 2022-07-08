@@ -154,21 +154,30 @@ packer.startup({
             commit = "36b44679f7cc73968dbb3b09246798a19f7c14e0",
             requires= {
                 'neovim/nvim-lspconfig',
+            },
+            config = function() require('plugin-configs.lsp.init').loadConfig() end
+        })
+        -- CMP
+        use({
                 'hrsh7th/nvim-cmp',
+            requires = {
                 -- snippet 引擎
                 'hrsh7th/vim-vsnip',
                 -- 补全源
                 'hrsh7th/cmp-vsnip',
-                'hrsh7th/cmp-nvim-lsp', -- { name = nvim_lsp ,
+                'hrsh7th/cmp-nvim-lsp', -- { name = nvim_lsp },
                 'hrsh7th/cmp-buffer', -- { name = 'buffer' },
-                'hrsh7th/cmp-path', -- { name = 'path' ,
-                'hrsh7th/cmp-cmdline', -- { name = 'cmdline' ,
+                'hrsh7th/cmp-path', -- { name = 'path' } ,
+                'hrsh7th/cmp-cmdline', -- { name = 'cmdline' },
                 'rafamadriz/friendly-snippets', -- 常见编程语言代码段,
                 'onsails/lspkind-nvim', -- the symbol icon in CMP list
                 'tami5/lspsaga.nvim', -- enhance CMP list
             },
-            config = function() require('plugin-configs.lsp.init').loadConfig() end
+            config = function()
+                require('plugin-configs.cmp').loadConfig()
+            end
         })
+
         -- Dubuger
         use({
             'puremourning/vimspector',
@@ -176,14 +185,7 @@ packer.startup({
                 -- require('plugin-configs.debugger.init')
             end
         })
-    end,
-    config = {
-        display = {
-            open_fn = function()
-                return require('packer.util').float({ border = 'single' })
-            end,
-        },
-    },
+    end
 })
 
 -- 每次保存 plugins.lua 自动安装插件
