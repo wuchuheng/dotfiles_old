@@ -172,6 +172,7 @@ packer.startup({
                 'rafamadriz/friendly-snippets', -- 常见编程语言代码段,
                 'onsails/lspkind-nvim', -- the symbol icon in CMP list
                 'tami5/lspsaga.nvim', -- enhance CMP list
+                'simrat39/rust-tools.nvim'
             },
             config = function()
                 require('plugin-configs.cmp').loadConfig()

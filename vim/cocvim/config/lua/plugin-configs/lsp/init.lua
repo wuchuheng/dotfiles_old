@@ -4,7 +4,8 @@ local Module = {}
 
 local function loadLSPConfig()
     local servers = {
-        sumneko_lua = require("plugin-configs.lsp.config.lua")
+        sumneko_lua = require("plugin-configs.lsp.config.lua"),
+        rust_analyzer = require("plugin-configs.lsp.config.rust")
     }
     -- 自动安装 Language Servers
     for name, _ in pairs(servers) do
@@ -33,5 +34,5 @@ end
 function Module.loadConfig()
     loadLSPConfig()
 end
-
+Module.loadConfig()
 return Module
