@@ -139,7 +139,7 @@ local function cmpEnhance()
     }
 end
 
-function loadConfig()
+local function loadConfig()
     local status, cmp = helper.loadModule('cmp')
     if not status then return end
     cmp.setup({
