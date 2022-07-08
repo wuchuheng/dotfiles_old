@@ -26,7 +26,7 @@ packer.startup({
           'neoclide/coc.nvim',
           branch = 'master',
           run = 'yarn install --frozen-lockfile',
-          config = function() require('plugin-configs.coc').loadConfig() end
+          config = function() require('plugin-configs.coc.init').loadConfig() end
         }
         -- telescope
         use{

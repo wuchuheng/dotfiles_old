@@ -1,11 +1,13 @@
 local autocmd = require('autocmd')
 local keybindings = require('keybindings')
 local Module = {}
+local flutter = require('plugin-configs.coc.config.flutter')
+
 local config = function ()
     vim.g.coc_global_extensions = {
         'coc-explorer', -- 目录树
         'coc-pairs', -- 成对符号
-        'coc-flutter', -- flutter
+        flutter.loadConfig(),
         'coc-lua'
     }
     keybindings.cocExplorer()

@@ -31,6 +31,12 @@ function autoCmd.nvimTree()
     ]])
 end
 
+function autoCmd.cocFlutter()
+    vim.cmd([[
+        autocmd BufWritePost *.dart lua vim.fn.win_execute(vim.fn.win_getid(2), '1TermExec cmd="r"')
+    ]])
+end
+
 return autoCmd
 
 
