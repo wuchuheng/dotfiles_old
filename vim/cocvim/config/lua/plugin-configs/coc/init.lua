@@ -15,6 +15,8 @@ local config = function ()
         'coc-lua',
         'coc-json',
         'coc-ecdict',
+        'coc-marketplace',
+        'coc-vetur', -- vue
     }
     vim.cmd([[
         function! ShowDocumentation()
