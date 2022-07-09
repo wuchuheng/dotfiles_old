@@ -1,20 +1,21 @@
 local autocmd = require('autocmd')
 local keybindings = require('keybindings')
+local explorer    = require('plugin-configs.coc.config.explorer')
 local Module = {}
 local flutter = require('plugin-configs.coc.config.flutter')
 
 local config = function ()
     vim.g.coc_global_extensions = {
-        'coc-explorer', -- 目录树
+        explorer.loadConfig(), -- Explorer
         'coc-pairs', -- 成对符号
         flutter.loadConfig(),
         'coc-tsserver',
         'coc-html',
         'coc-css',
         'coc-lua',
-        'coc-json'
+        'coc-json',
+        'coc-ecdict',
     }
-    keybindings.cocExplorer()
     vim.cmd([[
         function! ShowDocumentation()
           if CocAction('hasProvider', 'hover')

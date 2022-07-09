@@ -37,4 +37,4 @@ vim/**/coc/lists
 vim/**/coc/list-symbols-history.json
 vim/**/coc/list-extensions-history.json
 vim/**/coc/extensions/coc-lua-data/db.json
-
+vim/cocvim/coc/extensions/coc-ecdict-data
