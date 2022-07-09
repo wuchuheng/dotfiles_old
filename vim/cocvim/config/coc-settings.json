@@ -181,6 +181,7 @@
     "diagnostic.warningSign": " ",
     "diagnostic.infoSign": "  ",
     "diagnostic.hintSign": " ",
+    "diagnostic.virtualTextPrefix":"# ",
     // json
     "json.enable": true,
     "json.format.enable": true,
