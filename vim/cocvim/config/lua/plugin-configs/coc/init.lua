@@ -11,7 +11,8 @@ local config = function ()
         'coc-tsserver',
         'coc-html',
         'coc-css',
-        'coc-lua'
+        'coc-lua',
+        'coc-json'
     }
     keybindings.cocExplorer()
     vim.cmd([[
