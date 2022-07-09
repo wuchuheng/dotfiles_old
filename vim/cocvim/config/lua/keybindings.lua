@@ -457,15 +457,10 @@ end
 -------------------------------------------------------------------------------
 --                          Outline配置
 -------------------------------------------------------------------------------
-function keybinding.outline(bufnr)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '{', '<cmd>AerialPrev<CR>', {})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '}', '<cmd>AerialNext<CR>', {})
-    -- Jump up the tree with '[[' or ']]'
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '[[', '<cmd>AerialPrevUp<CR>', {})
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>AerialNextUp<CR>', {})
+function keybinding.outline()
     spaceORegister({
         name = 'Outline',
-        l = { ':AerialToggle!<cr>', 'Outline' },
+        l = { ':Vista coc <cr>', 'Outline' },
     })
 end
 -------------------------------------------------------------------------------

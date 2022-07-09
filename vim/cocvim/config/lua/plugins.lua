@@ -111,10 +111,12 @@ packer.startup({
             end
         })
         -- outline
-        use {
-            'stevearc/aerial.nvim',
-            config = function() require('plugin-configs.outline').loadConfig() end
-        }
+        use({
+            'liuchengxu/vista.vim',
+            config = function ()
+                require('plugin-configs.outline').loadConfig()
+            end
+        })
         -- CSS
         use({
             'norcalli/nvim-colorizer.lua',
@@ -146,7 +148,7 @@ packer.startup({
         })
         -- vue
         use( 'posva/vim-vue')
-        -- CMP
+        -- CMP command line
         use({
             "hrsh7th/nvim-cmp",
             requires = {
@@ -161,6 +163,7 @@ packer.startup({
                 })
             end
         })
+        
     end
 })
 
