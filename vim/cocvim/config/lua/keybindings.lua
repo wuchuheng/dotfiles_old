@@ -480,7 +480,6 @@ function keybinding.outline(bufnr)
         name = 'Outline',
         l = { ':AerialToggle!<cr>', 'Outline' },
     })
-
 end
 -------------------------------------------------------------------------------
 --                          transition配置
@@ -529,7 +528,7 @@ end
 function keybinding.cocExplorer()
     spaceFRegister({
         name = "Explorer",
-        e = {':CocCommand explorer<cr>', 'Toggle CocExplorer' }
+        e = {':CocCommand explorer --toggle --sources=buffer-,file+<cr>', 'Toggle CocExplorer' }
     })
 end
 

@@ -176,6 +176,7 @@
     // diagnostic
     "diagnostic.virtualText": true,
     "diagnostic.checkCurrentLine": true,
+    "diagnostic.virtualTextCurrentLineOnly": false,
     // json
     "json.enable": true,
     "json.format.enable": true

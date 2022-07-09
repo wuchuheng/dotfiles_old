@@ -7,6 +7,7 @@ function Module.loadConfig()
     if not status then return end
     aerial.setup({
         on_attach = keybindings.outline
+
     })
 end
 
