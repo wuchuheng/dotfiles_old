@@ -144,6 +144,8 @@ packer.startup({
                 require('plugin-configs.dap.init').loadConfig()
             end
         })
+        -- vue
+        use( 'posva/vim-vue')
     end
 })
 

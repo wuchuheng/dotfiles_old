@@ -8,6 +8,9 @@ local config = function ()
         'coc-explorer', -- 目录树
         'coc-pairs', -- 成对符号
         flutter.loadConfig(),
+        'coc-tsserver',
+        'coc-html',
+        'coc-css',
         'coc-lua'
     }
     keybindings.cocExplorer()
