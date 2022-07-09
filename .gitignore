@@ -28,13 +28,4 @@ vim/**/list-explPresets-history.json
 vim/**/list-explorerActionList-history.json
 vim/**/list-explorerFiles-history.json
 vim/**/explorer-actions
-vim/**/coc/commands
-vim/**/coc/list-commands-history.json
-vim/**/coc/list-diagnostics-history.json
-vim/**/coc/list-lists-history.json
-vim/**/coc/list-location-history.json
-vim/**/coc/lists 
-vim/**/coc/list-symbols-history.json
-vim/**/coc/list-extensions-history.json
-vim/**/coc/extensions/coc-lua-data/db.json
-vim/cocvim/coc/extensions/coc-ecdict-data
+vim/**/coc/
