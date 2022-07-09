@@ -1,7 +1,7 @@
 local getRegisterByPrefix = require("plugin-configs.which-key").getRegisterByPrefix
 local register = require("plugin-configs.which-key").register
 local map = vim.api.nvim_set_keymap
-local helper = require('utils.helper')
+local windows = require('utils.windows')
 local opt = { noremap = true, silent = true }
 vim.g.mapleader = "," -- 指定leader键位
 vim.g.maplocalleader = "-" -- 指定local leader键位
@@ -185,7 +185,6 @@ function keybinding.coc()
             n = { ":CocEnable<cr>", "Enable Coc extensions." },
         },
         l = { ":<C-u>CocList commands<cr>", "Show commands." },
-        c = { [[:silent exec "!open -a 'Google Chrome'"<cr>]], "Open chrome" },
         o = { ":<C-u>CocList outline<cr>", "Find symbol of current document." },
         s = { ":<C-u>CocList -I symbols<cr>", "Search workspace symbols." },
         j = { ":<C-u>CocNext<CR>", "Do default action for next item." },
@@ -260,36 +259,30 @@ end
 --                           Statue line 快捷键配置
 -------------------------------------------------------------------------------
 function keybinding.statueLine()
-    local function gotoWinByWinNumber(winNumber)
-        local winId = vim.fn.win_getid(winNumber)
-        vim.fn.win_gotoid(winId)
-    end
-    local function closeWinByid(id)
-        local winId = vim.fn.win_getid(id)
-        vim.fn.win_execute(winId, 'close')
-    end
     spaceCRegister({
         name = 'Close wind',
-        ["1"] = { function() closeWinByid(1) end, "Close win 1" },
-        ["2"] = { function() closeWinByid(2) end, "Close win 2" },
-        ["3"] = { function() closeWinByid(3) end, "Close win 3" },
-        ["4"] = { function() closeWinByid(4) end, "Close win 4" },
-        ["5"] = { function() closeWinByid(5) end, "Close win 5" },
-        ["6"] = { function() closeWinByid(6) end, "Close win 6" },
-        ["7"] = { function() closeWinByid(7) end, "Close win 7" },
-        ["8"] = { function() closeWinByid(8) end, "Close win 8" },
-        ["9"] = { function() closeWinByid(9) end, "Close win 9" },
+        ["1"] = { function() windows.closeWinByid(1) end, "Close win 1" },
+        ["2"] = { function() windows.closeWinByid(2) end, "Close win 2" },
+        ["3"] = { function() windows.closeWinByid(3) end, "Close win 3" },
+        ["4"] = { function() windows.closeWinByid(4) end, "Close win 4" },
+        ["5"] = { function() windows.closeWinByid(5) end, "Close win 5" },
+        ["6"] = { function() windows.closeWinByid(6) end, "Close win 6" },
+        ["7"] = { function() windows.closeWinByid(7) end, "Close win 7" },
+        ["8"] = { function() windows.closeWinByid(8) end, "Close win 8" },
+        ["9"] = { function() windows.closeWinByid(9) end, "Close win 9" },
     })
-
-    spaceRegister({ ["1"] = { function() gotoWinByWinNumber(1) end, "Win 1", },
-        ["2"] = { function() gotoWinByWinNumber(2) end, "Win 2" },
-        ["3"] = { function() gotoWinByWinNumber(3) end, "Win 3" },
-        ["4"] = { function() gotoWinByWinNumber(4) end, "Win 4" },
-        ["5"] = { function() gotoWinByWinNumber(5) end, "Win 5" },
-        ["6"] = { function() gotoWinByWinNumber(6) end, "Win 6" },
-        ["7"] = { function() gotoWinByWinNumber(7) end, "Win 7" },
-        ["8"] = { function() gotoWinByWinNumber(8) end, "Win 8" },
-        ["9"] = { function() gotoWinByWinNumber(9) end, "Win 9" },
+    spaceCRegister({
+        c = { function() windows.closeCurrentWind() end, "Close Current windows" },
+    })
+    spaceRegister({ ["1"] = { function() windows.gotoWinByWinNumber(1) end, "Win 1", },
+        ["2"] = { function() windows.gotoWinByWinNumber(2) end, "Win 2" },
+        ["3"] = { function() windows.gotoWinByWinNumber(3) end, "Win 3" },
+        ["4"] = { function() windows.gotoWinByWinNumber(4) end, "Win 4" },
+        ["5"] = { function() windows.gotoWinByWinNumber(5) end, "Win 5" },
+        ["6"] = { function() windows.gotoWinByWinNumber(6) end, "Win 6" },
+        ["7"] = { function() windows.gotoWinByWinNumber(7) end, "Win 7" },
+        ["8"] = { function() windows.gotoWinByWinNumber(8) end, "Win 8" },
+        ["9"] = { function() windows.gotoWinByWinNumber(9) end, "Win 9" },
     })
 end
 -------------------------------------------------------------------------------

@@ -53,5 +53,4 @@ function helper.loadModule(moduleName)
   return status, module
 end
 
-
 return helper

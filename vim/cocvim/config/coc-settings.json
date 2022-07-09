@@ -181,12 +181,19 @@
     "diagnostic.warningSign": " ",
     "diagnostic.infoSign": "  ",
     "diagnostic.hintSign": " ",
-    "diagnostic.virtualTextPrefix":"# ",
+    "diagnostic.virtualTextPrefix": "# ",
     // json
     "json.enable": true,
     "json.format.enable": true,
     // suggest
     "suggest.enablePreselect": true,
+    "suggest.noselect": false,
+    "suggest.selection": "none",
+    "suggest.defaultSortMethod": "none",
+    "suggest.snippetIndicator": "",
+    "suggest.languageSourcePriority": 99,
+    "suggest.triggerCompletionWait": 50,
+    "suggest.acceptSuggestionOnCommitCharacter": true,
     "suggest.completionItemKindLabels": {
         "default": "",
         "text": "",
