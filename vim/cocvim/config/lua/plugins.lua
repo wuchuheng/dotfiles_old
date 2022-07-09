@@ -147,19 +147,20 @@ packer.startup({
         -- vue
         use( 'posva/vim-vue')
         -- CMP
-        use("hrsh7th/nvim-cmp")
         use({
-            "hrsh7th/cmp-cmdline",
+            "hrsh7th/nvim-cmp",
+            requires = {
+                "hrsh7th/cmp-cmdline"
+            },
             config = function ()
-                require'cmp'.setup.cmdline(':', {
+                local cmp = require('cmp')
+                cmp.setup.cmdline(':', {
                     sources = {
                         { name = 'cmdline' }
                     }
                 })
             end
         })
-
-
     end
 })
 
