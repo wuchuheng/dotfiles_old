@@ -177,6 +177,10 @@
     "diagnostic.virtualText": true,
     "diagnostic.checkCurrentLine": true,
     "diagnostic.virtualTextCurrentLineOnly": false,
+    "diagnostic.errorSign": " ",
+    "diagnostic.warningSign": " ",
+    "diagnostic.infoSign": "  ",
+    "diagnostic.hintSign": " ",
     // json
     "json.enable": true,
     "json.format.enable": true
