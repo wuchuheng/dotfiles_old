@@ -23,6 +23,7 @@ local spaceERegister = getRegisterByPrefix({ prefix = "<space>e" })
 local spaceTRegister = getRegisterByPrefix({ prefix = "<space>t" })
 local spaceCRegister = getRegisterByPrefix({ prefix = "<space>c" })
 local spaceORegister = getRegisterByPrefix({ prefix = "<space>o" })
+local spaceRRegister = getRegisterByPrefix({ prefix = "<space>r" })
 
 -------------------------------------------------------------------------------
 --                          基本快捷键配置
@@ -511,6 +512,19 @@ function keybinding.cocExplorer()
     spaceFRegister({
         name = "Explorer",
         e = {':CocCommand explorer --toggle --sources=buffer-,file+<cr>', 'Toggle CocExplorer' }
+    })
+end
+
+-------------------------------------------------------------------------------
+--                          Flutter配置
+-------------------------------------------------------------------------------
+function keybinding.flutter()
+    spaceRRegister({
+        name = "Run Flutter",
+        r = {
+            ':CocCommand flutter.run -d emulator-5554 <cr>',
+            'Run Flutter'
+        }
     })
 end
 
