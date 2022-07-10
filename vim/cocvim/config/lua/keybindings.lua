@@ -186,6 +186,10 @@ function keybinding.coc()
         k = { ":<C-u>CocPrev<CR>", "Do default action for previous item." },
         p = { ":<C-u>CocListResume<CR>", "Resume latest coc list." },
     })
+    vim.cmd([[
+        hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
+        nmap <silent> <C-c> <Plug>(coc-cursors-word)* :nohlsearch<cr>
+    ]])
 end
 
 -------------------------------------------------------------------------------
