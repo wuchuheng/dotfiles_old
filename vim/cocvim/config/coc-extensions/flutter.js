@@ -25,7 +25,10 @@ exports.activate = context => {
     //
     // }))
     const onTyping = debounce(() => {
-        nvim.command('w | CocCommand flutter.dev.hotReload')
+        const command = 'flutter.dev.hotReload'
+        if(commands.has(command)) {
+            nvim.command(`w | CocCommand ${command}`)
+        }
     }, 500)
 
     workspace.onDidChangeTextDocument(async e => {
