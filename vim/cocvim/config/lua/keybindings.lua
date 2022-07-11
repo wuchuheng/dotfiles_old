@@ -184,7 +184,7 @@ function keybinding.coc()
         s = { ":<C-u>CocList -I symbols<cr>", "Search workspace symbols." },
         n = { ":<C-u>CocNext<CR>", "Do default action for next item." },
         p = { ":<C-u>CocPrev<CR>", "Do default action for previous item." },
-        r = { ":<C-u>CocListResume<CR>", "Resume latest coc list." },
+        r = { ":<C-u>CocRestart<CR>", "Restart Coc" },
     })
     vim.cmd([[
         hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
