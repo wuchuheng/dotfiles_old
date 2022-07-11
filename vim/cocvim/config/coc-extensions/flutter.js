@@ -11,25 +11,29 @@ const debounce = (callback, wait) => {
 }
 
 
+const onTyping = debounce(() => {
+    const command = 'flutter.dev.hotReload'
+    if(commands.has(command)) {
+        nvim.command(`w | CocCommand ${command}`)
+    }
+}, 500)
+
+
 exports.activate = context => {
     let { nvim } = workspace
-    // context.subscriptions.push(commands.registerCommand('code.convertCodePoint', async () => {
-    //
-    //   let [pos, line] = await nvim.eval('[coc#util#cursor(), getline(".")]')
-    //   let curr = pos[1] == 0 ? '' : line.slice(pos[1], pos[1] + 1)
-    //   let code = curr.codePointAt(0)
-    //   let str = code.toString(16)
-    //   str = str.length == 4 ? str : '0'.repeat(4 - str.length) + str
-    //   let result = `${line.slice(0, pos[1])}${'\\u' + str}${line.slice(pos[1] + 1)}`
-    //   await nvim.call('setline', ['.', result])
-    //
-    // }))
-    const onTyping = debounce(() => {
-        const command = 'flutter.dev.hotReload'
-        if(commands.has(command)) {
-            nvim.command(`w | CocCommand ${command}`)
+    let isToggleOutline = false
+    context.subscriptions.push(commands.registerCommand('flutter.openOutline', async () => {
+        const openOutline = () => {
+            const command = 'flutter.outline'
+            if ( commands.has(command) ) {
+                nvim.command(`CocCommand ${command}`) 
+                isToggleOutline = true
+            } else {
+                setTimeout(openOutline, 100)
+            }
         }
-    }, 500)
+        !isToggleOutline && openOutline()
+    }))
 
     workspace.onDidChangeTextDocument(async e => {
         const {uri} = e.textDocument

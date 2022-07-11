@@ -1,10 +1,11 @@
 local Module = {}
 local autoCmd = require('autocmd')
+local keybindings = require('keybindings')
 
 function Module.loadConfig()
-    local extensionsName = 'coc-flutter-tools'
     autoCmd.cocFlutter()
-    return extensionsName
+    keybindings.flutter()
+    return 'coc-flutter-tools'
 end
 
 return Module

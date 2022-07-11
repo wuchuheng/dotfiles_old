@@ -33,7 +33,7 @@ end
 
 function autoCmd.cocFlutter()
     vim.cmd([[
-        autocmd BufCreate *.dart nmap<space>ol :CocCommand flutter.toggleOutline<cr>)
+        autocmd BufRead *.dart CocCommand flutter.openOutline
     ]])
 end
 
