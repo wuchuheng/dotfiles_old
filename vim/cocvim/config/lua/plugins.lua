@@ -28,7 +28,6 @@ packer.startup({
           run = 'yarn install --frozen-lockfile',
           config = function() require('plugin-configs.coc.init').loadConfig() end
         }
-        -- use{ 'neoclide/coc-css', run = 'yarn install --frozen-lockfile' }
         -- telescope
         use{
           'nvim-telescope/telescope.nvim',
