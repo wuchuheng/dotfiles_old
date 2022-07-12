@@ -1,6 +1,7 @@
 local autocmd = require('autocmd')
 local keybindings = require('keybindings')
 local explorer    = require('plugin-configs.coc.config.explorer')
+local snippets    = require('plugin-configs.coc.config.snippets')
 local Module = {}
 local flutter = require('plugin-configs.coc.config.flutter')
 
@@ -17,6 +18,7 @@ local config = function ()
         'coc-ecdict',
         'coc-marketplace',
         'coc-vetur', -- vue
+        snippets.loadConfig()
     }
     vim.cmd([[
         function! ShowDocumentation()

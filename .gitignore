@@ -22,10 +22,7 @@ telescope_history
 .local-history
 data/sessions
 # vim 
-vim/web/data
 vim/cocvim/data
-vim/**/list-explPresets-history.json
-vim/**/list-explorerActionList-history.json
-vim/**/list-explorerFiles-history.json
-vim/**/explorer-actions
-vim/**/coc/
+vim/cocvim/coc/
+!vim/cocvim/coc/ultisnips/
+
