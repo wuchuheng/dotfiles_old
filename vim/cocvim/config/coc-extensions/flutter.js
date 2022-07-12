@@ -1,4 +1,4 @@
-const { commands, workspace, window } = require('coc.nvim')
+const { commands, workspace } = require('coc.nvim')
 
 const debounce = (callback, wait) => {
     let timer = 0
@@ -10,15 +10,13 @@ const debounce = (callback, wait) => {
     }
 }
 
-
-const onTyping = debounce(() => {
+const handleTyping = debounce(() => {
     let { nvim } = workspace
     const command = 'flutter.dev.hotReload'
     if(commands.has(command)) {
         nvim.command(`w | CocCommand ${command}`)
     }
 }, 500)
-
 
 exports.activate = context => {
     let { nvim } = workspace
@@ -40,7 +38,7 @@ exports.activate = context => {
         const {uri} = e.textDocument
         if(uri && uri.length > 0) {
            const [,extension]= uri.split('.')
-            extension === 'dart' && onTyping()
+            extension === 'dart' && handleTyping()
         }
     }, null, [])
 }
