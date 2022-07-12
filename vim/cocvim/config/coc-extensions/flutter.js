@@ -12,6 +12,7 @@ const debounce = (callback, wait) => {
 
 
 const onTyping = debounce(() => {
+    let { nvim } = workspace
     const command = 'flutter.dev.hotReload'
     if(commands.has(command)) {
         nvim.command(`w | CocCommand ${command}`)
