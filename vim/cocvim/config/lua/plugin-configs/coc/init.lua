@@ -18,7 +18,7 @@ local config = function ()
         'coc-ecdict',
         'coc-marketplace',
         'coc-vetur', -- vue
-        snippets.loadConfig()
+        snippets.loadConfig(),
     }
     vim.cmd([[
         function! ShowDocumentation()

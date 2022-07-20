@@ -130,7 +130,7 @@ if [[ ${#vimTool} > 0 ]]; then
         initCoc $prefix/coc/extensions/node_modules #初始化Coc
         # --maximized
         # nvim $@
-        nvim  $@
+        $neovide --frame=buttonless $@
     }
 fi
 
