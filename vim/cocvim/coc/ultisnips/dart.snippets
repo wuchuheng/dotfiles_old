@@ -38,3 +38,19 @@ class ${1} extends StatelessWidget {
 }
 endsnippet
 
+snippet stful "create a StatefulWidget" b
+class ${1} extends StatefulWidget {
+    const ${1}({ Key? key }) : super(key: key);
+
+    @override
+    State<${1}> createState() => _${1}State();
+}
+
+class _${1}State extends State<${1}> {
+    @override
+    Widget build(BuildContext context) {
+        return Container();
+    }
+}
+endsnippet
+
