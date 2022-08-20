@@ -1,0 +1,6 @@
+Plug 'easymotion/vim-easymotion'
+set easymotion
+let mapleader=","
+set relativenumber
+set number
+

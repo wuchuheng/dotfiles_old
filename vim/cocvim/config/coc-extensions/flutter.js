@@ -38,7 +38,7 @@ exports.activate = context => {
         const {uri} = e.textDocument
         if(uri && uri.length > 0) {
            const [,extension]= uri.split('.')
-            extension === 'dart' && handleTyping()
+            // extension === 'dart' && handleTyping()
         }
     }, null, [])
 }

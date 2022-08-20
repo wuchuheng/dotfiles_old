@@ -155,6 +155,7 @@ function setProxy() {
         # npm config set proxy http://${proxySocket}
         # npm config set https-proxy http://${proxySocket}
     fi
+    export https_proxy=http://127.0.0.1:6152;export http_proxy=http://127.0.0.1:6152;export all_proxy=socks5://127.0.0.1:6153
     echo "set proxy successfully"
 }
 setProxy
