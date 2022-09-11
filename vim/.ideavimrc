@@ -1,6 +1,8 @@
 Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
 set easymotion
 let mapleader=","
+map <Leader> <Plug>(easymotion-prefix)
 set relativenumber
 set number
 

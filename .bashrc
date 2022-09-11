@@ -143,20 +143,21 @@ proxyStatus=0
 proxySockIp=127.0.0.1
 proxySockPort=6153
 function setProxy() {
-    proxySocket=${proxySockIp}:${proxySockPort}
-    proxyHttp=$proxySocket
-    proxyHttps=$proxySocket
-    export all_proxy=socks5://${proxySocket}
-    proxyStatus=1
-    export http_proxy=http://${proxySocket} && export https_proxy=http://${proxySocket}
-    # git config --global https.proxy http://${proxyIp} && git config --global https.proxy https://${proxyIp}
-    git config --global http.proxy socks5://${proxySocket}
-    if [[ hasNpm ]]; then
-        # npm config set proxy http://${proxySocket}
-        # npm config set https-proxy http://${proxySocket}
-    fi
-    export https_proxy=http://127.0.0.1:6152;export http_proxy=http://127.0.0.1:6152;export all_proxy=socks5://127.0.0.1:6153
-    echo "set proxy successfully"
+    export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;export ALL_PROXY=socks5://127.0.0.1:1080
+    # proxySocket=${proxySockIp}:${proxySockPort}
+    # proxyHttp=$proxySocket
+    # proxyHttps=$proxySocket
+    # export all_proxy=socks5://${proxySocket}
+    # proxyStatus=1
+    # export http_proxy=http://${proxySocket} && export https_proxy=http://${proxySocket}
+    # # git config --global https.proxy http://${proxyIp} && git config --global https.proxy https://${proxyIp}
+    # git config --global http.proxy socks5://${proxySocket}
+    # if [[ hasNpm ]]; then
+    #     # npm config set proxy http://${proxySocket}
+    #     # npm config set https-proxy http://${proxySocket}
+    # fi
+    # export https_proxy=http://127.0.0.1:6152;export http_proxy=http://127.0.0.1:6152;export all_proxy=socks5://127.0.0.1:6153
+    # echo "set proxy successfully"
 }
 setProxy
 
