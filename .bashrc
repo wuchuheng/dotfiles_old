@@ -141,10 +141,11 @@ alias ip="curl ip.sb"
 proxyStatus=0
 
 proxySockIp=127.0.0.1
-proxySockPort=6153
+proxySockPort=8080
 function setProxy() {
+    # export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
     export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;export ALL_PROXY=socks5://127.0.0.1:1080
-    # proxySocket=${proxySockIp}:${proxySockPort}
+    proxySocket=${proxySockIp}:${proxySockPort}
     # proxyHttp=$proxySocket
     # proxyHttps=$proxySocket
     # export all_proxy=socks5://${proxySocket}
@@ -206,3 +207,11 @@ alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {
 alias cc='open -a "Google Chrome"'
 
 export PATH=$PATH:$ROOT_DIR/bin
+export PATH=$PATH:/Users/wuchuheng/gradle/gradle-7.6/bin
+
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+export ANDROID_NDK_HOME=/Users/$HOME/Library/Android/sdk/ndk-bundle
+
+source ~/dotfiles/notification.sh
