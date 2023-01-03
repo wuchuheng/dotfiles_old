@@ -215,3 +215,17 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export ANDROID_NDK_HOME=/Users/$HOME/Library/Android/sdk/ndk-bundle
 
 source ~/dotfiles/notification.sh
+
+
+function ke() {
+	 kill -9 $(ps -ax  | grep Eudic  | grep LightPeek_en  | awk 'NR == 1 {print $1}' )
+}
+
+function rv() {
+ssh ubuntu@wuchuheng.com <<END
+    sudo su;
+    v2ray restart;
+    exit;
+    exit;
+END
+}

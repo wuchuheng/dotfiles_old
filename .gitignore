@@ -25,4 +25,7 @@ data/sessions
 vim/cocvim/data
 vim/cocvim/coc/
 !vim/cocvim/coc/ultisnips/
+vim/cocvim/state/log
+vim/cocvim/state/undo/
+
 
