@@ -221,7 +221,7 @@ function ke() {
 	 kill -9 $(ps -ax  | grep Eudic  | grep LightPeek_en  | awk 'NR == 1 {print $1}' )
 }
 
-function rv() {
+function vr() {
 ssh ubuntu@wuchuheng.com <<END
     sudo su;
     v2ray restart;
