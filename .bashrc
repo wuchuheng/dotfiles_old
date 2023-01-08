@@ -218,7 +218,8 @@ source ~/dotfiles/notification.sh
 
 
 function ke() {
-	 kill -9 $(ps -ax  | grep Eudic  | grep LightPeek_en  | awk 'NR == 1 {print $1}' )
+	 kill -9 $(ps -ax  | grep Eudic  | awk 'NR == 1 {print $1}' )
+	 kill -9 $(ps -ax  | grep LightPeek_en  | awk 'NR == 1 {print $1}' )
 }
 
 function vr() {
