@@ -160,7 +160,7 @@ function setProxy() {
     # export https_proxy=http://127.0.0.1:6152;export http_proxy=http://127.0.0.1:6152;export all_proxy=socks5://127.0.0.1:6153
     # echo "set proxy successfully"
 }
-setProxy
+# setProxy
 
 # 解除http https代理
 function unSetProxy() {
