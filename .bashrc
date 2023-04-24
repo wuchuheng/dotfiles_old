@@ -230,3 +230,6 @@ ssh ubuntu@wuchuheng.com <<END
     exit;
 END
 }
+
+alias rustbook='rustup docs --book'
+
