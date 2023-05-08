@@ -22,7 +22,7 @@ log() {
 
   case "$level" in
     "INFO")
-      printf "${BLUE}${INFO_ICON} %s [%s:%d] %s${NC}\n" "$timestamp" "$script" "$line" "$message"
+      printf "${INFO_ICON} %s [%s:%d] %s\n" "$timestamp" "$script" "$line" "$message"
       ;;
     "SUCCESS")
       printf "${GREEN}${SUCCESS_ICON} %s [%s:%d] %s${NC}\n" "$timestamp" "$script" "$line" "$message"
