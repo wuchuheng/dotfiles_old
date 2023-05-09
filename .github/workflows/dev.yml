@@ -39,3 +39,4 @@ jobs:
       with:
         entrypoint: /bin/sh
         args: -c 'echo "Hello, CentOS!"'
+
