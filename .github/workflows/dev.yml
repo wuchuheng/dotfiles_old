@@ -39,10 +39,8 @@ jobs:
       - name: Run CentOS container
         run: |
           docker run --rm -v "${PWD}:/app" -w /app centos:latest /bin/sh -c '
-            cd /etc/yum.repos.d/
-            sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-            sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
-            cd -
+            sed -i "s/mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-*
+            sed -i "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
             cat src/tools/zsh_cli/install_zsh_cli.sh 
             bash src/tools/zsh_cli/install_zsh_cli.sh 
           '
