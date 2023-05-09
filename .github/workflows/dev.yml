@@ -21,7 +21,7 @@ jobs:
         run:  |
           cat ./src/tools/zsh_cli/install_zsh_cli.sh
           bash ./src/tools/zsh_cli/install_zsh_cli.sh
-  Macos:
+  MacOS:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
@@ -38,7 +38,7 @@ jobs:
 
       - name: Run CentOS container
         run: |
-          docker run --rm -v "${PWD}:/app" centos:latest /bin/sh -c '
-            yum update -y && yum install -y vim
-            ls -ahl /app
+          docker run --rm -v "${PWD}:/app" -w /app centos:latest /bin/sh -c '
+            cat src/tools/zsh_cli/install_zsh_cli.sh 
+            bash src/tools/zsh_cli/install_zsh_cli.sh 
           '
