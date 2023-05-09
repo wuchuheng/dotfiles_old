@@ -27,7 +27,9 @@ if [ "$OS_TYPE" = "debian" ] || [ "$OS_TYPE" = "ubuntu" ]; then
     sudo apt install zsh -y;
     successLog
 elif [ "$OS_TYPE" = "centos" ] || [ "$OS_TYPE" = "rhel" ]; then
-    echo "CentOS/RHEL"
+    sudo yum update -y;
+    sudo yum install -y zsh;
+    successLog
 elif [ "$OS_TYPE" = "Darwin" ]; then
     brew install zsh;
     successLog;
