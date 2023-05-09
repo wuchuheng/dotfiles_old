@@ -6,8 +6,9 @@ on:
       - '**'
     branches:
       - dev
+      - master
 jobs:
-  linux-ubuntu:
+  Linux-ubuntu:
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-20.04]
@@ -20,3 +21,24 @@ jobs:
         run:  |
           cat ./src/tools/zsh_cli/install_zsh_cli.sh
           bash ./src/tools/zsh_cli/install_zsh_cli.sh
+  MacOS:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install zsh
+        run:  |
+          cat ./src/tools/zsh_cli/install_zsh_cli.sh
+          bash ./src/tools/zsh_cli/install_zsh_cli.sh
+  CentOS:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run CentOS container
+        run: |
+          docker run --rm -v "${PWD}:/app" -w /app centos:latest /bin/sh -c '
+            cat src/tools/zsh_cli/install_zsh_cli.sh 
+            bash src/tools/zsh_cli/install_zsh_cli.sh 
+          '

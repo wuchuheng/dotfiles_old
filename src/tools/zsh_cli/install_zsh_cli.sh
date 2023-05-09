@@ -23,13 +23,18 @@ successLog() {
 
 # 判断操作系统类型
 if [ "$OS_TYPE" = "debian" ] || [ "$OS_TYPE" = "ubuntu" ]; then
-    sudo apt update;
-    sudo apt install zsh -y;
-    successLog
+    sudo apt update && sudo apt install zsh -y && successLog
 elif [ "$OS_TYPE" = "centos" ] || [ "$OS_TYPE" = "rhel" ]; then
-    echo "CentOS/RHEL"
+    # CentOS 8 
+    minorver=8.5.2111
+    sed -e "s|^mirrorlist=|#mirrorlist=|g" \
+             -e "s|^#baseurl=http://mirror.centos.org/\$contentdir/\$releasever|baseurl=https://mirrors.aliyun.com/centos-vault/$minorver|g" \
+             -i.bak \
+         /etc/yum.repos.d/CentOS-*.repo
+    yum makecache    
+    yum update -y && yum install -y zsh && successLog
 elif [ "$OS_TYPE" = "Darwin" ]; then
-    echo "MacOS"
+    brew install zsh && successLog;
 else
     echo "Unknown"
 fi
