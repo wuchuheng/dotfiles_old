@@ -28,4 +28,5 @@ vim/cocvim/coc/
 vim/cocvim/state/log
 vim/cocvim/state/undo/
 
-
+# docs
+docs/node_modules
