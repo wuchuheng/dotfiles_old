@@ -4,8 +4,8 @@
 os_type=$(uname)
 
 # 判断操作系统类型
-if [ "$os_type" = "debian" ] || [ "$os_type" = "ubuntu" ]; then
-    echo "Debian/Ubuntu"
+if [ "$os_type" = "Linux" ]; then
+    cat /etc/os-release
 elif [ "$os_type" = "centos" ] || [ "$os_type" = "rhel" ]; then
     echo "CentOS/RHEL"
 elif [ "$os_type" = "Darwin" ]; then
