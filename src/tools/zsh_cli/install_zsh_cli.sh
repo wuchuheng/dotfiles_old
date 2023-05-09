@@ -8,6 +8,7 @@ else
     os_type=$(uname)
 fi
 
+echo $os_type;
 # 判断操作系统类型
 if [ "$os_type" = "debian" ] || [ "$os_type" = "ubuntu" ]; then
     apt update;
@@ -19,6 +20,3 @@ elif [ "$os_type" = "Darwin" ]; then
 else
     echo "Unknown"
 fi
-
-zsh
-
