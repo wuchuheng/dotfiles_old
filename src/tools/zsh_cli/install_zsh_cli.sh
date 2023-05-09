@@ -1,14 +1,34 @@
 #!/bin/sh
+CURRENT_FILE_PATH="$(dirname $0)"
+
+source $CURRENT_FILE_PATH/../../checkers/commandChecker.sh
+source $CURRENT_FILE_PATH/../../utils/log.sh
+
 
 # 检测当前操作系统类型
-os_type=$(uname)
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS_TYPE=$ID
+else
+    OS_TYPE=$(uname)
+fi
+
+log "INFO" "The OS is $OS_TYPE"
+
+successLog() {
+  log "SUCCESS" "The zsh be installed."
+  zsh --version
+}
+
 
 # 判断操作系统类型
-if [ "$os_type" = "debian" ] || [ "$os_type" = "ubuntu" ]; then
-    echo "Debian/Ubuntu"
-elif [ "$os_type" = "centos" ] || [ "$os_type" = "rhel" ]; then
+if [ "$OS_TYPE" = "debian" ] || [ "$OS_TYPE" = "ubuntu" ]; then
+    sudo apt update;
+    sudo apt install zsh -y;
+    successLog
+elif [ "$OS_TYPE" = "centos" ] || [ "$OS_TYPE" = "rhel" ]; then
     echo "CentOS/RHEL"
-elif [ "$os_type" = "Darwin" ]; then
+elif [ "$OS_TYPE" = "Darwin" ]; then
     echo "MacOS"
 else
     echo "Unknown"

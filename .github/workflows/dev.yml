@@ -1,0 +1,22 @@
+name: Developer
+
+on:
+  push:
+    tags:
+      - '**'
+    branches:
+      - dev
+jobs:
+  linux-ubuntu:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-20.04]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install zsh
+        run:  |
+          cat ./src/tools/zsh_cli/install_zsh_cli.sh
+          bash ./src/tools/zsh_cli/install_zsh_cli.sh
