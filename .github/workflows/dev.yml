@@ -31,16 +31,14 @@ jobs:
           bash ./src/tools/zsh_cli/install_zsh_cli.sh
   CentOS:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Run CentOS container
-        uses: docker://centos:latest
-        with:
-          entrypoint: /bin/sh
-          args: |
-            yum update -y
-            yum install -y vim
-            ls -ahl
-
+        run: |
+          docker run --rm -v "${PWD}:/app" centos:latest /bin/sh -c '
+            yum update -y && yum install -y vim
+            ls -ahl /app
+          '
