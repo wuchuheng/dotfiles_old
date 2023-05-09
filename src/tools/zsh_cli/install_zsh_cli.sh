@@ -10,7 +10,7 @@ fi
 
 # 判断操作系统类型
 if [ "$os_type" = "debian" ] || [ "$os_type" = "ubuntu" ]; then
-    echo "Debian/Ubuntu"
+    apt -y install zsh;
 elif [ "$os_type" = "centos" ] || [ "$os_type" = "rhel" ]; then
     echo "CentOS/RHEL"
 elif [ "$os_type" = "Darwin" ]; then
@@ -18,5 +18,6 @@ elif [ "$os_type" = "Darwin" ]; then
 else
     echo "Unknown"
 fi
-echo $os_type
+
+zsh
 
