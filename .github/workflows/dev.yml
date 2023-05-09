@@ -7,8 +7,12 @@ on:
     branches:
       - dev
 jobs:
-  linux:
-    runs-on: ubuntu-latest
+  linux-ubuntu:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-20.04, ubuntu-18.04, ubuntu-16.04]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v3
