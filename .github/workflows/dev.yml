@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: install zsh
+      - name: Install zsh
         run:  |
           cat ./src/tools/zsh_cli/install_zsh_cli.sh
           bash ./src/tools/zsh_cli/install_zsh_cli.sh
