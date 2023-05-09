@@ -31,12 +31,16 @@ jobs:
           bash ./src/tools/zsh_cli/install_zsh_cli.sh
   CentOS:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup CentOS
-      uses: docker://centos:latest
-      with:
-        entrypoint: /bin/sh
-        args: -c 'echo "Hello, CentOS!"'
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run CentOS container
+        uses: docker://centos:latest
+        with:
+          entrypoint: /bin/sh
+          args: |
+            yum update -y
+            yum install -y vim
+            ls -ahl
 
