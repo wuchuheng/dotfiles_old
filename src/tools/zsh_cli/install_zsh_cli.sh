@@ -17,6 +17,7 @@ log "INFO" "The OS is $OS_TYPE"
 
 successLog() {
   log "SUCCESS" "The zsh be installed."
+  zsh --version
 }
 
 
@@ -32,6 +33,4 @@ elif [ "$OS_TYPE" = "Darwin" ]; then
 else
     echo "Unknown"
 fi
-
-zsh --version
 
