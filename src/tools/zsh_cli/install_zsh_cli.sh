@@ -29,7 +29,8 @@ if [ "$OS_TYPE" = "debian" ] || [ "$OS_TYPE" = "ubuntu" ]; then
 elif [ "$OS_TYPE" = "centos" ] || [ "$OS_TYPE" = "rhel" ]; then
     echo "CentOS/RHEL"
 elif [ "$OS_TYPE" = "Darwin" ]; then
-    echo "MacOS"
+    brew install zsh;
+    successLog;
 else
     echo "Unknown"
 fi
