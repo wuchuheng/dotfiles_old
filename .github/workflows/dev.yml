@@ -17,4 +17,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: check zsh cli
-        run: bash src/tools/zsh_cli/install_zsh_cli.sh
+        run: |
+          bash src/tools/zsh_cli/install_zsh_cli.sh
