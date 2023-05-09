@@ -13,4 +13,5 @@ elif [ "$os_type" = "Darwin" ]; then
 else
     echo "Unknown"
 fi
+echo $os_type
 
