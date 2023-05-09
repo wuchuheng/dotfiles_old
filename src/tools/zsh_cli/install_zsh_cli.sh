@@ -11,8 +11,8 @@ fi
 echo $os_type;
 # 判断操作系统类型
 if [ "$os_type" = "debian" ] || [ "$os_type" = "ubuntu" ]; then
-    apt update;
-    apt install zsh -y;
+    sudo apt update;
+    sudo apt install zsh -y;
 elif [ "$os_type" = "centos" ] || [ "$os_type" = "rhel" ]; then
     echo "CentOS/RHEL"
 elif [ "$os_type" = "Darwin" ]; then
