@@ -30,3 +30,5 @@ vim/cocvim/state/undo/
 
 # docs
 docs/node_modules
+
+src/runtime/
