@@ -11,6 +11,3 @@ if ! check_command mail; then
   exit 1;
 fi
 
-
-
-
