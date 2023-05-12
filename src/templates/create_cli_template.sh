@@ -9,30 +9,25 @@ TOOL_NAME=$(echo "$TOOL_NAME" | sed -E 's/ +/_/g')
 
 SUB_TARGET_PATH="${CURRENT_FILE_PATH}/../cli"
 
-# Create directory structure
-mkdir -p "${SUB_TARGET_PATH}/${TOOL_NAME}_cli/${TOOL_NAME}_cli_installer"
-mkdir -p "${SUB_TARGET_PATH}/${TOOL_NAME}_cli/${TOOL_NAME}_cli_uninstaller"
+CLI_PATH=${SUB_TARGET_PATH}/${TOOL_NAME}_cli
+INSTALLATION_PROVIDER_PATH=${CLI_PATH}/${TOOL_NAME}_cli_installation_provider
+UNINSTALLATION_PROVIDER_PATH=${CLI_PATH}/${TOOL_NAME}_cli_uninstallation_provider
 
-# Generate File 1: cli_installer.sh
-installer_file="${SUB_TARGET_PATH}/${TOOL_NAME}_cli/${TOOL_NAME}_cli_installer/${TOOL_NAME}_cli_installer.sh"
-cat > "$installer_file" << EOF
+# Create directory structure
+mkdir -p "${INSTALLATION_PROVIDER_PATH}"
+mkdir -p "${UNINSTALLATION_PROVIDER_PATH}"
+
+# Generate File 1: cli_installation_provider.sh
+INSTALLATION_PROVIDER="${INSTALLATION_PROVIDER_PATH}/${TOOL_NAME}_cli_installation_provider.sh"
+cat > "$INSTALLATION_PROVIDER" << EOF
 #!/bin/bash
 
 echo "Installing $TOOL_NAME CLI cli tool..."
 # Write installation example code here
 EOF
 
-# Generate File 2: is_installed_cli.sh
-is_installed_file="${SUB_TARGET_PATH}/${TOOL_NAME}_cli/${TOOL_NAME}_cli_installer/is_installed_${TOOL_NAME}_cli.sh"
-cat > "$is_installed_file" << EOF
-#!/bin/bash
-
-# Write example code here to check if the cli tool is already installed
-# Return 0 if installed; Return 1 if not installed
-EOF
-
 # Generate File 3: main.sh
-main_file="${SUB_TARGET_PATH}/${TOOL_NAME}_cli/${TOOL_NAME}_cli_main.sh"
+main_file="${CLI_PATH}/load_${TOOL_NAME}_cli_to_zsh_env_provider.sh"
 cat > "$main_file" << EOF
 #!/bin/bash
 
@@ -42,13 +37,75 @@ cat > "$main_file" << EOF
 EOF
 
 # Generate File 4: cli_uninstaller.sh
-uninstaller_file="${SUB_TARGET_PATH}/${TOOL_NAME}_cli/${TOOL_NAME}_cli_uninstaller/${TOOL_NAME}_cli_uninstaller.sh"
+uninstaller_file="${UNINSTALLATION_PROVIDER_PATH}/${TOOL_NAME}_cli_uninstaller_provider.sh"
 cat > "$uninstaller_file" << EOF
 #!/bin/bash
 
 echo "Uninstalling $TOOL_NAME CLI tool..."
 # Write uninstallation example code here
 EOF
+
+log  "SUCCESS" "Generate test files 5: __test__"
+INSTALLED_TESTS_PATH=${CLI_PATH}/__test__/installed_tests/
+mkdir -p $INSTALLED_TESTS_PATH
+
+CLI_EXISTS_TEST_FILE=${INSTALLED_TESTS_PATH}/1_${TOOL_NAME}_cli_exists_test.sh
+cat > "$CLI_EXISTS_TEST_FILE" << EOF
+#!/bin/bash
+
+TEST_NAME="${TOOL_NAME}"
+TEST_DESC="Test whether the ${TOOL_NAME} CLI exists"
+START_TIMESTAMP=\$(date +%s)
+DURATION=0;
+if command -v ${TOOL_NAME} >/dev/null 2>&1; then
+    DURATION=\$(date +%s) - \${START_TIMESTAMP}
+    exit 0;
+else
+    DURATION=\$(date +%s) - \${START_TIMESTAMP}
+    exit 1;
+fi
+
+EOF
+
+CLI_AVAILABLE_TEST_FILE=${INSTALLED_TESTS_PATH}/2_${TOOL_NAME}_cli_available_test.sh
+cat > "$CLI_AVAILABLE_TEST_FILE" << EOF
+#!/bin/bash
+
+TEST_NAME="${TOOL_NAME}"
+TEST_DESC="Test whether the ${TOOL_NAME} CLI exists"
+START_TIMESTAMP=\$(date +%s)
+DURATION=0;
+if command -v ${TOOL_NAME} >/dev/null 2>&1; then
+    DURATION=\$(date +%s) - \${START_TIMESTAMP}
+    exit 0;
+else
+    DURATION=\$(date +%s) - \${START_TIMESTAMP}
+    exit 1;
+fi
+
+EOF
+
+UNINSTALLED_TESTS_PATH=${CLI_PATH}/__test__/uninstalled_tests/
+mkdir -p ${UNINSTALLED_TESTS_PATH}
+
+CLI_INVALID_TEST_FILE=${UNINSTALLED_TESTS_PATH}/1_${TOOL_NAME}_cli_invalid_test.sh
+cat > "$CLI_INVALID_TEST_FILE" << EOF
+#!/bin/bash
+
+TEST_NAME="${TOOL_NAME}"
+TEST_DESC="Test whether the ${TOOL_NAME} CLI exists"
+START_TIMESTAMP=\$(date +%s)
+DURATION=0;
+if command -v ${TOOL_NAME} >/dev/null 2>&1; then
+    DURATION=\$(date +%s) - \${START_TIMESTAMP}
+    exit 1;
+else
+    DURATION=\$(date +%s) - \${START_TIMESTAMP}
+    exit 0;
+fi
+
+EOF
+
 
 log "SUCCESS" "Successfully created $TOOL_NAME CLI tool template files."
 
