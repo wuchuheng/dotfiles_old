@@ -11,41 +11,16 @@ IS_FORCE_INSTALLATION=false
 # import utils
 source $PROJECT_PATH/src/utils/log.sh
 
+# To init
+source $PROJECT_PATH/src/common/install/init.sh
+
 # Parse command line options
 while [[ $# -gt 0 ]]
 do
 key="$1"
 case $key in
     -h|--help)
-      echo "Usage: ./install.sh [OPTIONS]"
-      echo ""
-      echo "Options:"
-      echo "  -h, --help              Display this help message and exit"
-      echo "  -v, --version           Display the version number and exit"
-      echo "  -p, --path PATH         Set the installation path for dotfiles project (default: $INSTALL_PATH/dotfile)"
-      echo ""
-      echo "Description:"
-      echo "  The install.sh script is used to install the dotfiles project on your system. It supports the following options:"
-      echo ""
-      echo "  -h, --help              Display this help message and exit"
-      echo "                          This option displays the help message for the install.sh script."
-      echo ""
-      echo "  -v, --version           Display the version number and exit"
-      echo "                          This option displays the version number of the dotfiles project."
-      echo ""
-      echo "  -p, --path PATH         Set the installation path for dotfiles project (default: $INSTALL_PATH/dotfiles)"
-      echo "                          This option sets the installation path for the dotfiles project. If the specified path does not exist, it will be created."
-      echo ""
-      echo "  -f, --force             Forced Installation."
-      echo ""
-      echo "Examples:"
-      echo "  # Install the dotfiles project in the default location"
-      echo "  ./install.sh"
-      echo ""
-      echo "  # Install the dotfiles project in a custom location"
-      echo "  ./install.sh --path /opt/dotfiles"
-      echo ""
-      echo "  # Overwrite existing installation files"
+      source $PROJECT_PATH/src/common/install/documentation.sh
       exit 0
     ;;
     -v|--version)
@@ -71,40 +46,11 @@ if [ -f $IS_INSTALL_LOG_PATH ]  && [ $IS_FORCE_INSTALLATION != true ]; then
     exit 1;
 fi
 
-bash $PROJECT_PATH/src/checkers/zshChecker.sh || exit 1
-bash $PROJECT_PATH/src/tools/send_email_notification_cli/install_check_send_email_notifcation_cli.sh || exit 1
-bash $PROJECT_PATH/src/tools/git_cli/check_is_exist_git_cli.sh || exit 1
+# To install all tools
+source $PROJECT_PATH/src/common/install/install_tools.sh
 
-# Add bootstrap configuration to .zshrc.
-MAIN_FILE_PATH="${PROJECT_PATH}/src/main.sh"
-isloadBashrc=$(cat ~/.zshrc | grep "$MAIN_FILE_PATH")
-if [ "$isloadBashrc" == '' ]; then
-  log "INFO" "To load the main.sh to ~/.zshrc"
-  echo "" >>~/.zshrc 
-  echo "# Dotfiles start" >>~/.zshrc 
-  echo "if [ -e "$MAIN_FILE_PATH" ];then" >>~/.zshrc
-  echo "    source $MAIN_FILE_PATH;" >>~/.zshrc
-  echo "fi" >>~/.zshrc
-  echo "# Dotfiles end" >>~/.zshrc 
-  echo "" >>~/.zshrc 
-  zsh
-  source ~/.zshrc
-fi
-
-# Add bootstrap configuration to .bashrc.
-if [ -e ~/.bashrc ]; then
-  TAG_FOR_BASH="# to load zsh,"
-  isloadBashrcToBashrc=$(cat ~/.bashrc | grep "$TAG_FOR_BASH")
-  if [ "$isloadBashrcToBashrc" == '' ]; then
-      echo "" >> ~/.bashrc
-      echo "${TAG_FOR_BASH} start" >> ~/.bashrc
-      echo "zsh" >> ~/.bashrc
-      echo "${TAG_FOR_BASH} end" >> ~/.bashrc
-      echo "" >> ~/.bashrc
-  fi
-fi
-
-isloadBashrcToBash=$(cat ~/.bashrc | grep "$MAIN_FILE_PATH")
+# Add bootstrap configuration.
+source $PROJECT_PATH/src/common/install/to_push_config_to_env.sh
 
 echo "PROJECT_PATH=${PROJECT_PATH}" > $PROJECT_PATH_LOG_PATH 
 echo $(date +"%Y-%m-%d %T") > $IS_INSTALL_LOG_PATH 
