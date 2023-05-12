@@ -75,8 +75,9 @@ bash $PROJECT_PATH/src/checkers/zshChecker.sh || exit 1
 bash $PROJECT_PATH/src/tools/send_email_notification_cli/install_check_send_email_notifcation_cli.sh || exit 1
 bash $PROJECT_PATH/src/tools/git_cli/check_is_exist_git_cli.sh || exit 1
 
+# Add bootstrap configuration to .zshrc.
 MAIN_FILE_PATH="${PROJECT_PATH}/src/main.sh"
-isloadBashrc=$(cat ~/.bashrc | grep "$MAIN_FILE_PATH")
+isloadBashrc=$(cat ~/.zshrc | grep "$MAIN_FILE_PATH")
 if [ "$isloadBashrc" == '' ]; then
   log "INFO" "To load the main.sh to ~/.zshrc"
   echo "" >>~/.zshrc 
@@ -89,6 +90,21 @@ if [ "$isloadBashrc" == '' ]; then
   zsh
   source ~/.zshrc
 fi
+
+# Add bootstrap configuration to .bashrc.
+if [ -e ~/.bashrc ]; then
+  TAG_FOR_BASH="# to load zsh,"
+  isloadBashrcToBashrc=$(cat ~/.bashrc | grep "$TAG_FOR_BASH")
+  if [ "$isloadBashrcToBashrc" == '' ]; then
+      echo "" >> ~/.bashrc
+      echo "${TAG_FOR_BASH} start" >> ~/.bashrc
+      echo "zsh" >> ~/.bashrc
+      echo "${TAG_FOR_BASH} end" >> ~/.bashrc
+      echo "" >> ~/.bashrc
+  fi
+fi
+
+isloadBashrcToBash=$(cat ~/.bashrc | grep "$MAIN_FILE_PATH")
 
 echo "PROJECT_PATH=${PROJECT_PATH}" > $PROJECT_PATH_LOG_PATH 
 echo $(date +"%Y-%m-%d %T") > $IS_INSTALL_LOG_PATH 
