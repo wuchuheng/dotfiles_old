@@ -9,10 +9,10 @@ IS_INSTALL=true
 IS_FORCE_INSTALLATION=false
 
 # import utils
-source $PROJECT_PATH/src/utils/log.sh
+source $PROJECT_PATH/src/utils/log.sh || exit 1
 
 # To init
-source $PROJECT_PATH/src/common/install/init.sh
+source $PROJECT_PATH/src/common/install/init.sh || exit 1
 
 # Parse command line options
 while [[ $# -gt 0 ]]
@@ -20,7 +20,7 @@ do
 key="$1"
 case $key in
     -h|--help)
-      source $PROJECT_PATH/src/common/install/documentation.sh
+      source $PROJECT_PATH/src/common/install/documentation.sh || exit 1
       exit 0
     ;;
     -v|--version)
@@ -46,11 +46,11 @@ if [ -f $IS_INSTALL_LOG_PATH ]  && [ $IS_FORCE_INSTALLATION != true ]; then
     exit 1;
 fi
 
-# To install all tools
-source $PROJECT_PATH/src/common/install/install_tools.sh
+# To install all cli
+source $PROJECT_PATH/src/common/install/install_all_cli.sh || exit 1
 
 # Add bootstrap configuration.
-source $PROJECT_PATH/src/common/install/to_push_config_to_env.sh
+source $PROJECT_PATH/src/common/install/to_push_config_to_env.sh || exit 1
 
 echo "PROJECT_PATH=${PROJECT_PATH}" > $PROJECT_PATH_LOG_PATH 
 echo $(date +"%Y-%m-%d %T") > $IS_INSTALL_LOG_PATH 

@@ -4,10 +4,10 @@ CURRENT_FILE_PATH="$(dirname $0)"
 
 source $CURRENT_FILE_PATH/../utils/log.sh
 
-read -p "Please enter the name of the tool you want to create: " TOOL_NAME
+read -p "Please enter the name of the cli tool you want to create: " TOOL_NAME
 TOOL_NAME=$(echo "$TOOL_NAME" | sed -E 's/ +/_/g')
 
-SUB_TARGET_PATH="${CURRENT_FILE_PATH}/../tools"
+SUB_TARGET_PATH="${CURRENT_FILE_PATH}/../cli"
 
 # Create directory structure
 mkdir -p "${SUB_TARGET_PATH}/${TOOL_NAME}_cli/${TOOL_NAME}_cli_installer"
@@ -18,7 +18,7 @@ installer_file="${SUB_TARGET_PATH}/${TOOL_NAME}_cli/${TOOL_NAME}_cli_installer/$
 cat > "$installer_file" << EOF
 #!/bin/bash
 
-echo "Installing $TOOL_NAME CLI tool..."
+echo "Installing $TOOL_NAME CLI cli tool..."
 # Write installation example code here
 EOF
 
@@ -27,7 +27,7 @@ is_installed_file="${SUB_TARGET_PATH}/${TOOL_NAME}_cli/${TOOL_NAME}_cli_installe
 cat > "$is_installed_file" << EOF
 #!/bin/bash
 
-# Write example code here to check if the tool is already installed
+# Write example code here to check if the cli tool is already installed
 # Return 0 if installed; Return 1 if not installed
 EOF
 
@@ -37,7 +37,7 @@ cat > "$main_file" << EOF
 #!/bin/bash
 
 # This is the entry file for $TOOL_NAME CLI tool
-# Write the main logic of the tool here
+# Write the main logic of the CLI tool here
 # Add appropriate comments to explain the purpose and functionality of the file
 EOF
 
