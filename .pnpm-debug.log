@@ -1,0 +1,14 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_REGISTRIES_MISMATCH",
+    "err": {
+      "name": "pnpm",
+      "message": "This modules directory was created using the following registries configuration: {\"default\":\"https://registry.npm.taobao.org/\"}. The current configuration is {\"default\":\"https://registry.npmjs.org/\"}. To recreate the modules directory using the new settings, run \"pnpm install\".",
+      "code": "ERR_PNPM_REGISTRIES_MISMATCH",
+      "stack": "pnpm: This modules directory was created using the following registries configuration: {\"default\":\"https://registry.npm.taobao.org/\"}. The current configuration is {\"default\":\"https://registry.npmjs.org/\"}. To recreate the modules directory using the new settings, run \"pnpm install\".\n    at validateModules (/Users/wuchuheng/.nvm/versions/node/v16.15.1/lib/node_modules/pnpm/dist/pnpm.cjs:93733:15)\n    at async getContext (/Users/wuchuheng/.nvm/versions/node/v16.15.1/lib/node_modules/pnpm/dist/pnpm.cjs:93603:28)\n    at async mutateModules (/Users/wuchuheng/.nvm/versions/node/v16.15.1/lib/node_modules/pnpm/dist/pnpm.cjs:120543:19)\n    at async handler (/Users/wuchuheng/.nvm/versions/node/v16.15.1/lib/node_modules/pnpm/dist/pnpm.cjs:122135:35)\n    at async /Users/wuchuheng/.nvm/versions/node/v16.15.1/lib/node_modules/pnpm/dist/pnpm.cjs:186810:21\n    at async run (/Users/wuchuheng/.nvm/versions/node/v16.15.1/lib/node_modules/pnpm/dist/pnpm.cjs:186784:34)\n    at async runPnpm (/Users/wuchuheng/.nvm/versions/node/v16.15.1/lib/node_modules/pnpm/dist/pnpm.cjs:187002:5)\n    at async /Users/wuchuheng/.nvm/versions/node/v16.15.1/lib/node_modules/pnpm/dist/pnpm.cjs:186994:7"
+    }
+  }
+}

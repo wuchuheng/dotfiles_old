@@ -1,5 +1,9 @@
 #!/bin/bash
 
+CURRENT_FILE_PATH="$(dirname $0)"
+
+# source $CURRENT_FILE_PATH/colors_printf.sh
+
 # 定义颜色常量
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -25,7 +29,10 @@ log() {
       printf "${INFO_ICON} %s [%s:%d] %s\n" "$timestamp" "$script" "$line" "$message"
       ;;
     "SUCCESS")
-      printf "${GREEN}${SUCCESS_ICON} %s [%s:%d] %s${NC}\n" "$timestamp" "$script" "$line" "$message"
+      success_string=$( printf "${SUCCESS_ICON} %s [%s:%d] %s" "$timestamp" "$script" "$line" "$message")
+echo $success_string
+      # green_print ${success_string}
+
       ;;
     "WARNING")
       printf "${YELLOW}${WARNING_ICON} %s [%s:%d] %s${NC}\n" "$timestamp" "$script" "$line" "$message"

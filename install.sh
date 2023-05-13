@@ -1,18 +1,12 @@
 #!/bin/bash
 
-# Default values
-PROJECT_PATH=$(pwd)
-INSTALL_PATH=$PROJECT_PATH
-FORCE_INSTALL=false
+source ./src/bootstrap/compile_boot.sh || exit 1
+
+#echo $DOTFILES_BASE_PATH
 VERSION_NUMBER="1.0.0"
-IS_INSTALL=true
 IS_FORCE_INSTALLATION=false
 
-# import utils
-source $PROJECT_PATH/src/utils/log.sh || exit 1
-
-# To init
-source $PROJECT_PATH/src/common/install/init.sh || exit 1
+import /src/utils/log.sh # import utils
 
 # Parse command line options
 while [[ $# -gt 0 ]]
@@ -20,7 +14,7 @@ do
 key="$1"
 case $key in
     -h|--help)
-      source $PROJECT_PATH/src/common/install/documentation.sh || exit 1
+      import /src/common/install/documentation.sh
       exit 0
     ;;
     -v|--version)
@@ -38,20 +32,18 @@ case $key in
 esac
 done
 
-PROJECT_PATH_LOG_PATH=$PROJECT_PATH/src/runtime/logs/project_path_log.sh
-IS_INSTALL_LOG_PATH=$PROJECT_PATH/src/runtime/logs/is_install_log.sh
-
+IS_INSTALL_LOG_PATH=$DOTFILES_BASE_PATH/src/runtime/logs/is_install_log.sh
 if [ -f $IS_INSTALL_LOG_PATH ]  && [ $IS_FORCE_INSTALLATION != true ]; then
     log "ERROR" "The installation failed because the project has already been installed previously."
     exit 1;
 fi
 
+# Mark Installed
+echo $(date +"%Y-%m-%d %T") > $IS_INSTALL_LOG_PATH
+
 # To install all cli
-source $PROJECT_PATH/src/common/install/install_all_cli.sh || exit 1
+import /src/common/install/install_all_cli.sh 
 
 # Add bootstrap configuration.
-source $PROJECT_PATH/src/common/install/to_push_config_to_env.sh || exit 1
-
-echo "PROJECT_PATH=${PROJECT_PATH}" > $PROJECT_PATH_LOG_PATH 
-echo $(date +"%Y-%m-%d %T") > $IS_INSTALL_LOG_PATH 
+import /src/common/install/to_push_config_to_env.sh
 

@@ -3,6 +3,7 @@
 CURRENT_FILE_PATH="$(dirname $0)"
 
 source $CURRENT_FILE_PATH/../utils/log.sh
+source $CURRENT_FILE_PATH/../utils/color_printf.sh
 
 read -p "Please enter the name of the cli tool you want to create: " TOOL_NAME
 TOOL_NAME=$(echo "$TOOL_NAME" | sed -E 's/ +/_/g')
@@ -25,6 +26,7 @@ cat > "$INSTALLATION_PROVIDER" << EOF
 echo "Installing $TOOL_NAME CLI cli tool..."
 # Write installation example code here
 EOF
+log "INFO" "$(green_print CREATE) $INSTALLATION_PROVIDER"
 
 # Generate File 3: main.sh
 main_file="${CLI_PATH}/load_${TOOL_NAME}_cli_to_zsh_env_provider.sh"
@@ -44,9 +46,10 @@ cat > "$uninstaller_file" << EOF
 echo "Uninstalling $TOOL_NAME CLI tool..."
 # Write uninstallation example code here
 EOF
+log "INFO" "$(green_print CREATE) $uninstaller_file"
 
-log  "SUCCESS" "Generate test files 5: __test__"
-INSTALLED_TESTS_PATH=${CLI_PATH}/__test__/installed_tests/
+# log  "SUCCESS" "Generate test files 5: __test__"
+INSTALLED_TESTS_PATH=${CLI_PATH}/__test__/installed_tests
 mkdir -p $INSTALLED_TESTS_PATH
 
 CLI_EXISTS_TEST_FILE=${INSTALLED_TESTS_PATH}/1_${TOOL_NAME}_cli_exists_test.sh
@@ -66,6 +69,7 @@ else
 fi
 
 EOF
+log "INFO" "$(green_print CREATE) $CLI_EXISTS_TEST_FILE"
 
 CLI_AVAILABLE_TEST_FILE=${INSTALLED_TESTS_PATH}/2_${TOOL_NAME}_cli_available_test.sh
 cat > "$CLI_AVAILABLE_TEST_FILE" << EOF
@@ -84,8 +88,9 @@ else
 fi
 
 EOF
+log "INFO" "$(green_print CREATE) $CLI_AVAILABLE_TEST_FILE"
 
-UNINSTALLED_TESTS_PATH=${CLI_PATH}/__test__/uninstalled_tests/
+UNINSTALLED_TESTS_PATH=${CLI_PATH}/__test__/uninstalled_tests
 mkdir -p ${UNINSTALLED_TESTS_PATH}
 
 CLI_INVALID_TEST_FILE=${UNINSTALLED_TESTS_PATH}/1_${TOOL_NAME}_cli_invalid_test.sh
@@ -106,6 +111,5 @@ fi
 
 EOF
 
-
-log "SUCCESS" "Successfully created $TOOL_NAME CLI tool template files."
+log "INFO" "$(green_print CREATE) $CLI_INVALID_TEST_FILE"
 
