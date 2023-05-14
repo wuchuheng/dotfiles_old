@@ -1,16 +1,15 @@
 #!/bin/bash
 
-CURRENT_FILE_PATH="$(dirname $0)"
-
-source $CURRENT_FILE_PATH/../utils/log.sh
-source $CURRENT_FILE_PATH/../utils/color_printf.sh
+source src/bootstrap/compile_boot.sh || exit 1
+import /src/utils/log.sh
+import /src/utils/color_printf.sh
 
 read -p "Please enter the name of the cli tool you want to create: " TOOL_NAME
 TOOL_NAME=$(echo "$TOOL_NAME" | sed -E 's/ +/_/g')
-
-SUB_TARGET_PATH="${CURRENT_FILE_PATH}/../cli"
-
-CLI_PATH=${SUB_TARGET_PATH}/${TOOL_NAME}_cli
+order_number=$(ls $DOTFILES_BASE_PATH/src/cli | wc -l | sed -E 's/ +//g')
+order_number=$(expr "$order_number" + 1)
+SUB_TARGET_PATH="${DOTFILES_BASE_PATH}/src/cli"
+CLI_PATH=${SUB_TARGET_PATH}/${order_number}_${TOOL_NAME}_cli
 INSTALLATION_PROVIDER_PATH=${CLI_PATH}/${TOOL_NAME}_cli_installation_provider
 UNINSTALLATION_PROVIDER_PATH=${CLI_PATH}/${TOOL_NAME}_cli_uninstallation_provider
 
