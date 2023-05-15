@@ -21,3 +21,22 @@ import() {
     exit 1
   fi
 }
+
+# 在cli目录中获取最大的数值编号
+get_max_number_in_cli_path() {
+  local max_number=0
+  cli_path=$DOTFILES_BASE_PATH/src/cli
+  for directory in "$cli_path"/*/; do
+    if [[ -d "$directory" ]]; then
+      directory=${directory:0:${#directory} - 1}
+      last_directory_name=${directory//$cli_path\//}
+      IFS="_" read -ra parts <<< "$last_directory_name"
+      number=$((${parts[0]}))
+      if [ $number -gt $max_number ];then
+        max_number=$number
+      fi
+    fi
+  done
+
+  echo $max_number;
+}
