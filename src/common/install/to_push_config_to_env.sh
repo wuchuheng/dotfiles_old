@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Add bootstrap configuration to .zshrc.
-MAIN_FILE_PATH="${PROJECT_PATH}/src/main.sh"
+readonly local MAIN_FILE_PATH="$(get_full_path $(get_main_sh_path))"
 isloadBashrc=$(cat ~/.zshrc | grep "$MAIN_FILE_PATH")
 if [ "$isloadBashrc" == '' ]; then
   log "INFO" "To load the main.sh to ~/.zshrc"

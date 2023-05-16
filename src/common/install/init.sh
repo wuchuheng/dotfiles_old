@@ -7,5 +7,8 @@ if [ ! -f ${main_sh_path} ]; then
   cat > ${main_sh_path} <<EOF
 #!/bin/sh
 
+DOTFILES_BASE_PATH=${DOTFILES_BASE_PATH}
+source ${DOTFILES_BASE_PATH}/src/bootstrap/bash_env_boot.sh || exit
+
 EOF
 fi

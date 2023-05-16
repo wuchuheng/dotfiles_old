@@ -103,3 +103,35 @@ get_cli_to_env_provider_by_cli_directory_name(){
   local cli_name="${directory:$number}"
   echo "/src/cli/${parts[0]}_${cli_name}/load_${cli_name}_to_zsh_env_provider.sh"
 }
+
+##
+# 获取目录
+#
+# get_directory "/1/2/3/4/5" 1
+# @return "/1/2/3/4"
+##
+get_directory() {
+    # $1: Full path
+    # $2: Number of parent directories to remove (optional, default is 0)
+
+    local full_path="$1"
+    local parent_count="${2:-0}"
+    local subpath=""
+
+    # Remove trailing slash (if any)
+    full_path="${full_path%/}"
+
+    # Split the path into an array
+    IFS="/" read -ra path_parts <<< "$full_path"
+
+    # Determine the starting index for the subpath
+    local start_index=$((parent_count + 1))
+
+    # Concatenate the subpath from the path parts
+    for ((i = 0; i < ${#path_parts[@]} - ${start_index}; i++)); do
+        subpath+="/${path_parts[i + 1]}"
+    done
+
+    # Print the subpath
+    echo "$subpath"
+}

@@ -50,3 +50,5 @@ import /src/common/install/install_all_cli.sh
 # Add bootstrap configuration.
 import /src/common/install/to_push_config_to_env.sh
 
+zsh
+
