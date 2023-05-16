@@ -41,6 +41,9 @@ fi
 # Mark Installed
 echo $(date +"%Y-%m-%d %T") > $IS_INSTALL_LOG_PATH
 
+# To init before to insall
+import /src/common/install/init.sh 
+
 # To install all cli
 import /src/common/install/install_all_cli.sh 
 

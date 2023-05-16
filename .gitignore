@@ -32,3 +32,4 @@ vim/cocvim/state/undo/
 docs/node_modules
 
 src/runtime/
+src/main.sh
