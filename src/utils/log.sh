@@ -29,10 +29,8 @@ log() {
       printf "${INFO_ICON} %s [%s:%d] %s\n" "$timestamp" "$script" "$line" "$message"
       ;;
     "SUCCESS")
-      success_string=$( printf "${SUCCESS_ICON} %s [%s:%d] %s" "$timestamp" "$script" "$line" "$message")
-echo $success_string
-      # green_print ${success_string}
-
+      success_string=$( printf "${GREEN} ${SUCCESS_ICON} %s [%s:%d] %s ${NC}\n" "$timestamp" "$script" "$line" "$message")
+      echo $success_string
       ;;
     "WARNING")
       printf "${YELLOW}${WARNING_ICON} %s [%s:%d] %s${NC}\n" "$timestamp" "$script" "$line" "$message"

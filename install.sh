@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 source ./src/bootstrap/compile_boot.sh || exit 1
 
 #echo $DOTFILES_BASE_PATH
@@ -50,5 +51,9 @@ import /src/common/install/install_all_cli.sh
 # Add bootstrap configuration.
 import /src/common/install/to_push_config_to_env.sh
 
-zsh
+if [ $? == 0 ]; then
+  log "INFO" "To launching zsh"
+  log "SUCCESS" "Install sucessfully"
+  zsh
+fi
 
