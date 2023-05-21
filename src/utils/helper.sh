@@ -179,7 +179,7 @@ except_str() {
     printf "$(bg_red_print " FAIL ") ${current_file}:${line}\n"
     printf "    $(pink_print '●') $(pink_print "${TEST_NAME}")\n"
     printf "    Expected: $(green_print $1)\n"
-    printf "    Received: $(red_print $2)\n"
+    printf "    Received: $(red_print $2)\n\n"
     is_pass=1
     return 1
   fi

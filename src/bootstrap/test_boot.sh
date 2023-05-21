@@ -16,6 +16,8 @@ test_by_dir_path() {
   local total_tests=0
   local total_pass=0
   local total_fail=0
+  local startTimestamp=$(date +%s.%N | awk '{ printf "%.0f\n", $1 * 1000000 }')
+  local is_all_pass=0
   for file in "${files[@]}"; do
     ((total_tests++))
     is_path=0
@@ -25,11 +27,18 @@ test_by_dir_path() {
       ((total_pass++))
     else
       ((total_fail++))
+      is_all_pass=1
     fi
   done
+  local endTimestamp=$(date +%s.%N | awk '{ printf "%.0f\n", $1 * 1000000 }')
+  local durationTime=$(((endTimestamp - startTimestamp) / 1000000 ))
   echo ""
   printf "$(bold_print 'Tests:')      $(red_print ${total_fail}) $(red_print 'failed'), $(green_print "${total_pass}" $BOLD) $(green_print 'passed'), %d total\n" ${total_tests}
-  # bg_red_print " FAIL "
+  printf "$(bold_print 'Time:')        ${durationTime} s\n"
+  printf "Ran all test suites.\n"
+  if [ ${is_all_pass} != 0 ]; then
+    printf "$(red_print 'Test failed. See above for more details')\n"
+  fi
 }
 
 for element in "${TEST_DIR[@]}"
