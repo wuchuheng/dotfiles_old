@@ -168,7 +168,7 @@ except_str() {
   current_file=${test_file:${prefix_path_len}}
   local line="${BASH_LINENO[0]}"
   local is_ok=0
-  if [ $1 == $2 ];then
+  if [ "$1" == "$2" ];then
     is_ok=1
   fi
   test_name="test_name:${TEST_NAME}"
@@ -178,8 +178,8 @@ except_str() {
   else
     printf "$(bg_red_print " FAIL ") ${current_file}:${line}\n"
     printf "    $(pink_print '●') $(pink_print "${TEST_NAME}")\n"
-    printf "    Expected: $(green_print $1)\n"
-    printf "    Received: $(red_print $2)\n\n"
+    printf "    Expected: $(green_print "$1")\n"
+    printf "    Received: $(red_print "$2")\n\n"
     is_pass=1
     return 1
   fi

@@ -54,6 +54,8 @@ CLI_EXISTS_TEST_FILE=${INSTALLED_TESTS_PATH}/1_${TOOL_NAME}_cli_exists_test.sh
 cat > "$CLI_EXISTS_TEST_FILE" << EOF
 #!/bin/bash
 
+import /src/main.sh
+
 TEST_NAME="${TOOL_NAME}"
 TEST_DESC="Test whether the ${TOOL_NAME} CLI exists"
 START_TIMESTAMP=\$(date +%s)
