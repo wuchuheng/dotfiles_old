@@ -89,7 +89,12 @@ get_main_sh_path(){
 #
 ##
 get_full_path(){
-  echo "${DOTFILES_BASE_PATH}$1"
+  first_char="${1:0:1}"
+  splic_symbol=""
+  if [ $first_char != '/' ]; then
+    splic_symbol="/"
+  fi
+  echo "${DOTFILES_BASE_PATH}${splic_symbol}$1"
 }
 
 ##
@@ -135,3 +140,49 @@ get_directory() {
     # Print the subpath
     echo "$subpath"
 }
+
+##
+# 获取一个目录下的全部文件
+# @return ("file1" "file2")
+#
+get_files_by_path() {
+  local file_list=()
+  path="$1"
+  local fil_list=$(ls -l  $1 | awk 'NR > 1  {print $9}')
+  while IFS= read -r line; do
+    IFS="_" read -ra parts <<< "$line"
+    number=$((${parts[0]}))
+    file_list[$number]=$line
+  done <<< "${fil_list}"
+  echo "${file_list[@]}"
+}
+
+##
+# 断言字符
+# except_string "excepted str" "received str"
+##
+except_str() {
+  local prefix_path_len=${#DOTFILES_BASE_PATH}
+  ((prefix_path_len++))
+  local test_file=${BASH_SOURCE[1]}
+  current_file=${test_file:${prefix_path_len}}
+  local line="${BASH_LINENO[0]}"
+  local is_ok=0
+  if [ $1 == $2 ];then
+    is_ok=1
+  fi
+  test_name="test_name:${TEST_NAME}"
+  if [ ${is_ok} == 1 ];then
+    # printf "$(bg_green_print " PASS ") ${current_file}:${line} $test_name \n"
+    return 0
+  else
+    printf "$(bg_red_print " FAIL ") ${current_file}:${line}\n"
+    printf "    $(pink_print '●') $(pink_print "${TEST_NAME}")\n"
+    printf "    Expected: $(green_print $1)\n"
+    printf "    Received: $(red_print $2)\n"
+    is_pass=1
+    return 1
+  fi
+}
+
+

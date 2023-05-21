@@ -13,6 +13,5 @@ if [ ! -e $LOGS_PATH ]; then
     mkdir -p $LOGS_PATH;
 fi
 
-
 source $DOTFILES_BASE_PATH/src/utils/helper.sh || exit 1
 
