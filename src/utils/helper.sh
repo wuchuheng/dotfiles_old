@@ -219,3 +219,55 @@ except_str() {
   fi
 }
 
+import /src/utils/color_printf.sh
+
+##
+# 执行测试
+# test_by_installed_state "installed" # OR "uninstalled"
+#
+##
+test_by_installed_state() {
+  import /src/config/test_conf.sh
+  local argument1="$1"
+  is_all_pass=0
+  total_tests=0
+  total_pass=0
+  total_fail=0
+  startTimestamp=$(date +%s)
+  local state=""
+  if [ ${argument1} == 'installed' ];then
+     state='installed'
+  elif [ ${argument1} == 'uninstalled' ];then
+     state='uninstalled'
+  else
+    log "ERROR" "The parameter ${argument1} passed in is not 'installed' or 'uninstalled'"
+    exit 1
+  fi
+  for element in "${TEST_DIR[@]}"; do
+    local base_path="$(get_full_path $element)/__test__/${state}_tests"
+    local files=($(get_files_by_path ${base_path}))
+    for file in "${files[@]}"; do
+      ((total_tests++))
+      is_pass=0
+      source "${base_path}/${file}" 
+      if [ $is_pass -eq 0 ];then
+        printf "$(bg_green_print " PASS ") ${file}\n"
+        ((total_pass++))
+      else
+        ((total_fail++))
+        echo "${base_path}/${file}"
+        is_all_pass=1
+      fi
+    done
+  done
+
+  endTimestamp=$(date +%s )
+  durationTime=$((endTimestamp - startTimestamp ))
+  echo ""
+  printf "$(bold_print 'Tests:')      $(red_print ${total_fail}) $(red_print 'failed'), $(green_print "${total_pass}" $BOLD) $(green_print 'passed'), %d total\n" ${total_tests}
+  printf "$(bold_print 'Time:')        ${durationTime} s\n"
+  printf "Ran all test suites.\n"
+  if [ ${is_all_pass} != 0 ]; then
+    printf "$(red_print 'Test failed. See above for more details')\n"
+  fi
+}

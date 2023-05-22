@@ -1,4 +1,6 @@
 create_cli:
 	bash src/templates/create_cli_template.sh
-test:
-	bash src/bootstrap/test_boot.sh
+installed_test:
+	bash src/bootstrap/installed_test_boot.sh
+uninstalled_test:
+	bash src/bootstrap/uninstalled_test_boot.sh
