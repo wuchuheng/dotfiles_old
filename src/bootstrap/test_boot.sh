@@ -8,7 +8,6 @@ readonly TEST_DIR=(
   "src"
   # "src/cli/19_hello_cli"
   # "src/cli/20_tmp_cli"
-   "src/cli/22_foo_cli"
 )
 
 is_all_pass=0

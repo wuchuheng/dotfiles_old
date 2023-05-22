@@ -37,7 +37,7 @@ get_all_cli_directory_in_cli_path() {
     fi
   done
 
-  echo "${cli_dir_list[@]}"
+  echo ${cli_dir_list[@]}
 }
 
 
@@ -97,12 +97,45 @@ get_full_path(){
   echo "${DOTFILES_BASE_PATH}${splic_symbol}$1"
 }
 
+
+is_zsh() {
+  if [ -n "$ZSH_VERSION" ]; then
+      return 0
+  else
+      return 1
+  fi
+}
+
+##
+# 分割字串为数组
+#
+# @desc split_str "hello world" " "
+# @return ("hello" "world")
+##
+split_str() {
+  local string="$1"
+  local delimiter="$2"
+  local array=()
+  if is_zsh; then
+    setopt KSH_ARRAYS
+    array=("${=string//${delimiter}/ }")
+  else
+    IFS="${delimiter}"
+    read -ra array <<< "${string}"
+  fi
+  echo "${array[@]}"
+}
+
 ##
 # 获取用于载入环境变量的提供者文件
 #
 ##
 get_cli_to_env_provider_by_cli_directory_name(){
-  IFS="_" read -ra parts <<< "$1"
+  if is_zsh; then
+    setopt KSH_ARRAYS
+  fi
+  result=($(split_str "$1" "_"))
+  local parts=($(split_str "$1" "_" ))
   local number=${parts[0]}
   number=$((${#number} + 1))
   local cli_name="${directory:$number}"
@@ -119,6 +152,7 @@ get_directory() {
     # $1: Full path
     # $2: Number of parent directories to remove (optional, default is 0)
 
+  echo $result
     local full_path="$1"
     local parent_count="${2:-0}"
     local subpath=""
@@ -184,5 +218,4 @@ except_str() {
     return 1
   fi
 }
-
 
