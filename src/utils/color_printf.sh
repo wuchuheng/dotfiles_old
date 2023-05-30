@@ -29,7 +29,7 @@ pink_print() {
 }
 green_print() {
   sold=${2:-''}
-  printf "${GREEN}%s${NC}" $1
+  printf "${GREEN}${1}${NC}"
 }
 
 yellow_print() {

@@ -22,13 +22,14 @@ import() {
   fi
 }
 
-
 ##
-# get_all_cli_directory_in_cli_path # print the list of elements from cli path.
+# get_all_sub_dir_by_path # print the list of elements from cli path.
+# get_all_sub_dir_by_path "/foo/bar"
+# @echo ("sub_path1", "sub_path2", "sub_path3")
 ##
-get_all_cli_directory_in_cli_path() {
+get_all_sub_dir_by_path() {
   local cli_dir_list=()
-  cli_path=$DOTFILES_BASE_PATH/src/cli
+  cli_path=$1
   for directory in "$cli_path"/*/; do
     if [[ -d "$directory" ]]; then
       directory=${directory:0:${#directory} - 1}
@@ -40,15 +41,14 @@ get_all_cli_directory_in_cli_path() {
   echo ${cli_dir_list[@]}
 }
 
-
 ##
 # 在cli目录中获取最大的数值编号
-# max_number=$(($(get_max_number_in_cli_path)))
+# max_number=$(($(get_max_number_by_path "/foo/bar")))
 # echo $max_number # out put a numeric value.
 ##
-get_max_number_in_cli_path() {
+get_max_number_by_path() {
   local max_number=0
-  cli_dir_list=$(get_all_cli_directory_in_cli_path)
+  cli_dir_list=$(get_all_sub_dir_by_path $1)
   for directory in ${cli_dir_list[@]}; do
     IFS="_" read -ra parts <<< "$directory"
     number=$((${parts[0]}))
@@ -131,14 +131,16 @@ split_str() {
 #
 ##
 get_cli_to_env_provider_by_cli_directory_name(){
+  local directory=$1;
   if is_zsh; then
     setopt KSH_ARRAYS
   fi
-  result=($(split_str "$1" "_"))
+  result=($(split_str "${directory}" "_"))
   local parts=($(split_str "$1" "_" ))
   local number=${parts[0]}
   number=$((${#number} + 1))
   local cli_name="${directory:$number}"
+
   echo "/src/cli/${parts[0]}_${cli_name}/load_${cli_name}_to_zsh_env_provider.sh"
 }
 
@@ -149,14 +151,14 @@ get_cli_to_env_provider_by_cli_directory_name(){
 # @return "/1/2/3/4"
 ##
 get_directory() {
-    # $1: Full path
-    # $2: Number of parent directories to remove (optional, default is 0)
-
-  echo $result
     local full_path="$1"
+    full_path=$(echo "$full_path" | sed 's/\/*\//\//g')
+    last_character="${full_path: -1}"
+    if [ ${last_character} == '/' ];then
+     full_path=${full_path:0:(${#full_path} - 1)}
+    fi
     local parent_count="${2:-0}"
     local subpath=""
-
     # Remove trailing slash (if any)
     full_path="${full_path%/}"
 
@@ -168,11 +170,11 @@ get_directory() {
 
     # Concatenate the subpath from the path parts
     for ((i = 0; i < ${#path_parts[@]} - ${start_index}; i++)); do
-        subpath+="/${path_parts[i + 1]}"
+        subpath+="${path_parts[i]}/"
     done
 
     # Print the subpath
-    echo "$subpath"
+    echo "${subpath:0:(${#subpath} - 1)}"
 }
 
 ##
@@ -271,3 +273,4 @@ test_by_installed_state() {
     printf "$(red_print 'Test failed. See above for more details')\n"
   fi
 }
+
