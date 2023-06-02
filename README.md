@@ -9,6 +9,10 @@
 $ ./install.sh
 ```
 
+## TODO
+
+1 进在进行对基础功能进行单元测试的功能开发中, 编辑vim session: tmp.vim
+
 
 ## Contributing
 
@@ -23,3 +27,5 @@ _The code contribution process is not very formal. You just need to make sure th
 ## License
 
 MIT
+
+

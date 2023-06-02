@@ -8,3 +8,10 @@ uninstalled_test:
 create_installed_test:
 	bash src/templates/create_installed_test_template.sh
 
+# 创建单元测试文件
+create_unit_test:
+	bash src/templates/create_unit_test_template.sh
+
+# 运行单元测试
+unit_test:
+	bash src/templates/create_unit_test_template.sh

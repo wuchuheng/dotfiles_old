@@ -42,6 +42,45 @@ get_all_sub_dir_by_path() {
 }
 
 ##
+# get_all_sub_dir_by_path # print the list of elements from cli path.
+# get_all_file_by_path "/foo/bar"
+# @echo ("file1", "file1", "file3")
+##
+get_all_file_by_path() {
+  local file_list=()
+  local readonly path=$1
+  for file in "$path"/*; do
+    if [[ -f "$file" ]]; then
+      last_file_name=${file//$path\//}
+      file_list+=($last_file_name)
+    fi
+  done
+
+  echo ${file_list[@]}
+}
+
+
+##
+# 在目录中获取文件列表中最大的数值编号
+# max_number=$(($(get_max_number_file_by_path "/foo/bar")))
+# echo $max_number # out put a numeric value.
+##
+get_max_number_file_by_path() {
+  local max_number=0
+  file_list=($(get_all_file_by_path $1))
+  for file in ${file_list[@]}; do
+    IFS="_" read -ra parts <<< "$file"
+    number=$((${parts[0]}))
+    if [ $number -gt $max_number ];then
+      max_number=$number
+    fi
+  done
+  
+  echo $max_number;
+}
+
+
+##
 # 在cli目录中获取最大的数值编号
 # max_number=$(($(get_max_number_by_path "/foo/bar")))
 # echo $max_number # out put a numeric value.
