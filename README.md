@@ -11,7 +11,14 @@ $ ./install.sh
 
 ## TODO
 
+
+### 1 单元测试功能实现
+
 1 进在进行对基础功能进行单元测试的功能开发中, 编辑vim session: tmp.vim
+
+### 2 拆分自动加载功能
+
+把自动加载功能拆分到utils/autoload.sh
 
 
 ## Contributing

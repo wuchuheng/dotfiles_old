@@ -262,12 +262,13 @@ except_str() {
 
 import /src/utils/color_printf.sh
 
+
 ##
 # 执行测试
 # test_by_installed_state "installed" # OR "uninstalled"
 #
 ##
-test_by_installed_state() {
+function test_by_installed_state() {
   import /src/config/test_conf.sh
   local argument1="$1"
   is_all_pass=0
@@ -311,5 +312,16 @@ test_by_installed_state() {
   if [ ${is_all_pass} != 0 ]; then
     printf "$(red_print 'Test failed. See above for more details')\n"
   fi
+}
+
+# Declare the function with two propters: the callback contained a testing logic, the testing name and the testing description.
+function handle_testing_callback() {
+    local callback="$1" # the callback function contained a testing logic
+    global_test_name="$2"
+    global_test_desc="$3"
+    global_start_timestamp=$(date +%s)
+    global_duration=0; # Units/second
+    "$callback"
+    global_duration=$(expr $(date +%s) - ${global_start_timestamp})
 }
 

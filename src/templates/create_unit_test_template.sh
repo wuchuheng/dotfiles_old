@@ -22,7 +22,7 @@ fi
 
 
 BASE_DIR=$(get_directory "${UNIT_TEST_FILE}")
-BASE_DIR=${DOTFILES_BASE_PATH}/${BASE_DIR}/__test__/unit_tests
+BASE_DIR=${BASE_DIR}/__test__/unit_tests
 if [ ! -d ${BASE_DIR} ]; then
   mkdir -p ${BASE_DIR}
 fi
@@ -34,22 +34,36 @@ max_number=$(($(get_max_number_file_by_path  ${BASE_DIR}) + 1))
 setopt KSH_ARRAYS >/dev/null 2>&1
 readonly FILE_NAME_INFO=($(split_str "${FILE_NAME}" '.'))
 file_name_without_extend=''
-for ((i = 0; i < ((${#FILE_NAME_INFO[@]} - 1)); i++)); do
+for (( i = 0; i < ((${#FILE_NAME_INFO[@]} - 1)); i++ )); do
   file_name_without_extend=${file_name_without_extend}.${FILE_NAME_INFO[$i]}
 done
 file_name_without_extend=${file_name_without_extend:1}
 last_index=$(expr ${#FILE_NAME_INFO[@]} - 1)
 readonly FILE_EXTEND=${FILE_NAME_INFO[${last_index}]}
-readonly full_file_name=${BASE_DIR}/${max_number}_${file_name_without_extend}_test.${FILE_EXTEND}
+readonly UNIT_TEST_FILE=${BASE_DIR}/${max_number}_${file_name_without_extend}.test.${FILE_EXTEND}
 
 # Create a unit testing file
-# TODO: 添加测试模板代码, 包含测试名
-# 
-cat > ${full_file_name} << EOF 
-hello
+cat > ${UNIT_TEST_FILE} << EOF 
+#!/bin/bash
 
+# the demo testing
+function hello_world_callback_test() {
+    echo "Callback function called with parameter"
+}
+
+# call hello_world_test() function，and pass the testing callback with the testing name and testing description.
+handle_testing_callback "hello_world_callback_test" "TestName" "Unit test ${UNIT_TEST_FILE}"
 
 EOF
 
-log "SUCCESS" "🎉  To create a unit testing file ${full_file_name}"
+#to push the unit test file to config file config/unit_conf.sh
+
+readonly config_content=$(sed '$d' src/config/unit_test_conf.sh)
+cat > src/config/unit_test_conf.sh << EOF
+${config_content}
+${UNIT_TEST_FILE}
+)
+EOF
+
+log "SUCCESS" "🎉  To create a unit testing file ${UNIT_TEST_FILE}"
 
