@@ -1,13 +1,12 @@
 #!/bin/bash
 
-
 source ./src/bootstrap/compile_boot.sh || exit 1
+import /src/utils/log.sh # import utils
 
 #echo $DOTFILES_BASE_PATH
 VERSION_NUMBER="1.0.0"
 IS_FORCE_INSTALLATION=false
 
-import /src/utils/log.sh # import utils
 
 # Parse command line options
 while [[ $# -gt 0 ]]

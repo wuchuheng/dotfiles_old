@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DOTFILES_BASE_PATH=$(pwd)
+source ${DOTFILES_BASE_PATH}/src/utils/autoload.sh || exit 1
 # to declare the base path for the dotfiles project.
 DOTFILES_BASE_PATH_LOG=${DOTFILES_BASE_PATH}/src/runtime/compile_path_log
 if [ ! -d $DOTFILES_BASE_PATH_LOG ]; then
