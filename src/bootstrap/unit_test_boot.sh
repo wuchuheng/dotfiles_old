@@ -1,7 +1,9 @@
 #!/bin/bash
 DOTFILES_BASE_PATH=$(pwd)
-source $DOTFILES_BASE_PATH/src/utils/helper.sh || exit 1
+source ${DOTFILES_BASE_PATH}/src/utils/autoload.sh || exit 1
 
+import /src/utils/helper.sh
+import /src/utils/color_printf.sh
 import /src/config/unit_test_conf.sh
 
 is_all_pass=0

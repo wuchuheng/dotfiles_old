@@ -12,7 +12,7 @@ BOLD="\033[1m"
 NC='\033[0m'
 
 bg_green_print() {
-  printf "${BOLD}${BLACK}${BG_GREEN}$1 ${NC}"
+  printf "${BOLD}${BLACK}${BG_GREEN}$1\e[0m"
 }
 bold_print() {
   printf "${BOLD}$1${NC}"
