@@ -18,7 +18,7 @@ bold_print() {
   printf "${BOLD}$1${NC}"
 }
 bg_red_print() {
-  printf "${BOLD}${BLACK}${BG_RED}$1 ${NC}"
+  printf "${BOLD}${BLACK}${BG_RED}$1\e[0m"
 }
 
 back_print() {
@@ -41,6 +41,6 @@ blue_print() {
 }
 
 red_print() {
-  printf "${RED}%s${NC}" $1
+  printf "${RED}$1\e[0m"
 }
 

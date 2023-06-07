@@ -3,17 +3,9 @@
 import /src/utils/log.sh
 import /src/utils/color_printf.sh
 
-function print_call_stack() {
-  local frame=0
-  while caller $frame; do
-    ((frame++))
-  done
-}
-
-
 ##
 # get_all_sub_dir_by_path # print the list of elements from cli path.
-# get_all_sub_dir_by_path "/foo/bar"
+# @call get_all_sub_dir_by_path "/foo/bar"
 # @echo ("sub_path1", "sub_path2", "sub_path3")
 ##
 get_all_sub_dir_by_path() {
@@ -30,8 +22,59 @@ get_all_sub_dir_by_path() {
   echo ${cli_dir_list[@]}
 }
 
+
 ##
-# get_all_sub_dir_by_path # print the list of elements from cli path.
+# @desc 获取一个文件1-10行内容
+# @use  get_a_part_of_code "/Users/wuchuheng/dotfiles/tmp.sh" 5
+# @return 
+#
+#    1  | readonly ALL_UNIT_TEST_FILES=(
+#    2  | utils/__test__/unit_tests/1_helper.test.sh
+#    3  | utils/__test__/unit_tests/2_helper.test.sh
+#    4  | utils/__test__/unit_tests/3_helper.test.sh
+# -> 5  | utils/__test__/unit_tests/4_helper.test.sh
+#    6  | utils/__test__/unit_tests/5_helper.test.sh
+#    7  | utils/__test__/unit_tests/6_helper.test.sh
+#    8  | utils/__test__/unit_tests/7_helper.test.sh
+#    9  | utils/__test__/unit_tests/8_helper.test.sh
+#    10 | utils/__test__/unit_tests/9_helper.test.sh
+#    11 | utils/__test__/unit_tests/10_helper.test.sh
+#
+##
+get_a_part_of_code() {
+  local file=$1
+  local lineNumber=$2;
+  local allLine=$(wc -l ${file} | awk '{print $1}')
+  local intervalWidth=5 # 区间宽度
+  local intervalStart=$lineNumber # 区间开始坐标
+  local intervalEnd=$lineNumber # 区间结始坐标
+  for (( i=1; i <= 5; i++ )); do
+    if ((((intervalStart - 1)) > 0)) ; then
+      ((intervalStart--))
+    else
+      ((intervalEnd++))
+    fi
+    if (( ((intervalEnd + 1)) <= ${allLine} )); then
+      ((intervalEnd++))
+    else
+      ((intervalStart--))
+    fi
+  done
+  local result=`sed -n "${intervalStart},${intervalEnd}p" $file`
+  local cln=${intervalStart}
+  local lineNumberWidth=${#intervalEnd}
+  while IFS= read -r line; do
+    if (( cln == lineNumber )); then
+      printf " \033[0;31m\033[1m->\e[0m %-${lineNumberWidth}s | $line\n" $cln
+    else
+      printf "    %-${lineNumberWidth}s | $line\n" $cln
+    fi
+    ((cln++))
+  done <<< "$result"
+}
+
+##
+# get_all_file_by_path # print the list of elements from cli path.
 # get_all_file_by_path "/foo/bar"
 # @echo ("file1", "file1", "file3")
 ##
@@ -221,9 +264,6 @@ get_files_by_path() {
   echo "${file_list[@]}"
 }
 
-
-
-
 ##
 # 执行测试
 # test_by_installed_state "installed" # OR "uninstalled"
@@ -271,18 +311,29 @@ function test_by_installed_state() {
   printf "$(bold_print 'Time:')        ${durationTime} s\n"
   printf "Ran all test suites.\n"
   if [ ${is_all_pass} != 0 ]; then
+    ((global_total_fail++))
     printf "$(red_print 'Test failed. See above for more details')\n"
+  else
+    ((global_total_pass++))
   fi
 }
 
 # Declare the function with two propters: the callback contained a testing logic, the testing name and the testing description.
 function handle_testing_callback() {
     local callback="$1" # the callback function contained a testing logic
-    global_test_name="$2"
-    global_test_desc="$3"
+    global_test_name="$1"
+    global_test_desc="$2"
     global_start_timestamp=$(date +%s)
     global_duration=0; # Units/second
+    global_is_pass=0
     "$callback"
+    if (( global_is_pass != 0 )); then
+      global_test_file_is_pass=1
+      ((global_total_fail++))
+    else
+      ((global_total_pass++))
+    fi	
+    ((global_total_tests++))
     global_duration=$(expr $(date +%s) - ${global_start_timestamp})
 }
 

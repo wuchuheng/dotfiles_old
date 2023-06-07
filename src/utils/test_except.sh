@@ -1,10 +1,12 @@
 #!/bin/bash
 
+import /src/utils/helper.sh
+
 ##
 # 断言字符
 # except_string "excepted str" "received str"
 ##
-except_str() {
+function except_str() {
   local prefix_path_len=${#DOTFILES_BASE_PATH}
   ((prefix_path_len++))
   local test_file=${BASH_SOURCE[1]}
@@ -23,6 +25,7 @@ except_str() {
     printf "    $(pink_print '●') $(pink_print "${TEST_NAME}")\n"
     printf "    Expected: $(green_print "$1")\n"
     printf "    Received: $(red_print "$2")\n\n"
+    get_a_part_of_code ${current_file} ${line}
     global_is_pass=1
     return 1
   fi
