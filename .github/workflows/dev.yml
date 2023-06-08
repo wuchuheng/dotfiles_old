@@ -17,14 +17,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Install zsh
+      - name: Unit test
         run:  |
           make unit_test
   MacOS:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Install zsh
+      - name: Unit test
         run:  |
           make unit_test
   CentOS:
@@ -39,5 +39,7 @@ jobs:
           docker run --rm -v "${PWD}:/app" -w /app centos:latest /bin/sh -c '
             sed -i "s/mirrorlist/#mirrorlist/g" /etc/yum.repos.d/CentOS-*
             sed -i "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
-          make unit_test
+            yum -y update
+            yum -y install make
+            make unit_test
           '
