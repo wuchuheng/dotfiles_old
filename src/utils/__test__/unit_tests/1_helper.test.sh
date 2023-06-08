@@ -11,7 +11,7 @@ function get_all_sub_dir_by_path_test() {
   mkdir -p $dir1
   mkdir -p $dir2
   local result=($(get_all_sub_dir_by_path "${BASE_PATH}"))
-  except_str "${#result[@]}" '2'
+  except_str "${#result[@]}" '1'
   except_str "${result[0]}" 'dir1'
   except_str "${result[1]}" 'dir2'
 }

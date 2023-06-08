@@ -34,5 +34,8 @@ printf "$(bold_print 'Test files:')   ${total_test_files} files \n"
 printf "Ran all test files.\n"
 if [ ${is_all_pass} != 0 ]; then
   printf "$(red_print 'Test failed. See above for more details')\n"
+  exit 1
+else
+  exit 0
 fi
 
