@@ -337,3 +337,20 @@ function handle_testing_callback() {
     global_duration=$(expr $(date +%s) - ${global_start_timestamp})
 }
 
+##
+# To get a runtime space while to run a test.
+#
+# @use result=get_runtime_space_by_unit_test_name "get_a_part_of_code_test" 
+# @use printf $result # /Users/wuchuheng/dotfiles/src/runtime/test/get_a_part_of_code_test 
+##
+function get_runtime_space_by_unit_test_name() {
+  local test_name=$1
+  local runtimeDir="${DOTFILES_BASE_PATH}/src/runtime"
+  local BASE_PATH="${runtimeDir}/test/unit_test/${test_name}"
+  if [ ! -d ${BASE_PATH} ]; then
+    mkdir -p ${BASE_PATH}
+  fi
+  printf ${BASE_PATH} 
+}
+
+
