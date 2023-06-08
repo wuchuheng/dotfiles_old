@@ -33,3 +33,6 @@ docs/node_modules
 
 src/runtime/
 src/main.sh
+
+# Ignore files in MacOS
+.DS_Store
