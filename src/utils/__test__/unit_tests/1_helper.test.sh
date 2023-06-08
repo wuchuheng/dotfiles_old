@@ -1,3 +1,10 @@
+##
+# The unit test file for helper.sh .
+#
+# @Author wuchuheng<root@wuchuheng.com>
+# @Date 2023-06-08
+##
+
 #!/bin/bash
 
 import /src/utils/helper.sh
@@ -58,3 +65,19 @@ EOF
 }
 
 handle_testing_callback "get_a_part_of_code_test" "To test to get a part of conrent frome a file with a file path and a number line."
+
+function get_all_file_by_path_test() {
+  local BASE_PATH=$(get_runtime_space_by_unit_test_name ${global_test_name})
+  rm -rf ${BASE_PATH}/*;
+  local file1=${BASE_PATH}/file1;
+  local file2=${BASE_PATH}/file2;
+  local dir=${BASE_PATH}/dir1;
+  touch $file1 $file2
+  mkdir -p $dir
+  local all_file=($(get_all_file_by_path ${BASE_PATH}))
+  except_str ${#all_file[@]} 2
+  except_str ${all_file[0]} "file1"
+  except_str ${all_file[1]} "file2"
+}
+
+handle_testing_callback "get_all_file_by_path_test" "To test get_all_file_by_path function" 
