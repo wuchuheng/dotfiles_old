@@ -1,5 +1,11 @@
 <h1 align="center"> Wuchuheng's dotfiles </h1>
 
+<p align="center">
+  <a href="https://github.com/wuchuhengtools/dotfiles/actions/workflows/dev.yml">
+    <img src="https://github.com/wuchuhengtools/dotfiles/actions/workflows/dev.yml/badge.svg" alt="Developer"/>
+  </a>
+</p>
+
 <p align="center"> 我的点配置文件</p>
 
 
