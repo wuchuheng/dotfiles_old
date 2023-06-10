@@ -332,6 +332,12 @@ function handle_testing_callback() {
       ((global_total_fail++))
     else
       ((global_total_pass++))
+      global_pass_test_desc_items+=("${global_test_desc}")
+      global_pass_test_name_items+=("${global_test_name}")
+      local test_name_len=${#global_test_name}
+      if (( test_name_len > global_max_pass_tests_len )); then
+        global_max_pass_tests_len=$test_name_len
+      fi
     fi	
     ((global_total_tests++))
     global_duration=$(expr $(date +%s) - ${global_start_timestamp})
