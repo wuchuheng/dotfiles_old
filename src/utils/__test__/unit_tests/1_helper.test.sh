@@ -81,3 +81,11 @@ function get_all_file_by_path_test() {
 }
 
 handle_testing_callback "get_all_file_by_path_test" "To test get_all_file_by_path function" 
+
+function get_max_number_file_by_path_test() {
+  local BASE_PATH=`get_runtime_space_by_unit_test_name ${global_test_name}`
+  touch ${BASE_PATH}/{1,2,3,4}_file
+  local result=`get_max_number_file_by_path ${BASE_PATH}`
+  except_str $result 4
+}
+handle_testing_callback "get_max_number_file_by_path_test" "To test get_max_number_file_by_path function" 
