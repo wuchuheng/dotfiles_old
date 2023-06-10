@@ -89,3 +89,10 @@ function get_max_number_file_by_path_test() {
   except_str $result 4
 }
 handle_testing_callback "get_max_number_file_by_path_test" "To test get_max_number_file_by_path function" 
+
+function get_zsh_start_symbol_test() {
+  local result=$(get_zsh_start_symbol "tmp")
+  except_str "$result" '#To load tmp, start'
+}
+
+handle_testing_callback "get_zsh_start_symbol_test" "To test get_zsh_start_symbol function" 
