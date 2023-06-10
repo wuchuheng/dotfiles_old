@@ -96,3 +96,10 @@ function get_zsh_start_symbol_test() {
 }
 
 handle_testing_callback "get_zsh_start_symbol_test" "To test get_zsh_start_symbol function" 
+
+function get_zsh_end_symbol_test() {
+  local result=$(get_zsh_end_symbol "tmp")
+  except_str "$result" '#To load tmp, end'
+}
+
+handle_testing_callback "get_zsh_end_symbol_test" "To test get_zsh_end_symbol function" 
