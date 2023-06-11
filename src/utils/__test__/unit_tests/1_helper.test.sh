@@ -108,4 +108,12 @@ function get_main_sh_path_test() {
   local result=`get_main_sh_path`
   except_str "$result" '/src/main.sh'
 }
+
 handle_testing_callback "get_main_sh_path_test" "To test get_main_sh_path function" 
+
+function get_full_path_test() {
+  local result=$(get_full_path "tmp")
+  except_str "$result" "${DOTFILES_BASE_PATH}/tmp"
+}
+
+handle_testing_callback "get_full_path_test" "To test get_full_path function" 
