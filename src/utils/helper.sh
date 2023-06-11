@@ -187,7 +187,7 @@ split_str() {
   local string="$1"
   local delimiter="$2"
   local array=()
-  local is_zsh_result=is_zsh
+  local is_zsh_result=`is_zsh`
   if (( is_zsh_result == '0' )); then
     setopt KSH_ARRAYS
     array=("${=string//${delimiter}/ }")
@@ -204,7 +204,7 @@ split_str() {
 ##
 get_cli_to_env_provider_by_cli_directory_name(){
   local directory=$1;
-  local is_zsh_result=is_zsh
+  local is_zsh_result=`is_zsh`
   if (( is_zsh_result == '0' )); then
     setopt KSH_ARRAYS
   fi

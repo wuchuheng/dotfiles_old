@@ -125,3 +125,12 @@ function is_zsh_test() {
 
 handle_testing_callback "is_zsh_test" "To test is_zsh function" 
 
+
+function split_str_test() {
+  local result=($(split_str "hello_world" "_"))
+  except_str "${#result[@]}" 2
+  except_str "${result[0]}" "hello"
+  except_str "${result[1]}" "world"
+}
+
+handle_testing_callback "split_str_test" "To test split_str function" 
