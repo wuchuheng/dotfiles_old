@@ -2,9 +2,9 @@
 DOTFILES_BASE_PATH=$(pwd)
 source ${DOTFILES_BASE_PATH}/src/utils/autoload.sh || exit 1
 
-import /src/utils/helper.sh
-import /src/utils/color_printf.sh
-import /src/config/unit_test_conf.sh
+import @/src/utils/helper.sh
+import @/src/utils/color_printf.sh
+import @/src/config/unit_test_conf.sh
 
 is_all_pass=0
 global_total_tests=0

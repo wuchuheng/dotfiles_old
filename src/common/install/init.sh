@@ -1,6 +1,6 @@
 #!/bin/bash
 
-import /src/utils/helper.sh
+import @/src/utils/helper.sh
 
 local readonly main_sh_path=$(get_full_path $(get_main_sh_path))
 if [ ! -f ${main_sh_path} ]; then

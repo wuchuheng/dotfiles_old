@@ -1,7 +1,7 @@
 #!/bin/bash
 
-import /src/utils/log.sh
-import /src/utils/color_printf.sh
+import @/src/utils/log.sh
+import @/src/utils/color_printf.sh
 
 ##
 # get_all_sub_dir_by_path # print the list of elements from cli path.
@@ -268,7 +268,7 @@ get_files_by_path() {
 #
 ##
 function test_by_installed_state() {
-  import /src/config/test_conf.sh
+  import @/src/config/test_conf.sh
   local argument1="$1"
   is_all_pass=0
   total_tests=0

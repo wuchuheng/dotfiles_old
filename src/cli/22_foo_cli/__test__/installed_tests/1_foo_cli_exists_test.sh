@@ -1,6 +1,6 @@
 #!/bin/bash
 
-import /src/main.sh
+import @/src/main.sh
 
 TEST_NAME="foo"
 TEST_DESC="Test whether the foo CLI exists"

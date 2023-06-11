@@ -1,6 +1,6 @@
 #!/bin/bash
 
-import /src/utils/helper.sh
+import @/src/utils/helper.sh
 
 ##
 # 断言字符

@@ -7,8 +7,8 @@
 ##
 
 source src/bootstrap/compile_boot.sh || exit 1
-import /src/utils/log.sh
-import /src/utils/color_printf.sh
+import @/src/utils/log.sh
+import @/src/utils/color_printf.sh
 
 # 输出confirm
 printf "$(green_print '  Please enter a unit testing file name you want to create')\n"

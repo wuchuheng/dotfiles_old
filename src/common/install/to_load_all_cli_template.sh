@@ -6,5 +6,5 @@ for directory in "${cli_dir_list[@]}"; do
   number=$((${#number} + 1))
   cli_name="${directory:$number}"
   installation_provider=/src/cli/$directory/${cli_name}_installation_provider/${cli_name}_installation_provider.sh
-  import $(get_cli_to_env_provider_by_cli_directory_name $directory)
+  import @$(get_cli_to_env_provider_by_cli_directory_name $directory)
 done

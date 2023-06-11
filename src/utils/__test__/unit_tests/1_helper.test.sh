@@ -7,8 +7,8 @@
 
 #!/bin/bash
 
-import /src/utils/helper.sh
-import /src/utils/test_except.sh
+import @/src/utils/helper.sh
+import @/src/utils/test_except.sh
 
 # the demo testing
 function get_all_sub_dir_by_path_test() {

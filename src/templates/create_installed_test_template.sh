@@ -1,8 +1,8 @@
 #!/bin/bash
 
 source src/bootstrap/compile_boot.sh || exit 1
-import /src/utils/log.sh
-import /src/utils/color_printf.sh
+import @/src/utils/log.sh
+import @/src/utils/color_printf.sh
 
 read -p "$(green_print 'Please enter a testing file name you want to create: ')" INSTALLED_TEST_FILE
 

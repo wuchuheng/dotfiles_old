@@ -1,8 +1,8 @@
 #!/bin/bash
 
 source src/bootstrap/compile_boot.sh || exit 1
-import /src/utils/log.sh
-import /src/utils/color_printf.sh
+import @/src/utils/log.sh
+import @/src/utils/color_printf.sh
 
 read -p "Please enter the name of the cli tool you want to create: " TOOL_NAME
 TOOL_NAME=$(echo "$TOOL_NAME" | sed -E 's/ +/_/g')
@@ -54,7 +54,7 @@ CLI_EXISTS_TEST_FILE=${INSTALLED_TESTS_PATH}/1_${TOOL_NAME}_cli_exists_test.sh
 cat > "$CLI_EXISTS_TEST_FILE" << EOF
 #!/bin/bash
 
-import /src/main.sh
+import @/src/main.sh
 
 TEST_NAME="${TOOL_NAME}"
 TEST_DESC="Test whether the ${TOOL_NAME} CLI exists"
