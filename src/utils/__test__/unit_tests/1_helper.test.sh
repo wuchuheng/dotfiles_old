@@ -134,3 +134,10 @@ function split_str_test() {
 }
 
 handle_testing_callback "split_str_test" "To test split_str function" 
+
+function get_cli_to_env_provider_by_cli_directory_name_test() {
+  local result=`get_cli_to_env_provider_by_cli_directory_name 19_hello_cli`
+  except_str "$result" "/src/cli/19_hello_cli/load_hello_cli_to_zsh_env_provider.sh"
+}
+
+handle_testing_callback "get_cli_to_env_provider_by_cli_directory_name_test" "To test get_cli_to_env_provider_by_cli_directory_name function" 
