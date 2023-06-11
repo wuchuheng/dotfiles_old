@@ -117,3 +117,11 @@ function get_full_path_test() {
 }
 
 handle_testing_callback "get_full_path_test" "To test get_full_path function" 
+
+function is_zsh_test() {
+  local result=`is_zsh`
+  except_str "$result" 1
+}
+
+handle_testing_callback "is_zsh_test" "To test is_zsh function" 
+

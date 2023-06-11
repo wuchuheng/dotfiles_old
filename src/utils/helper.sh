@@ -171,9 +171,9 @@ get_full_path(){
 
 is_zsh() {
   if [ -n "$ZSH_VERSION" ]; then
-      return 0
+    echo 0
   else
-      return 1
+    echo 1
   fi
 }
 
@@ -187,7 +187,8 @@ split_str() {
   local string="$1"
   local delimiter="$2"
   local array=()
-  if is_zsh; then
+  local is_zsh_result=is_zsh
+  if (( is_zsh_result == '0' )); then
     setopt KSH_ARRAYS
     array=("${=string//${delimiter}/ }")
   else
@@ -203,7 +204,8 @@ split_str() {
 ##
 get_cli_to_env_provider_by_cli_directory_name(){
   local directory=$1;
-  if is_zsh; then
+  local is_zsh_result=is_zsh
+  if (( is_zsh_result == '0' )); then
     setopt KSH_ARRAYS
   fi
   result=($(split_str "${directory}" "_"))
