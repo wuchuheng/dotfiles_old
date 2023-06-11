@@ -344,8 +344,8 @@ function handle_testing_callback() {
 ##
 # To get a runtime space while to run a test.
 #
-# @use result=get_runtime_space_by_unit_test_name "get_a_part_of_code_test" 
-# @use printf $result # /Users/wuchuheng/dotfiles/src/runtime/test/get_a_part_of_code_test 
+# @use get_runtime_space_by_unit_test_name "get_a_part_of_code_test" 
+# @echo /Users/wuchuheng/dotfiles/src/runtime/test/unit_test/get_a_part_of_code_test
 ##
 function get_runtime_space_by_unit_test_name() {
   local test_name=$1

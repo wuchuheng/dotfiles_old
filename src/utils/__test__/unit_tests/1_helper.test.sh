@@ -160,3 +160,10 @@ function get_files_by_path_test() {
 
 }
 handle_testing_callback "get_files_by_path_test" "To test get_files_by_path function" 
+
+function get_runtime_space_by_unit_test_name_test() {
+  local result=`get_runtime_space_by_unit_test_name "get_a_part_of_code_test"`
+  except_str "${DOTFILES_BASE_PATH}/src/runtime/test/unit_test/get_a_part_of_code_test" "$result"
+}
+
+handle_testing_callback "get_runtime_space_by_unit_test_name_test" "To test get_runtime_space_by_unit_test_name function" 
