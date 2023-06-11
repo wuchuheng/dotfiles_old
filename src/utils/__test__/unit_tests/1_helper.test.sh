@@ -148,3 +148,15 @@ function get_directory_test() {
 }
 
 handle_testing_callback "get_directory_test" "To test get_directory function" 
+
+function get_files_by_path_test() {
+  local BASE_PATH=$(get_runtime_space_by_unit_test_name ${global_test_name})
+  rm -rf ${BASE_PATH}/*
+  touch ${BASE_PATH}/{file1,file2,file3}
+  mkdir ${BASE_PATH}/dir1
+  mkdir ${BASE_PATH}/dir2
+  local result=($(get_files_by_path "${BASE_PATH}"))
+  except_str 3 ${#result[@]}
+
+}
+handle_testing_callback "get_files_by_path_test" "To test get_files_by_path function" 

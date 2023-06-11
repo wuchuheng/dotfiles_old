@@ -249,18 +249,17 @@ get_directory() {
 
 ##
 # 获取一个目录下的全部文件
+# @use get_files_by_path "/path"
 # @return ("file1" "file2")
 #
 get_files_by_path() {
+  local path=$1;
+  local files=`find "$path" -type f`
   local file_list=()
-  path="$1"
-  local fil_list=$(ls -l  $1 | awk 'NR > 1  {print $9}')
-  while IFS= read -r line; do
-    IFS="_" read -ra parts <<< "$line"
-    number=$((${parts[0]}))
-    file_list[$number]=$line
-  done <<< "${fil_list}"
-  echo "${file_list[@]}"
+  while read -r file; do
+    file_list+=("${file}")
+  done <<< "$files"
+  echo ${file_list[@]}
 }
 
 ##
