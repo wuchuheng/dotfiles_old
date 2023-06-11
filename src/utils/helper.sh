@@ -201,13 +201,12 @@ split_str() {
 ##
 # 获取用于载入环境变量的提供者文件
 #
+# @use  get_cli_to_env_provider_by_cli_directory_name git
+# @echo /src/cli/1_git/load_git_to_zsh_env_provider.sh
 ##
 get_cli_to_env_provider_by_cli_directory_name(){
   local directory=$1;
-  local is_zsh_result=`is_zsh`
-  if (( is_zsh_result == '0' )); then
-    setopt KSH_ARRAYS
-  fi
+  setopt KSH_ARRAYS >/dev/null 2>&1
   result=($(split_str "${directory}" "_"))
   local parts=($(split_str "$1" "_" ))
   local number=${parts[0]}
