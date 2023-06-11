@@ -27,7 +27,7 @@ for test_file in "${ALL_UNIT_TEST_FILES[@]}"; do
 	str=`printf "  ✔ %-3s%-${global_max_pass_tests_len}s:%s\n"  $test_count "${global_pass_test_name_items[$i]}" "${global_pass_test_desc_items[$i]}"`
 	green_print "$str\n"
     done
-    
+  printf "\n"
   else
     is_all_pass=1
   fi
@@ -37,7 +37,6 @@ done
 endTimestamp=$(date +%s )
 durationTime=$((endTimestamp - startTimestamp ))
 
-echo ""
 printf "$(bold_print 'Tests:')        $(red_print ${global_total_fail}) $(red_print 'failed'), $(green_print "${global_total_pass}" $BOLD) $(green_print 'passed'), %d total\n" ${global_total_tests}
 printf "$(bold_print 'Time:')         ${durationTime} s\n"
 printf "$(bold_print 'Test files:')   ${total_test_files} files \n"
