@@ -141,3 +141,10 @@ function get_cli_to_env_provider_by_cli_directory_name_test() {
 }
 
 handle_testing_callback "get_cli_to_env_provider_by_cli_directory_name_test" "To test get_cli_to_env_provider_by_cli_directory_name function" 
+
+function get_directory_test() {
+  local result=$(get_directory "/1/2/3/4/5" 1)
+  except_str "/1/2/3/4" "$result"
+}
+
+handle_testing_callback "get_directory_test" "To test get_directory function" 
