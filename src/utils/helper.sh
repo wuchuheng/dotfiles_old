@@ -229,7 +229,6 @@ get_directory() {
     if [ ${last_character} == '/' ];then
      full_path=${full_path:0:(${#full_path} - 1)}
     fi
-    local parent_count="${2:-0}"
     local subpath=""
     # Remove trailing slash (if any)
     full_path="${full_path%/}"
@@ -238,8 +237,7 @@ get_directory() {
     IFS="/" read -ra path_parts <<< "$full_path"
 
     # Determine the starting index for the subpath
-    local start_index=$((parent_count + 1))
-
+    local start_index=${2:-1}
     # Concatenate the subpath from the path parts
     for ((i = 0; i < ${#path_parts[@]} - ${start_index}; i++)); do
         subpath+="${path_parts[i]}/"
