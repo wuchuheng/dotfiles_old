@@ -24,7 +24,7 @@ for test_file in "${ALL_UNIT_TEST_FILES[@]}"; do
     for ((i=0; i<${#global_pass_test_name_items[@]}; i++))
     do
 	((test_count++))
-	str=`printf "  ✔ %-3s%-${global_max_pass_tests_len}s:%s\n"  $test_count "${global_pass_test_name_items[$i]}" "${global_pass_test_desc_items[$i]}"`
+	str=`printf "  ✔ %-3s%-${global_max_pass_tests_len}s: %s\n"  $test_count "${global_pass_test_name_items[$i]}" "${global_pass_test_desc_items[$i]}"`
 	green_print "$str\n"
     done
   printf "\n"
