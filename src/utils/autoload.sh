@@ -7,7 +7,7 @@ function import() {
   local path=$1
   local fist_chart=${path:0:1}
   source_file=""
-  local previous_file=`caller 2 | awk '{print $3}'`
+  local previous_file=`caller 0 | awk '{print $3}'`
   local previous_dir="$(cd "$(dirname "${previous_file}")" && pwd)"
   case ${fist_chart} in
     # The @ symbol is equivalent to the project's root directory
@@ -26,14 +26,13 @@ function import() {
 	if [ $second_chart == '/' ]; then
           source_file=${previous_dir}${path:1}
         elif [ ${dot_chart} == './' ]; then
-          source_file=${previous_dir}${path:2}
+          source_file=${previous_dir}/${path}
 	fi
         ;;
     *)
           source_file=${previous_dir}/${path}
         ;;
   esac
-  # source_file=${DOTFILES_BASE_PATH}${path}
   source "$source_file";
   if [ $? != 0 ]; then
     IFS=' ' read -r -a parts <<< $(caller 0)
