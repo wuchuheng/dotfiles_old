@@ -39,7 +39,7 @@ durationTime=$((endTimestamp - startTimestamp ))
 
 printf "$(bold_print 'Tests:')        $(red_print ${global_total_fail}) $(red_print 'failed'), $(green_print "${global_total_pass}" $BOLD) $(green_print 'passed'), %d total\n" ${global_total_tests}
 printf "$(bold_print 'Time:')         ${durationTime} s\n"
-printf "$(bold_print 'Test files:')   ${total_test_files} files \n"
+printf "$(bold_print 'Test files:')   ${total_test_files} f\n"
 printf "Ran all test files.\n"
 if [ ${is_all_pass} != 0 ]; then
   printf "$(red_print 'Test failed. See above for more details')\n"
