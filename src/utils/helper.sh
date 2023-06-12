@@ -341,6 +341,22 @@ function handle_testing_callback() {
     global_duration=$(expr $(date +%s) - ${global_start_timestamp})
 }
 
+
+##
+# To get a file exlude the path
+#
+# @use get_file_name_exclude_path "/1/2/3/file.sh"
+# @echo file.sh
+##
+function get_file_name_exclude_path() {
+  local file=$1
+  local file_info=($(split_str ${file} "/"))
+  local file_info_len=${#file_info[@]}
+  local test_file_name=${file_info[file_info_len - 1]}
+  
+  printf ${test_file_name}
+}
+
 ##
 # To get a runtime space while to run a test.
 #
@@ -350,11 +366,11 @@ function handle_testing_callback() {
 function get_runtime_space_by_unit_test_name() {
   local test_name=$1
   local runtimeDir="${DOTFILES_BASE_PATH}/src/runtime"
-  local BASE_PATH="${runtimeDir}/test/unit_test/${test_name}"
+  local test_file_name=`get_file_name_exclude_path ${global_test_file}`
+  local BASE_PATH="${runtimeDir}/test/unit_test/${test_file_name}/${test_name}"
   if [ ! -d ${BASE_PATH} ]; then
     mkdir -p ${BASE_PATH}
   fi
   printf ${BASE_PATH} 
 }
-
 

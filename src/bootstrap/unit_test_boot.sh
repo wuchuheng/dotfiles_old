@@ -18,7 +18,8 @@ for test_file in "${ALL_UNIT_TEST_FILES[@]}"; do
   global_pass_test_desc_items=(); # cellect all pass test description items.
   global_pass_test_name_items=(); # cellect all pass test name items.
   global_max_pass_tests_len=0; # get the max test name length.
-  source "${DOTFILES_BASE_PATH}/${test_file}" 
+  global_test_file=${DOTFILES_BASE_PATH}/${test_file}
+  source ${global_test_file}
   if [ $global_test_file_is_pass -eq 0 ];then
     printf "$(bg_green_print " PASS ") ${test_file}\n"
     for ((i=0; i<${#global_pass_test_name_items[@]}; i++))
