@@ -8,15 +8,17 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 BG_GREEN="\e[42m"
 BG_RED="\e[41m"
-BOLD="\033[1m"
-NC='\033[0m'
+BOLD='\e[1m'
+NC='\e[0m'
 
-bg_green_print() {
-  printf "${BOLD}${BLACK}${BG_GREEN}$1\e[0m"
+function bg_green_print() {
+  printf "${BOLD}${BLACK}${BG_GREEN}%s\e[0m" $1
 }
-bold_print() {
-  printf "${BOLD}$1${NC}"
+
+function bold_print() {
+  printf "%s%s%s" "${BOLD}" "$1" '\e[0m'
 }
+
 bg_red_print() {
   printf "${BOLD}${BLACK}${BG_RED}$1\e[0m"
 }
