@@ -163,7 +163,15 @@ handle_testing_callback "get_files_by_path_test" "To test get_files_by_path func
 
 function get_runtime_space_by_unit_test_name_test() {
   local result=`get_runtime_space_by_unit_test_name "get_a_part_of_code_test"`
-  except_str "${DOTFILES_BASE_PATH}/src/runtime/test/unit_test/get_a_part_of_code_test" "$result"
+  local test_file_name=$(get_file_name_exclude_path ${global_test_file})
+  except_str "${DOTFILES_BASE_PATH}/src/runtime/test/unit_test/${test_file_name}/get_a_part_of_code_test" "$result"
 }
 
 handle_testing_callback "get_runtime_space_by_unit_test_name_test" "To test get_runtime_space_by_unit_test_name function" 
+
+function get_file_name_exclude_path_test() {
+  local file=`get_file_name_exclude_path /1/2/3/file` 
+  except_str "$file" "file"
+}
+
+handle_testing_callback "get_file_name_exclude_path_test" "To test get_file_name_exclude_path function" 
