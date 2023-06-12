@@ -19,7 +19,7 @@ EOF
   local relative_runtime_path=${BASE_PATH:${#DOTFILES_BASE_PATH}}
   result=`import ./../../../..${relative_runtime_path}/${file_name}`
   except_str "${reault}" 'hello'
-  result=`import ../../../../..${relative_runtime_path}/${file_name}`
+  result=`import ../../../..${relative_runtime_path}/${file_name}`
   except_str "${result}" 'hello'
 
   local current_dir="$(cd "$(dirname "${BASH_SOURCE}")" && pwd)"
