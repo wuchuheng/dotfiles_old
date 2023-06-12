@@ -8,4 +8,5 @@
 ALL_UNIT_TEST_FILES=(
 src/utils/__test__/unit_tests/1_helper.test.sh
 src/utils/__test__/unit_tests/2_autoload.test.sh
+src/utils/__test__/unit_tests/3_color_printf.test.sh
 )
