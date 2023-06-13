@@ -171,9 +171,9 @@ get_full_path(){
 
 is_zsh() {
   if [ -n "$ZSH_VERSION" ]; then
-    echo 0
+    echo '0'
   else
-    echo 1
+    echo '1'
   fi
 }
 
@@ -187,8 +187,8 @@ split_str() {
   local string="$1"
   local delimiter="$2"
   local array=()
-  local is_zsh_result=`is_zsh`
-  if (( is_zsh_result == '0' )); then
+  local is_zsh_result=$(is_zsh)
+  if [[ "$is_zsh_result" == "0" ]]; then
     setopt KSH_ARRAYS
     array=("${=string//${delimiter}/ }")
   else
