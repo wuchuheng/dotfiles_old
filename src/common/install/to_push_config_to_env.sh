@@ -23,6 +23,4 @@ if [ "$isloadBashrc" == '' ]; then
   echo "    source $MAIN_FILE_PATH;" >>~/.zshrc
   echo "fi" >>~/.zshrc
   echo "$(get_install_end_symbol_in_zshrc)" >>~/.zshrc 
-  zsh
-  source ~/.zshrc
 fi
