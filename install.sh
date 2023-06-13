@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source ./src/bootstrap/compile_boot.sh || exit 1
-import /src/utils/log.sh # import utils
+import @/src/utils/log.sh # import utils
 
 #echo $DOTFILES_BASE_PATH
 VERSION_NUMBER="1.0.0"
@@ -42,13 +42,13 @@ fi
 echo $(date +"%Y-%m-%d %T") > $IS_INSTALL_LOG_PATH
 
 # To init before to insall
-import /src/common/install/init.sh 
+import @/src/common/install/init.sh
 
 # To install all cli
-import /src/common/install/install_all_cli.sh 
+import @/src/common/install/install_all_cli.sh
 
 # Add bootstrap configuration.
-import /src/common/install/to_push_config_to_env.sh
+import @/src/common/install/to_push_config_to_env.sh
 
 if [ $? == 0 ]; then
   log "INFO" "To launching zsh"
