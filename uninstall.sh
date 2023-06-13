@@ -1,8 +1,9 @@
 #!/bin/sh
 
 source ./src/bootstrap/compile_boot.sh || exit 1
-import /src/utils/log.sh
-import /src/common/install/init.sh 
+
+import @/src/utils/log.sh
+import @/src/common/install/init.sh 
 
 is_ok=1
 
