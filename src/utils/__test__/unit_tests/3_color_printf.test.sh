@@ -4,8 +4,8 @@ import ../../test_except.sh
 import ../../color_printf.sh
 
 function bg_green_print_test() {
-  local result=`bg_green_print hello`
-  except_value='[1m[0;30m[42mhello[0m'
+  local result=$(bg_green_print ' hello ')
+  except_value='[1m[0;30m[42m hello [0m'
   except_str "${result}" "${except_value}"
 }
 
