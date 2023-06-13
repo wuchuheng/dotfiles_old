@@ -24,7 +24,13 @@ cat > "$INSTALLATION_PROVIDER" << EOF
 echo "Installing $TOOL_NAME CLI cli tool..."
 # Write installation example code here
 EOF
-log "INFO" "$(green_print CREATE) $INSTALLATION_PROVIDER"
+function create_log() {
+  local index=${#DOTFILES_BASE_PATH}
+  ((index++))
+  local file_path=${1:${index}}
+  printf "  %s\n" "$(green_print CREATE) ${file_path}"
+}
+create_log "$INSTALLATION_PROVIDER"
 
 # Generate File 3: main.sh
 main_file="${CLI_PATH}/load_${TOOL_NAME}_cli_to_zsh_env_provider.sh"
@@ -44,72 +50,40 @@ cat > "$uninstaller_file" << EOF
 echo "Uninstalling $TOOL_NAME CLI tool..."
 # Write uninstallation example code here
 EOF
-log "INFO" "$(green_print CREATE) $uninstaller_file"
+create_log "$uninstaller_file"
 
 # log  "SUCCESS" "Generate test files 5: __test__"
 INSTALLED_TESTS_PATH=${CLI_PATH}/__test__/installed_tests
 mkdir -p $INSTALLED_TESTS_PATH
 
-CLI_EXISTS_TEST_FILE=${INSTALLED_TESTS_PATH}/1_${TOOL_NAME}_cli_exists_test.sh
-cat > "$CLI_EXISTS_TEST_FILE" << EOF
+INSTALLED_TEST_FILE=${INSTALLED_TESTS_PATH}/1_${TOOL_NAME}.test.sh
+cat > "$INSTALLED_TEST_FILE" << EOF
 #!/bin/bash
 
-import @/src/main.sh
+# ${TOOL_NAME} cli test.
+function ${TOOL_NAME}_installed_test() {
+    echo "${TOOL_NAME} test after installed."
+}
 
-TEST_NAME="${TOOL_NAME}"
-TEST_DESC="Test whether the ${TOOL_NAME} CLI exists"
-START_TIMESTAMP=\$(date +%s)
-DURATION=0;
-if command -v ${TOOL_NAME} >/dev/null 2>&1; then
-    DURATION=\$(date +%s) - \${START_TIMESTAMP}
-    exit 0;
-else
-    DURATION=\$(date +%s) - \${START_TIMESTAMP}
-    exit 1;
-fi
+handle_testing_callback "${TOOL_NAME}_installed_test" "the integration test of the ${TOOL_NAME} cli after the dotfiles installed."
 
 EOF
-log "INFO" "$(green_print CREATE) $CLI_EXISTS_TEST_FILE"
-
-CLI_AVAILABLE_TEST_FILE=${INSTALLED_TESTS_PATH}/2_${TOOL_NAME}_cli_available_test.sh
-cat > "$CLI_AVAILABLE_TEST_FILE" << EOF
-#!/bin/bash
-
-TEST_NAME="${TOOL_NAME}"
-TEST_DESC="Test whether the ${TOOL_NAME} CLI exists"
-START_TIMESTAMP=\$(date +%s)
-DURATION=0;
-if command -v ${TOOL_NAME} >/dev/null 2>&1; then
-    DURATION=\$(date +%s) - \${START_TIMESTAMP}
-    exit 0;
-else
-    DURATION=\$(date +%s) - \${START_TIMESTAMP}
-    exit 1;
-fi
-
-EOF
-log "INFO" "$(green_print CREATE) $CLI_AVAILABLE_TEST_FILE"
+create_log "$INSTALLED_TEST_FILE"
 
 UNINSTALLED_TESTS_PATH=${CLI_PATH}/__test__/uninstalled_tests
 mkdir -p ${UNINSTALLED_TESTS_PATH}
 
-CLI_INVALID_TEST_FILE=${UNINSTALLED_TESTS_PATH}/1_${TOOL_NAME}_cli_invalid_test.sh
-cat > "$CLI_INVALID_TEST_FILE" << EOF
+UNINSTALLED_TEST_FILE=${UNINSTALLED_TESTS_PATH}/1_${TOOL_NAME}_cli.test.sh
+cat > "$UNINSTALLED_TEST_FILE" << EOF
 #!/bin/bash
 
-TEST_NAME="${TOOL_NAME}"
-TEST_DESC="Test whether the ${TOOL_NAME} CLI exists"
-START_TIMESTAMP=\$(date +%s)
-DURATION=0;
-if command -v ${TOOL_NAME} >/dev/null 2>&1; then
-    DURATION=\$(date +%s) - \${START_TIMESTAMP}
-    exit 1;
-else
-    DURATION=\$(date +%s) - \${START_TIMESTAMP}
-    exit 0;
-fi
+# ${TOOL_NAME} cli test.
+function ${TOOL_NAME}_uninstalled_test() {
+    echo "${TOOL_NAME} test after uninstalled."
+}
 
+handle_testing_callback "${TOOL_NAME}_uninstalled_test" "the integration test of the ${TOOL_NAME} cli after the dotfiles uninstalled."
 EOF
 
-log "INFO" "$(green_print CREATE) $CLI_INVALID_TEST_FILE"
+create_log "$UNINSTALLED_TEST_FILE"
 
