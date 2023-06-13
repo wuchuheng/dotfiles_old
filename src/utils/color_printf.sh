@@ -1,13 +1,13 @@
 #!/bin/sh
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-BLACK='\033[0;30m'
-PINK='\033[38;2;225;113;104m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-BG_GREEN="\e[42m"
-BG_RED="\e[41m"
+RED='\e[0;31m'
+GREEN='\e[0;32m'
+BLACK='\e[0;30m'
+PINK='\e[38;2;225;113;104m'
+YELLOW='\e[0;33m'
+BLUE='\e[0;34m'
+BG_GREEN='\e[42m'
+BG_RED='\e[41m'
 BOLD='\e[1m'
 NC='\e[0m'
 
@@ -16,33 +16,34 @@ function bg_green_print() {
 }
 
 function bold_print() {
-  printf "%s%s%s" "${BOLD}" "$1" '\e[0m'
+  printf "\e[1m$1\e[0m"
 }
 
-bg_red_print() {
-  printf "${BOLD}${BLACK}${BG_RED}$1\e[0m"
+function bg_red_print() {
+  printf "\e[1m\e[0;30m\e[41m$1\e[0m"
 }
 
-back_print() {
-  printf "${BLACK}%s${NC}" $1
-}
-pink_print() {
-  printf "${PINK}%s${NC}" $1
-}
-green_print() {
-  sold=${2:-''}
-  printf "${GREEN}${1}${NC}"
+function back_print() {
+  printf "\e[0;30m$1\e[0m"
 }
 
-yellow_print() {
-  printf "${YELLOW}%s${NC}" $1
+function pink_print() {
+  printf "\e[38;2;225;113;104m$1\e[0m"
 }
 
-blue_print() {
-  printf "${BLUE}%s${NC}" $1
+function green_print() {
+  printf "${GREEN}${1}\e[0m"
 }
 
-red_print() {
-  printf "${RED}$1\e[0m"
+function yellow_print() {
+  printf "${YELLOW}$1\e[0m"
+}
+
+function blue_print() {
+  printf "${BLUE}%s\e[0m" $1
+}
+
+function red_print() {
+  printf "\e[0;31m$1\e[0m"
 }
 
