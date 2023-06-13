@@ -12,7 +12,7 @@ BOLD='\e[1m'
 NC='\e[0m'
 
 function bg_green_print() {
-  printf "${BOLD}${BLACK}${BG_GREEN}%s\e[0m" $1
+  printf "${BOLD}${BLACK}${BG_GREEN}%s\e[0m" "$1"
 }
 
 function bold_print() {
@@ -40,7 +40,7 @@ function yellow_print() {
 }
 
 function blue_print() {
-  printf "${BLUE}%s\e[0m" $1
+  printf "${BLUE}%s\e[0m" "$1"
 }
 
 function red_print() {
