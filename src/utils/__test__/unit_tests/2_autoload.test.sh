@@ -30,6 +30,7 @@ echo "tmp"
 EOF
   result=`import test_tmp.test.sh`
   except_str "${result}" 'tmp'
+  rm -f ${test_tmp_file}
 }
 
 handle_testing_callback "autoload_test" "Unit test src/utils/__test__/unit_tests/2_autoload.test.sh"
