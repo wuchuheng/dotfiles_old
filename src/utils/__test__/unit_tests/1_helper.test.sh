@@ -177,12 +177,12 @@ function get_file_name_exclude_path_test() {
 handle_testing_callback "get_file_name_exclude_path_test" "To test get_file_name_exclude_path function" 
 
 function get_test_files_test() {
-  local installed_test_path=src/cli/1_zsh_cli
+  local installed_test_path=src/cli/1_zsh_cli/__test__
   local result=($(get_test_files "${installed_test_path}" 'installed_tests'))
-  files_str=$(ls -ahl ${installed_test_path}/__test__/installed_tests | awk 'NR > 3 {print $9}')
+  files_str=$(ls -ahl ${installed_test_path}/installed_tests | awk 'NR > 3 {print $9}')
   local except_value=()
   while IFS= read -r line; do
-    except_value+=("${installed_test_path}/__test__/installed_tests/${line}")
+    except_value+=("${installed_test_path}/installed_tests/${line}")
   done <<< "$files_str"
   except_str ${#except_value[@]} ${#result[@]}
   except_value_len=${#except_value[@]}
