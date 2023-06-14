@@ -1,7 +1,11 @@
 #!/bin/bash
 
-readonly TEST_DIR=(
-  "src"
-  # "src/cli/19_hello_cli"
-  # "src/cli/20_tmp_cli"
+###
+# @Desc 测试文件配置，包含安装: 单元测试、卸载后测试和安装后测试.
+#
+##
+
+ALL_TEST_DIR=(
+src/utils/__test__
+src/cli/1_zsh/__test__
 )

@@ -406,13 +406,15 @@ function get_test_files() {
       exit 1
     ;;
   esac
-  base_path="${base_test_path}/__test__/${type_str}"
-  full_cli_test_path=$(get_full_path ${base_path})
-  all_cli_test_files=($(get_all_file_by_path $full_cli_test_path))
-  for test_file in "${all_cli_test_files[@]}"; do
-    test_file=${base_path}/$test_file;
-    result+=("${test_file}")
-  done
+  base_path="${base_test_path}/${type_str}"
+  if [ -d ${base_path} ]; then
+   full_cli_test_path=$(get_full_path ${base_path})
+   all_cli_test_files=($(get_all_file_by_path $full_cli_test_path))
+   for test_file in "${all_cli_test_files[@]}"; do
+     test_file=${base_path}/$test_file;
+     result+=("${test_file}")
+   done
+  fi
   
   echo "${result[@]}"
 }
