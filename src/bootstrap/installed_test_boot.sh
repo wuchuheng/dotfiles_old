@@ -4,13 +4,10 @@ source ${DOTFILES_BASE_PATH}/src/utils/autoload.sh || exit 1
 
 import @/src/handlers/test_handler.sh
 import @/src/utils/helper.sh
-
-all_test_dir=(
-src/cli/1_zsh_cli
-)
+import @/src/config/test_conf.sh
 
 all_test_files=()
-for test_dir in ${all_test_dir[@]}; do
+for test_dir in ${ALL_TEST_DIR[@]}; do
   all_test_files+=($(get_test_files "${test_dir}" 'installed_tests'))
 done
 
