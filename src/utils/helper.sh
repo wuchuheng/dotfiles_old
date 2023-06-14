@@ -5,8 +5,9 @@ import @/src/utils/color_printf.sh
 
 ##
 # get_all_sub_dir_by_path # print the list of elements from cli path.
-# @call get_all_sub_dir_by_path "/foo/bar"
-# @echo ("sub_path1", "sub_path2", "sub_path3")
+#
+# @Use get_all_sub_dir_by_path "/foo/bar"
+# @Echo ("sub_path1", "sub_path2", "sub_path3")
 ##
 get_all_sub_dir_by_path() {
   local cli_dir_list=()
@@ -158,6 +159,8 @@ get_main_sh_path(){
 ##
 # 获取绝对路径
 #
+# @Use get_full_path "src/utils"
+# @Echo /Users/username/dotfiles/src/utils
 ##
 get_full_path(){
   first_char="${1:0:1}"
@@ -183,7 +186,7 @@ is_zsh() {
 # @desc split_str "hello world" " "
 # @return ("hello" "world")
 ##
-split_str() {
+function split_str() {
   local string="$1"
   local delimiter="$2"
   local array=()
@@ -219,8 +222,8 @@ get_cli_to_env_provider_by_cli_directory_name(){
 ##
 # 获取目录
 #
-# get_directory "/1/2/3/4/5" 1
-# @return "/1/2/3/4"
+# @Use get_directory "/1/2/3/4/5" 1
+# @Echo "/1/2/3/4"
 ##
 get_directory() {
     local full_path="$1"
@@ -345,8 +348,8 @@ function handle_testing_callback() {
 ##
 # To get a file exlude the path
 #
-# @use get_file_name_exclude_path "/1/2/3/file.sh"
-# @echo file.sh
+# @Use get_file_name_exclude_path "/1/2/3/file.sh"
+# @Echo file.sh
 ##
 function get_file_name_exclude_path() {
   local file=$1
@@ -360,8 +363,8 @@ function get_file_name_exclude_path() {
 ##
 # To get a runtime space while to run a test.
 #
-# @use get_runtime_space_by_unit_test_name "get_a_part_of_code_test" 
-# @echo /Users/wuchuheng/dotfiles/src/runtime/test/unit_test/get_a_part_of_code_test
+# @Use get_runtime_space_by_unit_test_name "get_a_part_of_code_test" 
+# @Echo /Users/wuchuheng/dotfiles/src/runtime/test/unit_test/get_a_part_of_code_test
 ##
 function get_runtime_space_by_unit_test_name() {
   local test_name=$1
@@ -372,5 +375,45 @@ function get_runtime_space_by_unit_test_name() {
     mkdir -p ${BASE_PATH}
   fi
   printf ${BASE_PATH} 
+}
+
+##
+# get  test files
+#
+# @Use get_test_files '/src/utils' '[installed_tests | uninstalled_tests | unit_tests]'
+# @Echo (
+# "src/utils/__test__/[installed_tests | uninstalled_tests | unit_tests]/1_file.test.sh"
+# "src/utils/__test__/[installed_tests | uninstalled_tests | unit_tests]/2_file.test.sh"
+# ...
+# )
+#
+function get_test_files() {
+  local base_test_path=$1
+  local path_type=$2
+  local type_str=''
+  local result=()
+  case  ${path_type} in
+    'installed_tests')
+      type_str='installed_tests'
+    ;;
+    'uninstalled_tests')
+      type_str='uninstalled_tests'
+    ;;
+    'unit_tests')
+      type_str='unit_tests'
+    ;;
+    *)
+      exit 1
+    ;;
+  esac
+  base_path="${base_test_path}/__test__/${type_str}"
+  full_cli_test_path=$(get_full_path ${base_path})
+  all_cli_test_files=($(get_all_file_by_path $full_cli_test_path))
+  for test_file in "${all_cli_test_files[@]}"; do
+    test_file=${base_path}/$test_file;
+    result+=("${test_file}")
+  done
+  
+  echo "${result[@]}"
 }
 
