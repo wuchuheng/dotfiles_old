@@ -47,3 +47,6 @@ function import() {
   fi
 }
 
+
+import @/src/config/common_conf.sh
+
