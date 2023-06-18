@@ -23,6 +23,7 @@ jobs:
       - name: Install the dotfiles
         run: bash ./install.sh;
       - name: Installed test
+        run:  |
           echo "----------------------- Installated test -------------------------------";
           make installed_test
           echo "----------------------- Installated test -------------------------------";
@@ -36,6 +37,7 @@ jobs:
       - name: Install the dotfiles
         run: bash ./install.sh;
       - name: Installed test
+        run:  |
           echo "----------------------- Installated test -------------------------------";
           make installed_test
           echo "----------------------- Installated test -------------------------------";
