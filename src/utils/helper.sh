@@ -419,3 +419,28 @@ function get_test_files() {
   echo "${result[@]}"
 }
 
+##
+# To push a new directory to src/config/test_conf.sh
+# 
+# @Use push_dir_to_test_conf "src/utils/__test__"
+# @Echo #void
+##
+function push_dir_to_test_conf() {
+  local test_dir=$1
+  local config_file=src/config/test_conf.sh
+  import @/${config_file}
+  is_include=1
+  for item in ${ALL_TEST_DIR[@]}; do
+    if [ "${item}" == "${test_dir}" ]; then
+      is_include=0
+    fi
+  done
+  if [ $is_include == 1 ]; then
+  local readonly config_content=$(sed '$d' $config_file)
+  cat > $config_file << EOF
+${config_content}
+${test_dir}
+)
+EOF
+  fi
+}

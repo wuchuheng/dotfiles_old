@@ -1,8 +1,10 @@
 #!/bin/bash
 
 source src/bootstrap/compile_boot.sh || exit 1
+
 import @/src/utils/log.sh
 import @/src/utils/color_printf.sh
+import @/src/utils/helper.sh
 
 read -p "Please enter the name of the cli tool you want to create: " TOOL_NAME
 TOOL_NAME=$(echo "$TOOL_NAME" | sed -E 's/ +/_/g')
@@ -86,4 +88,14 @@ handle_testing_callback "${TOOL_NAME}_uninstalled_test" "the integration test of
 EOF
 
 create_log "$UNINSTALLED_TEST_FILE"
+
+##
+# Push a new item of test directory to src/config/test_conf.sh
+#
+##
+
+bash_path_len=${#DOTFILES_BASE_PATH}
+((bash_path_len++))
+echo ${bash_path_len}
+push_dir_to_test_conf ${CLI_PATH:${bash_path_len}}/__test__
 

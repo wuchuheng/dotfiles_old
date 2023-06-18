@@ -1,14 +1,13 @@
 #!/bin/bash
-
-
 ###
 # 创建单元测试模板文件
 #
 ##
-
 source src/bootstrap/compile_boot.sh || exit 1
+
 import @/src/utils/log.sh
 import @/src/utils/color_printf.sh
+import @/src/utils/helper.sh
 
 # 输出confirm
 printf "$(green_print '  Please enter a unit testing file name you want to create')\n"
@@ -57,13 +56,8 @@ handle_testing_callback "hello_world_callback_test" "Unit test ${UNIT_TEST_FILE}
 EOF
 
 #to push the unit test file to config file config/unit_conf.sh
-
-readonly config_content=$(sed '$d' src/config/unit_test_conf.sh)
-cat > src/config/unit_test_conf.sh << EOF
-${config_content}
-${UNIT_TEST_FILE}
-)
-EOF
+test_dir=$(get_directory "${BASE_DIR}")
+push_dir_to_test_conf ${test_dir}
 
 log "SUCCESS" "🎉  To create a unit testing file ${UNIT_TEST_FILE}"
 
