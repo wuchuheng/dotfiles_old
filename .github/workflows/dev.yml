@@ -21,7 +21,7 @@ jobs:
         run:  |
           make unit_test;
       - name: Install the dotfiles
-          bash ./install.sh;
+        run: bash ./install.sh;
       - name: Installed test
           echo "----------------------- Installated test -------------------------------";
           make installed_test
@@ -34,7 +34,7 @@ jobs:
         run:  |
           make unit_test;
       - name: Install the dotfiles
-          bash ./install.sh;
+        run: bash ./install.sh;
       - name: Installed test
           echo "----------------------- Installated test -------------------------------";
           make installed_test
