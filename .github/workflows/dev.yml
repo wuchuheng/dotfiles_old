@@ -23,6 +23,7 @@ jobs:
           echo "----------------------- Installation start -------------------------------";
           bash ./install.sh;
           echo "----------------------- Installation end   -------------------------------";
+      - name: Installed test
           echo "----------------------- Installated test -------------------------------";
           make installed_test
           echo "----------------------- Installated test -------------------------------";
@@ -36,6 +37,7 @@ jobs:
           echo "----------------------- Installation start -------------------------------";
           bash ./install.sh;
           echo "----------------------- Installation end   -------------------------------";
+      - name: Installed test
           echo "----------------------- Installated test -------------------------------";
           make installed_test
           echo "----------------------- Installated test -------------------------------";
