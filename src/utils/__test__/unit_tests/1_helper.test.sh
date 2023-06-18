@@ -193,3 +193,26 @@ function get_test_files_test() {
 
 handle_testing_callback "get_test_files_test" "To get_test_files function" 
 
+
+function push_dir_to_test_conf_test() {
+  local BASE_PATH=$(get_runtime_space_by_unit_test_name ${global_test_name})
+  local config_file=src/config/test_conf.sh
+  local readonly config_content=$(sed '$d' $config_file)
+  new_dir="src/utils2/__test__"
+  except_value="`cat << EOF
+${config_content}
+${new_dir}
+)
+EOF
+`"
+
+  push_dir_to_test_conf "${new_dir}"
+  result=$(cat ${config_file})
+  except_str "$except_value" "$result"
+  cat > $config_file << EOF
+${config_content}
+)
+EOF
+}
+
+handle_testing_callback "push_dir_to_test_conf_test" "To push_dir_to_test_conf function" 
