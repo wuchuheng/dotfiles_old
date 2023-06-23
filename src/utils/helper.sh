@@ -58,7 +58,9 @@ get_a_part_of_code() {
     if (( ((intervalEnd + 1)) <= ${allLine} )); then
       ((intervalEnd++))
     else
-      ((intervalStart--))
+      if ((((intervalStart - 1)) > 0)) ; then
+        ((intervalStart--))
+      fi
     fi
   done
   local result=`sed -n "${intervalStart},${intervalEnd}p" $file`
@@ -444,3 +446,4 @@ ${test_dir}
 EOF
   fi
 }
+
