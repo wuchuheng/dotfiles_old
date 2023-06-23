@@ -5,7 +5,7 @@ DOTFILES_CLI_PATH=src/cli
 GLOBAL_OS=''
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  OS=$(cat /etc/os-releasee |grepp NAME= |awk 'NR == 1 {print $0}'' | sed - n 's/NAME="\([^"]*\)".*/\1/p')
+  OS=$(cat /etc/os-release | grep NAME= | awk 'NR == 1 {print $0}' |  sed -n 's/NAME="\([^"]*\)".*/\1/p')
   echo $OS
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   GLOBAL_OS="MacOS"
