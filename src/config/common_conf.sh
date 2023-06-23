@@ -7,7 +7,7 @@ GLOBAL_OS=''
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   OS=$(cat /etc/os-release | grep NAME= | awk 'NR == 1 {print $0}' |  sed -n 's/NAME="\([^"]*\)".*/\1/p')
 
-  printf "%s\n" $OS
+  printf "hello >> %s\n" $OS
 
   case ${OS} in
     'Ubuntu')
