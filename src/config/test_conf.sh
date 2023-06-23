@@ -7,4 +7,5 @@
 ALL_TEST_DIR=(
 src/utils/__test__
 src/cli/1_zsh_cli/__test__
+src/handlers/__test__
 )
