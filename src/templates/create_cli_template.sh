@@ -8,7 +8,8 @@ import @/src/utils/helper.sh
 
 read -p "Please enter the name of the cli tool you want to create: " TOOL_NAME
 TOOL_NAME=$(echo "$TOOL_NAME" | sed -E 's/ +/_/g')
-order_number=$(expr "$(($(get_max_number_by_path $(get_all_sub_dir_by_path ${DOTFILES_BASE_PATH/src/cli}))))" + 1)
+order_number=$(get_max_number_by_path "${DOTFILES_BASE_PATH}/src/cli")
+((order_number++))
 SUB_TARGET_PATH="${DOTFILES_BASE_PATH}/src/cli"
 CLI_PATH=${SUB_TARGET_PATH}/${order_number}_${TOOL_NAME}_cli
 INSTALLATION_PROVIDER_PATH=${CLI_PATH}/${TOOL_NAME}_cli_installation_provider
