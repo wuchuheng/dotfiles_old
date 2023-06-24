@@ -26,5 +26,3 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 else
   throw "Unknown OS: $OSTYPE"
 fi
-
-echo $GLOBAL_OS
