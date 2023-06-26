@@ -14,8 +14,8 @@ function to_install_all_cli() {
   for cli_name in ${all_cli}; do
     local cli_number=$(get_cli_number_by_cli_name_with_number "${cli_name}")
     local cli_name_without_number=$(get_cli_name_by_cli_name_with_number "${cli_name}")
-    printf "%s\n" "${cli_number}"
-    printf "%s\n" "${cli_name_without_number}"
+    local profider=${DOTFILES_CLI_PATH}/${cli_name}/${cli_name_without_number}_installation_provider/${cli_name_without_number}_installation_provider.sh
+    import @/${profider} 
   done
 }
 
