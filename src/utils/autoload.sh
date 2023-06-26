@@ -48,6 +48,6 @@ function import() {
 }
 
 
-import @/src/config/common_conf.sh
 import @/src/handlers/exception_handler.sh
+import @/src/config/common_conf.sh
 
