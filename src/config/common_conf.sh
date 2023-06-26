@@ -11,7 +11,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     'Ubuntu')
         GLOBAL_OS='Ubuntu';
     ;;
-    'PRETTY_Ubuntu')
+    'PRETTY_Ubuntu 22.04.2 LTS')
         GLOBAL_OS='Ubuntu';
     ;;
     'CentOS Linux')
