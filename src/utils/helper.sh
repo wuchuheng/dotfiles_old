@@ -447,3 +447,17 @@ EOF
   fi
 }
 
+##
+# Check the command existed
+#
+# @Use is_command "hello"
+# @Return 0|1
+##
+function is_command() {
+  local command_line=$1
+  if command -v ${command_line} &> /dev/null; then
+    return 0
+  else
+    return 1
+  fi
+}

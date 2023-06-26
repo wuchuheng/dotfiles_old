@@ -216,3 +216,14 @@ EOF
 }
 
 handle_testing_callback "push_dir_to_test_conf_test" "To push_dir_to_test_conf function" 
+
+function is_command_test() {
+  local result='false'
+  if is_command 'ls';then
+    result='true'
+  fi
+  except_str 'true' "${result}"
+}
+
+
+handle_testing_callback "is_command_test" "To is_command function" 
