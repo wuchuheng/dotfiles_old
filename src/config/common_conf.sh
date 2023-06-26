@@ -17,12 +17,11 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     'CentOS Linux')
         GLOBAL_OS='CentOS Linux';
     ;;
-    *)
-	throw "Unknown OS: $OSTYPE"
-    ;;
   esac
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   GLOBAL_OS="MacOS"
-else
+fi
+
+if [[ "$GLOBAL_OS" == "" ]]; then
   throw "Unknown OS: $OSTYPE"
 fi
