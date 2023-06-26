@@ -16,6 +16,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     ;;
     'CentOS Linux')
         GLOBAL_OS='CentOS Linux';
+    ;;
     *)
       throw "Unknown OS: $OS"
     ;;
