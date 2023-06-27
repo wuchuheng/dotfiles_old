@@ -4,6 +4,7 @@ source ./src/bootstrap/compile_boot.sh || exit 1
 
 import @/src/utils/log.sh
 import @/src/common/install/init.sh 
+import @/src/common/install/uninstall_all_cli.sh
 
 is_ok=1
 
@@ -25,6 +26,9 @@ if [ -f ~/.bashrc ]; then
 else
   is_ok=0
 fi
+
+# Uninstall all cli.
+uninstall_all_cli
 
 # To delete the runtime directory.
 if [ -d src/runtime ]; then

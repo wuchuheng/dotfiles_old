@@ -3,6 +3,7 @@
 source ./src/bootstrap/compile_boot.sh || exit 1
 import @/src/utils/log.sh # import utils
 import @/src/common/install/install_all_cli.sh
+import @/src/common/install/to_push_config_to_env.sh
 
 #echo $DOTFILES_BASE_PATH
 VERSION_NUMBER="1.0.0"
@@ -49,7 +50,7 @@ import @/src/common/install/init.sh
 to_install_all_cli
 
 # Add bootstrap configuration.
-import @/src/common/install/to_push_config_to_env.sh
+to_push_config_to_env
 
 if [ $? == 0 ]; then
   log "INFO" "To launching zsh"
