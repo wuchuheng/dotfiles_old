@@ -21,3 +21,6 @@ if ! is_command 'zsh'; then
   esac
 fi
 
+if ! is_command 'zsh'; then
+  throw "zsh was not installed."
+fi
