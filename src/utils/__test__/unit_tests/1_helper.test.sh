@@ -177,7 +177,7 @@ function get_file_name_exclude_path_test() {
 handle_testing_callback "get_file_name_exclude_path_test" "To test get_file_name_exclude_path function" 
 
 function get_test_files_test() {
-  local installed_test_path=src/cli/1_zsh_cli/__test__
+  local installed_test_path=src/cli/3_zsh_cli/__test__
   local result=($(get_test_files "${installed_test_path}" 'installed_tests'))
   files_str=$(ls -ahl ${installed_test_path}/installed_tests | awk 'NR > 3 {print $9}')
   local except_value=()
