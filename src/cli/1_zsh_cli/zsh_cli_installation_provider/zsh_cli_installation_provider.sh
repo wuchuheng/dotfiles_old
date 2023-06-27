@@ -11,8 +11,8 @@ if ! is_command 'zsh'; then
        sudo apt install -y zsh
     ;;
     'CentOS Linux')
-       sudo yum update -y;
-       sudo yum install -y zsh
+       yum update -y;
+       yum install -y zsh
     ;;
     'MacOS')
       brew update;
