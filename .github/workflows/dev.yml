@@ -27,6 +27,8 @@ jobs:
           echo "----------------------- Installated test -------------------------------";
           make installed_test
           echo "----------------------- Installated test -------------------------------";
+      - name: Uninstallation
+        run: bash ./uninstall.sh
   MacOS:
     runs-on: macos-latest
     steps:
@@ -41,6 +43,8 @@ jobs:
           echo "----------------------- Installated test -------------------------------";
           make installed_test
           echo "----------------------- Installated test -------------------------------";
+      - name: Uninstallation
+        run: bash ./uninstall.sh
   CentOS:
     runs-on: ubuntu-latest
 
@@ -62,4 +66,7 @@ jobs:
             echo "----------------------- Installated test -------------------------------";
             make installed_test
             echo "----------------------- Installated test -------------------------------";
+            echo "----------------------- Uninstallated start -------------------------------";
+            bash ./uninstall.sh
+            echo "----------------------- Uninstallated end -------------------------------";
           '
