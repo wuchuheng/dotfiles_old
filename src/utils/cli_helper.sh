@@ -37,3 +37,20 @@ function get_cli_name_by_cli_name_with_number() {
   echo "${cli_name}"
 }
 
+##
+# Get the cache dir by cli name.
+#
+# @Use get_cache_dir 'zsh_cli'
+# @Echo # echo string like /User/bar/dotfiles/src/runtime/cache/space_cache/zsh_cli
+##
+function get_cache_dir() {
+  local cli_name=$1
+  local relative_path="src/runtime/cache/space_cache/${cli_name}"
+  local full_path=$(get_full_path "${relative_path}")
+  if [ ! -d ${full_path} ]; then
+     mkdir -p "${full_path}"
+  fi
+
+  echo "${full_path}"
+}
+
