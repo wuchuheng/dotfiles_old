@@ -17,6 +17,12 @@ SUCCESS_ICON="✔"
 WARNING_ICON="⚠"
 ERROR_ICON="✖"
 
+##
+# To log the message.
+#
+# @Use log [INFO|SUCCESS|WARNING|ERROR]
+# @Echo #string
+#
 log() {
   local level="$1"
   local message="$2"
