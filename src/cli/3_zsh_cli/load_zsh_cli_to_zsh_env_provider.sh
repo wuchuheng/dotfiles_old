@@ -1,5 +1,7 @@
 #!/bin/bash
 
+import @/src/utils/cli_helper.sh
+
 # This is the entry file for zsh CLI tool
 # Write the main logic of the CLI tool here
 # Add appropriate comments to explain the purpose and functionality of the file
@@ -8,14 +10,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$(get_cache_dir 'zsh_cli')/oh_my_zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
-# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load

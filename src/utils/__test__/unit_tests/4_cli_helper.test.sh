@@ -21,13 +21,6 @@ function get_cli_name_by_cli_name_with_number_test() {
 
 handle_testing_callback "get_cli_name_by_cli_name_with_number_test" "Unit test get_cli_name_by_cli_name_with_number function"
 
-#+##
-#+# Get the cache dir by cli name.
-#+#
-#+# @Use get_cache_dir 'zsh_cli'
-#+# @Echo # echo string like /User/bar/dotfiles/src/runtime/cache/space_cache/zsh_cli
-#+##
-#+function get_cache_dir() {
 function get_cache_dir_test() {
   local test_dir=$(get_full_path 'src/runtime/cache/space_cache/tmp_cli')
   if [ -d ${test_dir} ]; then
