@@ -11,5 +11,5 @@ for test_dir in ${ALL_TEST_DIR[@]}; do
   all_test_files+=($(get_test_files "${test_dir}" 'installed_tests'))
 done
 
-test_handle "${all_test_files}"
+test_handle "${all_test_files[@]}"
 
