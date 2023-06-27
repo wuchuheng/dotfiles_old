@@ -25,7 +25,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   GLOBAL_OS="MacOS"
 fi
 
-printf "%s\n" "${GLOBAL_OS}"
+# printf "%s\n" "${GLOBAL_OS}"
 
 if [[ "$GLOBAL_OS" == "" ]]; then
   throw "Unknown OS: $OSTYPE"
