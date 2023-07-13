@@ -11,7 +11,7 @@ function init_main_zsh() {
 #!/bin/zsh
 
 DOTFILES_BASE_PATH=${DOTFILES_BASE_PATH}
-source ${DOTFILES_BASE_PATH}/src/bootstrap/bash_env_boot.sh || exit
+source ${DOTFILES_BASE_PATH}/src/zsh_toolbox/autoload.zsh || exit
 
 EOF
   fi
