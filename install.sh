@@ -4,6 +4,7 @@ source ./src/bootstrap/compile_boot.sh || exit 1
 import @/src/utils/log.sh # import utils
 import @/src/common/install/install_all_cli.sh
 import @/src/common/install/to_push_config_to_env.sh
+import @/src/common/install/init.sh
 
 #echo $DOTFILES_BASE_PATH
 VERSION_NUMBER="1.0.0"
@@ -43,8 +44,7 @@ fi
 # Mark Installed
 echo $(date +"%Y-%m-%d %T") > $IS_INSTALL_LOG_PATH
 
-# To init before to insall
-import @/src/common/install/init.sh
+init_main_zsh
 
 # To install all cli
 to_install_all_cli

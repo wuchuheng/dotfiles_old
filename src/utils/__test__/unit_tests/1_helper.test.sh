@@ -106,7 +106,7 @@ handle_testing_callback "get_zsh_end_symbol_test" "To test get_zsh_end_symbol fu
 
 function get_main_sh_path_test() {
   local result=`get_main_sh_path`
-  except_str "$result" '/src/main.sh'
+  except_str "$result" '/src/main.zsh'
 }
 
 handle_testing_callback "get_main_sh_path_test" "To test get_main_sh_path function" 

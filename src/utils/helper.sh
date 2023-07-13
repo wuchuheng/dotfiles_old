@@ -154,8 +154,8 @@ get_zsh_end_symbol(){
 # 获取入口bash文件
 #
 ##
-get_main_sh_path(){
-  echo "/src/main.sh"
+function get_main_sh_path(){
+  echo "/src/main.zsh"
 }
 
 ##
@@ -164,7 +164,7 @@ get_main_sh_path(){
 # @Use get_full_path "src/utils"
 # @Echo /Users/username/dotfiles/src/utils
 ##
-get_full_path(){
+function get_full_path(){
   first_char="${1:0:1}"
   splic_symbol=""
   if [ $first_char != '/' ]; then

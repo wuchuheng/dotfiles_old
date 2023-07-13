@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###
-# @Desc 测试文件配置，包含安装: 单元测试、卸载后测试和安装后测试.
+# @Desc config for testing，including: unit testing、testing after uninstall and testing after install
 #
 ##
 ALL_TEST_DIR=(

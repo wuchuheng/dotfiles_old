@@ -1,10 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 source ./src/bootstrap/compile_boot.sh || exit 1
 
 import @/src/utils/log.sh
 import @/src/common/install/init.sh 
 import @/src/common/install/uninstall_all_cli.sh
+import @/src/utils/helper.sh
 
 is_ok=1
 
@@ -40,10 +41,12 @@ else
   is_ok=0
 fi
 
-if [ -f src/main.sh ]; then
-  rm src/main.sh
+
+
+if [ -f "${DOTFILES_BASE_PATH}$(get_main_sh_path)" ]; then
+  rm "${DOTFILES_BASE_PATH}$(get_main_sh_path)"
   if [ $? != 0 ]; then
-    log "INFO" "TO remove src/main.sh"
+    log "INFO" "TO remove $(get_main_sh_path)"
   fi
 else
   is_ok=0
