@@ -36,7 +36,7 @@ function create_log() {
 create_log "$INSTALLATION_PROVIDER"
 
 # Generate File 3: main.sh
-main_file="${CLI_PATH}/load_${TOOL_NAME}_cli_to_zsh_env_provider.sh"
+main_file="${CLI_PATH}/load_${TOOL_NAME}_cli_to_zsh_env_provider.zsh"
 cat > "$main_file" << EOF
 #!/bin/bash
 

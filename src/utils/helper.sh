@@ -207,7 +207,7 @@ function split_str() {
 # 获取用于载入环境变量的提供者文件
 #
 # @use  get_cli_to_env_provider_by_cli_directory_name 19_hello_cli
-# @echo /src/cli/1_git/load_git_to_zsh_env_provider.sh
+# @echo /src/cli/1_git/load_git_to_zsh_env_provider.zsh
 ##
 get_cli_to_env_provider_by_cli_directory_name(){
   local directory=$1;
@@ -218,7 +218,7 @@ get_cli_to_env_provider_by_cli_directory_name(){
   number=$((${#number} + 1))
   local cli_name="${directory:$number}"
 
-  echo "/src/cli/${parts[0]}_${cli_name}/load_${cli_name}_to_zsh_env_provider.sh"
+  echo "/src/cli/${parts[0]}_${cli_name}/load_${cli_name}_to_zsh_env_provider.zsh"
 }
 
 ##
