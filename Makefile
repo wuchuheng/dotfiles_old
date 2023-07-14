@@ -15,6 +15,7 @@ create_unit_test:
 # 运行单元测试
 unit_test:
 	bash src/bootstrap/unit_test_boot.sh
+	make -C src/zsh_toolbox unit_test
 	
 tmp:
 	bash src/tmp.sh
