@@ -19,3 +19,5 @@ unit_test:
 	
 tmp:
 	bash src/tmp.sh
+	make -C src/zsh_toolbox tmp
+

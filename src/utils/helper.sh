@@ -227,7 +227,7 @@ get_cli_to_env_provider_by_cli_directory_name(){
 # @Use get_directory "/1/2/3/4/5" 1
 # @Echo "/1/2/3/4"
 ##
-get_directory() {
+function get_directory() {
     local full_path="$1"
     full_path=$(echo "$full_path" | sed 's/\/*\//\//g')
     last_character="${full_path: -1}"
