@@ -1,17 +1,10 @@
 #!/usr/bin/env zsh
 
-# 定义颜色常量
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'
-
-# 定义图标常量
-INFO_ICON="ℹ"
-SUCCESS_ICON="✔"
-WARNING_ICON="⚠"
-ERROR_ICON="✖"
+# Function to get the terminal width
+function get_terminal_width() {
+  local terminal_width=$(tput cols)
+  echo "$terminal_width"
+}
 
 ##
 # To log the message.
@@ -20,28 +13,65 @@ ERROR_ICON="✖"
 # @Echo #string
 #
 function log() {
+  # 定义颜色常量
+  local RED='\033[0;31m'
+  local GREEN='\033[0;32m'
+  local YELLOW='\033[0;33m'
+  local BLUE='\033[0;34m'
+  local NC='\033[0m'
+  # 定义图标常量
+  local INFO_ICON="ℹ"
+  local SUCCESS_ICON="✔"
+  local WARNING_ICON="⚠"
+  local ERROR_ICON="✖"
   local level="$1"
   local message="$2"
-  local script="${BASH_SOURCE[1]}"
-  local line="${BASH_LINENO[0]}"
-  local timestamp=$(date +"%Y-%m-%d %T")
+  local timestamp=$(date +"%T")
+  local file_number=${funcfiletrace[1]}
+  local right_msg="${timestamp} ${file_number}"
+  local terminal_width=$(get_terminal_width)
+  local function infoPrint() {
+      local left_msg="$@"
+      local left_str_len=${#@}
+      local symbol="INFO:"
+      local right_str_len=$(( ${#file_number} + ${#timestamp} + 2 + 1 + ${#symbol} ))
+      local left_str_space=$(( $terminal_width - $right_str_len ))
+      if [[ $left_str_len -le $left_str_space ]]; then
+        printf  "\033[0;32m\033[1m${symbol}\033[0m %-${left_str_space}s \033[2m%s\033[0m\n" "${left_msg}" "${right_msg}"
+      else
+        printf  "\033[0;32m\033[1m${symbol}\033[0m %s \033[1;30m%s\033[0m\n" "${left_msg}" "${right_msg}"
+      fi
+  }
+  local function successPrint() {
+      local left_msg="$@"
+      local left_str_len=${#@}
+      local symbol="SUCCESS:"
+      local right_str_len=$(( ${#file_number} + ${#timestamp} + 2 + 1 + ${#symbol} ))
+      local left_str_space=$(( $terminal_width - $right_str_len ))
+      if [[ $left_str_len -le $left_str_space ]]; then
+        printf  "\033[0;32m\033[1m${symbol}\033[0m %-${left_str_space}s \033[2m%s\033[0m\n" "${left_msg}" "${right_msg}"
+      else
+        printf  "\033[0;32m\033[1m${symbol}\033[0m %s \033[1;30m%s\033[0m\n" "${left_msg}" "${right_msg}"
+      fi
+  }
 
   case "$level" in
     "INFO")
-      printf "${INFO_ICON} %s [%s:%d] %s\n" "$timestamp" "$script" "$line" "$message"
+      infoPrint "$@"
       ;;
     "SUCCESS")
-      success_string=$( printf "${GREEN} ${SUCCESS_ICON} %s [%s:%d] %s ${NC}\n" "$timestamp" "$script" "$line" "$message")
-      echo $success_string
+       successPrint "${message}"
       ;;
     "WARNING")
-      printf "${YELLOW}${WARNING_ICON} %s [%s:%d] %s${NC}\n" "$timestamp" "$script" "$line" "$message"
+      printf "${YELLOW}${WARNING_ICON} %s %s %s${NC}\n" "$timestamp" "$message"
       ;;
     "ERROR")
-      printf "${RED}${ERROR_ICON} %s [%s:%d] %s${NC}\n" "$timestamp" "$script" "$line" "$message"
+      local left_msg="\033[0;31m\033m[1mERROR\033[0m $message"
+      local right_msg="${timestamp} ${file_number}"
+      echo "${left_msg} ${right_msg}"
       ;;
     *)
-      printf "${NC}${message}\n"
+      infoPrint "$@"
       ;;
   esac
 }

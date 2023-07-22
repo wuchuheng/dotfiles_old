@@ -17,18 +17,18 @@ function import() {
     /)
 	# To load file from a absolute path in OS.
         source_file=${file_path}
-        ;;
+      ;;
     .)
-	# To load file from a relative path in the project.
-	local second_chart=${file_path:1:1}
-	local dot_chart=${file_path:1:2}
-	# The path of the loaded file is referenced by the current file path 
-	if [[ $second_chart == '/' ]]; then
-          source_file=${previous_dir}${file_path:1}
-        elif [[ ${dot_chart} == './' ]]; then
-          source_file=${previous_dir}/${file_path}
-	fi
-        ;;
+	    # To load file from a relative path in the project.
+	    local second_chart=${file_path:1:1}
+	    local dot_chart=${file_path:1:2}
+	    # The path of the loaded file is referenced by the current file path
+	    if [[ $second_chart == '/' ]]; then
+              source_file=${previous_dir}${file_path:1}
+            elif [[ ${dot_chart} == './' ]]; then
+              source_file=${previous_dir}/${file_path}
+	    fi
+      ;;
     *)
           source_file=${previous_dir}/${file_path}
         ;;

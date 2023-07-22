@@ -31,7 +31,9 @@ vim/cocvim/state/undo/
 # docs
 docs/node_modules
 
-src/runtime/
+runtime/
+tmp.zsh
+tmp.sh
 src/main.zsh
 
 # Ignore files in MacOS
