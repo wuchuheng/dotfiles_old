@@ -16,6 +16,7 @@ $ ./install.sh
 ```
 
 ## TODO
+1. integration testing for zsh toolbox.
 
 
 ### 1 单元测试功能实现

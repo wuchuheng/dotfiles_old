@@ -63,4 +63,4 @@ EOF
 test_dir=$(dirname "${BASE_DIR}")
 push_dir_to_test_conf ${test_dir}
 
-log "SUCCESS" "To create a unit testing file ${UNIT_TEST_FILE}"
+log "SUCCESS" "🎉🎉🎉 To create a unit testing file ${UNIT_TEST_FILE}"

@@ -7,6 +7,18 @@ function get_terminal_width() {
 }
 
 ##
+# Function to get the actual width of a string
+#
+# @Use get_actual_width "hello"
+# @Echo 5
+###
+function get_actual_width() {
+  local string="$1"
+  local width=$(echo -E "$string" | wc -c)
+  echo "$width"
+}
+
+##
 # To log the message.
 #
 # @Use log [INFO|SUCCESS|WARNING|ERROR]
@@ -32,7 +44,7 @@ function log() {
   local terminal_width=$(get_terminal_width)
   local function infoPrint() {
       local left_msg="$@"
-      local left_str_len=${#@}
+      local left_str_len=$(get_actual_width "${@}")
       local symbol="INFO:"
       local right_str_len=$(( ${#file_number} + ${#timestamp} + 2 + 1 + ${#symbol} ))
       local left_str_space=$(( $terminal_width - $right_str_len ))
@@ -44,9 +56,12 @@ function log() {
   }
   local function successPrint() {
       local left_msg="$@"
-      local left_str_len=${#@}
+      local left_str_len=$(get_actual_width "${left_msg}")
+      local sequierCharacterWidth=$((${left_str_len} - ${#left_msg}))
       local symbol="SUCCESS:"
-      local right_str_len=$(( ${#file_number} + ${#timestamp} + 2 + 1 + ${#symbol} ))
+      local wide_len=$( ${APP_BASE_PATH}/src/vendor/convert_str_width_in_terminal/bin/convert_str_width_in_terminal "${left_msg}" )
+      local addition_wide_str_width=$(( ${wide_len} - ${#left_msg} ))
+      local right_str_len=$(( ${#file_number} + ${#timestamp} + 2 + 1 + ${addition_wide_str_width}  + ${#symbol} ))
       local left_str_space=$(( $terminal_width - $right_str_len ))
       if [[ $left_str_len -le $left_str_space ]]; then
         printf  "\033[0;32m\033[1m${symbol}\033[0m %-${left_str_space}s \033[2m%s\033[0m\n" "${left_msg}" "${right_msg}"
