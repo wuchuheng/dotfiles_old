@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     int ascii_count = 0;
 
     for (int i = 0; my_string[i] != '\0'; i++) {
-        char ch = my_string[i];
+        int ch = my_string[i];
         if (ch >= 0 && ch <= 127) {
             ascii_count++;
         }
