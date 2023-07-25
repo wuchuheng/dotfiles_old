@@ -33,7 +33,13 @@ all: $(EXECUTABLE_X86) $(EXECUTABLE_ARM)
 
 # Target for building the executable for macOS (x86_64)
 $(EXECUTABLE_X86): $(SRC_DIR)/main.c
+ifeq ($(shell uname -s),Darwin)
+	# macOS
 	$(CC) $(CFLAGS) -arch x86_64 $< -o $@
+else
+	# Linux or other Unix-like systems
+	$(CC) $(CFLAGS) -m64  $< -o $@
+endif
 
 # Target for building the executable for macOS (arm64)
 $(EXECUTABLE_ARM): $(SRC_DIR)/main.c
