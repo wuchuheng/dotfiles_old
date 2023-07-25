@@ -5,6 +5,10 @@
 int count_wide_char(char *str);
 
 int main(int argc, char *argv[]) {
+    if (argc == 1) {
+        printf("Please input a string.\n");
+        return 1;
+    }
     char *my_string = argv[1];
     int wlen = count_wide_char(my_string);
     int ascii_count = 0;
