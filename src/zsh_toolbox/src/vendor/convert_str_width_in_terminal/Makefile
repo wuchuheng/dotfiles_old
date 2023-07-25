@@ -43,7 +43,10 @@ endif
 
 # Target for building the executable for macOS (arm64)
 $(EXECUTABLE_ARM): $(SRC_DIR)/main.c
+ifeq ($(shell uname -s),Darwin)
+	# macOS
 	$(CC) $(CFLAGS) -arch arm64 $< -o $@
+endif
 
 # Target for cleaning the build
 clean:
