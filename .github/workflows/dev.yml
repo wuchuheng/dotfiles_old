@@ -83,8 +83,10 @@ jobs:
         run:  |
           cd src/zsh_toolbox/src/vendor/convert_str_width_in_terminal
           make
-      - run: git add -A
-      - run: git config --global user.email "root@wuchuheng.com"
-      - run: git config --global user.name"wuchuheng"
-      - run: git commit -m 'Update binary for linux'
-      - run: git push origin master
+      - uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
+        with:
+          author_name: wuchuheng
+          author_email: root@wuchuheng.com
+          committer_name: wuchuheng
+          committer_email: root@wuchuheng.com
+          message: 'update a binary for linux'
