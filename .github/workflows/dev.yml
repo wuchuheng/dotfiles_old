@@ -82,7 +82,9 @@ jobs:
       - name: Build binary
         run:  |
           cd src/zsh_toolbox/src/vendor/convert_str_width_in_terminal
-          make 
+          make
+      - name: git push
+        run: |
           git add -A 
           git config --global user.email "root@wuchuheng.com"
           git config --global user.name"wuchuheng"
