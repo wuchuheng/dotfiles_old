@@ -5,7 +5,7 @@
 ##
 declare -g APP_BASE_PATH=$(pwd)
 
-source src/utils/autoload.zsh
+source src/utils/autoload.zsh || exit 1
 
 import @/src/utils/log.zsh
 import @/src/utils/color_printf.zsh
@@ -34,8 +34,6 @@ relative_path=${BASE_DIR:${#DOTFILES_BASE_PATH}}
 max_number="$(get_max_number_file_by_path  ${BASE_DIR})"
 max_number=$((max_number + 1))
 readonly FILE_NAME_INFO=($(split_str "${FILE_NAME}" '.'))
-log "${FILE_NAME_INFO[@]}"
-log "file name: ${FILE_NAME}"
 file_name_without_extend=''
 for (( i = 1; i < ((${#FILE_NAME_INFO[@]})); i++ )); do
   file_name_without_extend=${file_name_without_extend}.${FILE_NAME_INFO[$i]}
@@ -63,4 +61,4 @@ EOF
 test_dir=$(dirname "${BASE_DIR}")
 push_dir_to_test_conf ${test_dir}
 
-log "SUCCESS" "🎉🎉🎉 To create a unit testing file ${UNIT_TEST_FILE}"
+log "SUCCESS" "🎉🎉🎉 Create a unit testing file ${UNIT_TEST_FILE}"

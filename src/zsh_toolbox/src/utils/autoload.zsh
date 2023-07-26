@@ -40,3 +40,37 @@ function import() {
     exit 1
   fi
 }
+
+##
+# To get the OS symbol
+##
+function get_OS_symbol() {
+  local OS=''
+  if [[ "$OSTYPE" == "linux-gnu" ]]; then
+      OS='linux'
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+      OS="darwin"
+  else
+      printf "Unknown OS\n"
+      return 1;
+  fi
+  local cpu_type=$(uname -p)
+  if [[ ${cpu_type} == "arm" ]]; then
+    OS="${OS}_arm64"
+  else
+    OS="${OS}_${cpu_type}"
+  fi
+
+  echo ${OS}
+}
+
+import @/src/config/bin_register_conf.zsh
+
+
+# to load all bin tool
+for key value in ${(kv)BIN_REGISTER_CONF}; do
+  function "${key}"() {
+    local command=$(printf "%s/%s" "${APP_BASE_PATH}" "${value}")
+    ${command} $@
+  }
+done

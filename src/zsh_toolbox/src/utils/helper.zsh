@@ -72,3 +72,13 @@ ${test_dir}
 EOF
   fi
 }
+
+##
+# to get a bin from vendor by name
+##
+function get_vendor_bin_by_name() {
+  local name=$1
+  local tool=$(printf "%s/src/vendor/${name}/bin/${name}_%s" "${APP_BASE_PATH}" "$(get_OS_symbol)")
+
+  echo ${tool}
+}

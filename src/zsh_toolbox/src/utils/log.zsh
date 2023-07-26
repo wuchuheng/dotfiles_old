@@ -42,40 +42,28 @@ function log() {
   local file_number=${funcfiletrace[1]}
   local right_msg="${timestamp} ${file_number}"
   local terminal_width=$(get_terminal_width)
-  local function infoPrint() {
-      local left_msg="$@"
-      local left_str_len=$(get_actual_width "${@}")
-      local symbol="INFO:"
-      local right_str_len=$(( ${#file_number} + ${#timestamp} + 2 + 1 + ${#symbol} ))
-      local left_str_space=$(( $terminal_width - $right_str_len ))
-      if [[ $left_str_len -le $left_str_space ]]; then
-        printf  "\033[0;32m\033[1m${symbol}\033[0m %-${left_str_space}s \033[2m%s\033[0m\n" "${left_msg}" "${right_msg}"
+
+  local function format_print() {
+      local symbol="$1:"
+      local msg="$2"
+      symbol="${symbol} "
+      local left_msg="${symbol}${msg} "
+      local addition_left_space_width=$(( $(wst "${left_msg}") - ${#left_msg} ))
+      local right_space_width=$(( ${terminal_width} - ${#right_msg} - ${addition_left_space_width} ))
+      if [[ $((${#left_msg} + ${#right_msg} + ${addition_left_space_width})) -le ${terminal_width} ]]; then
+        local space_width=$((${terminal_width} - ${#right_msg} - ${addition_left_space_width} - ${#symbol}))
+        printf  "\033[0;32m\033[1m%s\033[0m%-${space_width}s\033[2m%s\033[0m\n" "${symbol}" "${msg} " "${right_msg}"
       else
-        printf  "\033[0;32m\033[1m${symbol}\033[0m %s \033[1;30m%s\033[0m\n" "${left_msg}" "${right_msg}"
-      fi
-  }
-  local function successPrint() {
-      local left_msg="$@"
-      local left_str_len=$(get_actual_width "${left_msg}")
-      local sequierCharacterWidth=$((${left_str_len} - ${#left_msg}))
-      local symbol="SUCCESS:"
-      local wide_len=$( ${APP_BASE_PATH}/src/vendor/convert_str_width_in_terminal/bin/convert_str_width_in_terminal "${left_msg}" )
-      local addition_wide_str_width=$(( ${wide_len} - ${#left_msg} ))
-      local right_str_len=$(( ${#file_number} + ${#timestamp} + 2 + 1 + ${addition_wide_str_width}  + ${#symbol} ))
-      local left_str_space=$(( $terminal_width - $right_str_len ))
-      if [[ $left_str_len -le $left_str_space ]]; then
-        printf  "\033[0;32m\033[1m${symbol}\033[0m %-${left_str_space}s \033[2m%s\033[0m\n" "${left_msg}" "${right_msg}"
-      else
-        printf  "\033[0;32m\033[1m${symbol}\033[0m %s \033[1;30m%s\033[0m\n" "${left_msg}" "${right_msg}"
+        printf  "\033[0;32m\033[1m%s\033[0m%s\033[2m%s\033[0m\n" "${symbol}" "${msg} " "${right_msg}"
       fi
   }
 
   case "$level" in
     "INFO")
-      infoPrint "$@"
+       format_print "INFO" "${message}"
       ;;
     "SUCCESS")
-       successPrint "${message}"
+       format_print "SUCCESS" "${message}"
       ;;
     "WARNING")
       printf "${YELLOW}${WARNING_ICON} %s %s %s${NC}\n" "$timestamp" "$message"
@@ -86,7 +74,7 @@ function log() {
       echo "${left_msg} ${right_msg}"
       ;;
     *)
-      infoPrint "$@"
+       format_print "INFO" "${@}"
       ;;
   esac
 }
