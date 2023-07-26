@@ -83,10 +83,8 @@ jobs:
         run:  |
           cd src/zsh_toolbox/src/vendor/convert_str_width_in_terminal
           make
-      - name: git push
-        run: |
-          git add -A 
-          git config --global user.email "root@wuchuheng.com"
-          git config --global user.name"wuchuheng"
-          git commit -m 'Update binary for linux'
-          git push origin master
+      - run: git add -A
+      - run: git config --global user.email "root@wuchuheng.com"
+      - run: git config --global user.name"wuchuheng"
+      - run: git commit -m 'Update binary for linux'
+      - run: git push origin master
