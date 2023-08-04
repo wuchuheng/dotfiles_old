@@ -40,6 +40,9 @@ function log() {
   local message="$2"
   local timestamp=$(date +"%T")
   local file_number=${funcfiletrace[1]}
+  if [[ ${#file_number} -gt ${#APP_BASE_PATH} && ${file_number:0:${#APP_BASE_PATH}} == ${APP_BASE_PATH} ]]; then
+    file_number=${file_number:${#APP_BASE_PATH}+1}
+  fi
   local right_msg="${timestamp} ${file_number}"
   local terminal_width=$(get_terminal_width)
 
