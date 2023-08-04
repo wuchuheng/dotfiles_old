@@ -55,7 +55,7 @@ function hello_world_callback_test() {
 }
 
 # call hello_world_test() function，and pass the testing callback with the testing name and testing description.
-handle_testing_callback "hello_world_callback_test" "Unit test ${UNIT_TEST_FILE}"
+testing_callback_handle "hello_world_callback_test" "Unit test ${UNIT_TEST_FILE}"
 
 EOF
 
