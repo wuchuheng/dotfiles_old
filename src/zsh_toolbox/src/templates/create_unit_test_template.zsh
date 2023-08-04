@@ -47,6 +47,8 @@ readonly UNIT_TEST_FILE=${BASE_DIR}/${max_number}_${file_name_without_extend}.te
 cat > ${UNIT_TEST_FILE} << EOF 
 #!/usr/bin/env zsh
 
+import @/src/handlers/testing_callback_handler.zsh
+
 # the demo testing
 function hello_world_callback_test() {
     echo "Callback function called with parameter"

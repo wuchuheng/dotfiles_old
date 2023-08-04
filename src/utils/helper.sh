@@ -81,7 +81,7 @@ get_a_part_of_code() {
 # get_all_file_by_path "/foo/bar"
 # @echo ("file1", "file1", "file3")
 ##
-get_all_file_by_path() {
+function get_all_file_by_path() {
   local file_list=()
   local readonly path=$1
   for file in "$path"/*; do
