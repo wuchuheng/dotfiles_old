@@ -17,6 +17,7 @@ $ ./install.sh
 
 ## TODO
 1. integration testing for zsh toolbox.
+2. manage all submodule in vendor directory with git tool.
 
 
 ### 1 单元测试功能实现
