@@ -42,7 +42,7 @@ get_all_sub_dir_by_path() {
 #    11 | utils/__test__/unit_tests/10_helper.test.sh
 #
 ##
-get_a_part_of_code() {
+function get_a_part_of_code() {
   local file=$1
   local lineNumber=$2;
   local allLine=$(wc -l ${file} | awk '{print $1}')

@@ -8,11 +8,12 @@ function testing_callback_handle() {
     global_start_timestamp=$(date +%s)
     global_duration=0; # Units/second
     global_is_pass=0
-    local result=$(${callback})
+    # local result=$(${callback})
+    $callback
+    local result=()
     if (( global_is_pass != 0 )); then
       global_test_file_is_pass=1
       ((global_total_fail++))
-      printf "%s\n" "${result}"
     else
       ((global_total_pass++))
       global_pass_test_desc_items+=("${global_test_desc}")
