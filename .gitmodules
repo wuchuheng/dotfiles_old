@@ -6,3 +6,6 @@
 	path = vim/cocvim/data/site/pack/packer/start/packer.nvim
 	url = https://github.com/wbthomason/packer.nvim
 	branch = master
+[submodule "src/vendor/dotfile_zsh_module"]
+	path = src/vendor/dotfile_zsh_module
+	url = git@github.com:wuchuheng/dotfile_zsh_module.git
