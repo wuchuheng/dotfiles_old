@@ -12,7 +12,15 @@
 ## Installing
 
 ```shell
+$ git clone --recursive git@github.com/wuchuhengtools/dotfiles.git
 $ ./install.sh
+```
+
+## To update all submodules
+
+```bash
+$ git submodule update --remote --recursive
+$ git commit -am "Update submodules"
 ```
 
 ## TODO
