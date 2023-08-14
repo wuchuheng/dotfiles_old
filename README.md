@@ -12,7 +12,7 @@
 ## Installing
 
 ```shell
-$ git clone --recursive git@github.com/wuchuhengtools/dotfiles.git
+$ git clone --recursive git@github.com:wuchuhengtools/dotfiles.git
 $ ./install.sh
 ```
 
